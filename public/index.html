@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hakku (ಹಕ್ಕು / हक़) — Real-Time Citizen Welfare & Statutory Rights OS</title>
+  <title>Hakku (ಹಕ್ಕು / हक़) — Government Schemes & Welfare Discovery Engine</title>
   
   <!-- Premium High-Legibility Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,25 +44,30 @@
     }
     .ticker-track {
       display: inline-flex;
-      animation: tickerTape 32s linear infinite;
+      animation: tickerTape 30s linear infinite;
     }
     .ticker-track:hover {
       animation-play-state: paused;
     }
 
-    /* Clean Card & Hover Elevation */
-    .card-clean {
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 16px;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Custom form controls */
+    .form-input {
+      background-color: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: #0F172A;
+      outline: none;
+      transition: all 0.15s ease;
+      width: 100%;
     }
-    .card-clean:hover {
-      border-color: #CBD5E1;
-      box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.06);
+    .form-input:focus {
+      border-color: #0A2540;
+      box-shadow: 0 0 0 2px rgba(10, 37, 64, 0.1);
     }
-    
-    /* High-contrast focus rings for accessibility */
+
+    /* High contrast focus rings */
     button:focus-visible, input:focus-visible, select:focus-visible {
       outline: 2px solid #0A2540;
       outline-offset: 2px;
@@ -72,95 +77,73 @@
 <body class="min-h-screen flex flex-col justify-between selection:bg-[#0A2540] selection:text-white">
 
   <!-- ========================================================= -->
-  <!-- 1. INFINITY LOOP TICKER TAPE (REAL-TIME GOVERNMENT DEADLINES) -->
+  <!-- 1. LIVE GOVERNMENT NOTICES & DEADLINES TICKER TAPE -->
   <!-- ========================================================= -->
   <div class="bg-[#0A2540] text-white border-b border-[#0F355C] text-xs py-2 px-3 flex items-center overflow-hidden z-50">
-    <!-- Static Ticker Label Badge -->
-    <div class="shrink-0 flex items-center gap-2 bg-[#0E3A66] text-white font-extrabold text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-md mr-3 border border-[#1E4D7A] shadow-xs">
+    <div class="shrink-0 flex items-center gap-1.5 bg-[#0E3A66] text-white font-extrabold text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-md mr-3 border border-[#1E4D7A]">
       <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-      <span>LIVE NOTICES & DEADLINES</span>
+      <span>LIVE NOTICES</span>
     </div>
 
-    <!-- Infinite Scrolling Tape -->
     <div class="ticker-wrapper flex-1">
       <div class="ticker-track text-[11px] font-mono tracking-tight text-slate-200">
-        
-        <!-- Loop Item 1 -->
-        <span class="inline-flex items-center gap-2 mx-5">
-          <span class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-400/30 text-[9px] font-bold">URGENT</span>
-          <span><b>NSP Scholarship:</b> Central Sector registration verification portal closes at 11:59 PM today.</span>
+        <span class="inline-flex items-center gap-2 mx-4">
+          <span class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-400/30 text-[9px] font-bold">DEADLINE</span>
+          <span><b>NSP Scholarship:</b> Central Sector portal document verification closes at 11:59 PM today.</span>
         </span>
         <span class="text-slate-500">•</span>
-
-        <!-- Loop Item 2 -->
-        <span class="inline-flex items-center gap-2 mx-5">
-          <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[9px] font-bold">NEW QUOTA</span>
-          <span><b>PM-KUSUM 60% Solar Pump:</b> Fresh district quota open for 45,000 farmers via KREDL state portal.</span>
+        <span class="inline-flex items-center gap-2 mx-4">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[9px] font-bold">OPEN NOW</span>
+          <span><b>PM-KUSUM 60% Solar Pump:</b> Fresh district quota open for farmers via state energy portals.</span>
         </span>
         <span class="text-slate-500">•</span>
-
-        <!-- Loop Item 3 -->
-        <span class="inline-flex items-center gap-2 mx-5">
+        <span class="inline-flex items-center gap-2 mx-4">
           <span class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30 text-[9px] font-bold">DBT ALERT</span>
-          <span><b>Gruha Lakshmi (₹2,000/mo):</b> DBT active. Verify bank NPCI Aadhaar mapper seeding to prevent bounce.</span>
+          <span><b>Gruha Lakshmi (₹2,000/mo):</b> Active. Verify bank NPCI Aadhaar seeding to avoid payment bounce.</span>
         </span>
         <span class="text-slate-500">•</span>
-
-        <!-- Loop Item 4 -->
-        <span class="inline-flex items-center gap-2 mx-5">
+        <span class="inline-flex items-center gap-2 mx-4">
           <span class="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-400/30 text-[9px] font-bold">HEALTH 70+</span>
-          <span><b>Ayushman Vay Vandana:</b> Universal ₹5 Lakh health cover now active for all seniors 70+ at ₹0 cost.</span>
+          <span><b>Ayushman Bharat:</b> Free ₹5 Lakh cashless health cover active for all seniors aged 70+.</span>
         </span>
         <span class="text-slate-500">•</span>
-
-        <!-- Loop Item 5 -->
-        <span class="inline-flex items-center gap-2 mx-5">
+        <span class="inline-flex items-center gap-2 mx-4">
           <span class="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-400/30 text-[9px] font-bold">YOUTH</span>
-          <span><b>Yuva Nidhi (₹3,000/mo):</b> Monthly self-declaration window active from 1st to 25th of this month.</span>
+          <span><b>Yuva Nidhi (₹3,000/mo):</b> Unemployed graduate stipend declaration window active this week.</span>
         </span>
         <span class="text-slate-500">•</span>
 
-        <!-- DUPLICATE SET TO CREATE SEAMLESS 100% INFINITE LOOP -->
-        <span class="inline-flex items-center gap-2 mx-5">
-          <span class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-400/30 text-[9px] font-bold">URGENT</span>
-          <span><b>NSP Scholarship:</b> Central Sector registration verification portal closes at 11:59 PM today.</span>
+        <!-- Duplicate for continuous infinite loop -->
+        <span class="inline-flex items-center gap-2 mx-4">
+          <span class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-400/30 text-[9px] font-bold">DEADLINE</span>
+          <span><b>NSP Scholarship:</b> Central Sector portal document verification closes at 11:59 PM today.</span>
         </span>
         <span class="text-slate-500">•</span>
-
-        <span class="inline-flex items-center gap-2 mx-5">
-          <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[9px] font-bold">NEW QUOTA</span>
-          <span><b>PM-KUSUM 60% Solar Pump:</b> Fresh district quota open for 45,000 farmers via KREDL state portal.</span>
+        <span class="inline-flex items-center gap-2 mx-4">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[9px] font-bold">OPEN NOW</span>
+          <span><b>PM-KUSUM 60% Solar Pump:</b> Fresh district quota open for farmers via state energy portals.</span>
         </span>
         <span class="text-slate-500">•</span>
-
-        <span class="inline-flex items-center gap-2 mx-5">
+        <span class="inline-flex items-center gap-2 mx-4">
           <span class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30 text-[9px] font-bold">DBT ALERT</span>
-          <span><b>Gruha Lakshmi (₹2,000/mo):</b> DBT active. Verify bank NPCI Aadhaar mapper seeding to prevent bounce.</span>
+          <span><b>Gruha Lakshmi (₹2,000/mo):</b> Active. Verify bank NPCI Aadhaar seeding to avoid payment bounce.</span>
         </span>
         <span class="text-slate-500">•</span>
-
-        <span class="inline-flex items-center gap-2 mx-5">
+        <span class="inline-flex items-center gap-2 mx-4">
           <span class="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-400/30 text-[9px] font-bold">HEALTH 70+</span>
-          <span><b>Ayushman Vay Vandana:</b> Universal ₹5 Lakh health cover now active for all seniors 70+ at ₹0 cost.</span>
+          <span><b>Ayushman Bharat:</b> Free ₹5 Lakh cashless health cover active for all seniors aged 70+.</span>
         </span>
-        <span class="text-slate-500">•</span>
-
-        <span class="inline-flex items-center gap-2 mx-5">
-          <span class="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-400/30 text-[9px] font-bold">YOUTH</span>
-          <span><b>Yuva Nidhi (₹3,000/mo):</b> Monthly self-declaration window active from 1st to 25th of this month.</span>
-        </span>
-
       </div>
     </div>
   </div>
 
   <!-- ========================================================= -->
-  <!-- 2. CLEAN INSTITUTIONAL NAVBAR -->
+  <!-- 2. NAVBAR -->
   <!-- ========================================================= -->
-  <header class="bg-white border-b border-[#E2E8F0] sticky top-0 z-40 shadow-xs">
+  <header class="bg-white border-b border-[#E2E8F0] sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3">
       
-      <!-- Logo + Tagline -->
+      <!-- Brand & Tagline -->
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-[#0A2540] text-white flex items-center justify-center font-black text-sm tracking-tight shadow-sm">
           <span>ಹ</span><span class="text-xs opacity-75">A</span>
@@ -169,18 +152,18 @@
           <div class="flex items-center gap-2">
             <h1 class="text-base font-extrabold text-[#0F172A] tracking-tight">HAKKU <span class="text-xs font-semibold text-[#64748B] font-mono">(ಹಕ್ಕು / हक़)</span></h1>
             <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]">
-              Real-Time Welfare OS
+              Official Welfare Discovery
             </span>
           </div>
-          <p class="text-xs text-[#64748B]">Zero-Storage Government Scheme Matching & Bureaucratic Rejection Shield</p>
+          <p class="text-xs text-[#64748B]">Zero-Storage Welfare Scheme Matching, Required Documents & Cyber-Café Instructions</p>
         </div>
       </div>
 
-      <!-- Action & Accessibility Bar -->
+      <!-- Zero-Storage Badge & Language Toggle -->
       <div class="flex items-center gap-2">
-        <div class="hidden md:flex items-center gap-1.5 bg-[#F8FAFC] border border-[#E2E8F0] px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-[#475569]">
-          <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
-          <span>5 Autonomous Agents Synchronized</span>
+        <div class="hidden sm:flex items-center gap-1.5 bg-[#ECFDF5] border border-[#A7F3D0] px-3 py-1.5 rounded-lg text-xs font-medium text-[#065F46]">
+          <span>🔒</span>
+          <span>100% In-Memory (Zero Storage)</span>
         </div>
 
         <button onclick="speakSummary()" id="ttsBtn" class="bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center gap-1.5" title="Listen Aloud in your language">
@@ -188,7 +171,7 @@
           <span id="ttsBtnText" class="hidden sm:inline">Listen Aloud</span>
         </button>
 
-        <select id="languageSelect" onchange="runHarness('')" class="bg-white border border-[#CBD5E1] text-[#0F172A] text-xs font-semibold px-2.5 py-1.5 rounded-lg outline-none cursor-pointer hover:border-[#0A2540]">
+        <select id="languageSelect" onchange="runHarness()" class="bg-white border border-[#CBD5E1] text-[#0F172A] text-xs font-semibold px-2.5 py-1.5 rounded-lg outline-none cursor-pointer hover:border-[#0A2540]">
           <option value="English">🌐 English</option>
           <option value="Kannada (ಕನ್ನಡ)">🌐 ಕನ್ನಡ (Kannada)</option>
           <option value="Hinglish (Hindi + English)">🌐 हिंदी / Hinglish</option>
@@ -199,48 +182,48 @@
   </header>
 
   <!-- ========================================================= -->
-  <!-- 3. MAIN WORKSPACE (PERFECTLY FITTED CONTAINER) -->
+  <!-- 3. MAIN WORKSPACE -->
   <!-- ========================================================= -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 flex-1 w-full">
 
-    <!-- HERO MONEY VAULT (PROPORTIONATE & CLEAN) -->
-    <div class="bg-gradient-to-br from-[#0A2540] via-[#0E355E] to-[#124275] rounded-3xl p-6 sm:p-7 text-white shadow-sm relative overflow-hidden">
+    <!-- HERO BENEFIT BANNER -->
+    <div class="bg-gradient-to-br from-[#0A2540] via-[#0E355E] to-[#124275] rounded-3xl p-6 sm:p-7 text-white shadow-sm">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         
-        <!-- Left Hero Summary -->
-        <div class="lg:col-span-7 space-y-3.5">
+        <!-- Left Banner Text -->
+        <div class="lg:col-span-7 space-y-3">
           <div class="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-xs font-semibold text-emerald-300 border border-white/15">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span id="vaultModeBadge">Whole 4-Member Household Entitlement Unit</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>Zero-Middleman Government Benefits Discovery</span>
           </div>
 
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
-            Here is Every Rupee the Government Already Owes Your Family.
+          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
+            Find Every Government Scheme, Cash DBT & Grant You Are Eligible For.
           </h2>
 
           <p id="aiSummaryBox" class="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-2xl">
-            Checking 20 official Central and Karnataka state welfare schemes against your household parameters...
+            Enter your details below to check 20 Central and State welfare schemes, exact money benefits, required documents, and where to apply.
           </p>
 
           <div class="flex flex-wrap items-center gap-2.5 pt-1">
             <button onclick="openDocKitModal(null, 'application')" class="bg-[#10B981] hover:bg-[#059669] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-xs transition flex items-center gap-2">
               <span>📥</span>
-              <span>Print Cyber-Café Slip (PDF)</span>
+              <span>Print Cyber-Café Slip</span>
             </button>
             <button onclick="openDocKitModal(null, 'npci')" class="bg-white/15 hover:bg-white/25 text-white font-semibold text-xs sm:text-sm px-3.5 py-2.5 rounded-xl transition border border-white/20">
               🏦 Bank NPCI Form
             </button>
             <button onclick="openDocKitModal(null, 'rti')" class="bg-rose-500/20 hover:bg-rose-500/30 text-rose-200 font-semibold text-xs sm:text-sm px-3.5 py-2.5 rounded-xl transition border border-rose-400/30">
-              ⚖️ Sakala Delay RTI
+              ⚖️ Delay RTI Notice
             </button>
           </div>
         </div>
 
-        <!-- Right Cash Metrics Box -->
+        <!-- Right Cash Metrics Counter -->
         <div class="lg:col-span-5 bg-white rounded-2xl p-5 text-[#0F172A] shadow-xs space-y-3.5">
           <div>
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold uppercase tracking-wider text-[#64748B]">Total Annual Direct Cash DBT</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#64748B]">Total Annual Direct Cash (DBT)</span>
               <span id="schemeCountBadge" class="text-xs font-bold font-mono px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#047857] border border-[#A7F3D0]">
                 0 Schemes
               </span>
@@ -253,7 +236,7 @@
 
           <div class="grid grid-cols-2 gap-3 pt-2.5 border-t border-[#E2E8F0]">
             <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-2.5 rounded-xl">
-              <span class="text-[11px] font-semibold text-[#64748B] block">📈 5-Year Family Wealth</span>
+              <span class="text-[11px] font-semibold text-[#64748B] block">📈 5-Year Total Value</span>
               <span id="fiveYearMeter" class="text-base font-black text-[#B45309] font-mono">₹0</span>
             </div>
             <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-2.5 rounded-xl">
@@ -262,172 +245,228 @@
             </div>
           </div>
 
-          <div class="flex items-center justify-between text-xs text-[#64748B] pt-0.5">
+          <div class="flex items-center justify-between text-[11px] text-[#64748B] pt-0.5">
             <span class="flex items-center gap-1">
-              <span class="text-emerald-600 font-bold">✓</span> Real-Time Deterministic Match
+              <span class="text-emerald-600 font-bold">✓</span> Direct to Bank Account
             </span>
-            <span class="font-medium text-[#0A2540]">Zero Middleman Fees</span>
+            <span class="font-medium text-[#0A2540]">Zero Storage • Private</span>
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- 1-CLICK INSTANT DEMO PERSONAS BAR -->
-    <div class="bg-white border border-[#E2E8F0] p-3.5 rounded-2xl shadow-xs space-y-2.5">
-      <div class="flex flex-wrap items-center justify-between gap-2">
-        <span class="text-xs font-bold uppercase tracking-wider text-[#0A2540] flex items-center gap-1.5">
-          <span>⚡</span> 1-Click Family Presets (Real-Time Recalculation):
-        </span>
-        <span class="text-xs text-[#64748B]">Click any profile to test whole-family or individual matching:</span>
-      </div>
-
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
-        <button id="btnFamily" onclick="loadWholeFamilyDemo()" class="p-2.5 rounded-xl text-left border-2 border-[#2563EB] bg-[#EFF6FF] transition shadow-xs flex flex-col justify-between">
-          <div class="text-xs font-extrabold text-[#1D4ED8]">👨‍👩‍👧‍👦 Whole Family (4)</div>
-          <div class="text-[11px] text-[#475569] mt-0.5">Farmer + Wife + Student + Senior</div>
-          <span class="text-[10px] font-mono font-bold text-[#059669] mt-1.5">Combined Claim</span>
-        </button>
-
-        <button id="btnAarav" onclick="loadPersona('aarav')" class="p-2.5 rounded-xl text-left border border-[#E2E8F0] bg-white hover:border-[#CBD5E1] transition shadow-xs flex flex-col justify-between">
-          <div class="text-xs font-bold text-[#0F172A]">🎓 Aarav, 19</div>
-          <div class="text-[11px] text-[#64748B] mt-0.5">College Student • OBC</div>
-          <span class="text-[10px] font-mono font-bold text-[#059669] mt-1.5">Scholarships</span>
-        </button>
-
-        <button id="btnAnanya" onclick="loadPersona('ananya')" class="p-2.5 rounded-xl text-left border border-[#E2E8F0] bg-white hover:border-[#CBD5E1] transition shadow-xs flex flex-col justify-between">
-          <div class="text-xs font-bold text-[#0F172A]">👩‍💻 Ananya, 20</div>
-          <div class="text-[11px] text-[#64748B] mt-0.5">Girl Tech Student • B.Tech</div>
-          <span class="text-[10px] font-mono font-bold text-[#059669] mt-1.5">₹50k Pragati Grant</span>
-        </button>
-
-        <button id="btnLakshmi" onclick="loadPersona('lakshmi')" class="p-2.5 rounded-xl text-left border border-[#E2E8F0] bg-white hover:border-[#CBD5E1] transition shadow-xs flex flex-col justify-between">
-          <div class="text-xs font-bold text-[#0F172A]">👵 Lakshmi, 67</div>
-          <div class="text-[11px] text-[#64748B] mt-0.5">Rural Senior Widow • BPL</div>
-          <span class="text-[10px] font-mono font-bold text-[#059669] mt-1.5">Pension & Housing</span>
-        </button>
-
-        <button id="btnRamesh" onclick="loadPersona('ramesh')" class="p-2.5 rounded-xl text-left border border-[#E2E8F0] bg-white hover:border-[#CBD5E1] transition shadow-xs flex flex-col justify-between">
-          <div class="text-xs font-bold text-[#0F172A]">🌾 Ramesh, 41</div>
-          <div class="text-[11px] text-[#64748B] mt-0.5">Small Farmer • 2.5 Acres</div>
-          <span class="text-[10px] font-mono font-bold text-[#059669] mt-1.5">PM-KISAN & Solar</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- MAIN TWO-COLUMN SPLIT (PROPORTIONATE & BALANCED) -->
+    <!-- MAIN TWO-COLUMN SPLIT -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
       
-      <!-- LEFT COLUMN: CONTROLS + REJECTION SHIELD + DOCUMENTS (5 COLS) -->
+      <!-- ========================================================= -->
+      <!-- LEFT COLUMN: CITIZEN INPUT FORM & VERIFICATION (5 COLS) -->
+      <!-- ========================================================= -->
       <div class="lg:col-span-5 space-y-5">
         
-        <!-- Live Voice & Text Intake Search Bar -->
-        <div class="bg-white border border-[#E2E8F0] p-4 rounded-2xl shadow-xs space-y-2.5">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-wider text-[#0A2540] flex items-center gap-1.5">
-              <span>🎙️</span> Natural Speech Intake
+        <!-- CITIZEN PROFILE INPUT FORM -->
+        <div class="bg-white border border-[#CBD5E1] p-5 rounded-2xl shadow-xs space-y-4">
+          <div class="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
+            <div>
+              <h3 class="text-sm font-bold text-[#0F172A] flex items-center gap-1.5">
+                <span>📝</span> Citizen / Family Information
+              </h3>
+              <p class="text-[11px] text-[#64748B]">Provide details to calculate eligible benefits accurately</p>
+            </div>
+            <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0]">
+              Private
             </span>
-            <span class="text-[10px] text-[#64748B] font-mono">Live Processing</span>
           </div>
 
-          <div class="flex gap-2">
-            <button onclick="startVoiceInput()" id="voiceBtn" class="bg-[#EFF6FF] hover:bg-[#DBEAFE] border border-[#BFDBFE] text-base px-3 py-2 rounded-xl shrink-0 transition" title="Speak in Kannada, Hindi or English">
-              🎙️
-            </button>
-            <input id="chatInput" type="text" placeholder="e.g. 'I am a 22 year old student from a farming family...'" class="flex-1 bg-[#F8FAFC] border border-[#CBD5E1] focus:border-[#2563EB] rounded-xl px-3 py-2 text-xs text-[#0F172A] outline-none transition" />
-            <button onclick="submitChatIntake()" class="bg-[#0A2540] hover:bg-[#0E355E] text-white font-bold text-xs px-3.5 py-2 rounded-xl transition shadow-xs">
-              Check
-            </button>
+          <!-- Quick Fill Sample Buttons -->
+          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+            <span class="text-[11px] text-[#64748B] font-medium mr-1">Quick Sample:</span>
+            <button type="button" onclick="quickFill('student')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-semibold text-[#334155] transition">🎓 Student</button>
+            <button type="button" onclick="quickFill('farmer')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-semibold text-[#334155] transition">🌾 Farmer</button>
+            <button type="button" onclick="quickFill('homemaker')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-semibold text-[#334155] transition">👩 Homemaker</button>
+            <button type="button" onclick="quickFill('senior')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-semibold text-[#334155] transition">👵 Senior (70+)</button>
           </div>
+
+          <!-- Form Fields -->
+          <form id="citizenForm" onsubmit="event.preventDefault(); runHarness();" class="space-y-3.5">
+            
+            <!-- Age & Gender -->
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-[#334155] mb-1">Age (Years) *</label>
+                <input id="inputAge" type="number" min="1" max="110" value="21" class="form-input" required onchange="runHarness()" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-[#334155] mb-1">Gender *</label>
+                <select id="inputGender" class="form-input cursor-pointer" onchange="runHarness()">
+                  <option value="female">Female</option>
+                  <option value="male" selected>Male</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Occupation -->
+            <div>
+              <label class="block text-xs font-bold text-[#334155] mb-1">Occupation / Activity *</label>
+              <select id="inputOccupation" class="form-input cursor-pointer" onchange="handleOccupationChange()">
+                <option value="student" selected>🎓 Student (College / School)</option>
+                <option value="farmer">🌾 Farmer / Agriculture Worker</option>
+                <option value="homemaker">👩 Homemaker / Mother</option>
+                <option value="senior">👵 Senior Citizen / Retired</option>
+                <option value="worker">🔨 Artisan / Craftsman / Daily Wage</option>
+                <option value="unemployed">💼 Unemployed Graduate / Youth</option>
+                <option value="other">🏢 Private Employee / Other</option>
+              </select>
+            </div>
+
+            <!-- Annual Income & Social Category -->
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-[#334155] mb-1">Annual Family Income (₹) *</label>
+                <input id="inputIncome" type="number" step="10000" min="0" value="120000" class="form-input font-mono" required onchange="runHarness()" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-[#334155] mb-1">Social Category *</label>
+                <select id="inputCategory" class="form-input cursor-pointer" onchange="runHarness()">
+                  <option value="OBC" selected>OBC (Category 1, 2A, 2B, 3A, 3B)</option>
+                  <option value="SC">SC (Scheduled Caste)</option>
+                  <option value="ST">ST (Scheduled Tribe)</option>
+                  <option value="General">General / Other</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Ration Card -->
+            <div>
+              <label class="block text-xs font-bold text-[#334155] mb-1">Ration Card Status *</label>
+              <select id="inputRation" class="form-input cursor-pointer" onchange="runHarness()">
+                <option value="bpl" selected>BPL / Antyodaya Anna Yojana (Priority)</option>
+                <option value="apl">APL Card (Above Poverty Line)</option>
+                <option value="none">No Ration Card</option>
+              </select>
+            </div>
+
+            <!-- Key Status Checkboxes -->
+            <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-3 rounded-xl space-y-2 text-xs">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input id="chkStudent" type="checkbox" checked onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 rounded" />
+                <span class="text-[#334155]">Currently enrolled in School / College / Degree</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input id="chkWidow" type="checkbox" onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 rounded" />
+                <span class="text-[#334155]">Widow (eligible for widow pensions & housing)</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input id="chkTaxPayer" type="checkbox" onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 rounded" />
+                <span class="text-[#334155]">Family member pays Income Tax</span>
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full bg-[#0A2540] hover:bg-[#12375C] text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl shadow-xs transition flex items-center justify-center gap-2">
+              <span>🔍</span>
+              <span>Check My Eligible Schemes & Money</span>
+            </button>
+
+          </form>
+
+          <!-- Voice / Natural Query Intake -->
+          <div class="pt-2 border-t border-[#E2E8F0] space-y-2">
+            <span class="text-[11px] font-bold text-[#64748B] flex items-center gap-1">
+              <span>🎙️</span> Or speak/type in natural words:
+            </span>
+            <div class="flex gap-2">
+              <button onclick="startVoiceInput()" id="voiceBtn" class="bg-[#EFF6FF] hover:bg-[#DBEAFE] border border-[#BFDBFE] text-base px-3 py-1.5 rounded-xl shrink-0 transition" title="Speak in Kannada, Hindi or English">
+                🎙️
+              </button>
+              <input id="chatInput" type="text" placeholder="e.g. 'I am a 20 year old student from a farming family...'" class="flex-1 bg-[#F8FAFC] border border-[#CBD5E1] rounded-xl px-3 py-1.5 text-xs text-[#0F172A] outline-none" />
+              <button onclick="submitChatIntake()" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0A2540] font-bold text-xs px-3 py-1.5 rounded-xl border border-[#CBD5E1] transition">
+                Find
+              </button>
+            </div>
+          </div>
+
         </div>
 
-        <!-- AGENT 3: PRE-SUBMISSION REJECTION SHIELD -->
+        <!-- BANK & REJECTION SHIELD VERIFICATION -->
         <div class="bg-white border border-[#E2E8F0] p-4 rounded-2xl shadow-xs space-y-3">
           <div class="flex items-center justify-between">
             <span class="text-xs font-bold uppercase tracking-wider text-[#0A2540] flex items-center gap-1.5">
-              <span>🛡️</span> Rejection Shield (Agent 3)
+              <span>🛡️</span> Bank & e-KYC Readiness Check
             </span>
-            <span id="readinessBadge" class="text-xs font-mono font-bold px-2.5 py-0.5 rounded-md bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0]">
+            <span id="readinessBadge" class="text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0]">
               100% Ready
             </span>
           </div>
           <p class="text-xs text-[#64748B] leading-relaxed">
-            40% of cash transfers fail after approval because of these 3 traps. Uncheck any box to test:
+            Ensure these 3 bank & certificate items are ready so your benefits transfer without failure:
           </p>
 
           <div class="space-y-2 text-xs bg-[#F8FAFC] border border-[#E2E8F0] p-3 rounded-xl">
             <label class="flex items-start gap-2.5 cursor-pointer">
-              <input id="chkNpci" type="checkbox" checked onchange="runHarness('')" class="accent-[#2563EB] w-4 h-4 mt-0.5" />
-              <span class="text-[#334155]">Bank Account has active <b>NPCI Aadhaar DBT Mapper</b> seeding</span>
+              <input id="chkNpci" type="checkbox" checked onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 mt-0.5" />
+              <span class="text-[#334155]">Bank Account is seeded with <b>NPCI Aadhaar DBT Mapper</b></span>
             </label>
             <label class="flex items-start gap-2.5 cursor-pointer">
-              <input id="chkName" type="checkbox" checked onchange="runHarness('')" class="accent-[#2563EB] w-4 h-4 mt-0.5" />
+              <input id="chkName" type="checkbox" checked onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 mt-0.5" />
               <span class="text-[#334155]">Exact <b>Name Spelling Match</b> across Aadhaar & Bank Passbook</span>
             </label>
             <label class="flex items-start gap-2.5 cursor-pointer">
-              <input id="chkRd" type="checkbox" checked onchange="runHarness('')" class="accent-[#2563EB] w-4 h-4 mt-0.5" />
-              <span class="text-[#334155]">Valid <b>Nadakacheri RD Number</b> on Income Certificate</span>
+              <input id="chkRd" type="checkbox" checked onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 mt-0.5" />
+              <span class="text-[#334155]">Valid unexpired <b>Nadakacheri RD Number</b> on Income Certificate</span>
             </label>
           </div>
 
           <div id="rejectionRisksBox" class="space-y-2"></div>
         </div>
 
-        <!-- SINGLE-WINDOW DOCUMENT CHECKLIST (CARRY ONCE) -->
+        <!-- SINGLE-WINDOW REQUIRED DOCUMENTS CHECKLIST -->
         <div class="bg-white border border-[#E2E8F0] p-4 rounded-2xl shadow-xs space-y-2.5">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-wider text-[#0A2540]">📋 Single-Window Document Kit</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#0A2540]">📋 What Documents to Carry (Consolidated)</span>
             <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#EFF6FF] text-[#1D4ED8]">Carry Once</span>
           </div>
-          <p class="text-xs text-[#64748B]">Deduplicated papers required for all matched schemes in a single trip to GramaOne / CSC:</p>
+          <p class="text-xs text-[#64748B]">All documents required across all your matched schemes for a single trip to the center:</p>
           <div id="consolidatedDocs" class="flex flex-wrap gap-1.5 pt-1 text-xs"></div>
-        </div>
-
-        <!-- 5-AGENT AUDIT TELEMETRY TRACE -->
-        <div class="bg-white border border-[#E2E8F0] p-4 rounded-2xl shadow-xs space-y-2.5">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-wider text-[#0A2540] flex items-center gap-1.5 font-mono">
-              <span>🤖</span> 5-Agent Pipeline Execution Trace
-            </span>
-            <span class="text-[10px] font-mono text-[#059669]">Live Status</span>
-          </div>
-          <div id="agentTraceBox" class="space-y-2 text-xs"></div>
         </div>
 
       </div>
 
-      <!-- RIGHT COLUMN: SCHEMES GALLERY + FILTER CONTROLS (7 COLS) -->
+      <!-- ========================================================= -->
+      <!-- RIGHT COLUMN: MATCHED SCHEMES & HOW TO APPLY (7 COLS) -->
+      <!-- ========================================================= -->
       <div class="lg:col-span-7 space-y-4">
         
-        <!-- Filter Bar & Search -->
+        <!-- Filter Pills & Search Bar -->
         <div class="bg-white border border-[#E2E8F0] p-3.5 rounded-2xl shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div class="flex flex-wrap items-center gap-1.5" id="categoryPills">
             <button onclick="setCategoryFilter('ALL')" class="cat-pill bg-[#0A2540] text-white font-bold text-xs px-3 py-1.5 rounded-lg transition">All Matched</button>
-            <button onclick="setCategoryFilter('Women & Family Cash')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1.5 rounded-lg transition">👩 Women</button>
             <button onclick="setCategoryFilter('Student Scholarships')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1.5 rounded-lg transition">🎓 Scholarships</button>
+            <button onclick="setCategoryFilter('Women & Family Cash')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1.5 rounded-lg transition">👩 Women/Family</button>
             <button onclick="setCategoryFilter('Farmer Grants')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1.5 rounded-lg transition">🌾 Farmers</button>
             <button onclick="setCategoryFilter('Household Freebies')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1.5 rounded-lg transition">⚡ Free Power/Gas</button>
           </div>
 
           <div class="flex items-center gap-2">
-            <input id="schemeSearch" type="text" oninput="renderSchemesGrid()" placeholder="Filter schemes..." class="bg-[#F8FAFC] border border-[#CBD5E1] rounded-lg px-2.5 py-1.5 text-xs text-[#0F172A] outline-none w-32 sm:w-36 focus:border-[#2563EB]" />
+            <input id="schemeSearch" type="text" oninput="renderSchemesGrid()" placeholder="Search schemes..." class="bg-[#F8FAFC] border border-[#CBD5E1] rounded-lg px-2.5 py-1.5 text-xs text-[#0F172A] outline-none w-32 sm:w-36 focus:border-[#0A2540]" />
             <label class="flex items-center gap-1 text-xs text-[#64748B] cursor-pointer whitespace-nowrap">
-              <input id="showAllToggle" type="checkbox" onchange="renderSchemesGrid()" class="accent-[#2563EB]" />
+              <input id="showAllToggle" type="checkbox" onchange="renderSchemesGrid()" class="accent-[#0A2540]" />
               <span>All 20</span>
             </label>
           </div>
         </div>
 
-        <!-- STATUTORY ANTI-DOUBLE-DIPPING BANNER (When Triggered) -->
+        <!-- Statutory Conflict Notification (If triggered) -->
         <div id="conflictSection" class="hidden bg-[#FFFBEB] border border-[#FDE68A] p-3.5 rounded-2xl shadow-xs space-y-1 text-xs text-[#92400E]">
           <div class="font-bold flex items-center gap-1.5">
-            <span>⚖️</span> <span>Statutory Anti-Double-Dipping Rules Enforced:</span>
+            <span>⚖️</span> <span>Government Anti-Double-Dipping Rule Enforced:</span>
           </div>
           <div id="conflictList" class="space-y-1 text-[11px] font-mono"></div>
         </div>
 
-        <!-- SCHEME CARDS LIST (PROPORTIONATE CARD SPACING) -->
-        <div id="schemesContainer" class="space-y-3"></div>
+        <!-- SCHEMES CONTAINER -->
+        <div id="schemesContainer" class="space-y-3.5"></div>
 
       </div>
 
@@ -440,19 +479,19 @@
   <!-- ========================================================= -->
   <footer class="bg-white border-t border-[#E2E8F0] mt-10 py-4 px-4 text-center text-xs text-[#64748B]">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-      <div><b>Hakku Welfare Core</b> • BharatCode Build League 2026 by SHAMITH R (@rshamith-cpu)</div>
-      <div class="text-[11px] font-mono">100% In-Memory Zero-Storage • DPDP Act 2023 Compliant • 20 Verified Schemes</div>
+      <div class="font-semibold text-[#0A2540]">HAKKU Welfare Discovery Engine</div>
+      <div class="text-[11px] font-mono">100% In-Memory (Zero Storage) • DPDP Act 2023 Compliant • Official Central & State Schemes</div>
     </div>
   </footer>
 
   <!-- ========================================================= -->
-  <!-- 5. PRINTABLE DOCUMENT / RTI / NPCI MODAL -->
+  <!-- 5. PRINTABLE CYBER-CAFÉ SLIP / DOCUMENT MODAL -->
   <!-- ========================================================= -->
   <div id="docModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
     <div class="bg-white border border-[#CBD5E1] rounded-2xl max-w-3xl w-full p-5 sm:p-6 flex flex-col max-h-[92vh] shadow-2xl">
       <div class="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
         <div>
-          <span class="text-[10px] font-mono font-bold uppercase text-[#0A2540]">Official Citizen Output Packet</span>
+          <span class="text-[10px] font-mono font-bold uppercase text-[#0A2540]">Official Citizen Output Slip</span>
           <h3 id="modalTitle" class="text-base sm:text-lg font-bold text-[#0F172A] mt-0.5">Application Packet</h3>
         </div>
         <button onclick="closeDocModal()" class="text-[#64748B] hover:text-[#0F172A] text-lg font-bold px-2.5 py-1 rounded-lg hover:bg-[#F1F5F9]">✕</button>
@@ -462,72 +501,116 @@
 
       <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[#E2E8F0]">
         <span class="text-xs text-[#059669] font-medium flex items-center gap-1.5">
-          <span>✓</span> <span>Legal Hard Copy Ready: Print and hand to cyber-café operator or bank manager.</span>
+          <span>✓</span> <span>Print and hand this directly to the GramaOne / CSC / Cyber-Café operator.</span>
         </span>
         <div class="flex gap-2">
           <button onclick="copyDocText()" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-4 py-2 rounded-xl transition">
             <span id="copyBtnText">📋 Copy Text</span>
           </button>
           <button onclick="printDocText()" class="bg-[#0A2540] hover:bg-[#12375C] text-white text-xs font-bold px-5 py-2 rounded-xl transition shadow">
-            🖨️ Print / Save as PDF
+            🖨️ Print / Save PDF
           </button>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- ========================================================= -->
+  <!-- 6. APPLICATION LOGIC -->
+  <!-- ========================================================= -->
   <script>
-    let currentProfile = {};
-    let currentHousehold = [];
     let latestMatchedSchemes = [];
     let allCatalogSchemes = [];
     let activeCategory = 'ALL';
 
-    const PERSONAS = {
-      aarav: { name: 'Aarav Kumar', age: 19, gender: 'male', occupation: 'student', income: 140000, category: 'OBC', isBPL: true, isStudent: true, isWidow: false, isTaxPayer: false },
-      ananya: { name: 'Ananya Rao', age: 20, gender: 'female', occupation: 'student', income: 180000, category: 'General', isBPL: true, isStudent: true, isWidow: false, isTaxPayer: false },
-      lakshmi: { name: 'Lakshmi Devi', age: 67, gender: 'female', occupation: 'senior', income: 45000, category: 'SC', isBPL: true, isStudent: false, isWidow: true, isTaxPayer: false },
-      ramesh: { name: 'Ramesh Gowda', age: 41, gender: 'male', occupation: 'farmer', income: 110000, category: 'OBC', isBPL: true, isStudent: false, isWidow: false, isTaxPayer: false }
-    };
-
-    function highlightPersonaBtn(activeId) {
-      ['btnFamily', 'btnAarav', 'btnAnanya', 'btnLakshmi', 'btnRamesh'].forEach(id => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        if (id === activeId) {
-          el.className = 'p-2.5 rounded-xl text-left border-2 border-[#2563EB] bg-[#EFF6FF] transition shadow-xs flex flex-col justify-between';
-        } else {
-          el.className = 'p-2.5 rounded-xl text-left border border-[#E2E8F0] bg-white hover:border-[#CBD5E1] transition shadow-xs flex flex-col justify-between';
-        }
-      });
+    function handleOccupationChange() {
+      const occ = document.getElementById('inputOccupation').value;
+      const chkStudent = document.getElementById('chkStudent');
+      if (occ === 'student') {
+        chkStudent.checked = true;
+      } else if (occ === 'senior') {
+        document.getElementById('inputAge').value = Math.max(65, Number(document.getElementById('inputAge').value));
+        chkStudent.checked = false;
+      } else {
+        chkStudent.checked = false;
+      }
+      runHarness();
     }
 
-    function loadPersona(key) {
-      currentProfile = { ...PERSONAS[key] };
-      currentHousehold = [];
-      highlightPersonaBtn(key === 'aarav' ? 'btnAarav' : key === 'ananya' ? 'btnAnanya' : key === 'lakshmi' ? 'btnLakshmi' : 'btnRamesh');
-      document.getElementById('vaultModeBadge').innerText = `Individual Citizen Entitlement Unit (${currentProfile.name})`;
-      runHarness('');
+    function quickFill(preset) {
+      if (preset === 'student') {
+        document.getElementById('inputAge').value = 19;
+        document.getElementById('inputGender').value = 'female';
+        document.getElementById('inputOccupation').value = 'student';
+        document.getElementById('inputIncome').value = 140000;
+        document.getElementById('inputCategory').value = 'OBC';
+        document.getElementById('inputRation').value = 'bpl';
+        document.getElementById('chkStudent').checked = true;
+        document.getElementById('chkWidow').checked = false;
+        document.getElementById('chkTaxPayer').checked = false;
+      } else if (preset === 'farmer') {
+        document.getElementById('inputAge').value = 42;
+        document.getElementById('inputGender').value = 'male';
+        document.getElementById('inputOccupation').value = 'farmer';
+        document.getElementById('inputIncome').value = 95000;
+        document.getElementById('inputCategory').value = 'OBC';
+        document.getElementById('inputRation').value = 'bpl';
+        document.getElementById('chkStudent').checked = false;
+        document.getElementById('chkWidow').checked = false;
+        document.getElementById('chkTaxPayer').checked = false;
+      } else if (preset === 'homemaker') {
+        document.getElementById('inputAge').value = 35;
+        document.getElementById('inputGender').value = 'female';
+        document.getElementById('inputOccupation').value = 'homemaker';
+        document.getElementById('inputIncome').value = 110000;
+        document.getElementById('inputCategory').value = 'OBC';
+        document.getElementById('inputRation').value = 'bpl';
+        document.getElementById('chkStudent').checked = false;
+        document.getElementById('chkWidow').checked = false;
+        document.getElementById('chkTaxPayer').checked = false;
+      } else if (preset === 'senior') {
+        document.getElementById('inputAge').value = 71;
+        document.getElementById('inputGender').value = 'female';
+        document.getElementById('inputOccupation').value = 'senior';
+        document.getElementById('inputIncome').value = 45000;
+        document.getElementById('inputCategory').value = 'SC';
+        document.getElementById('inputRation').value = 'bpl';
+        document.getElementById('chkStudent').checked = false;
+        document.getElementById('chkWidow').checked = true;
+        document.getElementById('chkTaxPayer').checked = false;
+      }
+      runHarness();
     }
 
-    function loadWholeFamilyDemo() {
-      currentProfile = { ...PERSONAS.ramesh, name: 'Gowda Family (4 Members)' };
-      currentHousehold = [
-        { ...PERSONAS.ramesh, name: 'Ramesh (41, Father • Farmer)' },
-        { name: 'Savitha (36, Mother • Homemaker)', age: 36, gender: 'female', occupation: 'homemaker', income: 110000, category: 'OBC', isBPL: true },
-        { ...PERSONAS.aarav, name: 'Aarav (19, Son • College Student)' },
-        { ...PERSONAS.lakshmi, name: 'Lakshmi (67, Grandmother • Widow)' }
-      ];
-      highlightPersonaBtn('btnFamily');
-      document.getElementById('vaultModeBadge').innerText = 'Whole 4-Member Household Entitlement Unit';
-      runHarness('');
+    function getCitizenProfileFromForm() {
+      const age = Number(document.getElementById('inputAge').value) || 21;
+      const gender = document.getElementById('inputGender').value;
+      const occupation = document.getElementById('inputOccupation').value;
+      const income = Number(document.getElementById('inputIncome').value) || 120000;
+      const category = document.getElementById('inputCategory').value;
+      const ration = document.getElementById('inputRation').value;
+      const isStudent = document.getElementById('chkStudent').checked || occupation === 'student';
+      const isWidow = document.getElementById('chkWidow').checked;
+      const isTaxPayer = document.getElementById('chkTaxPayer').checked;
+
+      return {
+        name: 'Citizen',
+        age,
+        gender,
+        occupation,
+        income,
+        category,
+        isBPL: ration === 'bpl',
+        isStudent,
+        isWidow,
+        isTaxPayer
+      };
     }
 
     function submitChatIntake() {
       const msg = document.getElementById('chatInput').value.trim();
       if (!msg) return;
       document.getElementById('chatInput').value = '';
-      currentHousehold = [];
       runHarness(msg);
     }
 
@@ -553,7 +636,8 @@
       renderSchemesGrid();
     }
 
-    async function runHarness(userMessage) {
+    async function runHarness(userMessage = '') {
+      const profile = getCitizenProfileFromForm();
       const language = document.getElementById('languageSelect').value;
       const readinessChecks = {
         npciSeeded: document.getElementById('chkNpci').checked,
@@ -565,15 +649,24 @@
         const res = await fetch('/api/harness/discover', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ userMessage, currentProfile, householdMembers: currentHousehold, readinessChecks, language })
+          body: JSON.stringify({ userMessage, currentProfile: profile, householdMembers: [], readinessChecks, language })
         });
         const data = await res.json();
 
-        currentProfile = data.profile;
+        // Update form if natural language parsed new parameters
+        if (userMessage && data.profile) {
+          if (data.profile.age) document.getElementById('inputAge').value = data.profile.age;
+          if (data.profile.gender) document.getElementById('inputGender').value = data.profile.gender;
+          if (data.profile.occupation) document.getElementById('inputOccupation').value = data.profile.occupation;
+          if (data.profile.income) document.getElementById('inputIncome').value = data.profile.income;
+          if (data.profile.isStudent !== undefined) document.getElementById('chkStudent').checked = data.profile.isStudent;
+          if (data.profile.isWidow !== undefined) document.getElementById('chkWidow').checked = data.profile.isWidow;
+        }
+
         latestMatchedSchemes = data.matchedSchemes || [];
         allCatalogSchemes = data.allCatalogSchemes || latestMatchedSchemes;
 
-        // Animate Money Meters
+        // Animate Benefit Numbers
         animateCounter(document.getElementById('directBenefitMeter'), data.totalDirectAnnualINR || 0);
         animateCounter(document.getElementById('fiveYearMeter'), data.fiveYearWealthINR || (data.totalDirectAnnualINR * 5) || 0);
         document.getElementById('healthCoverMeter').innerText = '₹' + Number(data.totalHealthCoverINR || 500000).toLocaleString('en-IN');
@@ -585,8 +678,8 @@
         const rBadge = document.getElementById('readinessBadge');
         rBadge.innerText = `${score}% Ready`;
         rBadge.className = score === 100
-          ? 'text-xs font-mono font-bold px-2.5 py-0.5 rounded-md bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0]'
-          : 'text-xs font-mono font-bold px-2.5 py-0.5 rounded-md bg-[#FFF1F2] text-[#BE123C] border border-[#FECDD3] animate-pulse';
+          ? 'text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0]'
+          : 'text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-[#FFF1F2] text-[#BE123C] border border-[#FECDD3] animate-pulse';
 
         document.getElementById('rejectionRisksBox').innerHTML = (data.readinessAudit.rejectionRisks || []).map(r => `
           <div class="bg-[#FFF1F2] border border-[#FECDD3] rounded-xl p-3 text-xs space-y-1">
@@ -618,20 +711,9 @@
           conflictSec.classList.add('hidden');
         }
 
-        // 5-Agent Trace
-        document.getElementById('agentTraceBox').innerHTML = (data.agentTrace || []).map(t => `
-          <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-2 flex items-start justify-between gap-2">
-            <div>
-              <div class="font-bold text-[#0A2540] text-xs font-mono">${t.agent}</div>
-              <div class="text-[#64748B] text-[11px]">${t.detail}</div>
-            </div>
-            <span class="text-[10px] font-mono bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE] px-2 py-0.5 rounded font-bold whitespace-nowrap">${t.ms}ms</span>
-          </div>
-        `).join('');
-
         renderSchemesGrid();
       } catch (err) {
-        console.error('Harness error:', err);
+        console.error('Scheme discovery error:', err);
       }
     }
 
@@ -648,50 +730,95 @@
       });
 
       const container = document.getElementById('schemesContainer');
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white border border-[#E2E8F0] rounded-2xl p-8 text-center text-slate-500 space-y-2">
+            <div class="text-3xl">🔍</div>
+            <div class="font-bold text-sm text-[#0F172A]">No schemes matched your current filter</div>
+            <div class="text-xs">Adjust the category pill or check "All 20" to see all government offerings.</div>
+          </div>
+        `;
+        return;
+      }
+
       container.innerHTML = filtered.map((s, idx) => {
         const isEligible = matchedIds.has(s.id);
         const matchIdx = latestMatchedSchemes.findIndex(m => m.id === s.id);
+        const docsList = (s.documents || []).map(d => `<span class="bg-white border border-[#E2E8F0] px-2 py-0.5 rounded text-[10px] text-[#475569] font-medium">📄 ${d}</span>`).join(' ');
+
         return `
-        <div class="bg-white border border-[#E2E8F0] rounded-2xl p-4 shadow-xs hover:border-[#CBD5E1] transition flex flex-col justify-between space-y-3">
-          <div class="space-y-2">
-            <div class="flex items-start justify-between gap-2">
+        <div class="bg-white border ${isEligible ? 'border-[#CBD5E1]' : 'border-[#E2E8F0] opacity-80'} rounded-2xl p-5 shadow-xs hover:border-[#0A2540] transition space-y-3.5">
+          
+          <!-- Top Row: Tags & Rupee Amount -->
+          <div class="flex items-start justify-between gap-3">
+            <div class="space-y-1">
               <div class="flex flex-wrap items-center gap-1.5">
                 <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]">${s.level}</span>
-                <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-[#F1F5F9] text-[#475569]">${s.beneficiaryName || 'Eligible'}</span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F8FAFC] text-[#64748B] border border-[#E2E8F0]">${s.sakalaSlaDays}d SLA</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F8FAFC] text-[#64748B] border border-[#E2E8F0]">SLA: ${s.sakalaSlaDays} Days</span>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-[#F1F5F9] text-[#334155]">${s.categoryTag}</span>
               </div>
-              <span class="text-xs font-mono font-bold text-[#059669] bg-[#ECFDF5] border border-[#A7F3D0] px-2.5 py-0.5 rounded-full whitespace-nowrap">
+              <h4 class="font-bold text-sm sm:text-base text-[#0F172A] leading-snug">${s.name}</h4>
+            </div>
+            
+            <div class="text-right shrink-0">
+              <span class="text-xs sm:text-sm font-mono font-black text-[#059669] bg-[#ECFDF5] border border-[#A7F3D0] px-3 py-1 rounded-full whitespace-nowrap block">
                 + ₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')}/yr
               </span>
+              <span class="text-[10px] text-[#64748B] font-medium mt-0.5 block">${s.payoutTag || 'Direct Benefit'}</span>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="text-xs text-[#475569] leading-relaxed">${s.benefitSummary}</p>
+
+          <!-- 3 CORE CITIZEN BLOCKS: Where to go, Steps, Documents -->
+          <div class="space-y-2 bg-[#F8FAFC] border border-[#E2E8F0] p-3 rounded-xl text-xs">
+            
+            <!-- Where to Apply / Cyber Café -->
+            <div class="flex items-start gap-2">
+              <span class="font-bold text-[#0A2540] shrink-0">🏪 Where to Visit:</span>
+              <span class="text-[#1E293B] font-semibold">${s.physicalCounter || s.applyWhere}</span>
             </div>
 
-            <h4 class="font-bold text-sm text-[#0F172A] leading-snug">${s.name}</h4>
-            <p class="text-xs text-[#64748B] leading-relaxed">${s.benefitSummary}</p>
+            <!-- Steps How to Apply -->
+            <div class="flex items-start gap-2 border-t border-[#E2E8F0] pt-2">
+              <span class="font-bold text-[#0A2540] shrink-0">📝 Steps to Apply:</span>
+              <span class="text-[#334155] leading-relaxed">${s.cscSteps || 'Visit portal, upload documents, and collect acknowledgement slip.'}</span>
+            </div>
+
+            <!-- Documents Required -->
+            <div class="border-t border-[#E2E8F0] pt-2">
+              <span class="font-bold text-[#0A2540] block mb-1">📑 Documents Required:</span>
+              <div class="flex flex-wrap gap-1.5">${docsList}</div>
+            </div>
+
+            <!-- Trap to Avoid -->
+            <div class="flex items-start gap-2 border-t border-[#E2E8F0] pt-2 text-[#991B1B]">
+              <span class="font-bold shrink-0">⚠️ Common Trap:</span>
+              <span class="text-[11px] leading-relaxed">${s.commonRejectionTrap}</span>
+            </div>
+
           </div>
 
-          <div class="text-[11px] bg-[#F8FAFC] border border-[#E2E8F0] p-2.5 rounded-xl space-y-1 text-[#334155]">
-            <div><b class="text-[#0A2540]">🏪 Visit:</b> ${s.physicalCounter || s.applyWhere}</div>
-            <div><b class="text-[#E11D48]">🛡️ Avoid Trap:</b> ${s.commonRejectionTrap}</div>
-          </div>
-
-          <div class="flex items-center justify-between gap-2 pt-2 border-t border-[#E2E8F0] text-xs">
-            <a href="${s.source}" target="_blank" rel="noopener" class="text-[#0A2540] hover:text-[#2563EB] font-bold text-[11px] font-mono flex items-center gap-0.5">
-              <span>Portal</span> ↗
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#E2E8F0] text-xs">
+            <a href="${s.source}" target="_blank" rel="noopener" class="text-[#0A2540] hover:text-[#2563EB] font-bold text-xs font-mono flex items-center gap-1">
+              <span>Open Official Portal</span> ↗
             </a>
-            <div class="flex gap-1.5">
-              <button onclick="openDocKitModal(${matchIdx >= 0 ? matchIdx : 0}, 'application')" class="bg-[#0A2540] hover:bg-[#0E355E] text-white text-[11px] font-bold px-2.5 py-1.5 rounded-lg transition shadow-xs">
-                Cyber-Café Slip
+            
+            <div class="flex items-center gap-2">
+              <button onclick="openDocKitModal(${matchIdx >= 0 ? matchIdx : 0}, 'application')" class="bg-[#0A2540] hover:bg-[#12375C] text-white text-xs font-bold px-3 py-1.5 rounded-lg transition shadow-xs flex items-center gap-1.5">
+                <span>🖨️</span>
+                <span>Print Cyber-Café Slip</span>
               </button>
-              <button onclick="openDocKitModal(${matchIdx >= 0 ? matchIdx : 0}, 'npci')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0A2540] border border-[#CBD5E1] text-[11px] font-bold px-2 py-1.5 rounded-lg transition">
-                NPCI
-              </button>
-              <button onclick="openDocKitModal(${matchIdx >= 0 ? matchIdx : 0}, 'rti')" class="bg-[#FFF1F2] hover:bg-[#FFE4E6] text-[#E11D48] border border-[#FECDD3] text-[11px] font-bold px-2 py-1.5 rounded-lg transition">
-                RTI
+              <button onclick="openDocKitModal(${matchIdx >= 0 ? matchIdx : 0}, 'npci')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0A2540] border border-[#CBD5E1] text-xs font-semibold px-2.5 py-1.5 rounded-lg transition">
+                NPCI Mandate
               </button>
             </div>
           </div>
+
         </div>
-      `}).join('');
+        `}).join('');
     }
 
     async function openDocKitModal(schemeIndex, mode) {
@@ -702,13 +829,14 @@
 
       modal.classList.remove('hidden');
       modal.classList.add('flex');
-      content.innerText = 'Agent 5 Legal Draftsman generating official packet...';
+      content.innerText = 'Generating official application slip & checklist...';
 
       try {
+        const profile = getCitizenProfileFromForm();
         const res = await fetch('/api/harness/dockit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ profile: currentProfile, scheme, mode })
+          body: JSON.stringify({ profile, scheme, mode })
         });
         const data = await res.json();
         title.innerText = data.documentTitle;
@@ -776,8 +904,8 @@
       rec.start();
     }
 
-    // Auto-load Whole Family Demo on startup
-    window.addEventListener('DOMContentLoaded', () => loadWholeFamilyDemo());
+    // Auto-evaluate default profile on startup
+    window.addEventListener('DOMContentLoaded', () => runHarness());
   </script>
 </body>
 </html>
