@@ -1,7 +1,6 @@
-Project Name: ShishyaAI - The Reverse-Tutor & Viva Mastery Harness
+Project Name: Hakku (ಹಕ್ಕು / हक़) — Zero-Hallucination Welfare Discovery & RTI Harness
 Author: SHAMITH R (@rshamith-cpu)
-Track: Learning & Education
+Track: Everyday Assistance
 Hackathon: BharatCode Build League 2026
 Powered by: BharatCode Model API (qwen-3.8-27b)
-Repository: https://github.com/rshamith-cpu/ShishyaAI
-
+Repository: https://github.com/rshamith-cpu/hakku-ai

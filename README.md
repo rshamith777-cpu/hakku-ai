@@ -1,101 +1,82 @@
-# 🧠 ShishyaAI — The Reverse-Tutor & Viva Mastery Harness
-### *Master Concepts by Teaching an AI Student (The Feynman Technique) • Powered by BharatCode API*
+# 🇮🇳 Hakku (ಹಕ್ಕು / हक़) — *"Find every rupee the government already owes you."*
 
-[![BharatCode Build League 2026](https://img.shields.io/badge/Hackathon-BharatCode_Build_League_2026-blue.svg)](https://github.com/rshamith-cpu/ShishyaAI)
-[![Track](https://img.shields.io/badge/Track-Learning_%26_Education-green.svg)](https://github.com/rshamith-cpu/ShishyaAI)
-[![Model](https://img.shields.io/badge/Model-BharatCode_qwen--3.8--27b-orange.svg)](https://api.bharatcode.ai)
-[![Author](https://img.shields.io/badge/Author-SHAMITH_R_(@rshamith--cpu)-purple.svg)](https://github.com/rshamith-cpu)
+> **BharatCode Build League 2026 Submission** • **Author:** SHAMITH R (`@rshamith-cpu`) • **Track:** Everyday Assistance • **Powered by:** BharatCode Model API (`qwen-3.8-27b`)
 
----
+India runs **3,000+ central and state welfare schemes**—scholarships, pensions, farm subsidies, health cover, and women empowerment grants. Yet millions of eligible citizens leave tens of thousands of rupees unclaimed every year because:
+1. They don't know which schemes they qualify for.
+2. Portal eligibility rules are buried in bureaucratic PDFs.
+3. When an application is stuck or rejected, citizens don't know how to draft a formal **Section 6(1) RTI** or **CPGRAMS Grievance**.
 
-## 💡 The Core Problem: The Passive Learning Trap
-Most educational AI apps are simple **"Question ➔ Answer" chatbots** or **"PDF Quiz Generators"**. They make students passive consumers of information:
-- Students copy-paste questions, read generated answers, and get a false illusion of competence.
-- When facing real viva exams, technical interviews, or system design challenges, students choke because they never practiced explaining the concepts themselves.
-
-> *"If you want to master something, teach it."* — **Richard Feynman**
+**Hakku** is a 5-stage AI + Deterministic Rule Engine harness that turns *"I don't know my rights"* into a **verified Unclaimed Benefits Meter + Printable Application & RTI Kit** in under 30 seconds.
 
 ---
 
-## 🏆 The Solution: Reverse-Tutoring with ShishyaAI
-**ShishyaAI** (`Shishya` = Student in Sanskrit) flips the traditional education paradigm on its head:
-1. **You are the Teacher; AI is the Student:** You choose a topic (or select a 1-click preset) and explain it in your own words using Voice or Text.
-2. **True Multi-Agent Harness:** Instead of a single chat completion, your explanation triggers an orchestrated 3-stage harness:
-   * **Persona Agent:** Steps into character (Curious 1st-Year Student, Strict Viva Examiner, or Senior Systems Engineer) and responds in English, Hinglish, or Kannada + English. It never gives away the answer—it questions missing gaps.
-   * **Shadow Fact-Auditor:** Analyzes your response for factual accuracy, isolates misconceptions, and computes a **Live Concept Mastery Score (0–100%)**.
-   * **Dynamic Graph Generator:** Synthesizes a real-time **Mermaid.js Knowledge Map**, highlighting understood sub-concepts in green and blind spots in red.
+## 🍱 Modern Bento Grid Design
+Hakku is built around a modern **Bento Grid Architecture**:
+- **Hero Bento Meter:** Real-time animated counter summing direct annual cash benefits (`₹/year`) + cashless hospitalization (`₹5,00,000/year`).
+- **1-Click Judge Persona Bento:** Instant evaluation with real profiles (*Aarav 19 Student*, *Lakshmi 67 Rural Widow*, *Ramesh 41 Farmer*).
+- **Conversational Intake Bento:** Multilingual voice/text input supporting English, Kannada (ಕನ್ನಡ), and Hinglish with live AI guidance.
+- **Deterministic Parameter Dials:** Pure rule controls (Age, Income, Occupation, Category, BPL, Widow status) for zero-hallucination verification.
+- **Consolidated Document Kit Bento:** Deduplicated checklist so citizens make only *one* trip to Seva Sindhu / CSC.
+- **Verified Scheme Bento Gallery:** Transparent cards displaying level, ministry, direct annual gain, eligibility reasons, and direct links to `.gov.in` portals.
 
 ---
 
-## 🏗️ Harness Architecture
+## 🧠 Why Hakku Beats Standard Chatbots & Portals (Judge FAQ)
+
+| Question | Generic LLM (ChatGPT) | Govt Portals (`myScheme`) | **Hakku (BharatCode Harness)** |
+|---|---|---|---|
+| **Hallucinates fake schemes or dead links?** | ❌ Frequently invents closed/fake schemes | ✅ Verified | ✅ **Zero Hallucination:** Eligibility is matched 100% by a deterministic JS Rule Engine (`matcher.js`) |
+| **Calculates total unclaimed ₹/year?** | ❌ No | ❌ Only lists schemes | ✅ **Unclaimed Benefits Meter** sums exact annual cash + health cover |
+| **Deduplicates required documents?** | ❌ No | ❌ Separate per page | ✅ **Single-Window Checklist** across all matched schemes |
+| **What if the office delays/rejects?** | ❌ Generic advice | ❌ Dead end | ✅ **1-Click Section 6(1) RTI Act, 2005 & CPGRAMS Draft Generator** |
+| **Zero-PII Scam Protection?** | ⚠️ Unstructured | ⚠️ Requires OTP login | ✅ **Never asks for Aadhaar numbers, OTPs, or bank account numbers** |
+
+---
+
+## ⚙️ The 5-Stage Harness Architecture
 
 ```mermaid
 flowchart TD
-    User["👨‍🎓 User (Explains via Voice / Text)"] -->|POST /api/evaluate-turn| Harness["⚙️ ShishyaAI Harness (server.js)"]
+    User["👨‍👩‍👧 Citizen / Judge (Voice or Text)"] -->|Stage 1| Intake["🎙️ Conversational Intake Agent\n(BharatCode API / qwen-3.8-27b)"]
+    Intake -->|Extract Demographics| Matcher["🧮 Stage 2: Deterministic Rule Engine\n(matcher.js — Zero Hallucination)"]
     
-    subgraph BharatCodeEngine ["⚡ BharatCode Model API (qwen-3.8-27b)"]
-        Harness --> Agent1["1️⃣ Persona Agent\n(Curious Student / Viva Examiner)"]
-        Harness --> Agent2["2️⃣ Shadow Fact Auditor\n(Misconception Detector & Scoring)"]
-        Harness --> Agent3["3️⃣ Graph Generator\n(Mermaid.js Mind-Map Engine)"]
+    subgraph VerifiedDatabase ["🏛️ data/schemes.json (Central & State)"]
+        Matcher <--> Criteria["12+ Curated Central & State Schemes\nwith Verified .gov.in URLs"]
     end
     
-    Agent1 --> Response["Synthesized Turn Response"]
-    Agent2 --> Telemetry["Mastery % + Covered/Missing Lists + Hints"]
-    Agent3 --> Graph["Dynamic Visual Knowledge Map"]
+    Matcher -->|Verified Matches| Explainer["🗣️ Stage 3: Plain-Language Explainer\n(English, Kannada, Hinglish)"]
+    Matcher -->|Sum Direct Benefit & Cover| Meter["💰 Stage 4: Unclaimed Benefits Meter\n(Bento Hero Tile)"]
     
-    Response & Telemetry & Graph --> UI["🖥️ Reactive Frontend (Tailwind + Mermaid.js)"]
+    Explainer & Meter --> UI["🍱 Bento Grid Interface (public/index.html)"]
+    
+    UI -->|1-Click Action| Stage5["📄 Stage 5: Legal & Doc-Kit Harness\n(server.js /api/harness/dockit)"]
+    Stage5 --> AppKit["📋 Unified Application Cover Letter"]
+    Stage5 --> RTI["⚖️ Section 6(1) RTI & CPGRAMS Grievance Draft"]
 ```
 
 ---
 
-## ✨ Key Features
-- **1-Click Presets for Rapid Evaluation:** Instantly test topics like *Operating System Deadlocks*, *React Hooks & Lifecycle*, or *UPI Payment Architecture*.
-- **🎙️ Web Speech Voice Input:** Speak your explanations naturally—ideal for viva preparation.
-- **🇮🇳 Indic & Regional Language Flexibility:** Support for English, Hinglish (Hindi + Tech English), and Kannada + Tech English.
-- **📊 Real-Time Visual Knowledge Graph:** Color-coded node graph directly renders covered vs. uncovered concepts.
-- **🛡️ Intelligent Fallback Demo Mode:** Runs seamlessly for judges out-of-the-box even before API credentials are configured.
-
----
-
-## 📁 Repository Structure
-```text
-ShishyaAI/
-├── BharatCode.txt       # Hackathon verification metadata (Mandatory)
-├── package.json         # Dependencies and scripts
-├── .env.example         # Environment variable template
-├── .env                 # Local environment config
-├── .gitignore           # Git ignore rules
-├── server.js            # Multi-Agent BharatCode API Harness
-├── public/
-│   └── index.html       # Single-page UI with Tailwind & Mermaid.js
-└── README.md            # Comprehensive project documentation
-```
-
----
-
-## 🚀 Quick Start Guide
+## 🚀 Quickstart (Run in 30 Seconds)
 
 ### 1. Prerequisites
-- **Node.js** v18+ (tested on v26+)
+- **Node.js** v18+ (tested on Node 26)
 - **npm** v9+
 
 ### 2. Installation
 ```bash
-git clone https://github.com/rshamith-cpu/ShishyaAI.git
-cd ShishyaAI
+git clone https://github.com/rshamith-cpu/hakku-ai.git
+cd hakku-ai
 npm install
 ```
 
 ### 3. Environment Configuration
-Copy `.env.example` to `.env` and provide your credentials (optional—fallback demo mode is enabled by default):
-```env
-BHARATCODE_API_KEY=your_bharatcode_api_key_here
-BHARATCODE_BASE_URL=https://api.bharatcode.ai/v1
-BHARATCODE_MODEL=qwen-3.8-27b
-PORT=3000
+```bash
+cp .env.example .env
 ```
+*(Includes full offline demo fallback so judges can test instantly even without active API credentials.)*
 
-### 4. Run the Application
+### 4. Start the Application
 ```bash
 npm start
 ```
@@ -103,27 +84,14 @@ Open **[http://localhost:3000](http://localhost:3000)** in your browser!
 
 ---
 
-## 🧪 Testing the 3-Step Harness
+## 📝 Step 03 Submission Details for BharatCode Website
 
-1. **Step 1:** Select the **"OS Deadlocks"** preset button.
-2. **Step 2:** Click **"Insert Sample Explanation"** (or speak via microphone).
-3. **Step 3:** Click **"Teach ShishyaAI →"**.
-4. **Observe the Harness Output:**
-   - ShishyaAI probes your answer with a targeted follow-up question.
-   - Concept Mastery Score jumps to 30%+.
-   - Live Knowledge Map turns "Core Definition" and "Basic Flow" green, while "Edge Conditions" and "Tradeoffs" show as red gaps.
+1. On **STEP 02** of the BharatCode page, click **"Everyday assistance"**.
+2. Push this repo to `https://github.com/rshamith-cpu/hakku-ai` and paste these into **STEP 03**:
 
----
-
-## 📜 BharatCode Hackathon Submission Details
-- **Project Name:** ShishyaAI - The Reverse-Tutor & Viva Mastery Harness
-- **Track:** Learning & Education
-- **Author:** SHAMITH R ([@rshamith-cpu](https://github.com/rshamith-cpu))
-- **Powered By:** BharatCode Model API (`qwen-3.8-27b`)
-- **Repository:** [https://github.com/rshamith-cpu/ShishyaAI](https://github.com/rshamith-cpu/ShishyaAI)
-
----
-
-## 📄 License
-MIT License. Built for the **BharatCode Build League 2026**.
-
+* **Project name:**
+  `Hakku (ಹಕ್ಕು / हक़) — Zero-Hallucination Welfare Discovery, Benefits Meter & RTI Harness`
+* **GitHub repo URL:**
+  `https://github.com/rshamith-cpu/hakku-ai`
+* **Short summary:**
+  > Millions of Indians leave ₹50,000–₹1,50,000/year in scholarships, pensions, and farm subsidies unclaimed because rules are buried in bureaucratic portals—while generic LLMs hallucinate fake schemes. Hakku is a 5-stage AI harness powered by the BharatCode API (qwen-3.8-27b) that turns "I don't know my rights" into a ready-to-print application kit in 30 seconds: (1) Multilingual Voice/Text Intake in English, Kannada, and Hinglish, (2) A 100% deterministic JS Eligibility Rule Engine so the AI never hallucinates a scheme, (3) Plain-language scheme cards with official .gov.in links in a modern Bento Grid UI, (4) An Unclaimed Benefits Meter summing annual direct cash + ₹5L health cover, and (5) A 1-click Document Checklist, Application Letter, and Section 6(1) RTI / CPGRAMS Grievance generator if benefits are delayed.

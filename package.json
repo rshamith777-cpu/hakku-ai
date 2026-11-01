@@ -1,7 +1,7 @@
 {
-  "name": "shishya-ai",
+  "name": "hakku-ai",
   "version": "1.0.0",
-  "description": "Reverse-Tutor & Live Knowledge-Graph Harness powered by BharatCode API",
+  "description": "Hakku — Zero-Hallucination Government Scheme Discovery, Unclaimed Benefits Meter & RTI Harness powered by BharatCode API",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -12,4 +12,3 @@
     "express": "^4.19.2"
   }
 }
-
