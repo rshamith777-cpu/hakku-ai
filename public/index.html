@@ -3,239 +3,373 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hakku (ಹಕ್ಕು / हक़) — Zero-Hallucination Welfare Discovery & RTI Harness | BharatCode</title>
+  <title>Hakku (ಹಕ್ಕು / हक़) — Zero-Hallucination Welfare Discovery & RTI Harness</title>
+  
+  <!-- Modern Typography: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    @keyframes pulse-slow {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.85; transform: scale(1.02); }
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              gold: '#f59e0b',
+              goldLight: '#fbbf24',
+              emerald: '#10b981',
+              emeraldDark: '#059669',
+              darkBg: '#090d16',
+              cardBg: '#101626',
+              cardBorder: 'rgba(255, 255, 255, 0.08)',
+            }
+          }
+        }
+      }
     }
-    .meter-glow {
-      box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.25);
+  </script>
+  
+  <style>
+    body {
+      background-color: #080c15;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.07) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.05) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(59, 130, 246, 0.04) 0px, transparent 50%);
+      background-attachment: fixed;
     }
     .bento-card {
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(16, 22, 38, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .bento-card:hover {
-      border-color: rgba(245, 158, 11, 0.4);
+      border-color: rgba(245, 158, 11, 0.3);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.6);
       transform: translateY(-2px);
+    }
+    .meter-glow {
+      box-shadow: 0 0 50px -10px rgba(16, 185, 129, 0.15);
+    }
+    .noise-bg {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080c15;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f293d;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-amber-500 selection:text-slate-950">
+<body class="text-slate-100 min-h-screen font-sans antialiased selection:bg-amber-500 selection:text-slate-950">
 
-  <!-- Anti-Scam Zero-PII Trust Banner -->
-  <div class="bg-emerald-950/90 border-b border-emerald-800/80 text-emerald-300 text-xs py-2 px-4 text-center font-medium">
-    🔒 <b>Zero-PII & Zero-Hallucination Guarantee:</b> Hakku never collects Aadhaar numbers, OTPs, or bank account credentials. Eligibility is verified 100% deterministically against official <code>.gov.in</code> rules.
+  <!-- Top Security Assurance Bar -->
+  <div class="border-b border-emerald-950/60 bg-emerald-950/40 backdrop-blur text-emerald-300 text-[11px] py-1.5 px-4 font-medium tracking-wide">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        <span><b>Zero-PII Architecture:</b> No Aadhaar numbers, OTPs, or phone numbers required. All eligibility matches are mathematically deterministic.</span>
+      </div>
+      <div class="hidden sm:flex items-center gap-3 text-slate-400">
+        <span>RTI Act 2005 Compliant</span>
+        <span>•</span>
+        <span>CPGRAMS Ready</span>
+      </div>
+    </div>
   </div>
 
   <!-- Header -->
-  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-30">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
-      <div class="flex items-center gap-3">
-        <div class="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black px-3 py-1.5 rounded-xl text-lg tracking-tight shadow-md">
-          ಹಕ್ಕು • HAKKU
+  <header class="border-b border-white/[0.06] bg-[#090d16]/85 backdrop-blur-md sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Brand & Name -->
+      <div class="flex items-center gap-3.5">
+        <div class="h-10 px-3.5 rounded-xl bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 text-slate-950 font-black text-sm tracking-tight flex items-center gap-1.5 shadow-lg shadow-amber-500/20">
+          <span class="text-base font-extrabold tracking-normal">ಹಕ್ಕು</span>
+          <span class="text-xs font-semibold opacity-75">•</span>
+          <span class="tracking-wider">HAKKU</span>
         </div>
         <div>
-          <h1 class="font-bold text-base sm:text-lg text-white flex items-center gap-2">
-            Find Every Rupee the Government Already Owes You
-            <span class="hidden md:inline-block text-[11px] bg-slate-800 text-amber-300 border border-amber-500/30 font-semibold px-2 py-0.5 rounded-full">Civic-Tech Harness</span>
-          </h1>
-          <p class="text-xs text-slate-400">5-Stage Welfare Discovery, Unclaimed Benefits Meter & RTI Harness • Powered by BharatCode API</p>
+          <div class="flex items-center gap-2">
+            <h1 class="text-base font-bold text-white tracking-tight">Citizen Welfare & RTI Harness</h1>
+            <span class="text-[10px] font-mono font-semibold uppercase px-2 py-0.5 rounded-md bg-amber-400/10 text-amber-300 border border-amber-400/20">
+              Zero Hallucination
+            </span>
+          </div>
+          <p class="text-xs text-slate-400">Discover unclaimed Central & State DBT benefits and generate Section 6(1) RTI applications</p>
         </div>
       </div>
 
+      <!-- Controls: Language & Engine Badge -->
       <div class="flex items-center gap-2.5">
-        <select id="languageSelect" onchange="runHarness('')" class="bg-slate-950 border border-slate-700 hover:border-amber-500/60 rounded-xl px-3 py-1.5 text-xs text-slate-200 outline-none transition">
-          <option value="English">🌐 English</option>
-          <option value="Kannada (ಕನ್ನಡ)">🌐 ಕನ್ನಡ (Kannada)</option>
-          <option value="Hinglish (Hindi + English)">🌐 Hinglish / हिंदी</option>
-        </select>
-        <span id="engineBadge" class="hidden sm:inline-flex items-center gap-1.5 text-xs bg-indigo-950/80 text-indigo-300 border border-indigo-700 px-3 py-1.5 rounded-xl">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          ⚡ BharatCode qwen-3.8-27b
-        </span>
+        <div class="relative">
+          <select id="languageSelect" onchange="runHarness('')" class="appearance-none bg-[#111726] border border-white/[0.08] hover:border-amber-400/40 text-slate-200 text-xs font-medium pl-3 pr-7 py-2 rounded-xl outline-none transition cursor-pointer">
+            <option value="English">🌐 English</option>
+            <option value="Kannada (ಕನ್ನಡ)">🌐 ಕನ್ನಡ (Kannada)</option>
+            <option value="Hinglish (Hindi + English)">🌐 Hinglish / हिंदी</option>
+          </select>
+          <div class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px]">▼</div>
+        </div>
+
+        <div id="engineBadge" class="hidden md:inline-flex items-center gap-2 text-xs font-mono bg-[#111726] border border-white/[0.08] px-3.5 py-2 rounded-xl text-slate-300">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span>qwen-3.8-27b</span>
+        </div>
       </div>
+
     </div>
   </header>
 
   <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
 
-    <!-- BENTO GRID CONTAINER -->
+    <!-- ========================================================= -->
+    <!-- BENTO GRID -->
+    <!-- ========================================================= -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5">
 
       <!-- ========================================================= -->
-      <!-- BENTO 1: HERO - UNCLAIMED BENEFITS METER (8 Cols) -->
+      <!-- BENTO 1: HERO - UNCLAIMED BENEFITS METER (8 COLS) -->
       <!-- ========================================================= -->
-      <div class="lg:col-span-8 bg-gradient-to-br from-emerald-950/90 via-slate-900 to-slate-950 border-2 border-emerald-500/60 rounded-3xl p-6 sm:p-7 meter-glow bento-card relative overflow-hidden flex flex-col justify-between">
-        <div class="absolute -right-12 -top-12 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="lg:col-span-8 bento-card meter-glow rounded-3xl p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between border-emerald-500/30">
+        <!-- Ambient decorative glow -->
+        <div class="absolute -right-16 -top-16 w-60 h-60 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute right-1/4 -bottom-16 w-48 h-48 bg-amber-500/5 rounded-full blur-2xl pointer-events-none"></div>
 
         <div>
-          <div class="flex flex-wrap items-center justify-between gap-2">
+          <!-- Header Tag -->
+          <div class="flex flex-wrap items-center justify-between gap-2.5">
             <div class="flex items-center gap-2">
-              <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 border border-emerald-700/60 px-2.5 py-1 rounded-lg">
-                💰 Stage 4: Unclaimed Benefits Meter
+              <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-3 py-1 rounded-full flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Stage 4: Live Benefits Meter
               </span>
-              <span class="text-[11px] text-slate-400 font-mono">100% Deterministic</span>
+              <span class="text-[11px] text-slate-400 font-mono">Curated .gov.in Rules</span>
             </div>
-            <span id="schemeCountBadge" class="text-xs bg-emerald-500 text-slate-950 font-bold px-3 py-1 rounded-full shadow">
+            <div id="schemeCountBadge" class="text-xs font-bold bg-emerald-500 text-slate-950 px-3.5 py-1 rounded-full shadow-md font-mono">
               0 Schemes Matched
-            </span>
-          </div>
-
-          <div class="mt-4 flex flex-wrap items-baseline gap-3">
-            <span id="directBenefitMeter" class="text-5xl sm:text-6xl font-black text-white tracking-tight">₹0</span>
-            <span class="text-base sm:text-lg text-emerald-400 font-bold">/ year direct cash benefit</span>
-          </div>
-
-          <div class="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-300 border-t border-emerald-800/60 pt-3">
-            <div class="flex items-center gap-2">
-              <span class="text-base">🏥</span>
-              <span>Plus Cashless Hospitalization Cover:</span>
-              <span id="healthCoverMeter" class="font-bold text-amber-300 text-sm">₹5,00,000 / year</span>
             </div>
-            <span class="text-[11px] text-slate-400">Zero middleman fees • Direct DBT</span>
+          </div>
+
+          <!-- Main Amount Display -->
+          <div class="mt-5 flex flex-wrap items-baseline gap-3">
+            <span id="directBenefitMeter" class="text-5xl sm:text-7xl font-extrabold text-white tracking-tight font-mono">₹0</span>
+            <div class="flex flex-col">
+              <span class="text-sm sm:text-base font-bold text-emerald-400">/ year direct cash benefit</span>
+              <span class="text-xs text-slate-400">credited directly to your bank account via DBT</span>
+            </div>
+          </div>
+
+          <!-- Secondary Benefit -->
+          <div class="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-300 border-t border-white/[0.08] pt-3.5">
+            <div class="flex items-center gap-2.5">
+              <div class="w-6 h-6 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <span>Cashless Health Coverage:</span>
+              <span id="healthCoverMeter" class="font-bold text-amber-300 font-mono text-sm">₹5,00,000 / year</span>
+              <span class="text-[11px] text-slate-500">(Ayushman PM-JAY)</span>
+            </div>
+            <div class="text-[11px] text-slate-400 font-medium">100% Free • No Commission</div>
           </div>
         </div>
 
-        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-          <button onclick="openDocKitModal(null, 'application')" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm py-3 px-4 rounded-2xl transition shadow-lg flex items-center justify-center gap-2">
-            <span>📄</span>
+        <!-- Action CTAs -->
+        <div class="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <button onclick="openDocKitModal(null, 'application')" class="group bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-slate-950 font-bold text-xs sm:text-sm py-3.5 px-5 rounded-2xl transition shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 text-slate-950 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
             <span>Print Unified Application Kit</span>
           </button>
-          <button onclick="openDocKitModal(null, 'rti')" class="bg-rose-950/90 hover:bg-rose-900 text-rose-200 border border-rose-700/80 font-bold text-xs sm:text-sm py-3 px-4 rounded-2xl transition shadow-lg flex items-center justify-center gap-2">
-            <span>⚖️</span>
+          
+          <button onclick="openDocKitModal(null, 'rti')" class="group bg-slate-900/90 hover:bg-rose-950/80 text-rose-300 hover:text-rose-200 border border-rose-500/30 hover:border-rose-500/60 font-semibold text-xs sm:text-sm py-3.5 px-5 rounded-2xl transition flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 text-rose-400 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+            </svg>
             <span>Draft Section 6(1) RTI / CPGRAMS</span>
           </button>
         </div>
       </div>
 
       <!-- ========================================================= -->
-      <!-- BENTO 2: 1-CLICK PERSONAS (4 Cols) -->
+      <!-- BENTO 2: 30-SECOND JUDGE PERSONAS (4 COLS) -->
       <!-- ========================================================= -->
-      <div class="lg:col-span-4 bg-slate-900/90 border border-slate-800 rounded-3xl p-5 bento-card flex flex-col justify-between space-y-3">
+      <div class="lg:col-span-4 bento-card rounded-3xl p-6 flex flex-col justify-between space-y-4">
         <div>
           <div class="flex items-center justify-between mb-1">
-            <span class="text-xs font-bold uppercase tracking-wider text-amber-400">⚡ 30-Second Judge Demo</span>
-            <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded">1-Click</span>
+            <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
+              <span>⚡</span> 30-Second Judge Demo
+            </span>
+            <span class="text-[10px] bg-slate-800 text-slate-400 font-mono px-2 py-0.5 rounded-md">Live Presets</span>
           </div>
-          <p class="text-xs text-slate-400">Click any persona to re-evaluate the entire harness instantly:</p>
+          <p class="text-xs text-slate-400">Click a real citizen profile to test deterministic matching in one second:</p>
         </div>
 
         <div class="space-y-2.5">
-          <button id="btnPersonaAarav" onclick="loadPersona('aarav')" class="w-full text-left bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-amber-500/50 p-3 rounded-2xl transition group flex items-center justify-between">
-            <div>
-              <div class="text-xs font-bold text-slate-100 group-hover:text-amber-400">🎓 Aarav Kumar, 19</div>
-              <div class="text-[11px] text-slate-400">B.Com Student • OBC • ₹1.8L/yr</div>
+          <!-- Aarav -->
+          <button id="btnPersonaAarav" onclick="loadPersona('aarav')" class="w-full text-left bg-[#0c121e] hover:bg-[#141d30] border border-white/[0.06] hover:border-amber-400/40 p-3.5 rounded-2xl transition group flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-bold text-xs flex items-center justify-center font-mono">
+                AK
+              </div>
+              <div>
+                <div class="text-xs font-bold text-slate-200 group-hover:text-amber-300 transition-colors">Aarav Kumar, 19</div>
+                <div class="text-[11px] text-slate-400">B.Com Student • OBC • ₹1.8L</div>
+              </div>
             </div>
-            <span class="text-xs text-emerald-400 font-bold">~₹35k/yr</span>
+            <span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-2.5 py-1 rounded-lg">~₹35k/yr</span>
           </button>
 
-          <button id="btnPersonaLakshmi" onclick="loadPersona('lakshmi')" class="w-full text-left bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-amber-500/50 p-3 rounded-2xl transition group flex items-center justify-between">
-            <div>
-              <div class="text-xs font-bold text-slate-100 group-hover:text-amber-400">👵 Lakshmi Devi, 67</div>
-              <div class="text-[11px] text-slate-400">Rural Widow • SC • BPL Card</div>
+          <!-- Lakshmi -->
+          <button id="btnPersonaLakshmi" onclick="loadPersona('lakshmi')" class="w-full text-left bg-[#0c121e] hover:bg-[#141d30] border border-white/[0.06] hover:border-amber-400/40 p-3.5 rounded-2xl transition group flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 font-bold text-xs flex items-center justify-center font-mono">
+                LD
+              </div>
+              <div>
+                <div class="text-xs font-bold text-slate-200 group-hover:text-amber-300 transition-colors">Lakshmi Devi, 67</div>
+                <div class="text-[11px] text-slate-400">Rural Widow • SC • BPL Card</div>
+              </div>
             </div>
-            <span class="text-xs text-emerald-400 font-bold">~₹56k/yr</span>
+            <span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-2.5 py-1 rounded-lg">~₹56k/yr</span>
           </button>
 
-          <button id="btnPersonaRamesh" onclick="loadPersona('ramesh')" class="w-full text-left bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-amber-500/50 p-3 rounded-2xl transition group flex items-center justify-between">
-            <div>
-              <div class="text-xs font-bold text-slate-100 group-hover:text-amber-400">🌾 Ramesh Gowda, 41</div>
-              <div class="text-[11px] text-slate-400">Small Farmer • 2.5 Acres • OBC</div>
+          <!-- Ramesh -->
+          <button id="btnPersonaRamesh" onclick="loadPersona('ramesh')" class="w-full text-left bg-[#0c121e] hover:bg-[#141d30] border border-white/[0.06] hover:border-amber-400/40 p-3.5 rounded-2xl transition group flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold text-xs flex items-center justify-center font-mono">
+                RG
+              </div>
+              <div>
+                <div class="text-xs font-bold text-slate-200 group-hover:text-amber-300 transition-colors">Ramesh Gowda, 41</div>
+                <div class="text-[11px] text-slate-400">Small Farmer • 2.5 Acres • OBC</div>
+              </div>
             </div>
-            <span class="text-xs text-emerald-400 font-bold">~₹94k/yr</span>
+            <span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-2.5 py-1 rounded-lg">~₹94k/yr</span>
           </button>
         </div>
 
-        <div class="text-[11px] text-slate-500 text-center pt-1 border-t border-slate-800/80">
-          Switches parameters & triggers Stage 1–5 Harness in real time
+        <div class="text-[11px] text-slate-500 font-mono text-center pt-2 border-t border-white/[0.06]">
+          Triggers Stages 1–5 Harness dynamically
         </div>
       </div>
 
       <!-- ========================================================= -->
-      <!-- BENTO 3: STAGE 1 CONVERSATIONAL INTAKE AGENT (6 Cols) -->
+      <!-- BENTO 3: CONVERSATIONAL & VOICE INTAKE AGENT (6 COLS) -->
       <!-- ========================================================= -->
-      <div class="lg:col-span-6 bg-slate-900/90 border border-slate-800 rounded-3xl p-5 bento-card space-y-3.5 flex flex-col justify-between">
+      <div class="lg:col-span-6 bento-card rounded-3xl p-6 flex flex-col justify-between space-y-4">
         <div>
           <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
-              <span>🎙️</span> Stage 1: Conversational Intake Agent
+            <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z" />
+              </svg>
+              Stage 1: Conversational Intake Agent
             </span>
-            <button onclick="startVoiceInput()" id="voiceBtn" class="text-xs bg-indigo-950/80 hover:bg-indigo-900 text-indigo-300 border border-indigo-700/80 px-3 py-1.5 rounded-xl transition flex items-center gap-1.5">
-              <span>🎙️</span>
-              <span id="voiceBtnText">Speak (Voice Input)</span>
+            <button onclick="startVoiceInput()" id="voiceBtn" class="text-xs font-medium bg-[#131c31] hover:bg-[#1a2642] text-indigo-300 border border-indigo-500/30 px-3 py-1.5 rounded-xl transition flex items-center gap-1.5">
+              <span id="voicePulse" class="w-2 h-2 rounded-full bg-indigo-400"></span>
+              <span id="voiceBtnText">Voice Input</span>
             </button>
           </div>
-          <p class="text-xs text-slate-400 mt-1">Speak or describe your household situation in everyday natural language:</p>
+          <p class="text-xs text-slate-400 mt-1">Describe your situation naturally in English, Kannada, or Hinglish:</p>
         </div>
 
+        <!-- Chat Input Bar -->
         <div class="flex gap-2">
-          <input id="chatInput" type="text" placeholder="e.g. 'I am a 20 year old student from a small farming family in Karnataka...'" class="flex-1 bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-2xl px-3.5 py-2.5 text-xs text-slate-200 outline-none transition" />
-          <button onclick="submitChatIntake()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs px-5 py-2.5 rounded-2xl transition">
+          <input id="chatInput" type="text" placeholder="e.g. 'I am a 20 year old student from a small farming family in Karnataka...'" class="flex-1 bg-[#090d16] border border-white/[0.08] focus:border-amber-400/70 rounded-2xl px-4 py-2.5 text-xs text-slate-200 outline-none transition placeholder-slate-600" />
+          <button onclick="submitChatIntake()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs px-5 py-2.5 rounded-2xl transition shadow-md shadow-amber-500/10">
             Analyze
           </button>
         </div>
 
-        <!-- Quick Natural Prompts -->
+        <!-- Quick Prompts Chips -->
         <div class="flex flex-wrap gap-1.5">
-          <button onclick="quickPrompt('I am a 21 year old college student with an OBC certificate and BPL card.')" class="text-[11px] bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800 px-2.5 py-1 rounded-lg transition">
+          <button onclick="quickPrompt('I am a 21 year old college student with an OBC certificate and BPL card.')" class="text-[11px] bg-[#0c121e] hover:bg-[#172238] text-slate-300 border border-white/[0.06] px-3 py-1.5 rounded-xl transition">
             🎓 Student + BPL
           </button>
-          <button onclick="quickPrompt('I am a 45 year old farmer with 2 acres land looking for solar pump and crop insurance.')" class="text-[11px] bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800 px-2.5 py-1 rounded-lg transition">
+          <button onclick="quickPrompt('I am a 45 year old farmer with 2 acres land looking for solar pump and crop insurance.')" class="text-[11px] bg-[#0c121e] hover:bg-[#172238] text-slate-300 border border-white/[0.06] px-3 py-1.5 rounded-xl transition">
             🌾 Farmer + Land Record
           </button>
-          <button onclick="quickPrompt('I am a 68 year old widow from a rural village with BPL card.')" class="text-[11px] bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800 px-2.5 py-1 rounded-lg transition">
+          <button onclick="quickPrompt('I am a 68 year old widow from a rural village with BPL card.')" class="text-[11px] bg-[#0c121e] hover:bg-[#172238] text-slate-300 border border-white/[0.06] px-3 py-1.5 rounded-xl transition">
             👵 Senior Widow Pension
           </button>
         </div>
 
         <!-- AI Officer Empathetic Guidance Stream -->
-        <div class="bg-slate-950 border border-slate-800/90 rounded-2xl p-3.5 space-y-1.5">
+        <div class="bg-[#090d16] border border-white/[0.06] rounded-2xl p-4 space-y-1.5">
           <div class="flex items-center justify-between">
-            <span class="text-[11px] font-bold text-amber-400 flex items-center gap-1.5">
-              <span>🏛️</span> Hakku Welfare Officer Note:
+            <span class="text-[11px] font-bold text-amber-300 flex items-center gap-1.5">
+              <span>🏛️</span> Hakku Civic Officer Summary
             </span>
-            <span class="text-[10px] text-slate-500">Multilingual BharatCode</span>
+            <span class="text-[10px] font-mono text-slate-500">Multilingual BharatCode</span>
           </div>
-          <div id="aiSummaryBox" class="text-xs text-slate-300 leading-relaxed font-sans">
-            Select a persona above or describe your background to compute your exact entitlements.
+          <div id="aiSummaryBox" class="text-xs text-slate-300 leading-relaxed">
+            Select a persona or describe your situation above to calculate your exact entitlements.
           </div>
         </div>
       </div>
 
       <!-- ========================================================= -->
-      <!-- BENTO 4: STAGE 2 DETERMINISTIC ELIGIBILITY PARAMETERS (6 Cols) -->
+      <!-- BENTO 4: DETERMINISTIC ELIGIBILITY PARAMETERS (6 COLS) -->
       <!-- ========================================================= -->
-      <div class="lg:col-span-6 bg-slate-900/90 border border-slate-800 rounded-3xl p-5 bento-card space-y-3.5">
+      <div class="lg:col-span-6 bento-card rounded-3xl p-6 space-y-4">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
-            <span>🧮</span> Stage 2: Deterministic Rule Parameters
+          <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-300 flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+            </svg>
+            Stage 2: Deterministic Rule Controls
           </span>
-          <span class="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-700/60 px-2 py-0.5 rounded-full">
+          <span class="text-[10px] font-mono font-bold bg-emerald-950/80 text-emerald-400 border border-emerald-800/60 px-2.5 py-0.5 rounded-full">
             Zero Hallucination
           </span>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
           <div>
             <label class="text-[11px] text-slate-400 block mb-1">Citizen Name</label>
-            <input id="pName" value="Aarav Kumar" onchange="syncFromForm()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500/70 rounded-xl px-2.5 py-1.5 text-slate-200 outline-none" />
+            <input id="pName" value="Aarav Kumar" onchange="syncFromForm()" class="w-full bg-[#090d16] border border-white/[0.08] focus:border-amber-400/60 rounded-xl px-3 py-2 text-slate-200 outline-none font-medium" />
           </div>
           <div>
             <label class="text-[11px] text-slate-400 block mb-1">Age (Years)</label>
-            <input id="pAge" type="number" value="19" onchange="syncFromForm()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500/70 rounded-xl px-2.5 py-1.5 text-slate-200 outline-none" />
+            <input id="pAge" type="number" value="19" onchange="syncFromForm()" class="w-full bg-[#090d16] border border-white/[0.08] focus:border-amber-400/60 rounded-xl px-3 py-2 text-slate-200 outline-none font-mono" />
           </div>
           <div>
             <label class="text-[11px] text-slate-400 block mb-1">Gender</label>
-            <select id="pGender" onchange="syncFromForm()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500/70 rounded-xl px-2.5 py-1.5 text-slate-200 outline-none">
+            <select id="pGender" onchange="syncFromForm()" class="w-full bg-[#090d16] border border-white/[0.08] focus:border-amber-400/60 rounded-xl px-3 py-2 text-slate-200 outline-none cursor-pointer">
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>
           </div>
           <div>
             <label class="text-[11px] text-slate-400 block mb-1">Occupation</label>
-            <select id="pOccupation" onchange="syncFromForm()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500/70 rounded-xl px-2.5 py-1.5 text-slate-200 outline-none">
+            <select id="pOccupation" onchange="syncFromForm()" class="w-full bg-[#090d16] border border-white/[0.08] focus:border-amber-400/60 rounded-xl px-3 py-2 text-slate-200 outline-none cursor-pointer">
               <option value="student">Student</option>
               <option value="farmer">Farmer (Agriculture)</option>
               <option value="senior">Senior / Retired</option>
@@ -244,11 +378,11 @@
           </div>
           <div>
             <label class="text-[11px] text-slate-400 block mb-1">Family Income (₹/yr)</label>
-            <input id="pIncome" type="number" step="10000" value="180000" onchange="syncFromForm()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500/70 rounded-xl px-2.5 py-1.5 text-slate-200 outline-none" />
+            <input id="pIncome" type="number" step="10000" value="180000" onchange="syncFromForm()" class="w-full bg-[#090d16] border border-white/[0.08] focus:border-amber-400/60 rounded-xl px-3 py-2 text-slate-200 outline-none font-mono" />
           </div>
           <div>
             <label class="text-[11px] text-slate-400 block mb-1">Category</label>
-            <select id="pCategory" onchange="syncFromForm()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500/70 rounded-xl px-2.5 py-1.5 text-slate-200 outline-none">
+            <select id="pCategory" onchange="syncFromForm()" class="w-full bg-[#090d16] border border-white/[0.08] focus:border-amber-400/60 rounded-xl px-3 py-2 text-slate-200 outline-none cursor-pointer">
               <option value="OBC">OBC</option>
               <option value="SC">SC</option>
               <option value="ST">ST</option>
@@ -259,37 +393,45 @@
           </div>
         </div>
 
-        <div class="flex flex-wrap gap-3 pt-2 border-t border-slate-800 text-xs">
-          <label class="flex items-center gap-1.5 cursor-pointer bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 hover:border-slate-700">
-            <input id="pBPL" type="checkbox" checked onchange="syncFromForm()" class="accent-amber-500" />
-            <span class="text-slate-300">BPL / Antyodaya Card</span>
+        <!-- Toggle Checkboxes -->
+        <div class="flex flex-wrap gap-2.5 pt-2 border-t border-white/[0.06] text-xs">
+          <label class="flex items-center gap-2 cursor-pointer bg-[#090d16] px-3.5 py-2 rounded-xl border border-white/[0.06] hover:border-amber-400/40 transition">
+            <input id="pBPL" type="checkbox" checked onchange="syncFromForm()" class="rounded accent-amber-500 w-3.5 h-3.5" />
+            <span class="text-slate-300 font-medium">BPL / Antyodaya Card</span>
           </label>
-          <label class="flex items-center gap-1.5 cursor-pointer bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 hover:border-slate-700">
-            <input id="pStudent" type="checkbox" checked onchange="syncFromForm()" class="accent-amber-500" />
-            <span class="text-slate-300">Enrolled Student</span>
+          <label class="flex items-center gap-2 cursor-pointer bg-[#090d16] px-3.5 py-2 rounded-xl border border-white/[0.06] hover:border-amber-400/40 transition">
+            <input id="pStudent" type="checkbox" checked onchange="syncFromForm()" class="rounded accent-amber-500 w-3.5 h-3.5" />
+            <span class="text-slate-300 font-medium">Enrolled Student</span>
           </label>
-          <label class="flex items-center gap-1.5 cursor-pointer bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 hover:border-slate-700">
-            <input id="pWidow" type="checkbox" onchange="syncFromForm()" class="accent-amber-500" />
-            <span class="text-slate-300">Widow Status</span>
+          <label class="flex items-center gap-2 cursor-pointer bg-[#090d16] px-3.5 py-2 rounded-xl border border-white/[0.06] hover:border-amber-400/40 transition">
+            <input id="pWidow" type="checkbox" onchange="syncFromForm()" class="rounded accent-amber-500 w-3.5 h-3.5" />
+            <span class="text-slate-300 font-medium">Widow Status</span>
           </label>
         </div>
       </div>
 
       <!-- ========================================================= -->
-      <!-- BENTO 5: CONSOLIDATED SINGLE-WINDOW DOCUMENT FOLDER (12 Cols) -->
+      <!-- BENTO 5: SINGLE-WINDOW DOCUMENT FOLDER (12 COLS) -->
       <!-- ========================================================= -->
-      <div class="lg:col-span-12 bg-slate-900/80 border border-slate-800 rounded-3xl p-5 bento-card space-y-2.5">
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <div class="flex items-center gap-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
-              <span>📋</span> Single-Window Document Folder
-            </span>
-            <span class="text-[11px] text-slate-400">Carry Once to Grama One / Seva Sindhu / CSC</span>
+      <div class="lg:col-span-12 bento-card rounded-3xl p-6 space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-white tracking-wide">Single-Window Document Kit</span>
+              <span class="text-[11px] text-slate-400 ml-2">Carry Once to Grama One / Seva Sindhu / CSC</span>
+            </div>
           </div>
-          <span class="text-[11px] text-slate-500">Deduplicated across all matched schemes</span>
+          <span class="text-[11px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-3 py-1 rounded-full">
+            Deduplicated across all matched schemes
+          </span>
         </div>
-        <div id="consolidatedDocs" class="flex flex-wrap gap-2 text-xs">
-          <span class="text-slate-500 text-xs">Calculating document folder...</span>
+        <div id="consolidatedDocs" class="flex flex-wrap gap-2 pt-1 text-xs">
+          <span class="text-slate-500 text-xs font-mono">Computing required documents...</span>
         </div>
       </div>
 
@@ -298,15 +440,22 @@
     <!-- ========================================================= -->
     <!-- BENTO SECTION 6: VERIFIED SCHEMES GALLERY -->
     <!-- ========================================================= -->
-    <section class="space-y-4 pt-2">
-      <div class="flex flex-wrap items-center justify-between gap-2">
+    <section class="space-y-4 pt-4">
+      <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 class="text-lg font-bold text-white flex items-center gap-2">
-            <span>✅</span> Stage 3: Verified Eligible Schemes (Zero Hallucination)
+          <h2 class="text-lg font-bold text-white tracking-tight flex items-center gap-2">
+            <span>✅</span> Stage 3: Verified Eligible Schemes
+            <span class="text-xs font-mono font-medium text-slate-400 bg-[#111726] border border-white/[0.08] px-2.5 py-1 rounded-lg">Zero Hallucination</span>
           </h2>
-          <p class="text-xs text-slate-400">Matched strictly via deterministic JS rule engine against official <code>.gov.in</code> criteria</p>
+          <p class="text-xs text-slate-400">Strictly evaluated against verified criteria in <code>data/schemes.json</code> with direct <code>.gov.in</code> application links</p>
         </div>
-        <span class="text-xs text-slate-400">Direct links to official government application portals</span>
+        
+        <!-- Filter Tabs -->
+        <div class="flex items-center gap-1.5 bg-[#090d16] p-1 rounded-xl border border-white/[0.06] text-xs">
+          <button onclick="filterSchemes('all')" id="filterAll" class="filter-btn bg-amber-500 text-slate-950 font-bold px-3 py-1 rounded-lg transition">All</button>
+          <button onclick="filterSchemes('central')" id="filterCentral" class="filter-btn text-slate-400 hover:text-white px-3 py-1 rounded-lg transition">Central</button>
+          <button onclick="filterSchemes('state')" id="filterState" class="filter-btn text-slate-400 hover:text-white px-3 py-1 rounded-lg transition">State</button>
+        </div>
       </div>
 
       <div id="schemesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
@@ -315,31 +464,43 @@
   </main>
 
   <!-- ========================================================= -->
-  <!-- STAGE 5 MODAL: PRINTABLE APPLICATION KIT & RTI GENERATOR -->
+  <!-- STAGE 5 MODAL: LEGAL APPLICATION KIT & RTI GENERATOR -->
   <!-- ========================================================= -->
   <div id="docModal" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-3xl w-full p-5 sm:p-6 flex flex-col max-h-[92vh] shadow-2xl">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+    <div class="bg-[#0e1422] border border-white/[0.1] rounded-3xl max-w-3xl w-full p-6 sm:p-7 flex flex-col max-h-[92vh] shadow-2xl">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-white/[0.08] pb-4">
         <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Stage 5: BharatCode Legal & Document Harness</span>
-          <h3 id="modalTitle" class="text-base sm:text-lg font-bold text-white">Official Application Kit</h3>
+          <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-400">Stage 5: Legal & Administrative Document Harness</span>
+          <h3 id="modalTitle" class="text-base sm:text-lg font-bold text-white mt-0.5">Official Application Kit</h3>
         </div>
-        <button onclick="closeDocModal()" class="text-slate-400 hover:text-white text-lg px-2.5 py-1 rounded-xl bg-slate-800 hover:bg-slate-700 transition">✕</button>
+        <button onclick="closeDocModal()" class="text-slate-400 hover:text-white text-base px-3 py-1.5 rounded-xl bg-[#141c2e] hover:bg-[#1a253c] border border-white/[0.06] transition font-mono">✕</button>
       </div>
 
-      <pre id="modalContent" class="my-4 bg-slate-950 border border-slate-800 rounded-2xl p-4 sm:p-5 text-xs text-slate-200 font-mono whitespace-pre-wrap overflow-y-auto flex-1 leading-relaxed"></pre>
+      <!-- Legal Content -->
+      <pre id="modalContent" class="my-4 bg-[#080c14] border border-white/[0.06] rounded-2xl p-5 text-xs text-slate-300 font-mono whitespace-pre-wrap overflow-y-auto flex-1 leading-relaxed selection:bg-amber-500 selection:text-slate-950"></pre>
 
-      <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-800">
-        <span class="text-xs text-emerald-400 flex items-center gap-1.5">
-          <span>🔒</span>
-          <span>Zero-PII Safe: Handwritten signature & sensitive IDs completed on hard copy.</span>
-        </span>
+      <!-- Modal Footer -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/[0.08]">
+        <div class="text-xs text-emerald-400 flex items-center gap-1.5 font-medium">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+          <span>Zero-PII Safe: Fill Aadhaar / bank account digits manually after printing.</span>
+        </div>
         <div class="flex gap-2.5">
-          <button onclick="copyDocText()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold px-4 py-2 rounded-xl transition">
-            📋 Copy Text
+          <button id="copyBtn" onclick="copyDocText()" class="bg-[#141c2e] hover:bg-[#1c2740] text-slate-200 border border-white/[0.08] text-xs font-semibold px-4 py-2.5 rounded-xl transition flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+            </svg>
+            <span id="copyBtnText">Copy Text</span>
           </button>
-          <button onclick="printDocText()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold px-4 py-2 rounded-xl transition shadow">
-            🖨️ Print / Save as PDF
+          <button onclick="printDocText()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold px-5 py-2.5 rounded-xl transition shadow-lg shadow-amber-500/20 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            <span>Print / Save PDF</span>
           </button>
         </div>
       </div>
@@ -360,6 +521,7 @@
       isWidow: false
     };
     let latestMatchedSchemes = [];
+    let currentFilter = 'all';
 
     const PERSONAS = {
       aarav: {
@@ -406,11 +568,11 @@
         const el = document.getElementById(id);
         if (el) {
           if (k === key) {
-            el.classList.add('border-amber-500', 'bg-slate-800/80');
-            el.classList.remove('border-slate-800', 'bg-slate-950');
+            el.classList.add('border-amber-400/80', 'bg-[#151f33]');
+            el.classList.remove('border-white/[0.06]', 'bg-[#0c121e]');
           } else {
-            el.classList.remove('border-amber-500', 'bg-slate-800/80');
-            el.classList.add('border-slate-800', 'bg-slate-950');
+            el.classList.remove('border-amber-400/80', 'bg-[#151f33]');
+            el.classList.add('border-white/[0.06]', 'bg-[#0c121e]');
           }
         }
       });
@@ -464,7 +626,7 @@
     }
 
     function animateCounter(el, targetValue) {
-      const duration = 500;
+      const duration = 450;
       const startTime = performance.now();
       function tick(now) {
         const progress = Math.min((now - startTime) / duration, 1);
@@ -473,6 +635,85 @@
         if (progress < 1) requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
+    }
+
+    function filterSchemes(type) {
+      currentFilter = type;
+      ['All', 'Central', 'State'].forEach(t => {
+        const btn = document.getElementById('filter' + t);
+        if (t.toLowerCase() === type) {
+          btn.className = 'filter-btn bg-amber-500 text-slate-950 font-bold px-3 py-1 rounded-lg transition';
+        } else {
+          btn.className = 'filter-btn text-slate-400 hover:text-white px-3 py-1 rounded-lg transition';
+        }
+      });
+      renderSchemeCards();
+    }
+
+    function renderSchemeCards() {
+      const container = document.getElementById('schemesContainer');
+      let filtered = latestMatchedSchemes;
+      if (currentFilter === 'central') {
+        filtered = latestMatchedSchemes.filter(s => s.level.toLowerCase().includes('central'));
+      } else if (currentFilter === 'state') {
+        filtered = latestMatchedSchemes.filter(s => s.level.toLowerCase().includes('state'));
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-500 text-xs font-mono">
+            No schemes found under this filter for current parameters.
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map((s, idx) => `
+        <div class="bento-card rounded-3xl p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-2.5">
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-md bg-indigo-950/80 text-indigo-300 border border-indigo-700/60">${s.level}</span>
+                <span class="text-[11px] text-slate-400 font-medium line-clamp-1">${s.ministry}</span>
+              </div>
+              <span class="bg-emerald-950/80 text-emerald-300 border border-emerald-700/60 font-mono font-bold text-xs px-3 py-1 rounded-full whitespace-nowrap">
+                + ₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')}/yr
+              </span>
+            </div>
+            
+            <h3 class="font-bold text-sm sm:text-base text-white leading-snug">${s.name}</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">${s.benefitSummary}</p>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex flex-wrap gap-1.5">
+              ${(s.matchReasons || []).map(r => `
+                <span class="text-[10px] font-mono bg-[#090d16] text-emerald-400 border border-white/[0.06] px-2.5 py-0.5 rounded-md flex items-center gap-1">
+                  <span class="text-emerald-500">✓</span> ${r}
+                </span>`).join('')}
+            </div>
+
+            <div class="text-[11px] text-slate-400 bg-[#090d16] rounded-2xl p-3 border border-white/[0.06] space-y-1">
+              <div><b class="text-slate-300 font-medium">📄 Required:</b> ${(s.documents || []).slice(0, 3).join(', ')}${(s.documents || []).length > 3 ? '...' : ''}</div>
+              <div><b class="text-slate-300 font-medium">🏛️ Counter:</b> ${s.applyWhere}</div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-white/[0.06]">
+              <a href="${s.source}" target="_blank" rel="noopener" class="text-xs text-amber-300 hover:text-amber-200 hover:underline font-semibold flex items-center gap-1 font-mono">
+                <span>.gov.in Portal</span>
+                <span>↗</span>
+              </a>
+              <div class="flex gap-1.5">
+                <button onclick="openDocKitModal(${idx}, 'application')" class="bg-[#141c2e] hover:bg-emerald-700 text-slate-200 hover:text-white border border-white/[0.06] text-xs font-semibold px-3 py-1.5 rounded-xl transition">
+                  📄 Apply Kit
+                </button>
+                <button onclick="openDocKitModal(${idx}, 'rti')" class="bg-rose-950/60 hover:bg-rose-900 text-rose-300 border border-rose-800/60 text-xs font-semibold px-3 py-1.5 rounded-xl transition">
+                  ⚖️ File RTI
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
     }
 
     async function runHarness(userMessage) {
@@ -497,61 +738,13 @@
           '₹' + Number(data.totalHealthCoverINR || 0).toLocaleString('en-IN') + ' / year';
         document.getElementById('schemeCountBadge').innerText = `${data.schemeCount} Schemes Matched`;
         document.getElementById('aiSummaryBox').innerText = data.aiSummary;
-        document.getElementById('engineBadge').innerHTML = `
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          ⚡ ${data.engineMode}
-        `;
 
         // Render Consolidated Documents
         document.getElementById('consolidatedDocs').innerHTML = (data.consolidatedDocuments || [])
-          .map(d => `<span class="bg-slate-950 border border-slate-800 text-slate-200 px-3 py-1.5 rounded-xl font-medium flex items-center gap-1.5">📎 ${d}</span>`)
+          .map(d => `<span class="bg-[#090d16] border border-white/[0.08] text-slate-200 px-3 py-1.5 rounded-xl font-medium text-[11px] flex items-center gap-1.5">📎 ${d}</span>`)
           .join('');
 
-        // Render Bento Scheme Cards
-        const container = document.getElementById('schemesContainer');
-        container.innerHTML = latestMatchedSchemes.map((s, idx) => `
-          <div class="bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 rounded-3xl p-5 bento-card flex flex-col justify-between space-y-3.5">
-            <div class="space-y-2">
-              <div class="flex flex-wrap items-start justify-between gap-2">
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-md bg-indigo-950 text-indigo-300 border border-indigo-800">${s.level}</span>
-                  <span class="text-[11px] text-slate-400 line-clamp-1">${s.ministry}</span>
-                </div>
-                <span class="bg-emerald-950 text-emerald-300 border border-emerald-700/80 font-bold text-xs px-2.5 py-1 rounded-full whitespace-nowrap">
-                  + ₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')}/yr
-                </span>
-              </div>
-              <h3 class="font-bold text-sm sm:text-base text-white leading-snug">${s.name}</h3>
-              <p class="text-xs text-slate-300 leading-relaxed">${s.benefitSummary}</p>
-            </div>
-
-            <div class="space-y-2.5">
-              <div class="flex flex-wrap gap-1.5">
-                ${(s.matchReasons || []).map(r => `<span class="text-[11px] bg-slate-950 text-emerald-400 border border-slate-800 px-2 py-0.5 rounded-lg">✓ ${r}</span>`).join('')}
-              </div>
-
-              <div class="text-[11px] text-slate-400 bg-slate-950 rounded-2xl p-3 border border-slate-800/80 space-y-1">
-                <div><b class="text-slate-300">📄 Required:</b> ${(s.documents || []).slice(0, 3).join(', ')}${(s.documents || []).length > 3 ? '...' : ''}</div>
-                <div><b class="text-slate-300">🏛️ Counter:</b> ${s.applyWhere}</div>
-              </div>
-
-              <div class="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-slate-800/80">
-                <a href="${s.source}" target="_blank" rel="noopener" class="text-xs text-amber-400 hover:underline font-semibold flex items-center gap-1">
-                  <span>Portal</span>
-                  <span>↗</span>
-                </a>
-                <div class="flex gap-1.5">
-                  <button onclick="openDocKitModal(${idx}, 'application')" class="bg-slate-800 hover:bg-emerald-600 text-white text-xs font-semibold px-2.5 py-1.5 rounded-xl transition">
-                    📄 Apply Kit
-                  </button>
-                  <button onclick="openDocKitModal(${idx}, 'rti')" class="bg-rose-950/70 hover:bg-rose-800 text-rose-200 border border-rose-800 text-xs font-semibold px-2.5 py-1.5 rounded-xl transition">
-                    ⚖️ File RTI
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        `).join('');
+        renderSchemeCards();
       } catch (err) {
         console.error('Harness error:', err);
       }
@@ -597,13 +790,15 @@
 
     function copyDocText() {
       navigator.clipboard.writeText(document.getElementById('modalContent').innerText);
-      alert('Copied to clipboard!');
+      const textEl = document.getElementById('copyBtnText');
+      textEl.innerText = 'Copied!';
+      setTimeout(() => { textEl.innerText = 'Copy Text'; }, 2000);
     }
 
     function printDocText() {
       const text = document.getElementById('modalContent').innerText;
       const win = window.open('', '_blank');
-      win.document.write(`<pre style="font-family: monospace; font-size: 12px; white-space: pre-wrap; padding: 24px;">${text}</pre>`);
+      win.document.write(`<pre style="font-family: 'JetBrains Mono', monospace; font-size: 12px; white-space: pre-wrap; padding: 28px; line-height: 1.6;">${text}</pre>`);
       win.document.close();
       win.print();
     }
@@ -614,16 +809,27 @@
       const rec = new SpeechRecognition();
       const lang = document.getElementById('languageSelect').value;
       rec.lang = lang.includes('Kannada') ? 'kn-IN' : lang.includes('Hindi') ? 'hi-IN' : 'en-IN';
+      
       const btnText = document.getElementById('voiceBtnText');
-      btnText.innerText = '🔴 Listening...';
+      const pulse = document.getElementById('voicePulse');
+      btnText.innerText = 'Listening...';
+      pulse.className = 'w-2 h-2 rounded-full bg-rose-500 animate-ping';
+
       rec.onresult = (e) => {
         const transcript = e.results[0][0].transcript;
         document.getElementById('chatInput').value = transcript;
-        btnText.innerText = 'Speak (Voice Input)';
+        btnText.innerText = 'Voice Input';
+        pulse.className = 'w-2 h-2 rounded-full bg-indigo-400';
         runHarness(transcript);
       };
-      rec.onerror = () => { btnText.innerText = 'Speak (Voice Input)'; };
-      rec.onend = () => { btnText.innerText = 'Speak (Voice Input)'; };
+      rec.onerror = () => { 
+        btnText.innerText = 'Voice Input';
+        pulse.className = 'w-2 h-2 rounded-full bg-indigo-400';
+      };
+      rec.onend = () => { 
+        btnText.innerText = 'Voice Input';
+        pulse.className = 'w-2 h-2 rounded-full bg-indigo-400';
+      };
       rec.start();
     }
 
