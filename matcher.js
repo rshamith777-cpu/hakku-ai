@@ -12,6 +12,7 @@ function evaluateMember(profile, schemes) {
   const gender = (profile.gender || 'any').toLowerCase();
   const occupation = (profile.occupation || 'other').toLowerCase();
   const category = (profile.category || 'OBC').toUpperCase();
+  const state = (profile.state || 'karnataka').toLowerCase();
   const isBPL = Boolean(profile.isBPL);
   const isStudent = Boolean(profile.isStudent) || occupation === 'student';
   const isWidow = Boolean(profile.isWidow);
@@ -23,6 +24,15 @@ function evaluateMember(profile, schemes) {
   for (const scheme of schemes) {
     const e = scheme.eligibility || {};
     const reasons = [];
+
+    // Jurisdiction Check: Skip state-only schemes if resident of another state
+    const isKarnatakaScheme = (scheme.level || '').toLowerCase().includes('karnataka');
+    const isCentralScheme = (scheme.level || '').toLowerCase().includes('central');
+    if (state !== 'karnataka' && state !== 'all' && isKarnatakaScheme && !isCentralScheme) {
+      continue;
+    }
+    if (isKarnatakaScheme) reasons.push('Karnataka State Resident');
+    if (isCentralScheme) reasons.push('Central All-India Citizen');
 
     if (e.excludeTaxPayer && isTaxPayer) continue;
     if (e.isStudent && !isStudent) continue;

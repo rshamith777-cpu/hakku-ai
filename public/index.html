@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hakku (ಹಕ್ಕು / हक़) — Government Schemes & Welfare Discovery Engine</title>
+  <title>Hakku (ಹಕ್ಕು / हक़) — Comprehensive Government Welfare & Scheme Discovery Engine</title>
   
-  <!-- Premium High-Legibility Typography -->
+  <!-- Modern Premium Typography: Outfit (Headings) + Inter (Body) + JetBrains Mono (Codes/Money) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -16,7 +16,8 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            heading: ['"Outfit"', 'sans-serif'],
+            sans: ['"Inter"', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
           }
         }
@@ -28,8 +29,12 @@
     body {
       background-color: #F8FAFC;
       color: #0F172A;
-      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      font-family: "Inter", sans-serif;
       overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6, .font-heading {
+      font-family: "Outfit", sans-serif;
     }
     
     /* Infinite Loop Ticker Tape Animation */
@@ -44,18 +49,18 @@
     }
     .ticker-track {
       display: inline-flex;
-      animation: tickerTape 30s linear infinite;
+      animation: tickerTape 32s linear infinite;
     }
     .ticker-track:hover {
       animation-play-state: paused;
     }
 
-    /* Custom form controls */
+    /* Custom form inputs */
     .form-input {
       background-color: #FFFFFF;
       border: 1px solid #CBD5E1;
       border-radius: 10px;
-      padding: 8px 12px;
+      padding: 9px 12px;
       font-size: 13px;
       color: #0F172A;
       outline: none;
@@ -64,10 +69,26 @@
     }
     .form-input:focus {
       border-color: #0A2540;
-      box-shadow: 0 0 0 2px rgba(10, 37, 64, 0.1);
+      box-shadow: 0 0 0 3px rgba(10, 37, 64, 0.08);
     }
 
-    /* High contrast focus rings */
+    /* Badges */
+    .badge-state {
+      background-color: #F0FDF4;
+      color: #166534;
+      border: 1px solid #BBF7D0;
+    }
+    .badge-central {
+      background-color: #EFF6FF;
+      color: #1E40AF;
+      border: 1px solid #BFDBFE;
+    }
+    .badge-joint {
+      background-color: #FAF5FF;
+      color: #6B21A8;
+      border: 1px solid #E9D5FF;
+    }
+
     button:focus-visible, input:focus-visible, select:focus-visible {
       outline: 2px solid #0A2540;
       outline-offset: 2px;
@@ -77,10 +98,10 @@
 <body class="min-h-screen flex flex-col justify-between selection:bg-[#0A2540] selection:text-white">
 
   <!-- ========================================================= -->
-  <!-- 1. LIVE GOVERNMENT NOTICES & DEADLINES TICKER TAPE -->
+  <!-- 1. LIVE DEADLINES & ANNOUNCEMENTS TICKER TAPE -->
   <!-- ========================================================= -->
   <div class="bg-[#0A2540] text-white border-b border-[#0F355C] text-xs py-2 px-3 flex items-center overflow-hidden z-50">
-    <div class="shrink-0 flex items-center gap-1.5 bg-[#0E3A66] text-white font-extrabold text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-md mr-3 border border-[#1E4D7A]">
+    <div class="shrink-0 flex items-center gap-1.5 bg-[#0E3A66] text-white font-heading font-black text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-md mr-3 border border-[#1E4D7A]">
       <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
       <span>LIVE NOTICES</span>
     </div>
@@ -88,50 +109,45 @@
     <div class="ticker-wrapper flex-1">
       <div class="ticker-track text-[11px] font-mono tracking-tight text-slate-200">
         <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-400/30 text-[9px] font-bold">DEADLINE</span>
-          <span><b>NSP Scholarship:</b> Central Sector portal document verification closes at 11:59 PM today.</span>
+          <span class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-400/30 text-[9px] font-bold">CENTRAL DEADLINE</span>
+          <span><b>NSP Central Sector Scholarship:</b> College e-verification deadline closes at 11:59 PM today.</span>
         </span>
         <span class="text-slate-500">•</span>
         <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[9px] font-bold">OPEN NOW</span>
-          <span><b>PM-KUSUM 60% Solar Pump:</b> Fresh district quota open for farmers via state energy portals.</span>
+          <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[9px] font-bold">STATE QUOTA</span>
+          <span><b>Karnataka Gruha Lakshmi:</b> ₹2,000/mo DBT active. Seed Bank NPCI Aadhaar mapper to prevent bounce.</span>
         </span>
         <span class="text-slate-500">•</span>
         <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30 text-[9px] font-bold">DBT ALERT</span>
-          <span><b>Gruha Lakshmi (₹2,000/mo):</b> Active. Verify bank NPCI Aadhaar seeding to avoid payment bounce.</span>
+          <span class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30 text-[9px] font-bold">SOLAR PUMP</span>
+          <span><b>PM-KUSUM 60% Subsidy:</b> Fresh district quota open for farmers via state energy portals.</span>
         </span>
         <span class="text-slate-500">•</span>
         <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-400/30 text-[9px] font-bold">HEALTH 70+</span>
-          <span><b>Ayushman Bharat:</b> Free ₹5 Lakh cashless health cover active for all seniors aged 70+.</span>
+          <span class="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-400/30 text-[9px] font-bold">SENIORS 70+</span>
+          <span><b>Ayushman Vay Vandana:</b> Universal ₹5 Lakh cashless health cover now available for all seniors aged 70+.</span>
         </span>
         <span class="text-slate-500">•</span>
         <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-400/30 text-[9px] font-bold">YOUTH</span>
-          <span><b>Yuva Nidhi (₹3,000/mo):</b> Unemployed graduate stipend declaration window active this week.</span>
+          <span class="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-400/30 text-[9px] font-bold">KARNATAKA YOUTH</span>
+          <span><b>Yuva Nidhi (₹3,000/mo):</b> Unemployed graduate self-declaration window open on Seva Sindhu.</span>
         </span>
         <span class="text-slate-500">•</span>
 
-        <!-- Duplicate for continuous infinite loop -->
+        <!-- Continuous loop duplicate -->
         <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-400/30 text-[9px] font-bold">DEADLINE</span>
-          <span><b>NSP Scholarship:</b> Central Sector portal document verification closes at 11:59 PM today.</span>
+          <span class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-400/30 text-[9px] font-bold">CENTRAL DEADLINE</span>
+          <span><b>NSP Central Sector Scholarship:</b> College e-verification deadline closes at 11:59 PM today.</span>
         </span>
         <span class="text-slate-500">•</span>
         <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[9px] font-bold">OPEN NOW</span>
-          <span><b>PM-KUSUM 60% Solar Pump:</b> Fresh district quota open for farmers via state energy portals.</span>
+          <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[9px] font-bold">STATE QUOTA</span>
+          <span><b>Karnataka Gruha Lakshmi:</b> ₹2,000/mo DBT active. Seed Bank NPCI Aadhaar mapper to prevent bounce.</span>
         </span>
         <span class="text-slate-500">•</span>
         <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30 text-[9px] font-bold">DBT ALERT</span>
-          <span><b>Gruha Lakshmi (₹2,000/mo):</b> Active. Verify bank NPCI Aadhaar seeding to avoid payment bounce.</span>
-        </span>
-        <span class="text-slate-500">•</span>
-        <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-400/30 text-[9px] font-bold">HEALTH 70+</span>
-          <span><b>Ayushman Bharat:</b> Free ₹5 Lakh cashless health cover active for all seniors aged 70+.</span>
+          <span class="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-400/30 text-[9px] font-bold">SENIORS 70+</span>
+          <span><b>Ayushman Vay Vandana:</b> Universal ₹5 Lakh cashless health cover now available for all seniors aged 70+.</span>
         </span>
       </div>
     </div>
@@ -143,32 +159,32 @@
   <header class="bg-white border-b border-[#E2E8F0] sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3">
       
-      <!-- Brand & Tagline -->
+      <!-- Brand & Title -->
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-[#0A2540] text-white flex items-center justify-center font-black text-sm tracking-tight shadow-sm">
+        <div class="w-10 h-10 rounded-xl bg-[#0A2540] text-white flex items-center justify-center font-heading font-black text-sm tracking-tight shadow-sm">
           <span>ಹ</span><span class="text-xs opacity-75">A</span>
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <h1 class="text-base font-extrabold text-[#0F172A] tracking-tight">HAKKU <span class="text-xs font-semibold text-[#64748B] font-mono">(ಹಕ್ಕು / हक़)</span></h1>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]">
-              Official Welfare Discovery
+            <h1 class="text-lg font-heading font-black text-[#0F172A] tracking-tight">HAKKU <span class="text-xs font-semibold text-[#64748B] font-mono">(ಹಕ್ಕು / हक़)</span></h1>
+            <span class="text-[10px] font-heading font-bold px-2 py-0.5 rounded bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]">
+              Civic Rights & Welfare OS
             </span>
           </div>
-          <p class="text-xs text-[#64748B]">Zero-Storage Welfare Scheme Matching, Required Documents & Cyber-Café Instructions</p>
+          <p class="text-xs text-[#64748B]">State & Central Schemes • Detailed Eligibility • Required Documents • Cyber-Café Instructions</p>
         </div>
       </div>
 
-      <!-- Zero-Storage Badge & Language Toggle -->
+      <!-- Zero-Storage Badge & Audio / Language Tools -->
       <div class="flex items-center gap-2">
         <div class="hidden sm:flex items-center gap-1.5 bg-[#ECFDF5] border border-[#A7F3D0] px-3 py-1.5 rounded-lg text-xs font-medium text-[#065F46]">
           <span>🔒</span>
           <span>100% In-Memory (Zero Storage)</span>
         </div>
 
-        <button onclick="speakSummary()" id="ttsBtn" class="bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center gap-1.5" title="Listen Aloud in your language">
+        <button onclick="speakSummary()" id="ttsBtn" class="bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center gap-1.5" title="Listen Aloud">
           <span id="ttsIcon">🔊</span>
-          <span id="ttsBtnText" class="hidden sm:inline">Listen Aloud</span>
+          <span id="ttsBtnText" class="hidden sm:inline font-heading font-bold">Listen Aloud</span>
         </button>
 
         <select id="languageSelect" onchange="runHarness()" class="bg-white border border-[#CBD5E1] text-[#0F172A] text-xs font-semibold px-2.5 py-1.5 rounded-lg outline-none cursor-pointer hover:border-[#0A2540]">
@@ -190,31 +206,31 @@
     <div class="bg-gradient-to-br from-[#0A2540] via-[#0E355E] to-[#124275] rounded-3xl p-6 sm:p-7 text-white shadow-sm">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         
-        <!-- Left Banner Text -->
+        <!-- Left Banner Content -->
         <div class="lg:col-span-7 space-y-3">
           <div class="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-xs font-semibold text-emerald-300 border border-white/15">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span>Zero-Middleman Government Benefits Discovery</span>
+            <span id="stateScopeBadge">Karnataka State + Central Government Entitlements</span>
           </div>
 
-          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
-            Find Every Government Scheme, Cash DBT & Grant You Are Eligible For.
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black tracking-tight text-white leading-tight">
+            Discover Every Government Benefit Owed To You & Your Family.
           </h2>
 
           <p id="aiSummaryBox" class="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-2xl">
-            Enter your details below to check 20 Central and State welfare schemes, exact money benefits, required documents, and where to apply.
+            Evaluate 20 verified State & Central schemes against your profile. Learn who can apply, who is excluded, exact rupee payouts, where to apply, and documents to carry.
           </p>
 
           <div class="flex flex-wrap items-center gap-2.5 pt-1">
-            <button onclick="openDocKitModal(null, 'application')" class="bg-[#10B981] hover:bg-[#059669] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-xs transition flex items-center gap-2">
+            <button onclick="openDocKitModal(null, 'application')" class="bg-[#10B981] hover:bg-[#059669] text-white font-heading font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-xs transition flex items-center gap-2">
               <span>📥</span>
-              <span>Print Cyber-Café Slip</span>
+              <span>Print Cyber-Café Handout</span>
             </button>
-            <button onclick="openDocKitModal(null, 'npci')" class="bg-white/15 hover:bg-white/25 text-white font-semibold text-xs sm:text-sm px-3.5 py-2.5 rounded-xl transition border border-white/20">
-              🏦 Bank NPCI Form
+            <button onclick="openDocKitModal(null, 'npci')" class="bg-white/15 hover:bg-white/25 text-white font-heading font-bold text-xs sm:text-sm px-3.5 py-2.5 rounded-xl transition border border-white/20">
+              🏦 Bank NPCI Seeding Form
             </button>
-            <button onclick="openDocKitModal(null, 'rti')" class="bg-rose-500/20 hover:bg-rose-500/30 text-rose-200 font-semibold text-xs sm:text-sm px-3.5 py-2.5 rounded-xl transition border border-rose-400/30">
-              ⚖️ Delay RTI Notice
+            <button onclick="openDocKitModal(null, 'rti')" class="bg-rose-500/20 hover:bg-rose-500/30 text-rose-200 font-heading font-bold text-xs sm:text-sm px-3.5 py-2.5 rounded-xl transition border border-rose-400/30">
+              ⚖️ Delay Sakala RTI Notice
             </button>
           </div>
         </div>
@@ -223,33 +239,33 @@
         <div class="lg:col-span-5 bg-white rounded-2xl p-5 text-[#0F172A] shadow-xs space-y-3.5">
           <div>
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold uppercase tracking-wider text-[#64748B]">Total Annual Direct Cash (DBT)</span>
-              <span id="schemeCountBadge" class="text-xs font-bold font-mono px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#047857] border border-[#A7F3D0]">
+              <span class="text-xs font-heading font-bold uppercase tracking-wider text-[#64748B]">Total Annual Direct Cash DBT</span>
+              <span id="schemeCountBadge" class="text-xs font-heading font-bold font-mono px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#047857] border border-[#A7F3D0]">
                 0 Schemes
               </span>
             </div>
             <div class="mt-1 flex items-baseline gap-2">
-              <span id="directBenefitMeter" class="text-4xl sm:text-5xl font-black text-[#0A2540] tracking-tight font-mono">₹0</span>
+              <span id="directBenefitMeter" class="text-4xl sm:text-5xl font-heading font-black text-[#0A2540] tracking-tight font-mono">₹0</span>
               <span class="text-xs font-bold text-[#64748B]">/ year</span>
             </div>
           </div>
 
           <div class="grid grid-cols-2 gap-3 pt-2.5 border-t border-[#E2E8F0]">
             <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-2.5 rounded-xl">
-              <span class="text-[11px] font-semibold text-[#64748B] block">📈 5-Year Total Value</span>
+              <span class="text-[11px] font-heading font-semibold text-[#64748B] block">📈 5-Year Family Wealth</span>
               <span id="fiveYearMeter" class="text-base font-black text-[#B45309] font-mono">₹0</span>
             </div>
             <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-2.5 rounded-xl">
-              <span class="text-[11px] font-semibold text-[#64748B] block">🏥 Free Hospital Cover</span>
+              <span class="text-[11px] font-heading font-semibold text-[#64748B] block">🏥 Cashless Health Cover</span>
               <span id="healthCoverMeter" class="text-base font-black text-[#047857] font-mono">₹5,00,000</span>
             </div>
           </div>
 
           <div class="flex items-center justify-between text-[11px] text-[#64748B] pt-0.5">
             <span class="flex items-center gap-1">
-              <span class="text-emerald-600 font-bold">✓</span> Direct to Bank Account
+              <span class="text-emerald-600 font-bold">✓</span> Credited Directly To Bank Account
             </span>
-            <span class="font-medium text-[#0A2540]">Zero Storage • Private</span>
+            <span class="font-medium text-[#0A2540]">Zero Middlemen</span>
           </div>
         </div>
 
@@ -260,7 +276,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
       
       <!-- ========================================================= -->
-      <!-- LEFT COLUMN: CITIZEN INPUT FORM & VERIFICATION (5 COLS) -->
+      <!-- LEFT COLUMN: CITIZEN PROFILE FORM & VERIFICATION (5 COLS) -->
       <!-- ========================================================= -->
       <div class="lg:col-span-5 space-y-5">
         
@@ -268,36 +284,45 @@
         <div class="bg-white border border-[#CBD5E1] p-5 rounded-2xl shadow-xs space-y-4">
           <div class="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
             <div>
-              <h3 class="text-sm font-bold text-[#0F172A] flex items-center gap-1.5">
-                <span>📝</span> Citizen / Family Information
+              <h3 class="text-base font-heading font-black text-[#0F172A] flex items-center gap-1.5">
+                <span>📝</span> Citizen & Household Profile
               </h3>
-              <p class="text-[11px] text-[#64748B]">Provide details to calculate eligible benefits accurately</p>
+              <p class="text-[11px] text-[#64748B]">Enter your parameters to calculate exact eligibility</p>
             </div>
             <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0]">
-              Private
+              Zero-Storage
             </span>
           </div>
 
-          <!-- Quick Fill Sample Buttons -->
+          <!-- Quick Fill Sample Shortcuts -->
           <div class="flex flex-wrap items-center gap-1.5 text-xs">
             <span class="text-[11px] text-[#64748B] font-medium mr-1">Quick Sample:</span>
-            <button type="button" onclick="quickFill('student')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-semibold text-[#334155] transition">🎓 Student</button>
-            <button type="button" onclick="quickFill('farmer')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-semibold text-[#334155] transition">🌾 Farmer</button>
-            <button type="button" onclick="quickFill('homemaker')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-semibold text-[#334155] transition">👩 Homemaker</button>
-            <button type="button" onclick="quickFill('senior')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-semibold text-[#334155] transition">👵 Senior (70+)</button>
+            <button type="button" onclick="quickFill('student')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-heading font-bold text-[#334155] transition">🎓 Student</button>
+            <button type="button" onclick="quickFill('farmer')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-heading font-bold text-[#334155] transition">🌾 Farmer</button>
+            <button type="button" onclick="quickFill('homemaker')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-heading font-bold text-[#334155] transition">👩 Homemaker</button>
+            <button type="button" onclick="quickFill('senior')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-heading font-bold text-[#334155] transition">👵 Senior (70+)</button>
           </div>
 
           <!-- Form Fields -->
           <form id="citizenForm" onsubmit="event.preventDefault(); runHarness();" class="space-y-3.5">
             
+            <!-- State of Residence (State vs Central Selector) -->
+            <div>
+              <label class="block text-xs font-heading font-bold text-[#334155] mb-1">State of Residence *</label>
+              <select id="inputState" class="form-input cursor-pointer font-medium" onchange="runHarness()">
+                <option value="karnataka" selected>🏛️ Karnataka (Eligible for all State & Central Schemes)</option>
+                <option value="other">🇮🇳 Other Indian State (Eligible for Pan-India Central Schemes)</option>
+              </select>
+            </div>
+
             <!-- Age & Gender -->
             <div class="grid grid-cols-2 gap-3">
               <div>
-                <label class="block text-xs font-bold text-[#334155] mb-1">Age (Years) *</label>
-                <input id="inputAge" type="number" min="1" max="110" value="21" class="form-input" required onchange="runHarness()" />
+                <label class="block text-xs font-heading font-bold text-[#334155] mb-1">Age (Years) *</label>
+                <input id="inputAge" type="number" min="1" max="110" value="21" class="form-input font-mono font-medium" required onchange="runHarness()" />
               </div>
               <div>
-                <label class="block text-xs font-bold text-[#334155] mb-1">Gender *</label>
+                <label class="block text-xs font-heading font-bold text-[#334155] mb-1">Gender *</label>
                 <select id="inputGender" class="form-input cursor-pointer" onchange="runHarness()">
                   <option value="female">Female</option>
                   <option value="male" selected>Male</option>
@@ -308,40 +333,40 @@
 
             <!-- Occupation -->
             <div>
-              <label class="block text-xs font-bold text-[#334155] mb-1">Occupation / Activity *</label>
+              <label class="block text-xs font-heading font-bold text-[#334155] mb-1">Occupation / Activity *</label>
               <select id="inputOccupation" class="form-input cursor-pointer" onchange="handleOccupationChange()">
-                <option value="student" selected>🎓 Student (College / School)</option>
-                <option value="farmer">🌾 Farmer / Agriculture Worker</option>
+                <option value="student" selected>🎓 Student (College / Higher Education / School)</option>
+                <option value="farmer">🌾 Farmer / Agriculture Cultivator</option>
                 <option value="homemaker">👩 Homemaker / Mother</option>
                 <option value="senior">👵 Senior Citizen / Retired</option>
-                <option value="worker">🔨 Artisan / Craftsman / Daily Wage</option>
+                <option value="worker">🔨 Artisan / Craftsman / Unorganized Worker</option>
                 <option value="unemployed">💼 Unemployed Graduate / Youth</option>
-                <option value="other">🏢 Private Employee / Other</option>
+                <option value="other">🏢 Private Employee / General</option>
               </select>
             </div>
 
             <!-- Annual Income & Social Category -->
             <div class="grid grid-cols-2 gap-3">
               <div>
-                <label class="block text-xs font-bold text-[#334155] mb-1">Annual Family Income (₹) *</label>
-                <input id="inputIncome" type="number" step="10000" min="0" value="120000" class="form-input font-mono" required onchange="runHarness()" />
+                <label class="block text-xs font-heading font-bold text-[#334155] mb-1">Annual Family Income (₹) *</label>
+                <input id="inputIncome" type="number" step="10000" min="0" value="120000" class="form-input font-mono font-medium" required onchange="runHarness()" />
               </div>
               <div>
-                <label class="block text-xs font-bold text-[#334155] mb-1">Social Category *</label>
+                <label class="block text-xs font-heading font-bold text-[#334155] mb-1">Social Category *</label>
                 <select id="inputCategory" class="form-input cursor-pointer" onchange="runHarness()">
-                  <option value="OBC" selected>OBC (Category 1, 2A, 2B, 3A, 3B)</option>
+                  <option value="OBC" selected>OBC (Cat 1, 2A, 2B, 3A, 3B)</option>
                   <option value="SC">SC (Scheduled Caste)</option>
                   <option value="ST">ST (Scheduled Tribe)</option>
-                  <option value="General">General / Other</option>
+                  <option value="General">General / EWS</option>
                 </select>
               </div>
             </div>
 
             <!-- Ration Card -->
             <div>
-              <label class="block text-xs font-bold text-[#334155] mb-1">Ration Card Status *</label>
+              <label class="block text-xs font-heading font-bold text-[#334155] mb-1">Ration Card Status *</label>
               <select id="inputRation" class="form-input cursor-pointer" onchange="runHarness()">
-                <option value="bpl" selected>BPL / Antyodaya Anna Yojana (Priority)</option>
+                <option value="bpl" selected>BPL / Antyodaya Anna Yojana (Priority Household)</option>
                 <option value="apl">APL Card (Above Poverty Line)</option>
                 <option value="none">No Ration Card</option>
               </select>
@@ -351,37 +376,37 @@
             <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-3 rounded-xl space-y-2 text-xs">
               <label class="flex items-center gap-2 cursor-pointer">
                 <input id="chkStudent" type="checkbox" checked onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 rounded" />
-                <span class="text-[#334155]">Currently enrolled in School / College / Degree</span>
+                <span class="text-[#334155]">Enrolled in School, College, Diploma or Degree course</span>
               </label>
               <label class="flex items-center gap-2 cursor-pointer">
                 <input id="chkWidow" type="checkbox" onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 rounded" />
-                <span class="text-[#334155]">Widow (eligible for widow pensions & housing)</span>
+                <span class="text-[#334155]">Widow (Eligible for monthly widow pensions)</span>
               </label>
               <label class="flex items-center gap-2 cursor-pointer">
                 <input id="chkTaxPayer" type="checkbox" onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 rounded" />
-                <span class="text-[#334155]">Family member pays Income Tax</span>
+                <span class="text-[#334155]">Family member pays Income Tax (triggers exclusion clauses)</span>
               </label>
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="w-full bg-[#0A2540] hover:bg-[#12375C] text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl shadow-xs transition flex items-center justify-center gap-2">
+            <button type="submit" class="w-full bg-[#0A2540] hover:bg-[#12375C] text-white font-heading font-bold text-sm py-2.5 px-4 rounded-xl shadow-xs transition flex items-center justify-center gap-2">
               <span>🔍</span>
-              <span>Check My Eligible Schemes & Money</span>
+              <span>Find All Eligible Schemes</span>
             </button>
 
           </form>
 
           <!-- Voice / Natural Query Intake -->
           <div class="pt-2 border-t border-[#E2E8F0] space-y-2">
-            <span class="text-[11px] font-bold text-[#64748B] flex items-center gap-1">
-              <span>🎙️</span> Or speak/type in natural words:
+            <span class="text-[11px] font-heading font-bold text-[#64748B] flex items-center gap-1">
+              <span>🎙️</span> Or speak/type in conversational language:
             </span>
             <div class="flex gap-2">
               <button onclick="startVoiceInput()" id="voiceBtn" class="bg-[#EFF6FF] hover:bg-[#DBEAFE] border border-[#BFDBFE] text-base px-3 py-1.5 rounded-xl shrink-0 transition" title="Speak in Kannada, Hindi or English">
                 🎙️
               </button>
-              <input id="chatInput" type="text" placeholder="e.g. 'I am a 20 year old student from a farming family...'" class="flex-1 bg-[#F8FAFC] border border-[#CBD5E1] rounded-xl px-3 py-1.5 text-xs text-[#0F172A] outline-none" />
-              <button onclick="submitChatIntake()" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0A2540] font-bold text-xs px-3 py-1.5 rounded-xl border border-[#CBD5E1] transition">
+              <input id="chatInput" type="text" placeholder="e.g. 'I am an 19 year old girl in Mysore studying BTech...'" class="flex-1 bg-[#F8FAFC] border border-[#CBD5E1] rounded-xl px-3 py-1.5 text-xs text-[#0F172A] outline-none" />
+              <button onclick="submitChatIntake()" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0A2540] font-heading font-bold text-xs px-3.5 py-1.5 rounded-xl border border-[#CBD5E1] transition">
                 Find
               </button>
             </div>
@@ -392,21 +417,21 @@
         <!-- BANK & REJECTION SHIELD VERIFICATION -->
         <div class="bg-white border border-[#E2E8F0] p-4 rounded-2xl shadow-xs space-y-3">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-wider text-[#0A2540] flex items-center gap-1.5">
-              <span>🛡️</span> Bank & e-KYC Readiness Check
+            <span class="text-xs font-heading font-bold uppercase tracking-wider text-[#0A2540] flex items-center gap-1.5">
+              <span>🛡️</span> Pre-Application Rejection Shield
             </span>
             <span id="readinessBadge" class="text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0]">
               100% Ready
             </span>
           </div>
           <p class="text-xs text-[#64748B] leading-relaxed">
-            Ensure these 3 bank & certificate items are ready so your benefits transfer without failure:
+            Ensure these 3 essential bank and identity items are active so your government DBT transfer doesn't bounce:
           </p>
 
           <div class="space-y-2 text-xs bg-[#F8FAFC] border border-[#E2E8F0] p-3 rounded-xl">
             <label class="flex items-start gap-2.5 cursor-pointer">
               <input id="chkNpci" type="checkbox" checked onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 mt-0.5" />
-              <span class="text-[#334155]">Bank Account is seeded with <b>NPCI Aadhaar DBT Mapper</b></span>
+              <span class="text-[#334155]">Bank Account has active <b>NPCI Aadhaar DBT Mapper</b> seeding</span>
             </label>
             <label class="flex items-start gap-2.5 cursor-pointer">
               <input id="chkName" type="checkbox" checked onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 mt-0.5" />
@@ -421,52 +446,97 @@
           <div id="rejectionRisksBox" class="space-y-2"></div>
         </div>
 
-        <!-- SINGLE-WINDOW REQUIRED DOCUMENTS CHECKLIST -->
+        <!-- CONSOLIDATED SINGLE-WINDOW DOCUMENT CHECKLIST -->
         <div class="bg-white border border-[#E2E8F0] p-4 rounded-2xl shadow-xs space-y-2.5">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-wider text-[#0A2540]">📋 What Documents to Carry (Consolidated)</span>
+            <span class="text-xs font-heading font-bold uppercase tracking-wider text-[#0A2540]">📋 What Documents to Carry (Consolidated)</span>
             <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#EFF6FF] text-[#1D4ED8]">Carry Once</span>
           </div>
-          <p class="text-xs text-[#64748B]">All documents required across all your matched schemes for a single trip to the center:</p>
+          <p class="text-xs text-[#64748B]">Pack these documents once to apply for all your matched schemes at the cyber-café / GramaOne:</p>
           <div id="consolidatedDocs" class="flex flex-wrap gap-1.5 pt-1 text-xs"></div>
         </div>
 
       </div>
 
       <!-- ========================================================= -->
-      <!-- RIGHT COLUMN: MATCHED SCHEMES & HOW TO APPLY (7 COLS) -->
+      <!-- RIGHT COLUMN: SCHEMES GALLERY & MULTI-ATTRIBUTE SEARCH (7 COLS) -->
       <!-- ========================================================= -->
       <div class="lg:col-span-7 space-y-4">
         
-        <!-- Filter Pills & Search Bar -->
-        <div class="bg-white border border-[#E2E8F0] p-3.5 rounded-2xl shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div class="flex flex-wrap items-center gap-1.5" id="categoryPills">
-            <button onclick="setCategoryFilter('ALL')" class="cat-pill bg-[#0A2540] text-white font-bold text-xs px-3 py-1.5 rounded-lg transition">All Matched</button>
-            <button onclick="setCategoryFilter('Student Scholarships')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1.5 rounded-lg transition">🎓 Scholarships</button>
-            <button onclick="setCategoryFilter('Women & Family Cash')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1.5 rounded-lg transition">👩 Women/Family</button>
-            <button onclick="setCategoryFilter('Farmer Grants')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1.5 rounded-lg transition">🌾 Farmers</button>
-            <button onclick="setCategoryFilter('Household Freebies')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1.5 rounded-lg transition">⚡ Free Power/Gas</button>
+        <!-- ADVANCED SEARCH & DISCOVERY BAR -->
+        <div class="bg-white border border-[#E2E8F0] p-4 rounded-2xl shadow-xs space-y-3">
+          
+          <!-- Search Input & Quick Info -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+            <div class="relative flex-1">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">🔍</span>
+              <input id="schemeSearch" type="text" oninput="renderSchemesGrid()" placeholder="Search by scheme name, keyword (e.g. 'solar', 'scholarship', 'pension'), ministry, or document..." class="w-full bg-[#F8FAFC] border border-[#CBD5E1] focus:border-[#0A2540] rounded-xl pl-9 pr-3 py-2 text-xs text-[#0F172A] outline-none transition" />
+            </div>
+
+            <!-- Sort By Dropdown -->
+            <select id="sortBy" onchange="renderSchemesGrid()" class="bg-[#F8FAFC] border border-[#CBD5E1] text-[#0F172A] text-xs font-heading font-bold px-3 py-2 rounded-xl outline-none cursor-pointer hover:border-[#0A2540]">
+              <option value="amount_desc">💰 Highest Cash Payout (₹)</option>
+              <option value="sla_asc">⏱️ Fastest Approval (SLA)</option>
+              <option value="name_asc">🔤 Alphabetical (A–Z)</option>
+            </select>
           </div>
 
-          <div class="flex items-center gap-2">
-            <input id="schemeSearch" type="text" oninput="renderSchemesGrid()" placeholder="Search schemes..." class="bg-[#F8FAFC] border border-[#CBD5E1] rounded-lg px-2.5 py-1.5 text-xs text-[#0F172A] outline-none w-32 sm:w-36 focus:border-[#0A2540]" />
-            <label class="flex items-center gap-1 text-xs text-[#64748B] cursor-pointer whitespace-nowrap">
-              <input id="showAllToggle" type="checkbox" onchange="renderSchemesGrid()" class="accent-[#0A2540]" />
-              <span>All 20</span>
+          <!-- Quick Topic Tags -->
+          <div class="flex flex-wrap items-center gap-1.5 text-xs pt-0.5">
+            <span class="text-[11px] font-heading font-bold text-[#64748B] mr-1">Quick Filters:</span>
+            <button onclick="setQuickSearch('Scholarship')" class="px-2 py-0.5 rounded-md bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[11px] font-semibold text-[#334155] transition">🎓 Scholarships</button>
+            <button onclick="setQuickSearch('Cash')" class="px-2 py-0.5 rounded-md bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[11px] font-semibold text-[#334155] transition">💵 Direct Cash</button>
+            <button onclick="setQuickSearch('Farmer')" class="px-2 py-0.5 rounded-md bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[11px] font-semibold text-[#334155] transition">🌾 Farmers</button>
+            <button onclick="setQuickSearch('Pension')" class="px-2 py-0.5 rounded-md bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[11px] font-semibold text-[#334155] transition">👵 Pensions</button>
+            <button onclick="setQuickSearch('Solar')" class="px-2 py-0.5 rounded-md bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[11px] font-semibold text-[#334155] transition">☀️ Solar Pump</button>
+            <button onclick="setQuickSearch('Ayushman')" class="px-2 py-0.5 rounded-md bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[11px] font-semibold text-[#334155] transition">🏥 ₹5L Hospital Cover</button>
+          </div>
+
+          <!-- Jurisdiction Filter Bar (State vs Central) -->
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#E2E8F0]">
+            <div class="flex flex-wrap items-center gap-1.5" id="levelFilterPills">
+              <button onclick="setLevelFilter('ALL')" class="level-pill bg-[#0A2540] text-white font-heading font-bold text-xs px-3 py-1.5 rounded-lg transition">All Jurisdictions</button>
+              <button onclick="setLevelFilter('State (Karnataka)')" class="level-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-heading font-bold text-xs px-2.5 py-1.5 rounded-lg transition">🏛️ Karnataka State</button>
+              <button onclick="setLevelFilter('Central')" class="level-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-heading font-bold text-xs px-2.5 py-1.5 rounded-lg transition">🇮🇳 Central Govt (Pan-India)</button>
+              <button onclick="setLevelFilter('Central + State')" class="level-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-heading font-bold text-xs px-2.5 py-1.5 rounded-lg transition">🏛️+🇮🇳 Joint Schemes</button>
+            </div>
+
+            <!-- View All 20 Catalog Toggle -->
+            <label class="flex items-center gap-1.5 text-xs text-[#0F172A] font-heading font-bold cursor-pointer select-none bg-[#F8FAFC] border border-[#CBD5E1] px-2.5 py-1 rounded-lg">
+              <input id="showAllToggle" type="checkbox" onchange="renderSchemesGrid()" class="accent-[#0A2540] w-4 h-4 rounded" />
+              <span>Browse All 20 Schemes</span>
             </label>
           </div>
+
+          <!-- Category Filter Bar -->
+          <div class="flex flex-wrap items-center gap-1.5 pt-1" id="categoryPills">
+            <button onclick="setCategoryFilter('ALL')" class="cat-pill bg-[#0A2540] text-white font-heading font-bold text-xs px-2.5 py-1 rounded-md transition">All Categories</button>
+            <button onclick="setCategoryFilter('Student Scholarships')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1 rounded-md transition">🎓 Scholarships</button>
+            <button onclick="setCategoryFilter('Women & Family Cash')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1 rounded-md transition">👩 Women/Family</button>
+            <button onclick="setCategoryFilter('Farmer Grants')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1 rounded-md transition">🌾 Farmers</button>
+            <button onclick="setCategoryFilter('Household Freebies')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1 rounded-md transition">⚡ Free Power/Gas</button>
+            <button onclick="setCategoryFilter('Youth & Workers')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1 rounded-md transition">💼 Youth/Workers</button>
+            <button onclick="setCategoryFilter('Health & Housing')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1 rounded-md transition">🏥 Health/Housing</button>
+          </div>
+
+          <!-- Results Summary Bar -->
+          <div class="flex items-center justify-between text-xs text-[#64748B] pt-1">
+            <span id="resultsCount">Showing 0 matching schemes</span>
+            <button onclick="resetAllFilters()" class="text-[#0A2540] hover:underline font-heading font-bold text-xs">Reset All Filters ✕</button>
+          </div>
+
         </div>
 
-        <!-- Statutory Conflict Notification (If triggered) -->
+        <!-- STATUTORY ANTI-DOUBLE-DIPPING BANNER (When Triggered) -->
         <div id="conflictSection" class="hidden bg-[#FFFBEB] border border-[#FDE68A] p-3.5 rounded-2xl shadow-xs space-y-1 text-xs text-[#92400E]">
-          <div class="font-bold flex items-center gap-1.5">
-            <span>⚖️</span> <span>Government Anti-Double-Dipping Rule Enforced:</span>
+          <div class="font-heading font-bold flex items-center gap-1.5">
+            <span>⚖️</span> <span>Statutory Anti-Double-Dipping Rules Enforced:</span>
           </div>
           <div id="conflictList" class="space-y-1 text-[11px] font-mono"></div>
         </div>
 
-        <!-- SCHEMES CONTAINER -->
-        <div id="schemesContainer" class="space-y-3.5"></div>
+        <!-- DETAILED SCHEME CARDS CONTAINER -->
+        <div id="schemesContainer" class="space-y-4"></div>
 
       </div>
 
@@ -477,10 +547,10 @@
   <!-- ========================================================= -->
   <!-- 4. CLEAN FOOTER -->
   <!-- ========================================================= -->
-  <footer class="bg-white border-t border-[#E2E8F0] mt-10 py-4 px-4 text-center text-xs text-[#64748B]">
+  <footer class="bg-white border-t border-[#E2E8F0] mt-10 py-5 px-4 text-center text-xs text-[#64748B]">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-      <div class="font-semibold text-[#0A2540]">HAKKU Welfare Discovery Engine</div>
-      <div class="text-[11px] font-mono">100% In-Memory (Zero Storage) • DPDP Act 2023 Compliant • Official Central & State Schemes</div>
+      <div class="font-heading font-bold text-[#0A2540]">HAKKU Welfare Discovery Engine</div>
+      <div class="text-[11px] font-mono">100% In-Memory (Zero Storage) • DPDP Act 2023 Compliant • Official Central & State Government Welfare Schemes</div>
     </div>
   </footer>
 
@@ -491,8 +561,8 @@
     <div class="bg-white border border-[#CBD5E1] rounded-2xl max-w-3xl w-full p-5 sm:p-6 flex flex-col max-h-[92vh] shadow-2xl">
       <div class="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
         <div>
-          <span class="text-[10px] font-mono font-bold uppercase text-[#0A2540]">Official Citizen Output Slip</span>
-          <h3 id="modalTitle" class="text-base sm:text-lg font-bold text-[#0F172A] mt-0.5">Application Packet</h3>
+          <span class="text-[10px] font-mono font-bold uppercase text-[#0A2540]">Official Citizen Handout Slip</span>
+          <h3 id="modalTitle" class="text-lg font-heading font-bold text-[#0F172A] mt-0.5">Application Packet</h3>
         </div>
         <button onclick="closeDocModal()" class="text-[#64748B] hover:text-[#0F172A] text-lg font-bold px-2.5 py-1 rounded-lg hover:bg-[#F1F5F9]">✕</button>
       </div>
@@ -504,10 +574,10 @@
           <span>✓</span> <span>Print and hand this directly to the GramaOne / CSC / Cyber-Café operator.</span>
         </span>
         <div class="flex gap-2">
-          <button onclick="copyDocText()" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-4 py-2 rounded-xl transition">
+          <button onclick="copyDocText()" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#CBD5E1] text-xs font-heading font-bold px-4 py-2 rounded-xl transition">
             <span id="copyBtnText">📋 Copy Text</span>
           </button>
-          <button onclick="printDocText()" class="bg-[#0A2540] hover:bg-[#12375C] text-white text-xs font-bold px-5 py-2 rounded-xl transition shadow">
+          <button onclick="printDocText()" class="bg-[#0A2540] hover:bg-[#12375C] text-white text-xs font-heading font-bold px-5 py-2 rounded-xl transition shadow">
             🖨️ Print / Save PDF
           </button>
         </div>
@@ -522,6 +592,7 @@
     let latestMatchedSchemes = [];
     let allCatalogSchemes = [];
     let activeCategory = 'ALL';
+    let activeLevel = 'ALL';
 
     function handleOccupationChange() {
       const occ = document.getElementById('inputOccupation').value;
@@ -548,6 +619,7 @@
         document.getElementById('chkStudent').checked = true;
         document.getElementById('chkWidow').checked = false;
         document.getElementById('chkTaxPayer').checked = false;
+        document.getElementById('inputState').value = 'karnataka';
       } else if (preset === 'farmer') {
         document.getElementById('inputAge').value = 42;
         document.getElementById('inputGender').value = 'male';
@@ -558,6 +630,7 @@
         document.getElementById('chkStudent').checked = false;
         document.getElementById('chkWidow').checked = false;
         document.getElementById('chkTaxPayer').checked = false;
+        document.getElementById('inputState').value = 'karnataka';
       } else if (preset === 'homemaker') {
         document.getElementById('inputAge').value = 35;
         document.getElementById('inputGender').value = 'female';
@@ -568,6 +641,7 @@
         document.getElementById('chkStudent').checked = false;
         document.getElementById('chkWidow').checked = false;
         document.getElementById('chkTaxPayer').checked = false;
+        document.getElementById('inputState').value = 'karnataka';
       } else if (preset === 'senior') {
         document.getElementById('inputAge').value = 71;
         document.getElementById('inputGender').value = 'female';
@@ -578,11 +652,13 @@
         document.getElementById('chkStudent').checked = false;
         document.getElementById('chkWidow').checked = true;
         document.getElementById('chkTaxPayer').checked = false;
+        document.getElementById('inputState').value = 'karnataka';
       }
       runHarness();
     }
 
     function getCitizenProfileFromForm() {
+      const state = document.getElementById('inputState').value;
       const age = Number(document.getElementById('inputAge').value) || 21;
       const gender = document.getElementById('inputGender').value;
       const occupation = document.getElementById('inputOccupation').value;
@@ -595,6 +671,7 @@
 
       return {
         name: 'Citizen',
+        state,
         age,
         gender,
         occupation,
@@ -630,10 +707,34 @@
       document.querySelectorAll('.cat-pill').forEach(btn => {
         const isMatch = (cat === 'ALL' && btn.innerText.includes('All')) || btn.innerText.includes(cat.split(' ')[0]);
         btn.className = isMatch
-          ? 'cat-pill bg-[#0A2540] text-white font-bold text-xs px-3 py-1.5 rounded-lg transition'
-          : 'cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1.5 rounded-lg transition';
+          ? 'cat-pill bg-[#0A2540] text-white font-heading font-bold text-xs px-2.5 py-1 rounded-md transition'
+          : 'cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1 rounded-md transition';
       });
       renderSchemesGrid();
+    }
+
+    function setLevelFilter(lvl) {
+      activeLevel = lvl;
+      document.querySelectorAll('.level-pill').forEach(btn => {
+        const isMatch = (lvl === 'ALL' && btn.innerText.includes('All')) || btn.innerText.includes(lvl.includes('Karnataka') ? 'Karnataka' : lvl.includes('+') ? 'Joint' : 'Central');
+        btn.className = isMatch
+          ? 'level-pill bg-[#0A2540] text-white font-heading font-bold text-xs px-3 py-1.5 rounded-lg transition'
+          : 'level-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-heading font-bold text-xs px-2.5 py-1.5 rounded-lg transition';
+      });
+      renderSchemesGrid();
+    }
+
+    function setQuickSearch(term) {
+      document.getElementById('schemeSearch').value = term;
+      renderSchemesGrid();
+    }
+
+    function resetAllFilters() {
+      document.getElementById('schemeSearch').value = '';
+      document.getElementById('showAllToggle').checked = false;
+      document.getElementById('sortBy').value = 'amount_desc';
+      setCategoryFilter('ALL');
+      setLevelFilter('ALL');
     }
 
     async function runHarness(userMessage = '') {
@@ -645,6 +746,10 @@
         rdValid: document.getElementById('chkRd').checked
       };
 
+      document.getElementById('stateScopeBadge').innerText = profile.state === 'karnataka'
+        ? 'Karnataka State + Central Government Entitlements'
+        : 'Pan-India Central Government Entitlements';
+
       try {
         const res = await fetch('/api/harness/discover', {
           method: 'POST',
@@ -653,7 +758,7 @@
         });
         const data = await res.json();
 
-        // Update form if natural language parsed new parameters
+        // Update form if natural language parsed parameters
         if (userMessage && data.profile) {
           if (data.profile.age) document.getElementById('inputAge').value = data.profile.age;
           if (data.profile.gender) document.getElementById('inputGender').value = data.profile.gender;
@@ -666,7 +771,7 @@
         latestMatchedSchemes = data.matchedSchemes || [];
         allCatalogSchemes = data.allCatalogSchemes || latestMatchedSchemes;
 
-        // Animate Benefit Numbers
+        // Animate Benefits
         animateCounter(document.getElementById('directBenefitMeter'), data.totalDirectAnnualINR || 0);
         animateCounter(document.getElementById('fiveYearMeter'), data.fiveYearWealthINR || (data.totalDirectAnnualINR * 5) || 0);
         document.getElementById('healthCoverMeter').innerText = '₹' + Number(data.totalHealthCoverINR || 500000).toLocaleString('en-IN');
@@ -683,9 +788,9 @@
 
         document.getElementById('rejectionRisksBox').innerHTML = (data.readinessAudit.rejectionRisks || []).map(r => `
           <div class="bg-[#FFF1F2] border border-[#FECDD3] rounded-xl p-3 text-xs space-y-1">
-            <div class="font-bold text-[#9F1239] flex items-center justify-between">
+            <div class="font-heading font-bold text-[#9F1239] flex items-center justify-between">
               <span>⚠️ ${r.severity}: ${r.title}</span>
-              <button onclick="openDocKitModal(null, 'npci')" class="text-[10px] bg-[#E11D48] text-white px-2 py-0.5 rounded font-bold font-mono">
+              <button onclick="openDocKitModal(null, 'npci')" class="text-[10px] bg-[#E11D48] text-white px-2 py-0.5 rounded font-heading font-bold font-mono">
                 Get Form →
               </button>
             </div>
@@ -718,24 +823,61 @@
     }
 
     function renderSchemesGrid() {
-      const search = (document.getElementById('schemeSearch').value || '').toLowerCase();
+      const search = (document.getElementById('schemeSearch').value || '').trim().toLowerCase();
       const showAll = document.getElementById('showAllToggle').checked;
+      const sortBy = document.getElementById('sortBy').value;
       const sourceList = showAll ? allCatalogSchemes : latestMatchedSchemes;
       const matchedIds = new Set(latestMatchedSchemes.map(m => m.id));
 
-      const filtered = sourceList.filter(s => {
+      let filtered = sourceList.filter(s => {
+        // Category Filter
         if (activeCategory !== 'ALL' && s.categoryTag !== activeCategory) return false;
-        if (search && !`${s.name} ${s.benefitSummary} ${s.categoryTag} ${s.physicalCounter}`.toLowerCase().includes(search)) return false;
+        
+        // Jurisdiction / Level Filter
+        if (activeLevel !== 'ALL') {
+          if (activeLevel === 'State (Karnataka)' && !s.level.includes('Karnataka')) return false;
+          if (activeLevel === 'Central' && (!s.level.includes('Central') || s.level.includes('State'))) return false;
+          if (activeLevel === 'Central + State' && !s.level.includes('+')) return false;
+        }
+
+        // Broad Search across all fields
+        if (search) {
+          const docsStr = (s.documents || []).join(' ');
+          const eligStr = JSON.stringify(s.eligibility || {});
+          const searchableBlob = `${s.name} ${s.level} ${s.ministry} ${s.benefitSummary} ${s.categoryTag} ${s.payoutTag} ${s.physicalCounter} ${s.applyWhere} ${s.cscSteps} ${s.statutoryRule} ${docsStr} ${eligStr}`.toLowerCase();
+          
+          const terms = search.split(/\s+/);
+          const allTermsMatch = terms.every(term => searchableBlob.includes(term));
+          if (!allTermsMatch) return false;
+        }
+
         return true;
       });
+
+      // Sorting
+      filtered.sort((a, b) => {
+        if (sortBy === 'amount_desc') {
+          return (b.annualValueINR || 0) - (a.annualValueINR || 0);
+        } else if (sortBy === 'sla_asc') {
+          return (a.sakalaSlaDays || 999) - (b.sakalaSlaDays || 999);
+        } else if (sortBy === 'name_asc') {
+          return a.name.localeCompare(b.name);
+        }
+        return 0;
+      });
+
+      document.getElementById('resultsCount').innerText = `Showing ${filtered.length} of ${sourceList.length} schemes`;
 
       const container = document.getElementById('schemesContainer');
       if (filtered.length === 0) {
         container.innerHTML = `
           <div class="bg-white border border-[#E2E8F0] rounded-2xl p-8 text-center text-slate-500 space-y-2">
             <div class="text-3xl">🔍</div>
-            <div class="font-bold text-sm text-[#0F172A]">No schemes matched your current filter</div>
-            <div class="text-xs">Adjust the category pill or check "All 20" to see all government offerings.</div>
+            <div class="font-heading font-bold text-sm text-[#0F172A]">No schemes match your active search & filters</div>
+            <div class="text-xs">Try clearing the search term, changing jurisdiction pills, or checking "Browse All 20 Schemes".</div>
+            <div class="pt-2">
+              <button onclick="resetAllFilters()" class="bg-[#0A2540] text-white text-xs font-heading font-bold px-3 py-1.5 rounded-lg">Reset Filters</button>
+            </div>
           </div>
         `;
         return;
@@ -744,75 +886,134 @@
       container.innerHTML = filtered.map((s, idx) => {
         const isEligible = matchedIds.has(s.id);
         const matchIdx = latestMatchedSchemes.findIndex(m => m.id === s.id);
-        const docsList = (s.documents || []).map(d => `<span class="bg-white border border-[#E2E8F0] px-2 py-0.5 rounded text-[10px] text-[#475569] font-medium">📄 ${d}</span>`).join(' ');
+        
+        // Jurisdiction badge determination
+        let levelBadgeHtml = '';
+        if (s.level.includes('Karnataka')) {
+          levelBadgeHtml = `<span class="text-[10px] font-heading font-bold uppercase px-2.5 py-0.5 rounded-full badge-state">🏛️ Karnataka State Government</span>`;
+        } else if (s.level.includes('+')) {
+          levelBadgeHtml = `<span class="text-[10px] font-heading font-bold uppercase px-2.5 py-0.5 rounded-full badge-joint">🇮🇳+🏛️ Joint Central & State Scheme</span>`;
+        } else {
+          levelBadgeHtml = `<span class="text-[10px] font-heading font-bold uppercase px-2.5 py-0.5 rounded-full badge-central">🇮🇳 Central Govt (All-India)</span>`;
+        }
+
+        // Synthesis of Who Can Apply
+        const e = s.eligibility || {};
+        const eligibleList = [];
+        if (e.gender && e.gender.length === 1) eligibleList.push(`Gender: ${e.gender[0].toUpperCase()} only`);
+        if (e.ageMin && e.ageMax) eligibleList.push(`Age: ${e.ageMin} to ${e.ageMax} years`);
+        else if (e.ageMin) eligibleList.push(`Age: ${e.ageMin}+ years`);
+        if (e.occupations) eligibleList.push(`Role: ${e.occupations.map(o => o.charAt(0).toUpperCase() + o.slice(1)).join(' / ')}`);
+        if (e.isStudent) eligibleList.push('Enrolled College/School Student');
+        if (e.isWidow) eligibleList.push('Widows from Low-Income Families');
+        if (e.bplRequired) eligibleList.push('BPL / Antyodaya Card Holder');
+        if (e.maxIncome) eligibleList.push(`Family Income ≤ ₹${(e.maxIncome).toLocaleString('en-IN')}/year`);
+        else eligibleList.push('Universal / No Income Bar');
+
+        // Synthesis of Who Cannot Apply (Exclusions)
+        const exclusionsList = [];
+        if (e.excludeTaxPayer) exclusionsList.push('Income Tax Payers excluded');
+        if (s.statutoryRule && s.statutoryRule.includes('Govt employees')) exclusionsList.push('Government Employees excluded');
+        if (s.exclusivityGroup === 'CENTRAL_SCHOLARSHIP') exclusionsList.push('Cannot combine with other Central Scholarships');
+        if (s.exclusivityGroup === 'SOCIAL_PENSION') exclusionsList.push('Cannot draw multiple simultaneous pensions');
+        if (exclusionsList.length === 0) exclusionsList.push('None (subject to general criteria)');
+
+        const docsBadges = (s.documents || []).map(d => `<span class="bg-white border border-[#CBD5E1] px-2 py-0.5 rounded-md text-[11px] text-[#334155] font-medium flex items-center gap-1 shadow-2xs">📄 ${d}</span>`).join(' ');
 
         return `
-        <div class="bg-white border ${isEligible ? 'border-[#CBD5E1]' : 'border-[#E2E8F0] opacity-80'} rounded-2xl p-5 shadow-xs hover:border-[#0A2540] transition space-y-3.5">
+        <div class="bg-white border ${isEligible ? 'border-[#94A3B8] ring-1 ring-[#94A3B8]/20' : 'border-[#E2E8F0] opacity-85'} rounded-2xl p-5 shadow-xs hover:border-[#0A2540] transition space-y-3.5">
           
-          <!-- Top Row: Tags & Rupee Amount -->
-          <div class="flex items-start justify-between gap-3">
+          <!-- Top Row: Jurisdiction & Payout Value -->
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2.5">
             <div class="space-y-1">
               <div class="flex flex-wrap items-center gap-1.5">
-                <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]">${s.level}</span>
+                ${levelBadgeHtml}
                 <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F8FAFC] text-[#64748B] border border-[#E2E8F0]">SLA: ${s.sakalaSlaDays} Days</span>
                 <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-[#F1F5F9] text-[#334155]">${s.categoryTag}</span>
               </div>
-              <h4 class="font-bold text-sm sm:text-base text-[#0F172A] leading-snug">${s.name}</h4>
+              <h4 class="font-heading font-black text-base sm:text-lg text-[#0F172A] leading-snug">${s.name}</h4>
+              <div class="text-[11px] text-[#64748B] font-medium flex items-center gap-1">
+                <span>🏛️ Authority:</span> <span>${s.ministry}</span>
+              </div>
             </div>
             
-            <div class="text-right shrink-0">
-              <span class="text-xs sm:text-sm font-mono font-black text-[#059669] bg-[#ECFDF5] border border-[#A7F3D0] px-3 py-1 rounded-full whitespace-nowrap block">
+            <div class="sm:text-right shrink-0">
+              <span class="text-xs sm:text-sm font-heading font-black text-[#059669] bg-[#ECFDF5] border border-[#A7F3D0] px-3 py-1 rounded-full whitespace-nowrap inline-block">
                 + ₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')}/yr
               </span>
-              <span class="text-[10px] text-[#64748B] font-medium mt-0.5 block">${s.payoutTag || 'Direct Benefit'}</span>
+              <span class="text-[10px] text-[#64748B] font-semibold mt-0.5 block">${s.payoutTag || 'Direct Benefit'}</span>
             </div>
           </div>
 
-          <!-- Description -->
-          <p class="text-xs text-[#475569] leading-relaxed">${s.benefitSummary}</p>
+          <!-- Plain Language Summary -->
+          <p class="text-xs text-[#334155] leading-relaxed font-normal">${s.benefitSummary}</p>
 
-          <!-- 3 CORE CITIZEN BLOCKS: Where to go, Steps, Documents -->
-          <div class="space-y-2 bg-[#F8FAFC] border border-[#E2E8F0] p-3 rounded-xl text-xs">
+          <!-- 4 CORE CITIZEN CRITERIA BLOCKS -->
+          <div class="space-y-2.5 bg-[#F8FAFC] border border-[#E2E8F0] p-3.5 rounded-xl text-xs">
             
-            <!-- Where to Apply / Cyber Café -->
-            <div class="flex items-start gap-2">
-              <span class="font-bold text-[#0A2540] shrink-0">🏪 Where to Visit:</span>
-              <span class="text-[#1E293B] font-semibold">${s.physicalCounter || s.applyWhere}</span>
+            <!-- Who All Can Apply -->
+            <div class="space-y-1">
+              <div class="font-heading font-bold text-[#0A2540] flex items-center gap-1.5">
+                <span class="text-emerald-600">✓</span> <span>WHO ALL CAN APPLY (ELIGIBILITY):</span>
+              </div>
+              <div class="flex flex-wrap gap-1.5 pl-4">
+                ${eligibleList.map(item => `<span class="bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] px-2 py-0.5 rounded font-medium">${item}</span>`).join('')}
+              </div>
             </div>
 
-            <!-- Steps How to Apply -->
-            <div class="flex items-start gap-2 border-t border-[#E2E8F0] pt-2">
-              <span class="font-bold text-[#0A2540] shrink-0">📝 Steps to Apply:</span>
-              <span class="text-[#334155] leading-relaxed">${s.cscSteps || 'Visit portal, upload documents, and collect acknowledgement slip.'}</span>
+            <!-- Who CANNOT Apply (Exclusions) -->
+            <div class="space-y-1 border-t border-[#E2E8F0] pt-2">
+              <div class="font-heading font-bold text-[#991B1B] flex items-center gap-1.5">
+                <span>✕</span> <span>WHO CANNOT APPLY (EXCLUSIONS & STATUTORY RULES):</span>
+              </div>
+              <div class="flex flex-wrap gap-1.5 pl-4">
+                ${exclusionsList.map(item => `<span class="bg-rose-50 text-rose-800 border border-rose-200 text-[11px] px-2 py-0.5 rounded font-medium">${item}</span>`).join('')}
+              </div>
             </div>
 
-            <!-- Documents Required -->
+            <!-- Where to Apply (Physical Cyber-Café / Centers) -->
             <div class="border-t border-[#E2E8F0] pt-2">
-              <span class="font-bold text-[#0A2540] block mb-1">📑 Documents Required:</span>
-              <div class="flex flex-wrap gap-1.5">${docsList}</div>
+              <div class="flex items-start gap-1.5">
+                <span class="font-heading font-bold text-[#0A2540] shrink-0">🏪 Where to Visit:</span>
+                <span class="text-[#0F172A] font-semibold">${s.physicalCounter || s.applyWhere}</span>
+              </div>
             </div>
 
-            <!-- Trap to Avoid -->
-            <div class="flex items-start gap-2 border-t border-[#E2E8F0] pt-2 text-[#991B1B]">
-              <span class="font-bold shrink-0">⚠️ Common Trap:</span>
-              <span class="text-[11px] leading-relaxed">${s.commonRejectionTrap}</span>
+            <!-- Steps to Apply -->
+            <div class="border-t border-[#E2E8F0] pt-2 space-y-1">
+              <span class="font-heading font-bold text-[#0A2540] block">📝 Steps How to Apply:</span>
+              <div class="text-[#334155] pl-2 text-[11px] leading-relaxed font-mono bg-white border border-[#CBD5E1] p-2 rounded-lg">
+                ${s.cscSteps || 'Visit portal, upload required documents, verify Aadhaar OTP, and print acknowledgement slip.'}
+              </div>
+            </div>
+
+            <!-- Required Documents Checklist -->
+            <div class="border-t border-[#E2E8F0] pt-2 space-y-1">
+              <span class="font-heading font-bold text-[#0A2540] block">📑 Required Documents to Carry:</span>
+              <div class="flex flex-wrap gap-1.5 pt-0.5">${docsBadges}</div>
+            </div>
+
+            <!-- Common Bureaucratic Trap -->
+            <div class="border-t border-[#E2E8F0] pt-2 text-[#991B1B] space-y-0.5">
+              <span class="font-heading font-bold">⚠️ Avoid Common Bureaucratic Rejection Trap:</span>
+              <p class="text-[11px] text-[#881337] leading-relaxed pl-2">${s.commonRejectionTrap}</p>
             </div>
 
           </div>
 
-          <!-- Action Buttons -->
+          <!-- Bottom Action Buttons -->
           <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#E2E8F0] text-xs">
-            <a href="${s.source}" target="_blank" rel="noopener" class="text-[#0A2540] hover:text-[#2563EB] font-bold text-xs font-mono flex items-center gap-1">
-              <span>Open Official Portal</span> ↗
+            <a href="${s.source}" target="_blank" rel="noopener" class="text-[#0A2540] hover:text-[#2563EB] font-heading font-bold text-xs flex items-center gap-1">
+              <span>Open Official Portal (${s.applyWhere})</span> ↗
             </a>
             
             <div class="flex items-center gap-2">
-              <button onclick="openDocKitModal(${matchIdx >= 0 ? matchIdx : 0}, 'application')" class="bg-[#0A2540] hover:bg-[#12375C] text-white text-xs font-bold px-3 py-1.5 rounded-lg transition shadow-xs flex items-center gap-1.5">
+              <button onclick="openDocKitModal(${matchIdx >= 0 ? matchIdx : 0}, 'application')" class="bg-[#0A2540] hover:bg-[#12375C] text-white text-xs font-heading font-bold px-3 py-1.5 rounded-lg transition shadow-xs flex items-center gap-1.5">
                 <span>🖨️</span>
                 <span>Print Cyber-Café Slip</span>
               </button>
-              <button onclick="openDocKitModal(${matchIdx >= 0 ? matchIdx : 0}, 'npci')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0A2540] border border-[#CBD5E1] text-xs font-semibold px-2.5 py-1.5 rounded-lg transition">
-                NPCI Mandate
+              <button onclick="openDocKitModal(${matchIdx >= 0 ? matchIdx : 0}, 'npci')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0A2540] border border-[#CBD5E1] text-xs font-heading font-bold px-2.5 py-1.5 rounded-lg transition">
+                NPCI Form
               </button>
             </div>
           </div>
@@ -829,7 +1030,7 @@
 
       modal.classList.remove('hidden');
       modal.classList.add('flex');
-      content.innerText = 'Generating official application slip & checklist...';
+      content.innerText = 'Drafting official Cyber-Café operator slip & document instructions...';
 
       try {
         const profile = getCitizenProfileFromForm();
