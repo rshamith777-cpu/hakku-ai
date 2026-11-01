@@ -1,403 +1,399 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hakku 2.0 (ಹಕ್ಕು / हक़) — Autonomous 5-Agent Civic Welfare & Statutory Rights OS</title>
+  <title>Hakku (ಹಕ್ಕು / हक़) — India Digital Public Infrastructure Welfare OS</title>
   
-  <!-- Premium Typography: Plus Jakarta Sans & JetBrains Mono -->
+  <!-- High-Legibility Indian DPI Typography: Inter, Noto Sans Kannada, Noto Sans Devanagari & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            sans: ['"Inter"', '"Noto Sans Kannada"', '"Noto Sans Devanagari"', 'system-ui', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            dpi: {
+              navy: '#0B3B60',
+              navyDark: '#07263E',
+              navyLight: '#144D7A',
+              copper: '#D97706',
+              copperLight: '#FFFBEB',
+              copperDark: '#854D0E',
+              slateBg: '#F4F6F8',
+              slateCard: '#FFFFFF',
+              slateBorder: '#E2E8F0',
+              textPrimary: '#0F172A',
+              textSecondary: '#475569',
+              textMuted: '#64748B',
+              alertText: '#991B1B',
+              alertBg: '#FEF2F2',
+              alertBorder: '#FEE2E2',
+              successText: '#166534',
+              successBg: '#F0FDF4',
+              successBorder: '#BBF7D0'
+            }
           }
         }
       }
     }
   </script>
-  
+
   <style>
     body {
-      background-color: #080c14;
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.08) 0px, transparent 45%),
-        radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.06) 0px, transparent 45%),
-        radial-gradient(at 50% 100%, rgba(99, 102, 241, 0.05) 0px, transparent 50%);
-      background-attachment: fixed;
+      background-color: #F4F6F8;
+      color: #0F172A;
+      font-family: "Inter", "Noto Sans Kannada", "Noto Sans Devanagari", system-ui, sans-serif;
     }
-    .bento-card {
-      background: rgba(14, 20, 36, 0.78);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    .institutional-shadow {
+      box-shadow: 0 1px 3px 0 rgba(11, 59, 96, 0.08), 0 1px 2px -1px rgba(11, 59, 96, 0.04);
     }
-    .bento-card:hover {
-      border-color: rgba(245, 158, 11, 0.35);
-      box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.65);
-      transform: translateY(-2px);
+    .institutional-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .meter-glow {
-      box-shadow: 0 0 60px -15px rgba(16, 185, 129, 0.18);
+    .institutional-card:hover {
+      border-color: #CBD5E1;
+      box-shadow: 0 4px 12px -2px rgba(11, 59, 96, 0.08);
     }
-    /* Accessibility focus rings */
+    /* Accessibility high-visibility focus */
     button:focus-visible, input:focus-visible, select:focus-visible {
-      outline: 2px solid #f59e0b;
+      outline: 2px solid #0B3B60;
       outline-offset: 2px;
     }
-    /* Custom scrollbar */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #080c14; }
-    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    /* Dynamic Font Scale */
+    .text-scale-lg {
+      font-size: 1.125rem !important;
+    }
+    .text-scale-lg h1, .text-scale-lg h2, .text-scale-lg h3 {
+      font-size: 1.25em !important;
+    }
+    .text-scale-lg p, .text-scale-lg span, .text-scale-lg button, .text-scale-lg input {
+      font-size: 1.1em !important;
+    }
   </style>
 </head>
-<body class="text-slate-100 min-h-screen font-sans antialiased selection:bg-amber-500 selection:text-slate-950">
+<body id="appBody" class="min-h-screen text-[#0F172A] flex flex-col justify-between selection:bg-[#0B3B60] selection:text-white">
 
   <!-- ========================================================= -->
-  <!-- TOP STATUTORY & DPDP ACT 2023 COMPLIANCE BANNER -->
+  <!-- 1. STICKY INSTITUTIONAL DPI HEADER -->
   <!-- ========================================================= -->
-  <div class="border-b border-emerald-950/70 bg-emerald-950/40 backdrop-blur text-emerald-300 text-xs py-2 px-4 font-medium tracking-wide">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-      <div class="flex items-center gap-2">
-        <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-        <span><b>DPDP Act 2023 & Statutory Rule Compliant:</b> Zero-PII storage • Anti-Double-Dipping Stacking Engine • Sakala SLA Deadlines • NPCI DBT Pre-Audit Shield.</span>
-      </div>
-      <div class="hidden md:flex items-center gap-3 text-slate-400 text-[11px] font-mono">
-        <span>RTI Act 2005 §6(1) & §7(5)</span>
-        <span>•</span>
-        <span>CPGRAMS Escalation Ready</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================= -->
-  <!-- INSTITUTIONAL TRUST HEADER -->
-  <!-- ========================================================= -->
-  <header class="border-b border-white/[0.06] bg-[#080c14]/90 backdrop-blur-md sticky top-0 z-30">
-    <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-4">
+  <header class="bg-[#0B3B60] text-white sticky top-0 z-50 shadow-md border-b-2 border-[#D97706]">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       
-      <!-- Brand & Title -->
-      <div class="flex items-center gap-3.5">
-        <div class="h-11 px-3.5 rounded-xl bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 text-slate-950 font-black text-sm tracking-tight flex items-center gap-1.5 shadow-lg shadow-amber-500/20">
-          <span class="text-base font-extrabold tracking-normal">ಹಕ್ಕು</span>
-          <span class="text-xs font-semibold opacity-75">•</span>
-          <span class="tracking-wider">HAKKU 2.0</span>
+      <!-- National DPI Symbol & Branding -->
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 bg-white rounded-lg flex items-center justify-center p-1 shadow-sm border border-white/20">
+          <div class="w-full h-full bg-[#0B3B60] rounded flex items-center justify-center text-white font-black text-xs tracking-tighter">
+            <span>H</span><span>A</span>
+          </div>
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <h1 class="text-base font-bold text-white tracking-tight">Autonomous Civic Rights & Welfare OS</h1>
-            <span class="text-[10px] font-mono font-semibold uppercase px-2 py-0.5 rounded-md bg-emerald-400/10 text-emerald-300 border border-emerald-400/20">
-              5-Agent Pipeline
+            <h1 class="text-sm sm:text-base font-extrabold tracking-wide uppercase">Hakku Welfare Core</h1>
+            <span class="text-[9px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-[#07263E] text-[#93C5FD] border border-[#1E40AF]">
+              DPI Standard
             </span>
           </div>
-          <p class="text-xs text-slate-400">Whole-Household Discovery • Pre-Submission Rejection Shield • Sakala SLA & RTI Automation</p>
+          <p class="text-[10px] text-[#93C5FD] tracking-tight font-mono">BHARATCODE API v2.4 SECURE • STATUTORY COMPLIANCE OS</p>
         </div>
       </div>
 
-      <!-- High-Accessibility Controls: Text-to-Speech & Language -->
+      <!-- Verification Badge & Accessibility Controls -->
       <div class="flex items-center gap-2.5">
-        <button onclick="speakSummary()" id="ttsBtn" class="bg-[#121a2d] hover:bg-[#1a2540] text-emerald-300 hover:text-emerald-200 border border-emerald-500/30 text-xs font-semibold px-3.5 py-2 rounded-xl transition flex items-center gap-2 shadow-sm">
-          <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-          </svg>
-          <span id="ttsBtnText">🔊 Listen Aloud</span>
+        
+        <!-- Live Agent Monitor Pill -->
+        <div class="hidden sm:flex items-center space-x-1.5 bg-[#07263E] px-2.5 py-1.5 rounded-lg border border-[#1E40AF]">
+          <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+          <span class="text-[10px] uppercase font-mono tracking-widest text-[#93C5FD] font-bold">5 AGENTS LIVE</span>
+        </div>
+
+        <!-- High-Accessibility: Audio Synthesizer Button -->
+        <button onclick="speakSummary()" id="ttsBtn" class="bg-[#07263E] hover:bg-[#144D7A] text-[#93C5FD] hover:text-white border border-[#1E40AF] text-xs font-semibold px-2.5 py-1.5 rounded-lg transition flex items-center gap-1.5" title="Read Aloud in Kannada/Hindi/English">
+          <span id="ttsIcon">🔊</span>
+          <span id="ttsBtnText" class="hidden sm:inline">Listen</span>
         </button>
 
-        <div class="relative">
-          <select id="languageSelect" onchange="runHarness('')" class="appearance-none bg-[#101728] border border-white/[0.08] hover:border-amber-400/40 text-slate-200 text-xs font-medium pl-3 pr-7 py-2 rounded-xl outline-none transition cursor-pointer">
-            <option value="English">🌐 English</option>
-            <option value="Kannada (ಕನ್ನಡ)">🌐 ಕನ್ನಡ (Kannada)</option>
-            <option value="Hinglish (Hindi + English)">🌐 Hinglish / हिंदी</option>
-          </select>
-          <div class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px]">▼</div>
-        </div>
+        <!-- Font Scale Adjuster Toggle (A🗚) -->
+        <button onclick="toggleFontScale()" id="fontScaleBtn" class="bg-[#07263E] hover:bg-[#144D7A] text-[#93C5FD] hover:text-white border border-[#1E40AF] text-xs font-bold px-2.5 py-1.5 rounded-lg transition" title="Adjust Font Size for Senior Citizens">
+          A🗚
+        </button>
 
-        <div id="engineBadge" class="hidden md:inline-flex items-center gap-2 text-xs font-mono bg-[#101728] border border-white/[0.08] px-3 py-2 rounded-xl text-slate-300">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>qwen-3.8-27b</span>
-        </div>
+        <!-- Multilingual Dropdown -->
+        <select id="languageSelect" onchange="runHarness('')" class="bg-[#07263E] border border-[#1E40AF] text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg outline-none cursor-pointer">
+          <option value="English">English</option>
+          <option value="Kannada (ಕನ್ನಡ)">ಕನ್ನಡ (Kannada)</option>
+          <option value="Hinglish (Hindi + English)">हिंदी / Hinglish</option>
+        </select>
       </div>
 
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
-
-    <!-- ========================================================= -->
-    <!-- 1-CLICK DEMO BAR (WHOLE FAMILY RATION CARD + INDIVIDUALS) -->
-    <!-- ========================================================= -->
-    <section class="bento-card rounded-3xl p-5 border-amber-500/20">
-      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-        <div>
-          <div class="flex items-center gap-2 mb-1">
-            <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
-              <span>⚡</span> 1-Click Autonomous Demo Scenarios
-            </span>
-            <span class="text-[10px] bg-amber-400/10 text-amber-300 border border-amber-400/20 font-mono px-2 py-0.5 rounded-md">Live Harness</span>
-          </div>
-          <p class="text-xs text-slate-400">Click <b>"Scan Full 4-Member Family"</b> to see whole-household automation and statutory anti-double-dipping conflict resolution:</p>
-        </div>
-
-        <div class="flex flex-wrap gap-2.5">
-          <button id="btnFamily" onclick="loadWholeFamilyDemo()" class="bg-gradient-to-r from-amber-500 via-amber-600 to-orange-500 text-slate-950 text-xs font-black px-4 py-2.5 rounded-xl shadow-lg shadow-amber-500/20 hover:opacity-95 transition flex items-center gap-2">
-            <span>👨‍👩‍👧‍👦</span>
-            <span>Scan Full 4-Member Family (Ration Card Unit)</span>
-          </button>
-          <button id="btnAarav" onclick="loadPersona('aarav')" class="bg-[#0f172a] hover:bg-[#1e293b] text-slate-200 border border-white/[0.08] text-xs font-semibold px-3 py-2.5 rounded-xl transition">
-            🎓 Aarav (19, Student)
-          </button>
-          <button id="btnLakshmi" onclick="loadPersona('lakshmi')" class="bg-[#0f172a] hover:bg-[#1e293b] text-slate-200 border border-white/[0.08] text-xs font-semibold px-3 py-2.5 rounded-xl transition">
-            👵 Lakshmi (67, Widow)
-          </button>
-          <button id="btnRamesh" onclick="loadPersona('ramesh')" class="bg-[#0f172a] hover:bg-[#1e293b] text-slate-200 border border-white/[0.08] text-xs font-semibold px-3 py-2.5 rounded-xl transition">
-            🌾 Ramesh (41, Farmer)
-          </button>
-        </div>
+  <!-- ========================================================= -->
+  <!-- 2. ZERO-PII STATUTORY TRUST NOTICE -->
+  <!-- ========================================================= -->
+  <div class="bg-[#FEF9C3] border-b border-[#FDE047] text-[#854D0E] text-[11px] py-1.5 px-4 font-medium">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-sm">🛡️</span>
+        <span><b>Official DPDP Act 2023 Compliance Notice:</b> Hakku evaluates claims locally via verified government rules. We never collect or store Aadhaar numbers, OTPs, or bank passwords.</span>
       </div>
-    </section>
-
-    <!-- ========================================================= -->
-    <!-- BENTO GRID -->
-    <!-- ========================================================= -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5">
-
-      <!-- ========================================================= -->
-      <!-- BENTO 1: HERO - UNCLAIMED BENEFITS METER (8 COLS) -->
-      <!-- ========================================================= -->
-      <div class="lg:col-span-8 bento-card meter-glow rounded-3xl p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between border-emerald-500/30">
-        <div class="absolute -right-16 -top-16 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div>
-          <div class="flex flex-wrap items-center justify-between gap-2.5">
-            <div class="flex items-center gap-2">
-              <span id="meterModeBadge" class="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-3 py-1 rounded-full flex items-center gap-1.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                💰 Annual Unclaimed Benefits Meter
-              </span>
-              <span class="text-[11px] text-slate-400 font-mono">100% Deterministic</span>
-            </div>
-            <div id="schemeCountBadge" class="text-xs font-bold bg-emerald-500 text-slate-950 px-3.5 py-1 rounded-full shadow-md font-mono">
-              0 Verified Schemes
-            </div>
-          </div>
-
-          <div class="mt-5 flex flex-wrap items-baseline gap-3">
-            <span id="directBenefitMeter" class="text-5xl sm:text-7xl font-extrabold text-white tracking-tight font-mono">₹0</span>
-            <div class="flex flex-col">
-              <span class="text-sm sm:text-base font-bold text-emerald-400">/ year direct cash DBT</span>
-              <span id="meterSubLabel" class="text-xs text-slate-400">credited directly via Aadhaar Payment Bridge (APBS)</span>
-            </div>
-          </div>
-
-          <div class="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-300 border-t border-white/[0.08] pt-3.5">
-            <div class="flex items-center gap-2.5">
-              <div class="w-6 h-6 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">🏥</div>
-              <span>Family Cashless Health Cover:</span>
-              <span id="healthCoverMeter" class="font-bold text-amber-300 font-mono text-sm">₹5,00,000 / year</span>
-              <span class="text-[11px] text-slate-500">(PM-JAY Universal)</span>
-            </div>
-            <div class="text-[11px] text-slate-400 font-medium">Sakala SLA Protected • No Middleman Fees</div>
-          </div>
-        </div>
-
-        <!-- Action CTAs -->
-        <div class="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <button onclick="openDocKitModal(null, 'application')" class="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-slate-950 font-bold text-xs sm:text-sm py-3 px-4 rounded-2xl transition shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2">
-            <span>📄</span>
-            <span>3-in-1 CSC & App Packet</span>
-          </button>
-          <button onclick="openDocKitModal(null, 'npci')" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-2xl transition shadow-lg shadow-indigo-600/20 flex items-center justify-center gap-2">
-            <span>🏦</span>
-            <span>Bank NPCI Mandate</span>
-          </button>
-          <button onclick="openDocKitModal(null, 'rti')" class="bg-rose-950/90 hover:bg-rose-900 text-rose-200 border border-rose-700/80 font-bold text-xs sm:text-sm py-3 px-4 rounded-2xl transition shadow-lg flex items-center justify-center gap-2">
-            <span>⚖️</span>
-            <span>Sakala SLA RTI Draft</span>
-          </button>
-        </div>
+      <div class="hidden md:flex items-center gap-3 font-mono text-[10px] text-[#A16207]">
+        <span>Sakala Act SLAs</span>
+        <span>•</span>
+        <span>RTI §6(1) & §7(5) Ready</span>
       </div>
+    </div>
+  </div>
 
-      <!-- ========================================================= -->
-      <!-- BENTO 2: AGENT 3 - PRE-SUBMISSION REJECTION SHIELD (4 COLS) -->
-      <!-- ========================================================= -->
-      <div class="lg:col-span-4 bento-card rounded-3xl p-6 flex flex-col justify-between space-y-4">
-        <div>
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
-              <span>🛡️</span> Agent 3: Rejection Shield
-            </span>
-            <span id="readinessBadge" class="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-700">
-              100/100 Ready
-            </span>
-          </div>
-          <p class="text-xs text-slate-400">Solves the #1 cause of DBT failure. Uncheck to test bureaucratic traps:</p>
-        </div>
+  <!-- ========================================================= -->
+  <!-- 3. MAIN DASHBOARD VIEWPORT (BENTO GRID WITH DPI TOKENS) -->
+  <!-- ========================================================= -->
+  <main class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6 space-y-5">
 
-        <div class="space-y-2 text-xs">
-          <label class="flex items-start gap-2.5 p-2 rounded-xl bg-[#090d16] border border-white/[0.05] cursor-pointer hover:border-amber-400/30 transition">
-            <input id="chkNpci" type="checkbox" checked onchange="runHarness('')" class="rounded accent-emerald-500 w-4 h-4 mt-0.5" />
-            <span class="text-slate-300">Bank account has active <b>NPCI Aadhaar DBT Mapper</b> seeding</span>
-          </label>
-          <label class="flex items-start gap-2.5 p-2 rounded-xl bg-[#090d16] border border-white/[0.05] cursor-pointer hover:border-amber-400/30 transition">
-            <input id="chkName" type="checkbox" checked onchange="runHarness('')" class="rounded accent-emerald-500 w-4 h-4 mt-0.5" />
-            <span class="text-slate-300">Exact <b>Name Spelling Match</b> across Aadhaar, Ration Card & Marksheet</span>
-          </label>
-          <label class="flex items-start gap-2.5 p-2 rounded-xl bg-[#090d16] border border-white/[0.05] cursor-pointer hover:border-amber-400/30 transition">
-            <input id="chkRd" type="checkbox" checked onchange="runHarness('')" class="rounded accent-emerald-500 w-4 h-4 mt-0.5" />
-            <span class="text-slate-300">Valid <b>Nadakacheri RD Number</b> on Income & Caste Certificate</span>
-          </label>
-        </div>
-
-        <div id="rejectionRisksBox" class="space-y-2 max-h-36 overflow-y-auto"></div>
-
-        <div class="text-[11px] text-slate-500 font-mono text-center pt-2 border-t border-white/[0.06]">
-          Generates Bank Mandate & Fix Guidance automatically
-        </div>
+    <!-- 1-CLICK RATION CARD UNIT SCANNER -->
+    <div class="bg-white border border-[#E2E8F0] p-4 rounded-xl institutional-shadow flex flex-col md:flex-row md:items-center justify-between gap-3">
+      <div>
+        <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#0B3B60] block">Citizen Household Unit Discovery</span>
+        <h2 class="text-sm font-bold text-[#0F172A]">Select a Family Ration Card or Individual Profile to Scan:</h2>
       </div>
-
-      <!-- ========================================================= -->
-      <!-- BENTO 3: AUTONOMOUS 5-AGENT PIPELINE TRACE (6 COLS) -->
-      <!-- ========================================================= -->
-      <div class="lg:col-span-6 bento-card rounded-3xl p-6 space-y-3.5">
-        <div class="flex items-center justify-between">
-          <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
-            <span>🤖</span> Autonomous 5-Agent Execution Pipeline Trace
-          </span>
-          <span class="text-[10px] font-mono text-slate-500">Live Agent Audit</span>
-        </div>
-
-        <div id="agentTraceBox" class="space-y-2.5 text-xs">
-          <div class="text-slate-500 font-mono text-xs">Initializing agent harness...</div>
-        </div>
+      <div class="flex flex-wrap gap-2">
+        <button id="btnFamily" onclick="loadWholeFamilyDemo()" class="bg-[#0B3B60] hover:bg-[#07263E] text-white text-xs font-bold px-4 py-2 rounded-lg shadow-sm transition flex items-center gap-1.5">
+          <span>👨‍👩‍👧‍👦</span>
+          <span>Scan Full 4-Member Family (Ration Unit)</span>
+        </button>
+        <button id="btnAarav" onclick="loadPersona('aarav')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-3 py-2 rounded-lg transition">
+          🎓 Aarav (Student)
+        </button>
+        <button id="btnLakshmi" onclick="loadPersona('lakshmi')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-3 py-2 rounded-lg transition">
+          👵 Lakshmi (Widow)
+        </button>
+        <button id="btnRamesh" onclick="loadPersona('ramesh')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-3 py-2 rounded-lg transition">
+          🌾 Ramesh (Farmer)
+        </button>
       </div>
+    </div>
 
-      <!-- ========================================================= -->
-      <!-- BENTO 4: VOICE / CHAT INTAKE & CIVIC BRIEFING (6 COLS) -->
-      <!-- ========================================================= -->
-      <div class="lg:col-span-6 bento-card rounded-3xl p-6 flex flex-col justify-between space-y-3.5">
-        <div>
+    <!-- PRIMARY BENTO GRID -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+
+      <!-- LEFT COLUMN: TOTAL RUPEE CLAIMS + REJECTION SHIELD + AGENT TRACE (7 COLS) -->
+      <div class="lg:col-span-7 space-y-4">
+
+        <!-- EXACT RUPEE ELIGIBILITY SUMMARY ACCENT BLOCK -->
+        <div class="bg-[#FFFBEB] border-l-4 border-[#D97706] border-y border-r border-[#FDE68A] p-5 rounded-r-xl rounded-l-sm institutional-shadow relative overflow-hidden">
           <div class="flex items-center justify-between">
-            <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-300 flex items-center gap-1.5">
-              <span>🎙️</span> Natural Language Intake & Briefing
+            <span id="meterModeLabel" class="text-[10px] text-[#854D0E] uppercase tracking-wider font-extrabold font-mono">
+              Total Legal Claims Found (Ration Card Unit)
             </span>
-            <button onclick="startVoiceInput()" id="voiceBtn" class="text-xs bg-[#101728] hover:bg-[#1a2540] text-indigo-300 border border-indigo-500/30 px-3 py-1.5 rounded-xl transition flex items-center gap-1.5">
-              <span id="voicePulse" class="w-2 h-2 rounded-full bg-indigo-400"></span>
-              <span id="voiceBtnText">Voice Input</span>
+            <span id="schemeCountBadge" class="text-xs bg-[#D97706] text-white font-bold px-2.5 py-0.5 rounded-full font-mono">
+              0 Verified Schemes
+            </span>
+          </div>
+
+          <div class="mt-2 flex items-baseline gap-2">
+            <span id="directBenefitMeter" class="text-4xl sm:text-5xl font-black text-[#D97706] tracking-tight font-mono">₹0</span>
+            <span class="text-sm font-bold text-[#1E293B]">/ year legal direct bank credit</span>
+          </div>
+
+          <div class="mt-3 pt-3 border-t border-[#FCD34D] flex flex-wrap items-center justify-between gap-2 text-xs text-[#854D0E]">
+            <div class="flex items-center gap-1.5">
+              <span>🏥</span>
+              <span>Plus Cashless Family Health Cover:</span>
+              <span id="healthCoverMeter" class="font-bold font-mono text-[#B45309]">₹5,00,000 / year</span>
+              <span class="text-[11px] text-[#A16207]">(PM-JAY Universal)</span>
+            </div>
+            <span class="text-[11px] font-mono font-semibold">100% Legal Entitlement</span>
+          </div>
+
+          <!-- PRIMARY ACTION BUTTONS -->
+          <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
+            <button onclick="openDocKitModal(null, 'application')" class="bg-[#0B3B60] hover:bg-[#07263E] text-white text-xs font-bold py-2.5 px-3 rounded-lg shadow-sm transition flex items-center justify-center gap-1.5">
+              <span>📥</span>
+              <span>Cyber-Cafe Kit</span>
+            </button>
+            <button onclick="openDocKitModal(null, 'npci')" class="bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold py-2.5 px-3 rounded-lg shadow-sm transition flex items-center justify-center gap-1.5">
+              <span>🏦</span>
+              <span>Bank NPCI Form</span>
+            </button>
+            <button onclick="openDocKitModal(null, 'rti')" class="bg-[#991B1B] hover:bg-[#7F1D1D] text-white text-xs font-bold py-2.5 px-3 rounded-lg shadow-sm transition flex items-center justify-center gap-1.5">
+              <span>⚖️</span>
+              <span>Sakala RTI Form</span>
             </button>
           </div>
-          <p class="text-xs text-slate-400 mt-1">Speak or describe your situation in English, Kannada, or Hindi:</p>
         </div>
 
-        <div class="flex gap-2">
-          <input id="chatInput" type="text" placeholder="e.g. 'I am a 67 year old widow from a BPL farming family...'" class="flex-1 bg-[#090d16] border border-white/[0.08] focus:border-amber-400/70 rounded-2xl px-4 py-2.5 text-xs text-slate-200 outline-none transition placeholder-slate-600" />
-          <button onclick="submitChatIntake()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs px-5 py-2.5 rounded-2xl transition shadow-md shadow-amber-500/10">
-            Analyze
-          </button>
-        </div>
-
-        <!-- AI Officer Empathetic Guidance Stream -->
-        <div class="bg-[#090d16] border border-white/[0.06] rounded-2xl p-4 space-y-1.5">
+        <!-- CRITICAL DOCUMENT WARNING ALERT SYSTEM (REJECTION CRIMSON) -->
+        <div class="bg-[#FEF2F2] border border-[#FEE2E2] p-4 rounded-xl institutional-shadow space-y-3">
           <div class="flex items-center justify-between">
-            <span class="text-[11px] font-bold text-amber-300 flex items-center gap-1.5">
-              <span>🏛️</span> Hakku Welfare Officer Briefing:
-            </span>
-            <span class="text-[10px] font-mono text-slate-500">DPDP Redacted</span>
-          </div>
-          <div id="aiSummaryBox" class="text-xs text-slate-300 leading-relaxed font-sans">
-            Loading family eligibility...
-          </div>
-        </div>
-      </div>
-
-      <!-- ========================================================= -->
-      <!-- BENTO 5: STATUTORY ANTI-DOUBLE-DIPPING CONFLICTS (12 COLS) -->
-      <!-- ========================================================= -->
-      <div id="conflictSection" class="hidden lg:col-span-12 bento-card rounded-3xl p-6 border-amber-500/40 bg-amber-950/20 space-y-3">
-        <div class="flex items-center gap-2">
-          <span class="text-base">⚖️</span>
-          <span class="text-xs font-bold uppercase tracking-wider text-amber-400 font-mono">Statutory Mutual-Exclusivity & Anti-Double-Dipping Rules Enforced:</span>
-          <span class="text-[10px] font-mono text-slate-400 ml-auto">Ministry Guidelines Enforced</span>
-        </div>
-        <div id="conflictList" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-amber-200 font-mono"></div>
-      </div>
-
-      <!-- ========================================================= -->
-      <!-- BENTO 6: CONSOLIDATED SINGLE-WINDOW DOCUMENT FOLDER (12 COLS) -->
-      <!-- ========================================================= -->
-      <div class="lg:col-span-12 bento-card rounded-3xl p-6 space-y-3">
-        <div class="flex flex-wrap items-center justify-between gap-3">
-          <div class="flex items-center gap-2.5">
-            <div class="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">📋</div>
-            <div>
-              <span class="text-xs font-bold text-white tracking-wide">Single-Window Document Kit</span>
-              <span class="text-[11px] text-slate-400 ml-2">Carry Once to Grama One / Seva Sindhu / CSC</span>
+            <div class="flex items-center space-x-2">
+              <span class="text-[#EF4444] text-base shrink-0 leading-none">⚠️</span>
+              <h3 class="text-[#7F1D1D] font-bold text-xs uppercase tracking-wide">
+                Pre-Submission Rejection Shield (Agent 3 Audit)
+              </h3>
             </div>
+            <span id="readinessBadge" class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#991B1B] text-white">
+              100/100 Safe
+            </span>
           </div>
-          <span class="text-[11px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-3 py-1 rounded-full">
-            Deduplicated across all matched family members
-          </span>
+          
+          <p class="text-[11px] text-[#991B1B] leading-tight">
+            Over 40% of approved applications bounce at the bank. Toggle these items to simulate common bureaucratic traps:
+          </p>
+
+          <div class="space-y-2 text-xs bg-white p-3 rounded-lg border border-[#FCA5A5]/40">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input id="chkNpci" type="checkbox" checked onchange="runHarness('')" class="accent-[#0B3B60] w-4 h-4" />
+              <span class="text-[#1E293B]">Bank account has active <b>NPCI Aadhaar DBT Mapper</b> seeding</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input id="chkName" type="checkbox" checked onchange="runHarness('')" class="accent-[#0B3B60] w-4 h-4" />
+              <span class="text-[#1E293B]">Exact <b>Name Spelling Match</b> across Aadhaar & Bank Passbook</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input id="chkRd" type="checkbox" checked onchange="runHarness('')" class="accent-[#0B3B60] w-4 h-4" />
+              <span class="text-[#1E293B]">Valid <b>Nadakacheri RD Number</b> on Income Certificate</span>
+            </label>
+          </div>
+
+          <div id="rejectionRisksBox" class="space-y-2"></div>
         </div>
-        <div id="consolidatedDocs" class="flex flex-wrap gap-2 pt-1 text-xs"></div>
+
+        <!-- CONFLICT FILTER RESOLUTION BLOCK -->
+        <div id="conflictSection" class="hidden bg-white border border-[#CBD5E1] p-4 rounded-xl institutional-shadow space-y-2">
+          <div class="flex items-center gap-2 text-[#0B3B60] font-bold text-xs uppercase tracking-wide">
+            <span>⚖️</span>
+            <span>Statutory Anti-Double-Dipping Safeguards Applied:</span>
+          </div>
+          <div id="conflictList" class="space-y-1.5 text-xs text-[#334155] font-mono"></div>
+        </div>
+
+        <!-- 5-AGENT LIVE EXECUTION TRACE -->
+        <div class="bg-white border border-[#E2E8F0] p-4 rounded-xl institutional-shadow space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#0B3B60] font-mono flex items-center gap-1.5">
+              <span>🤖</span> Autonomous 5-Agent Execution Pipeline Trace
+            </span>
+            <span class="text-[10px] text-[#64748B] font-mono">Verified Deterministic Tools</span>
+          </div>
+          <div id="agentTraceBox" class="space-y-2 text-xs"></div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: CITIZEN INPUT & VERIFIED SCHEME CARDS (5 COLS) -->
+      <div class="lg:col-span-5 space-y-4">
+
+        <!-- CITIZEN CONVERSATIONAL INTAKE BOX -->
+        <div class="bg-white border border-[#E2E8F0] p-4 rounded-xl institutional-shadow space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-[#0B3B60] uppercase tracking-wide">Speak or Type Your Situation</span>
+            <span class="text-[10px] text-[#64748B] font-mono">Natural Language Intake</span>
+          </div>
+
+          <div class="flex gap-2">
+            <button onclick="startVoiceInput()" id="voiceBtn" class="bg-[#E2F0FD] hover:bg-[#DBEAFE] border border-[#BFDBFE] px-3 py-2 rounded-lg text-sm shrink-0" title="Tap to Speak in Hindi, Kannada or English">
+              🎙️
+            </button>
+            <input id="chatInput" type="text" placeholder="e.g. 'मेरी बेटी की स्कॉलरशिप और दादाजी की पेंशन चेक करो...'" class="flex-1 bg-[#F8FAFC] border border-[#CBD5E1] rounded-lg px-3 py-2 text-xs text-[#0F172A] outline-none focus:border-[#0B3B60]" />
+            <button onclick="submitChatIntake()" class="bg-[#0B3B60] hover:bg-[#07263E] text-white font-bold text-xs px-3.5 py-2 rounded-lg transition">
+              Verify
+            </button>
+          </div>
+
+          <!-- Hakku Officer Summary Output -->
+          <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-3 rounded-lg text-xs text-[#334155] leading-relaxed">
+            <div class="font-bold text-[#0B3B60] text-[11px] mb-1">🏛️ Officer Briefing:</div>
+            <div id="aiSummaryBox">Evaluating citizen welfare parameters...</div>
+          </div>
+        </div>
+
+        <!-- CONSOLIDATED SINGLE-WINDOW DOCUMENT CHECKLIST -->
+        <div class="bg-white border border-[#E2E8F0] p-4 rounded-xl institutional-shadow space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-[#0B3B60] uppercase tracking-wide">Single-Window Document Kit</span>
+            <span class="text-[10px] bg-[#E2F0FD] text-[#0B3B60] px-2 py-0.5 rounded font-mono font-bold">Carry Once</span>
+          </div>
+          <p class="text-[11px] text-[#64748B]">Deduplicated list of papers required for all matched schemes at your GramaOne / CSC centre:</p>
+          <div id="consolidatedDocs" class="flex flex-wrap gap-1.5 pt-1 text-xs"></div>
+        </div>
+
+        <!-- SCHEME CARDS LIST -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-bold text-[#0B3B60] uppercase tracking-wide">Verified Statutory Schemes</h3>
+            <span class="text-[10px] text-[#64748B] font-mono">Sakala SLA Protected</span>
+          </div>
+          <div id="schemesContainer" class="space-y-3"></div>
+        </div>
+
       </div>
 
     </div>
 
-    <!-- ========================================================= -->
-    <!-- BENTO SECTION: VERIFIED SCHEMES GALLERY -->
-    <!-- ========================================================= -->
-    <section class="space-y-4 pt-4">
-      <div class="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h2 class="text-lg font-bold text-white tracking-tight flex items-center gap-2">
-            <span>✅</span> Verified Eligible Schemes & Sakala SLA Timelines
-            <span class="text-xs font-mono font-medium text-slate-400 bg-[#111726] border border-white/[0.08] px-2.5 py-1 rounded-lg">100% Deterministic</span>
-          </h2>
-          <p class="text-xs text-slate-400">Evaluated against verified statutory criteria with direct <code>.gov.in</code> official application links</p>
-        </div>
-      </div>
-
-      <div id="schemesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-    </section>
-
   </main>
 
   <!-- ========================================================= -->
-  <!-- STAGE 5 MODAL: LEGAL APPLICATION KIT, NPCI FORM & SAKALA RTI -->
+  <!-- 4. ACCESSIBILITY CONTROLS & PRINT KIT TRIGGER FOOTER -->
   <!-- ========================================================= -->
-  <div id="docModal" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-[#0e1422] border border-white/[0.1] rounded-3xl max-w-3xl w-full p-6 sm:p-7 flex flex-col max-h-[92vh] shadow-2xl">
-      <div class="flex items-center justify-between border-b border-white/[0.08] pb-4">
-        <div>
-          <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-400">Agent 5 • Legal & Administrative Document Automation</span>
-          <h3 id="modalTitle" class="text-base sm:text-lg font-bold text-white mt-0.5">Official Document Kit</h3>
-        </div>
-        <button onclick="closeDocModal()" class="text-slate-400 hover:text-white text-base px-3 py-1.5 rounded-xl bg-[#141c2e] hover:bg-[#1a253c] border border-white/[0.06] transition font-mono">✕</button>
+  <footer class="bg-white border-t border-[#E2E8F0] p-4 sticky bottom-0 z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+      
+      <!-- Safe Infrastructure Disclaimer -->
+      <div class="flex items-center space-x-2 text-[#64748B] text-[11px]">
+        <span>🔒</span>
+        <span><b>DPDP Act 2023 Secure:</b> End-to-end encrypted. Hakku does not retain Aadhaar numbers or bank credentials.</span>
       </div>
 
-      <pre id="modalContent" class="my-4 bg-[#080c14] border border-white/[0.06] rounded-2xl p-5 text-xs text-slate-300 font-mono whitespace-pre-wrap overflow-y-auto flex-1 leading-relaxed selection:bg-amber-500 selection:text-slate-950"></pre>
+      <!-- Quick Action Buttons -->
+      <div class="flex items-center gap-2 w-full sm:w-auto">
+        <button onclick="openDocKitModal(null, 'application')" class="flex-1 sm:flex-initial bg-[#0B3B60] hover:bg-[#07263E] text-white py-2.5 px-4 rounded-lg text-xs font-bold shadow transition flex items-center justify-center gap-1.5">
+          <span>📥</span>
+          <span>Download Printable Cyber-Cafe Kit (PDF)</span>
+        </button>
+        <button onclick="openDocKitModal(null, 'npci')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0B3B60] border border-[#CBD5E1] py-2.5 px-3 rounded-lg text-xs font-bold transition">
+          🏦 NPCI Seeding Form
+        </button>
+      </div>
 
-      <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/[0.08]">
-        <div class="text-xs text-emerald-400 flex items-center gap-1.5 font-medium">
-          <span>🔒</span>
-          <span>DPDP Act 2023 Safe: Zero real Aadhaar / Bank account numbers stored on server.</span>
+    </div>
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- 5. PRINTABLE DOCUMENT / RTI / NPCI MODAL -->
+  <!-- ========================================================= -->
+  <div id="docModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-white border border-[#CBD5E1] rounded-xl max-w-3xl w-full p-5 sm:p-6 flex flex-col max-h-[90vh] shadow-2xl">
+      <div class="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
+        <div>
+          <span class="text-[10px] font-mono font-bold uppercase text-[#0B3B60]">Official DPI Statutory Document Output</span>
+          <h3 id="modalTitle" class="text-base font-bold text-[#0F172A]">Welfare Protection Kit</h3>
         </div>
-        <div class="flex gap-2.5">
-          <button id="copyBtn" onclick="copyDocText()" class="bg-[#141c2e] hover:bg-[#1c2740] text-slate-200 border border-white/[0.08] text-xs font-semibold px-4 py-2.5 rounded-xl transition flex items-center gap-1.5">
-            <span id="copyBtnText">📋 Copy</span>
+        <button onclick="closeDocModal()" class="text-[#64748B] hover:text-[#0F172A] text-lg font-bold px-2 py-1">✕</button>
+      </div>
+
+      <pre id="modalContent" class="my-4 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg p-4 text-xs text-[#0F172A] font-mono whitespace-pre-wrap overflow-y-auto flex-1 leading-relaxed selection:bg-[#0B3B60] selection:text-white"></pre>
+
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-[#E2E8F0]">
+        <span class="text-xs text-[#166534] font-medium flex items-center gap-1">
+          <span>✓</span> <span>Legal Hard Copy Ready: Carry to CSC / GramaOne centre or Bank branch.</span>
+        </span>
+        <div class="flex gap-2">
+          <button onclick="copyDocText()" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-4 py-2 rounded-lg transition">
+            <span id="copyBtnText">📋 Copy Text</span>
           </button>
-          <button onclick="printDocText()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold px-5 py-2.5 rounded-xl transition shadow-lg shadow-amber-500/20 flex items-center gap-1.5">
-            <span>🖨️ Print / Save PDF</span>
+          <button onclick="printDocText()" class="bg-[#0B3B60] hover:bg-[#07263E] text-white text-xs font-bold px-4 py-2 rounded-lg transition shadow">
+            🖨️ Print / Save as PDF
           </button>
         </div>
       </div>
@@ -408,6 +404,7 @@
     let currentProfile = {};
     let currentHousehold = [];
     let latestMatchedSchemes = [];
+    let isLargeFont = false;
 
     const PERSONAS = {
       aarav: {
@@ -448,14 +445,27 @@
       }
     };
 
+    function toggleFontScale() {
+      isLargeFont = !isLargeFont;
+      const body = document.getElementById('appBody');
+      const btn = document.getElementById('fontScaleBtn');
+      if (isLargeFont) {
+        body.classList.add('text-scale-lg');
+        btn.classList.add('bg-[#144D7A]', 'text-white');
+      } else {
+        body.classList.remove('text-scale-lg');
+        btn.classList.remove('bg-[#144D7A]', 'text-white');
+      }
+    }
+
     function highlightButton(activeId) {
       ['btnFamily', 'btnAarav', 'btnLakshmi', 'btnRamesh'].forEach(id => {
         const el = document.getElementById(id);
         if (!el) return;
         if (id === activeId) {
-          el.classList.add('ring-2', 'ring-amber-400');
+          el.className = 'bg-[#0B3B60] text-white text-xs font-bold px-4 py-2 rounded-lg shadow-sm transition';
         } else {
-          el.classList.remove('ring-2', 'ring-amber-400');
+          el.className = 'bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-3 py-2 rounded-lg transition';
         }
       });
     }
@@ -464,13 +474,12 @@
       currentProfile = { ...PERSONAS[key] };
       currentHousehold = [];
       highlightButton(key === 'aarav' ? 'btnAarav' : key === 'lakshmi' ? 'btnLakshmi' : 'btnRamesh');
-      document.getElementById('meterModeBadge').innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> 💰 Individual Benefits Meter (${currentProfile.name})`;
-      document.getElementById('meterSubLabel').innerText = 'evaluated strictly against personal statutory criteria';
+      document.getElementById('meterModeLabel').innerText = `Legal Claims Found for ${currentProfile.name}`;
       runHarness('');
     }
 
     function loadWholeFamilyDemo() {
-      currentProfile = { ...PERSONAS.ramesh, name: 'Gowda Household (4 Members)' };
+      currentProfile = { ...PERSONAS.ramesh, name: 'Gowda Family (4-Member Household)' };
       currentHousehold = [
         { ...PERSONAS.ramesh, name: 'Ramesh (41, Father • Farmer)' },
         { name: 'Savitha (36, Mother • Homemaker)', age: 36, gender: 'female', occupation: 'homemaker', income: 110000, category: 'OBC', isBPL: true },
@@ -478,8 +487,7 @@
         { ...PERSONAS.lakshmi, name: 'Lakshmi (67, Grandmother • Senior Widow)' }
       ];
       highlightButton('btnFamily');
-      document.getElementById('meterModeBadge').innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span> 👨‍👩‍👧‍👦 Combined 4-Member Household Benefits Meter`;
-      document.getElementById('meterSubLabel').innerText = 'combined across all 4 family members on Ration Card';
+      document.getElementById('meterModeLabel').innerText = 'Total Legal Claims Found (Full Ration Card Unit)';
       runHarness('');
     }
 
@@ -492,7 +500,7 @@
     }
 
     function animateCounter(el, targetValue) {
-      const duration = 450;
+      const duration = 400;
       const startTime = performance.now();
       function tick(now) {
         const progress = Math.min((now - startTime) / duration, 1);
@@ -535,34 +543,31 @@
         // Render Pre-Submission Rejection Shield
         const score = data.readinessAudit.readinessScore;
         const rBadge = document.getElementById('readinessBadge');
-        rBadge.innerText = `${score}/100 Ready`;
+        rBadge.innerText = `${score}/100 Safe`;
         rBadge.className = score === 100
-          ? 'text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-700'
-          : 'text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-rose-950 text-rose-300 border border-rose-700 animate-pulse';
+          ? 'text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#166534] text-white'
+          : 'text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#991B1B] text-white animate-pulse';
 
         document.getElementById('rejectionRisksBox').innerHTML = (data.readinessAudit.rejectionRisks || []).map(r => `
-          <div class="bg-rose-950/70 border border-rose-800 rounded-xl p-3 text-xs space-y-1">
-            <div class="font-bold text-rose-300 flex items-center justify-between">
+          <div class="bg-[#FEF2F2] border border-[#FCA5A5] rounded-lg p-2.5 text-xs space-y-1">
+            <div class="font-bold text-[#7F1D1D] flex items-center justify-between">
               <span>⚠️ ${r.severity}: ${r.title}</span>
-              <button onclick="openDocKitModal(null, 'npci')" class="text-[10px] bg-rose-900 hover:bg-rose-800 text-rose-100 px-2 py-0.5 rounded font-mono">
-                Get Mandate Form →
+              <button onclick="openDocKitModal(null, 'npci')" class="text-[10px] bg-[#991B1B] text-white px-2 py-0.5 rounded font-mono font-bold">
+                Get Bank Form →
               </button>
             </div>
-            <div class="text-slate-300 text-[11px] leading-relaxed">${r.fix}</div>
+            <div class="text-[#991B1B] text-[11px]">${r.fix}</div>
           </div>
         `).join('');
 
         // Render 5-Agent Trace
         document.getElementById('agentTraceBox').innerHTML = (data.agentTrace || []).map(t => `
-          <div class="bg-[#090d16] border border-white/[0.06] rounded-xl p-3 flex items-start justify-between gap-3">
+          <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg p-2.5 flex items-start justify-between gap-2">
             <div>
-              <div class="font-semibold text-indigo-300 flex items-center gap-1.5 font-mono text-[11px]">
-                <span class="w-1.5 h-1.5 rounded-full ${t.status === 'WARN' ? 'bg-amber-400' : 'bg-emerald-400'}"></span>
-                ${t.agent}
-              </div>
-              <div class="text-slate-400 text-xs mt-0.5">${t.detail}</div>
+              <div class="font-bold text-[#0B3B60] text-xs font-mono">${t.agent}</div>
+              <div class="text-[#475569] text-[11px] mt-0.5">${t.detail}</div>
             </div>
-            <span class="text-[10px] font-mono bg-emerald-950/80 text-emerald-400 border border-emerald-800/60 px-2 py-0.5 rounded-md whitespace-nowrap">${t.ms}ms</span>
+            <span class="text-[10px] font-mono bg-[#E2F0FD] text-[#0B3B60] border border-[#BFDBFE] px-2 py-0.5 rounded font-bold">${t.ms}ms</span>
           </div>
         `).join('');
 
@@ -571,10 +576,10 @@
         if (data.statutoryConflictsResolved && data.statutoryConflictsResolved.length > 0) {
           conflictSec.classList.remove('hidden');
           document.getElementById('conflictList').innerHTML = data.statutoryConflictsResolved.map(c => `
-            <div class="bg-[#090d16] border border-amber-500/30 rounded-xl p-3">
-              <span class="text-emerald-400 font-bold">✓ Kept: ${c.kept}</span><br>
-              <span class="text-slate-400 line-through">Dropped: ${c.dropped}</span><br>
-              <span class="text-[11px] text-amber-300/90">${c.rule}</span>
+            <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded p-2 text-xs">
+              <span class="text-[#166534] font-bold">✓ Selected: ${c.kept}</span><br>
+              <span class="text-[#64748B] line-through">Filtered out: ${c.dropped}</span><br>
+              <span class="text-[11px] text-[#475569]">${c.rule}</span>
             </div>
           `).join('');
         } else {
@@ -583,47 +588,46 @@
 
         // Render Consolidated Documents
         document.getElementById('consolidatedDocs').innerHTML = (data.consolidatedDocuments || [])
-          .map(d => `<span class="bg-[#090d16] border border-white/[0.08] text-slate-200 px-3 py-1.5 rounded-xl font-medium text-[11px] flex items-center gap-1.5">📎 ${d}</span>`)
+          .map(d => `<span class="bg-[#F1F5F9] border border-[#CBD5E1] text-[#0F172A] px-2.5 py-1 rounded text-[11px] font-medium">✓ ${d}</span>`)
           .join('');
 
         // Render Scheme Cards
         document.getElementById('schemesContainer').innerHTML = latestMatchedSchemes.map((s, idx) => `
-          <div class="bento-card rounded-3xl p-5 flex flex-col justify-between space-y-4">
-            <div class="space-y-2.5">
-              <div class="flex flex-wrap items-start justify-between gap-2">
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <span class="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-md bg-indigo-950/80 text-indigo-300 border border-indigo-700/60">${s.level}</span>
-                  <span class="text-[10px] font-mono font-semibold px-2.5 py-0.5 rounded-md bg-amber-950/80 text-amber-300 border border-amber-800/60">👤 ${s.beneficiaryName}</span>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded-md bg-[#090d16] text-slate-300 border border-white/[0.06]">⏱️ ${s.sakalaSlaDays}d SLA</span>
+          <div class="bg-white border border-[#E2E8F0] p-4 rounded-xl institutional-shadow space-y-3">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <div class="flex flex-wrap items-center gap-1.5">
+                  <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-[#E2F0FD] text-[#0B3B60] border border-[#BFDBFE]">${s.level}</span>
+                  <span class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-[#FEF3C7] text-[#92400E] border border-[#FDE68A]">${s.beneficiaryName}</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F1F5F9] text-[#475569] border border-[#E2E8F0]">SLA: ${s.sakalaSlaDays}d</span>
                 </div>
-                <span class="bg-emerald-950/80 text-emerald-300 border border-emerald-700/60 font-mono font-bold text-xs px-3 py-1 rounded-full whitespace-nowrap">
-                  + ₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')}/yr
-                </span>
+                <h4 class="font-bold text-sm text-[#0F172A] mt-1.5 leading-snug">${s.name}</h4>
               </div>
-              <h3 class="font-bold text-sm sm:text-base text-white leading-snug">${s.name}</h3>
-              <p class="text-xs text-slate-300 leading-relaxed">${s.benefitSummary}</p>
+              <span class="text-xs font-mono font-bold text-[#166534] bg-[#F0FDF4] border border-[#BBF7D0] px-2.5 py-1 rounded-full whitespace-nowrap">
+                + ₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')}/yr
+              </span>
             </div>
 
-            <div class="space-y-2.5 text-[11px] text-slate-300 bg-[#090d16] rounded-2xl p-3 border border-white/[0.06]">
-              <div><b class="text-amber-400 font-mono">⚖️ Rule:</b> ${s.statutoryRule}</div>
-              <div><b class="text-rose-400 font-mono">🛡️ Rejection Trap:</b> ${s.commonRejectionTrap}</div>
-              <div><b class="text-indigo-400 font-mono">🏪 CSC Path:</b> ${s.cscSteps}</div>
+            <p class="text-xs text-[#475569] leading-relaxed">${s.benefitSummary}</p>
+
+            <div class="text-[11px] bg-[#F8FAFC] border border-[#E2E8F0] p-2.5 rounded-lg space-y-1 text-[#334155]">
+              <div><b class="text-[#0B3B60]">Statutory Rule:</b> ${s.statutoryRule}</div>
+              <div><b class="text-[#991B1B]">Rejection Trap:</b> ${s.commonRejectionTrap}</div>
             </div>
 
-            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-white/[0.06]">
-              <a href="${s.source}" target="_blank" rel="noopener" class="text-xs text-amber-300 hover:text-amber-200 hover:underline font-semibold font-mono flex items-center gap-1">
-                <span>.gov.in</span>
-                <span>↗</span>
+            <div class="flex items-center justify-between gap-2 pt-1 border-t border-[#E2E8F0] text-xs">
+              <a href="${s.source}" target="_blank" rel="noopener" class="text-[#0B3B60] hover:underline font-bold text-[11px] font-mono">
+                Portal ↗
               </a>
-              <div class="flex flex-wrap gap-1.5">
-                <button onclick="openDocKitModal(${idx}, 'application')" class="bg-[#141c2e] hover:bg-emerald-700 text-slate-200 hover:text-white border border-white/[0.06] text-[11px] font-semibold px-2.5 py-1.5 rounded-xl transition">
-                  📄 App Kit
+              <div class="flex gap-1.5">
+                <button onclick="openDocKitModal(${idx}, 'application')" class="bg-[#0B3B60] hover:bg-[#07263E] text-white text-[11px] font-bold px-2.5 py-1.5 rounded transition">
+                  App Kit
                 </button>
-                <button onclick="openDocKitModal(${idx}, 'npci')" class="bg-[#141c2e] hover:bg-indigo-700 text-slate-200 hover:text-white border border-white/[0.06] text-[11px] font-semibold px-2.5 py-1.5 rounded-xl transition">
-                  🏦 NPCI
+                <button onclick="openDocKitModal(${idx}, 'npci')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0B3B60] border border-[#CBD5E1] text-[11px] font-bold px-2 py-1.5 rounded transition">
+                  NPCI
                 </button>
-                <button onclick="openDocKitModal(${idx}, 'rti')" class="bg-rose-950/60 hover:bg-rose-900 text-rose-300 border border-rose-800/60 text-[11px] font-semibold px-2.5 py-1.5 rounded-xl transition">
-                  ⚖️ RTI
+                <button onclick="openDocKitModal(${idx}, 'rti')" class="bg-[#FEF2F2] hover:bg-[#FEE2E2] text-[#991B1B] border border-[#FCA5A5] text-[11px] font-bold px-2 py-1.5 rounded transition">
+                  RTI
                 </button>
               </div>
             </div>
@@ -634,22 +638,24 @@
       }
     }
 
-    // High Accessibility: Text-to-Speech (Read Aloud)
+    // High Accessibility: Text-to-Speech Audio Read-Aloud
     function speakSummary() {
-      if (!('speechSynthesis' in window)) return alert('Speech synthesis not supported in this browser.');
-      const ttsBtn = document.getElementById('ttsBtnText');
+      if (!('speechSynthesis' in window)) return alert('Text-to-speech audio synthesis is not supported on this device.');
+      const ttsBtnText = document.getElementById('ttsBtnText');
+      const ttsIcon = document.getElementById('ttsIcon');
       if (window.speechSynthesis.speaking) {
         window.speechSynthesis.cancel();
-        ttsBtn.innerText = '🔊 Listen Aloud';
+        ttsBtnText.innerText = 'Listen';
+        ttsIcon.innerText = '🔊';
         return;
       }
       const text = document.getElementById('aiSummaryBox').innerText;
       const utter = new SpeechSynthesisUtterance(text);
       const lang = document.getElementById('languageSelect').value;
       utter.lang = lang.includes('Kannada') ? 'kn-IN' : lang.includes('Hindi') ? 'hi-IN' : 'en-IN';
-      utter.onstart = () => { ttsBtn.innerText = '⏹️ Stop Audio'; };
-      utter.onend = () => { ttsBtn.innerText = '🔊 Listen Aloud'; };
-      utter.onerror = () => { ttsBtn.innerText = '🔊 Listen Aloud'; };
+      utter.onstart = () => { ttsBtnText.innerText = 'Stop'; ttsIcon.innerText = '⏹️'; };
+      utter.onend = () => { ttsBtnText.innerText = 'Listen'; ttsIcon.innerText = '🔊'; };
+      utter.onerror = () => { ttsBtnText.innerText = 'Listen'; ttsIcon.innerText = '🔊'; };
       window.speechSynthesis.speak(utter);
     }
 
@@ -661,7 +667,7 @@
 
       modal.classList.remove('hidden');
       modal.classList.add('flex');
-      content.innerText = 'Agent 5 Legal Draftsman generating statutory document...';
+      content.innerText = 'Generating official DPI document via Agent 5...';
 
       try {
         const res = await fetch('/api/harness/dockit', {
@@ -686,7 +692,7 @@
       navigator.clipboard.writeText(document.getElementById('modalContent').innerText);
       const btnText = document.getElementById('copyBtnText');
       btnText.innerText = '✓ Copied!';
-      setTimeout(() => { btnText.innerText = '📋 Copy'; }, 2000);
+      setTimeout(() => { btnText.innerText = '📋 Copy Text'; }, 2000);
     }
 
     function printDocText() {
@@ -699,34 +705,23 @@
 
     function startVoiceInput() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) return alert('Please use Chrome or Edge for voice input.');
+      if (!SpeechRecognition) return alert('Speech recognition requires Chrome or Edge browser.');
       const rec = new SpeechRecognition();
       const lang = document.getElementById('languageSelect').value;
       rec.lang = lang.includes('Kannada') ? 'kn-IN' : lang.includes('Hindi') ? 'hi-IN' : 'en-IN';
-      
-      const btnText = document.getElementById('voiceBtnText');
-      const pulse = document.getElementById('voicePulse');
-      btnText.innerText = 'Listening...';
-      pulse.className = 'w-2 h-2 rounded-full bg-rose-500 animate-ping';
-
+      const btn = document.getElementById('voiceBtn');
+      btn.innerText = '🔴';
       rec.onresult = (e) => {
         document.getElementById('chatInput').value = e.results[0][0].transcript;
-        btnText.innerText = 'Voice Input';
-        pulse.className = 'w-2 h-2 rounded-full bg-indigo-400';
+        btn.innerText = '🎙️';
         submitChatIntake();
       };
-      rec.onerror = () => { 
-        btnText.innerText = 'Voice Input';
-        pulse.className = 'w-2 h-2 rounded-full bg-indigo-400';
-      };
-      rec.onend = () => { 
-        btnText.innerText = 'Voice Input';
-        pulse.className = 'w-2 h-2 rounded-full bg-indigo-400';
-      };
+      rec.onerror = () => { btn.innerText = '🎙️'; };
+      rec.onend = () => { btn.innerText = '🎙️'; };
       rec.start();
     }
 
-    // Initialize with Whole Family Scan on page load
+    // Auto-load 4-Member Household on page load
     window.addEventListener('DOMContentLoaded', () => loadWholeFamilyDemo());
   </script>
 </body>
