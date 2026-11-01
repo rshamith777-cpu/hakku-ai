@@ -1,59 +1,75 @@
 [
   {
     "id": "nsp-postmatric",
-    "name": "National Scholarship Portal (Post-Matric Scholarship)",
+    "name": "National Scholarship Portal (Central Post-Matric Scholarship)",
     "level": "Central",
-    "ministry": "Ministry of Social Justice / Minority Affairs / Tribal Affairs",
-    "annualValueINR": 20000,
+    "ministry": "Ministry of Social Justice & Empowerment / Minority Affairs",
+    "annualValueINR": 22000,
     "benefitType": "Direct Cash Scholarship",
-    "benefitSummary": "₹12,000 to ₹25,000/year tuition reimbursement + maintenance allowance",
+    "benefitSummary": "₹22,000/year tuition reimbursement + maintenance allowance via NSP DBT",
+    "exclusivityGroup": "CENTRAL_SCHOLARSHIP",
+    "sakalaSlaDays": 30,
+    "statutoryRule": "NSP OTR Guidelines 2024-26: Student can hold only ONE Central Sector scholarship at a time. Family income ≤ ₹2.5L.",
+    "commonRejectionTrap": "Aadhaar not seeded with NPCI mapper or Institute KYC pending on NSP portal.",
     "eligibility": {
       "isStudent": true,
       "ageMin": 16,
       "ageMax": 30,
       "maxIncome": 250000,
+      "excludeTaxPayer": true,
       "categories": ["SC", "ST", "OBC", "Minority", "EWS"]
     },
-    "documents": ["Aadhaar Card", "Income Certificate", "Caste/Category Certificate", "College Fee Receipt", "Bank Passbook (NPCI seeded)", "Previous Year Marksheet"],
-    "applyWhere": "scholarships.gov.in (NSP OTR Registration)",
+    "documents": ["Aadhaar Card", "Income Certificate (Valid RD No.)", "Caste/EWS Certificate", "College Fee Receipt", "NPCI-Seeded Bank Passbook", "Previous Year Marksheet"],
+    "cscSteps": "Login to scholarships.gov.in → Complete One-Time Registration (OTR) → Face Auth via NSP App → Select Post-Matric Scheme → Upload RD Certificate.",
+    "applyWhere": "scholarships.gov.in (NSP Portal)",
     "source": "https://scholarships.gov.in"
   },
   {
-    "id": "ka-ssp-vidyasiri",
-    "name": "Karnataka SSP & Vidyasiri Food/Hostel Scholarship",
-    "level": "State (Karnataka)",
-    "ministry": "Government of Karnataka — Backward Classes / Social Welfare Dept",
-    "annualValueINR": 15000,
-    "benefitType": "Direct Cash Stipend",
-    "benefitSummary": "₹1,500/month for 10 months (₹15,000/year) for post-matric students not in govt hostels + fee concession",
-    "eligibility": {
-      "isStudent": true,
-      "ageMin": 16,
-      "ageMax": 28,
-      "maxIncome": 250000,
-      "states": ["Karnataka", "All"]
-    },
-    "documents": ["Aadhaar Card", "SATS / College Registration Number", "Income & Caste Certificate (RD Number)", "Bank Passbook"],
-    "applyWhere": "ssp.postmatric.karnataka.gov.in",
-    "source": "https://ssp.postmatric.karnataka.gov.in"
-  },
-  {
     "id": "pm-usp-csis",
-    "name": "PM-USP Central Sector Scholarship for College & University Students",
+    "name": "PM-USP Central Sector Scholarship for College Students",
     "level": "Central",
-    "ministry": "Ministry of Education",
-    "annualValueINR": 20000,
+    "ministry": "Department of Higher Education, Ministry of Education",
+    "annualValueINR": 12000,
     "benefitType": "Direct Cash Scholarship",
-    "benefitSummary": "₹12,000/year (UG) to ₹20,000/year (PG/Professional) direct bank transfer",
+    "benefitSummary": "₹12,000/year (UG) to ₹20,000/year (PG) direct bank transfer",
+    "exclusivityGroup": "CENTRAL_SCHOLARSHIP",
+    "sakalaSlaDays": 30,
+    "statutoryRule": "Ministry of Education Notification: Mutually exclusive with other Central Scholarships under NSP; Hakku automatically selects the higher-paying scholarship.",
+    "commonRejectionTrap": "Class 12 percentile verification pending from State Board.",
     "eligibility": {
       "isStudent": true,
       "ageMin": 17,
       "ageMax": 25,
-      "maxIncome": 450000
+      "maxIncome": 450000,
+      "excludeTaxPayer": true
     },
-    "documents": ["Aadhaar Card", "Class 12 Marksheet", "Family Income Certificate (< ₹4.5L)", "Bonafide Student Certificate", "Bank Passbook"],
+    "documents": ["Aadhaar Card", "Class 12 Marksheet", "Income Certificate (< ₹4.5L)", "Bonafide Certificate", "Bank Passbook"],
+    "cscSteps": "scholarships.gov.in → Student Login → Dept of Higher Education → PM-USP Central Sector Scheme.",
     "applyWhere": "scholarships.gov.in",
     "source": "https://scholarships.gov.in"
+  },
+  {
+    "id": "ka-ssp-vidyasiri",
+    "name": "Karnataka SSP & Vidyasiri Food/Hostel Stipend",
+    "level": "State (Karnataka)",
+    "ministry": "Backward Classes / Social Welfare Dept, Govt of Karnataka",
+    "annualValueINR": 15000,
+    "benefitType": "State Stipend + Fee Concession",
+    "benefitSummary": "₹1,500/month for 10 months (₹15,000/yr) for non-hostel students + tuition fee concession",
+    "exclusivityGroup": "STATE_SCHOLARSHIP",
+    "sakalaSlaDays": 21,
+    "statutoryRule": "Karnataka Sakala Act SLA: 21 Working Days. Requires 75%+ attendance and valid Nadakacheri RD Number.",
+    "commonRejectionTrap": "Name spelling mismatch between SSLC marksheet and Aadhaar Card.",
+    "eligibility": {
+      "isStudent": true,
+      "ageMin": 16,
+      "ageMax": 28,
+      "maxIncome": 250000
+    },
+    "documents": ["Aadhaar Card", "University/SATS Registration No.", "Nadakacheri Caste & Income Certificate (RD No.)", "Bank Passbook"],
+    "cscSteps": "ssp.postmatric.karnataka.gov.in → Create SSP Account → Enter RD Number from Nadakacheri → e-Attestation by College Nodal Officer.",
+    "applyWhere": "ssp.postmatric.karnataka.gov.in",
+    "source": "https://ssp.postmatric.karnataka.gov.in"
   },
   {
     "id": "pm-kisan",
@@ -62,29 +78,40 @@
     "ministry": "Ministry of Agriculture & Farmers Welfare",
     "annualValueINR": 6000,
     "benefitType": "Direct Income Support",
-    "benefitSummary": "₹6,000/year in 3 equal installments of ₹2,000 directly into Aadhaar-linked bank account",
+    "benefitSummary": "₹6,000/year in 3 installments of ₹2,000 via Aadhaar DBT",
+    "exclusivityGroup": null,
+    "sakalaSlaDays": 30,
+    "statutoryRule": "PM-KISAN Operational Guidelines Para 4: Institutional landholders, Income Tax payers in last assessment year, and regular Govt employees are statutorily excluded.",
+    "commonRejectionTrap": "e-KYC incomplete or Land Seeding marked 'NO' in Tehsil records.",
     "eligibility": {
       "occupations": ["farmer"],
-      "ageMin": 18
+      "ageMin": 18,
+      "excludeTaxPayer": true
     },
-    "documents": ["Aadhaar Card", "Land Holding Record (RTC / Pahani / Khatauni)", "Bank Passbook (Aadhaar seeded)"],
-    "applyWhere": "pmkisan.gov.in → Farmers Corner → New Farmer Registration or nearest CSC",
+    "documents": ["Aadhaar Card", "RTC / Pahani / Khatauni Land Record", "NPCI-Linked Bank Passbook"],
+    "cscSteps": "pmkisan.gov.in → Farmers Corner → Complete OTP/Biometric e-KYC → Verify Land Seeding = YES & Aadhaar Bank Seeding = YES.",
+    "applyWhere": "pmkisan.gov.in or CSC / GramaOne",
     "source": "https://pmkisan.gov.in"
   },
   {
     "id": "pm-kusum-solar",
-    "name": "PM-KUSUM Solar Agricultural Pump Subsidy",
+    "name": "PM-KUSUM Solar Agricultural Pump Subsidy (Component-B)",
     "level": "Central + State",
     "ministry": "Ministry of New and Renewable Energy (MNRE)",
     "annualValueINR": 45000,
-    "benefitType": "Capital Subsidy + Power Savings",
-    "benefitSummary": "Up to 60% government subsidy on standalone solar agricultural pumps (saves ~₹45,000/yr in diesel & electricity costs)",
+    "benefitType": "Capital Subsidy + Diesel Savings",
+    "benefitSummary": "Up to 60% government subsidy on solar irrigation pumps (saves ~₹45,000/yr in diesel/power)",
+    "exclusivityGroup": null,
+    "sakalaSlaDays": 45,
+    "statutoryRule": "MNRE PM-KUSUM Guidelines: 30% Central + 30% State subsidy; 10% farmer contribution (30% bank loan facility).",
+    "commonRejectionTrap": "Applying through fake private websites instead of official state nodal portal.",
     "eligibility": {
       "occupations": ["farmer"],
       "ageMin": 18
     },
-    "documents": ["Aadhaar Card", "Land Ownership Record (RTC/Pahani)", "Bank Account Details", "Declaration of Irrigation Source"],
-    "applyWhere": "pmkusum.mnre.gov.in or State Nodal Renewable Energy Agency",
+    "documents": ["Aadhaar Card", "RTC Land Ownership Record", "Borewell/Water Source Declaration", "Bank Passbook"],
+    "cscSteps": "Apply ONLY via pmkusum.mnre.gov.in or State Renewable Energy Nodal Agency (KREDL) portal when quota window opens.",
+    "applyWhere": "pmkusum.mnre.gov.in",
     "source": "https://pmkusum.mnre.gov.in"
   },
   {
@@ -93,47 +120,41 @@
     "level": "Central",
     "ministry": "Ministry of Agriculture & Farmers Welfare",
     "annualValueINR": 28000,
-    "benefitType": "Subsidized Crop Insurance Protection",
-    "benefitSummary": "Government pays ~85%+ of actuarial premium; farmer pays only 1.5% (Rabi) to 2% (Kharif) for full crop loss protection",
+    "benefitType": "Subsidized Crop Loss Protection",
+    "benefitSummary": "Govt pays ~85% of actuarial premium; farmer pays only 1.5%–2% for full crop loss coverage",
+    "exclusivityGroup": null,
+    "sakalaSlaDays": 15,
+    "statutoryRule": "PMFBY Revamped Guidelines: Localised calamity/hailstorm intimation must be filed within 72 hours on Crop Insurance App or 14447 helpline.",
+    "commonRejectionTrap": "Crop name mismatch between RTC Pahani crop survey and bank portal entry.",
     "eligibility": {
       "occupations": ["farmer"],
       "ageMin": 18
     },
-    "documents": ["Aadhaar Card", "Land Record (RTC) or Tenancy Agreement", "Sowing Certificate", "Bank Passbook"],
-    "applyWhere": "pmfby.gov.in, CSC Centre, or Rural Bank Branch",
+    "documents": ["Aadhaar Card", "RTC / Land Possession Certificate", "Sowing Declaration", "Bank Passbook"],
+    "cscSteps": "pmfby.gov.in → Farmer Application → Select Season (Kharif/Rabi) → Enter Survey Number → Pay nominal 2% premium.",
+    "applyWhere": "pmfby.gov.in or CSC / Bank Branch",
     "source": "https://pmfby.gov.in"
   },
   {
-    "id": "kcc-interest-subvention",
-    "name": "Kisan Credit Card (KCC) Modified Interest Subvention Scheme",
-    "level": "Central",
-    "ministry": "Ministry of Agriculture / RBI",
-    "annualValueINR": 15000,
-    "benefitType": "Interest Subsidy",
-    "benefitSummary": "Crop loans up to ₹3 Lakh at just 4% effective interest p.a. (saves ~₹15,000/yr vs market/moneylender rates)",
-    "eligibility": {
-      "occupations": ["farmer"],
-      "ageMin": 18,
-      "ageMax": 75
-    },
-    "documents": ["Aadhaar Card", "PAN / Voter ID", "Land RTC Record", "Passport Size Photos"],
-    "applyWhere": "Any Commercial / Regional Rural / Cooperative Bank or pmkisan.gov.in",
-    "source": "https://pmkisan.gov.in"
-  },
-  {
     "id": "nsap-old-age-sandhya",
-    "name": "NSAP Indira Gandhi Old Age Pension + Sandhya Suraksha Yojana",
+    "name": "NSAP Indira Gandhi Old Age Pension + Sandhya Suraksha",
     "level": "Central + State",
-    "ministry": "Ministry of Rural Development / Directorate of Social Security & Pensions",
+    "ministry": "Ministry of Rural Development / Directorate of Social Security",
     "annualValueINR": 14400,
     "benefitType": "Monthly Direct Pension",
-    "benefitSummary": "₹1,200/month (₹14,400/year) direct bank transfer for senior citizens from low-income / BPL households",
+    "benefitSummary": "₹1,200/month (₹14,400/year) direct pension for senior citizens (60+)",
+    "exclusivityGroup": "SOCIAL_PENSION",
+    "sakalaSlaDays": 21,
+    "statutoryRule": "Social Security Pension Rules: A beneficiary can draw only ONE social security pension (Old Age OR Widow OR Disability) at a time.",
+    "commonRejectionTrap": "Annual Life Certificate (Jeevan Pramaan) e-KYC not renewed.",
     "eligibility": {
       "ageMin": 60,
-      "maxIncome": 120000
+      "maxIncome": 120000,
+      "excludeTaxPayer": true
     },
-    "documents": ["Aadhaar Card", "Age Proof (Voter ID / Birth Certificate)", "BPL Ration Card or Income Certificate", "Bank / Post Office Passbook"],
-    "applyWhere": "nsap.nic.in / Nadakacheri (sevasindhu.karnataka.gov.in) / Gram Panchayat",
+    "documents": ["Aadhaar Card", "Age Proof (Voter ID / Ration Card)", "BPL Card / Income Certificate", "Post Office or Bank Passbook"],
+    "cscSteps": "sevasindhu.karnataka.gov.in / Nadakacheri → Sandhya Suraksha / IGNOAPS → Village Accountant Field Verification within 21 Sakala days.",
+    "applyWhere": "nsap.nic.in / Nadakacheri / GramaOne",
     "source": "https://nsap.nic.in"
   },
   {
@@ -144,67 +165,64 @@
     "annualValueINR": 14400,
     "benefitType": "Monthly Direct Pension",
     "benefitSummary": "₹1,200/month (₹14,400/year) lifetime monthly pension credited directly via DBT",
+    "exclusivityGroup": "SOCIAL_PENSION",
+    "sakalaSlaDays": 21,
+    "statutoryRule": "Mutually exclusive with Old-Age Pension under NSAP rules; Hakku prevents duplicate pension filing that would trigger recovery notices.",
+    "commonRejectionTrap": "Husband's Death Certificate registration number not linked to e-JanMa portal.",
     "eligibility": {
       "gender": ["female"],
       "isWidow": true,
       "ageMin": 18,
-      "maxIncome": 150000
+      "maxIncome": 150000,
+      "excludeTaxPayer": true
     },
     "documents": ["Aadhaar Card", "Husband's Death Certificate", "BPL Ration Card / Income Certificate", "Bank Passbook"],
-    "applyWhere": "nsap.nic.in or State Seva Sindhu / Nadakacheri / CSC Centre",
+    "cscSteps": "Nadakacheri / Seva Sindhu → Destitute Widow Pension → Attach Death Certificate & Ration Card.",
+    "applyWhere": "nsap.nic.in or Seva Sindhu / GramaOne",
     "source": "https://nsap.nic.in"
   },
   {
     "id": "gruha-lakshmi-shakti",
-    "name": "Gruha Lakshmi & Shakti Women Empowerment Package",
+    "name": "Gruha Lakshmi (₹2,000/mo) & Shakti Free Bus Transit",
     "level": "State (Karnataka)",
     "ministry": "Dept of Women and Child Development, Govt of Karnataka",
     "annualValueINR": 24000,
-    "benefitType": "Monthly Cash Transfer + Free Transit",
-    "benefitSummary": "₹2,000/month (₹24,000/year) DBT to woman head of family + free non-AC state bus travel under Shakti scheme",
+    "benefitType": "Monthly Cash DBT + Free Transit",
+    "benefitSummary": "₹2,000/month (₹24,000/year) DBT to woman head of household + free state bus travel",
+    "exclusivityGroup": "HOUSEHOLD_WOMAN_HEAD",
+    "sakalaSlaDays": 15,
+    "statutoryRule": "Govt Order WCD 2023: Payable strictly to ONE woman head listed on Ration Card. Excluded if woman or husband pays Income Tax or files GST returns.",
+    "commonRejectionTrap": "Ration card e-KYC incomplete or bank account NPCI DBT status inactive.",
     "eligibility": {
       "gender": ["female"],
       "ageMin": 21,
       "maxIncome": 200000,
-      "states": ["Karnataka", "All"]
+      "excludeTaxPayer": true
     },
-    "documents": ["Aadhaar Card", "Ration Card (Antyodaya / BPL / APL showing family head)", "Aadhaar-linked Bank Account"],
-    "applyWhere": "sevasindhuservices.karnataka.gov.in or Karnataka One / Grama One Centre",
+    "documents": ["Aadhaar Card", "Antyodaya / BPL / APL Ration Card (showing Woman Head)", "NPCI-Seeded Bank Account"],
+    "cscSteps": "sevasindhuservices.karnataka.gov.in → Gruha Lakshmi → Verify Ration Card RC Number → No fee charged at GramaOne/KarnatakaOne.",
+    "applyWhere": "sevasindhuservices.karnataka.gov.in",
     "source": "https://sevasindhuservices.karnataka.gov.in"
   },
   {
-    "id": "pm-ujjwala",
-    "name": "Pradhan Mantri Ujjwala Yojana 2.0 (PMUY)",
-    "level": "Central",
-    "ministry": "Ministry of Petroleum and Natural Gas",
-    "annualValueINR": 3600,
-    "benefitType": "LPG Connection + Cylinder Subsidy",
-    "benefitSummary": "Free LPG connection (₹1,600 support) + ₹300/cylinder targeted subsidy for up to 12 refills/year",
-    "eligibility": {
-      "gender": ["female"],
-      "ageMin": 18,
-      "bplRequired": true,
-      "maxIncome": 150000
-    },
-    "documents": ["Aadhaar Card", "BPL / Antyodaya Ration Card", "Bank Passbook", "Self-Declaration of No Existing LPG Connection"],
-    "applyWhere": "pmuy.gov.in or nearest Indane / Bharatgas / HP Gas distributor",
-    "source": "https://www.pmuy.gov.in"
-  },
-  {
     "id": "pmjay-ayushman",
-    "name": "Ayushman Bharat PM-JAY + Senior Citizen 70+ Vay Vandana Card",
+    "name": "Ayushman Bharat PM-JAY + 70+ Senior Citizen Vay Vandana",
     "level": "Central",
-    "ministry": "National Health Authority (NHA), Ministry of Health & Family Welfare",
+    "ministry": "National Health Authority (NHA), Ministry of Health",
     "annualValueINR": 15000,
     "coverageValueINR": 500000,
-    "benefitType": "Cashless Health Insurance Cover",
-    "benefitSummary": "₹5,00,000/year free cashless hospitalization at empanelled public & private hospitals (saves ~₹15,000/yr in family health insurance premium)",
+    "benefitType": "Cashless Family Health Cover",
+    "benefitSummary": "₹5,00,000/year cashless hospitalization per family (plus ₹5L top-up for seniors aged 70+ regardless of income)",
+    "exclusivityGroup": "HOUSEHOLD_HEALTH",
+    "sakalaSlaDays": 7,
+    "statutoryRule": "NHA 2024 Amendment: All senior citizens aged 70+ are eligible for ₹5L cover irrespective of income; BPL/priority families covered at all ages.",
+    "commonRejectionTrap": "Trying to apply after emergency admission instead of pre-generating Ayushman e-Card via beneficiary.nha.gov.in.",
     "eligibility": {
       "maxIncome": 250000
     },
-    "documents": ["Aadhaar Card", "Ration Card / SECC Family ID"],
-    "applyWhere": "beneficiary.nha.gov.in, Ayushman App, or any empanelled hospital Ayushman Mitra desk",
+    "documents": ["Aadhaar Card", "Ration Card / Family ID"],
+    "cscSteps": "beneficiary.nha.gov.in → Login with Mobile → Search by Ration Card / Aadhaar → Complete e-KYC → Download Ayushman Card immediately.",
+    "applyWhere": "beneficiary.nha.gov.in or Ayushman App",
     "source": "https://beneficiary.nha.gov.in"
   }
 ]
-
