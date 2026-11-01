@@ -6,10 +6,6 @@ function loadSchemes() {
   return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 }
 
-/**
- * AGENT 2 & AGENT 3 TOOL:
- * Deterministic Eligibility + Statutory Mutual-Exclusivity Conflict Resolver + Pre-Audit Rejection Shield
- */
 function evaluateMember(profile, schemes) {
   const age = Number(profile.age || 25);
   const income = Number(profile.income || 100000);
@@ -28,26 +24,23 @@ function evaluateMember(profile, schemes) {
     const e = scheme.eligibility || {};
     const reasons = [];
 
-    // Statutory Tax-Payer Disqualifier Check
     if (e.excludeTaxPayer && isTaxPayer) continue;
-
     if (e.isStudent && !isStudent) continue;
-    if (e.isStudent && isStudent) reasons.push('Bonafide Student');
+    if (e.isStudent && isStudent) reasons.push('Student Verified');
 
     if (e.isWidow && !isWidow) continue;
-    if (e.isWidow && isWidow) reasons.push('Widow Status');
+    if (e.isWidow && isWidow) reasons.push('Widow Priority');
 
     if (e.bplRequired && !isBPL) continue;
-    if (e.bplRequired && isBPL) reasons.push('BPL Household');
+    if (e.bplRequired && isBPL) reasons.push('BPL Card Holder');
 
     if (e.ageMin !== undefined && age < e.ageMin) continue;
     if (e.ageMax !== undefined && age > e.ageMax) continue;
-    reasons.push(`Age ${age} verified`);
+    reasons.push(`Age ${age}`);
 
-    // Special NHA 70+ Senior Citizen Rule: 70+ seniors qualify for Ayushman regardless of income
     const isSenior70PlusAyushman = scheme.id === 'pmjay-ayushman' && age >= 70;
     if (!isSenior70PlusAyushman && e.maxIncome !== undefined && income > e.maxIncome) continue;
-    reasons.push(isSenior70PlusAyushman ? '70+ Universal Senior Cover Rule' : `Income ≤ ₹${(e.maxIncome || 250000).toLocaleString('en-IN')}`);
+    reasons.push(isSenior70PlusAyushman ? '70+ Universal Senior Cover' : `Income ≤ ₹${(e.maxIncome || 250000).toLocaleString('en-IN')}`);
 
     if (e.gender && !e.gender.map(g => g.toLowerCase()).includes(gender)) continue;
     if (e.occupations && !e.occupations.map(o => o.toLowerCase()).includes(occupation)) continue;
@@ -60,9 +53,7 @@ function evaluateMember(profile, schemes) {
     });
   }
 
-  // STATUTORY CONFLICT RESOLUTION (Anti-Double-Dipping Rule Engine)
-  // If multiple schemes belong to the same exclusivityGroup (e.g. CENTRAL_SCHOLARSHIP or SOCIAL_PENSION),
-  // keep ONLY the highest-value scheme and log the statutory rule resolution.
+  // Statutory Anti-Double-Dipping Conflict Resolution
   const groupBest = {};
   const finalMatches = [];
 
@@ -78,27 +69,22 @@ function evaluateMember(profile, schemes) {
       statutoryConflictsResolved.push({
         kept: m.name,
         dropped: existing.name,
-        rule: `Statutory Anti-Double-Dipping Rule (${m.exclusivityGroup}): Citizen cannot claim both simultaneously. Auto-selected higher benefit (+₹${m.annualValueINR.toLocaleString('en-IN')}/yr).`
+        rule: `Statutory Anti-Double-Dipping (${m.exclusivityGroup}): Auto-selected higher payout (+₹${m.annualValueINR.toLocaleString('en-IN')}/yr).`
       });
       groupBest[m.exclusivityGroup] = m;
     } else {
       statutoryConflictsResolved.push({
         kept: existing.name,
         dropped: m.name,
-        rule: `Statutory Anti-Double-Dipping Rule (${m.exclusivityGroup}): Citizen cannot claim both simultaneously. Retained higher/primary benefit (${existing.name}).`
+        rule: `Statutory Anti-Double-Dipping (${m.exclusivityGroup}): Retained higher/primary benefit (${existing.name}).`
       });
     }
   }
 
   Object.values(groupBest).forEach(s => finalMatches.push(s));
-
   return { finalMatches, statutoryConflictsResolved };
 }
 
-/**
- * Evaluates either a single citizen OR an entire Ration-Card Household
- * + Runs Agent 3 (Pre-Submission Rejection Shield)
- */
 function matchCitizenProfile(profile, householdMembers = [], readinessChecks = {}) {
   const schemes = loadSchemes();
   const membersToScan = householdMembers && householdMembers.length > 0
@@ -114,7 +100,6 @@ function matchCitizenProfile(profile, householdMembers = [], readinessChecks = {
     allConflicts.push(...statutoryConflictsResolved);
 
     for (const s of finalMatches) {
-      // Prevent counting household-wide schemes (like PM-JAY or Gruha Lakshmi) twice across family members
       if (s.exclusivityGroup && s.exclusivityGroup.startsWith('HOUSEHOLD_')) {
         if (seenHouseholdLevelGroups.has(s.exclusivityGroup)) continue;
         seenHouseholdLevelGroups.add(s.exclusivityGroup);
@@ -123,11 +108,15 @@ function matchCitizenProfile(profile, householdMembers = [], readinessChecks = {
     }
   }
 
+  // Sort highest annual cash value first
+  allMatched.sort((a, b) => (b.annualValueINR || 0) - (a.annualValueINR || 0));
+
   const totalDirectAnnualINR = allMatched.reduce((sum, s) => sum + (s.annualValueINR || 0), 0);
-  const totalHealthCoverINR = allMatched.reduce((sum, s) => sum + (s.coverageValueINR || 0), 0);
+  const fiveYearWealthINR = totalDirectAnnualINR * 5;
+  const totalHealthCoverINR = Math.max(500000, allMatched.reduce((sum, s) => sum + (s.coverageValueINR || 0), 0));
   const consolidatedDocuments = Array.from(new Set(allMatched.flatMap(s => s.documents || [])));
 
-  // AGENT 3: Pre-Submission Rejection Shield Audit
+  // Agent 3: Pre-Submission Rejection Shield
   const npciSeeded = readinessChecks.npciSeeded !== false;
   const nameMatched = readinessChecks.nameMatched !== false;
   const rdValid = readinessChecks.rdValid !== false;
@@ -140,7 +129,7 @@ function matchCitizenProfile(profile, householdMembers = [], readinessChecks = {
     rejectionRisks.push({
       severity: 'CRITICAL',
       title: 'NPCI Aadhaar DBT Mapper Inactive',
-      fix: 'DBT payments will bounce even after scheme approval. Submit the generated NPCI Mandate Form at your bank branch before applying.'
+      fix: 'DBT money will bounce even after scheme approval. Print the NPCI Bank Mandate Form in Tab 4 and give it to your bank manager.'
     });
   }
   if (!nameMatched) {
@@ -148,24 +137,27 @@ function matchCitizenProfile(profile, householdMembers = [], readinessChecks = {
     rejectionRisks.push({
       severity: 'HIGH',
       title: 'Name Spelling Mismatch Across Aadhaar & Ration/SSLC Card',
-      fix: 'Portal e-KYC will auto-reject. Update Aadhaar demographic spelling at nearest Aadhaar Seva Kendra or CSC first.'
+      fix: 'Portal e-KYC will auto-reject. Update Aadhaar spelling at the nearest Aadhaar Seva Kendra or GramaOne.'
     });
   }
   if (!rdValid) {
     readinessScore -= 25;
     rejectionRisks.push({
       severity: 'MEDIUM',
-      title: 'Income / Caste Certificate RD Number Expired or Missing',
-      fix: 'Apply for fresh Nadakacheri RD Certificate (Sakala SLA: 7 working days) before submitting scholarship/pension form.'
+      title: 'Income / Caste Certificate RD Number Expired',
+      fix: 'Apply for a fresh Nadakacheri RD Certificate (7-day Sakala SLA) before visiting the cyber-café.'
     });
   }
 
   return {
     matchedSchemes: allMatched,
+    allCatalogSchemes: schemes,
     statutoryConflictsResolved: allConflicts,
     totalDirectAnnualINR,
+    fiveYearWealthINR,
     totalHealthCoverINR,
     schemeCount: allMatched.length,
+    totalCatalogCount: schemes.length,
     consolidatedDocuments,
     readinessAudit: {
       readinessScore: Math.max(5, readinessScore),

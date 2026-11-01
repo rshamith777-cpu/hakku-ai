@@ -1,402 +1,468 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hakku (ಹಕ್ಕು / हक़) — India Digital Public Infrastructure Welfare OS</title>
-  
-  <!-- High-Legibility Indian DPI Typography: Inter, Noto Sans Kannada, Noto Sans Devanagari & JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+  <title>Hakku (ಹಕ್ಕು / हक़) — Unlock Your Unclaimed Government Money Vault | BharatCode</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Inter"', '"Noto Sans Kannada"', '"Noto Sans Devanagari"', 'system-ui', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
-          colors: {
-            dpi: {
-              navy: '#0B3B60',
-              navyDark: '#07263E',
-              navyLight: '#144D7A',
-              copper: '#D97706',
-              copperLight: '#FFFBEB',
-              copperDark: '#854D0E',
-              slateBg: '#F4F6F8',
-              slateCard: '#FFFFFF',
-              slateBorder: '#E2E8F0',
-              textPrimary: '#0F172A',
-              textSecondary: '#475569',
-              textMuted: '#64748B',
-              alertText: '#991B1B',
-              alertBg: '#FEF2F2',
-              alertBorder: '#FEE2E2',
-              successText: '#166534',
-              successBg: '#F0FDF4',
-              successBorder: '#BBF7D0'
-            }
-          }
-        }
-      }
-    }
-  </script>
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    body {
-      background-color: #F4F6F8;
-      color: #0F172A;
-      font-family: "Inter", "Noto Sans Kannada", "Noto Sans Devanagari", system-ui, sans-serif;
+    body { font-family: 'Inter', sans-serif; background-color: #050811; overflow-x: hidden; }
+
+    /* Framer.com / 21st.dev Aurora Background & Glassmorphism */
+    .aurora-bg {
+      background:
+        radial-gradient(800px circle at 15% 10%, rgba(16, 185, 129, 0.14), transparent 55%),
+        radial-gradient(700px circle at 85% 15%, rgba(245, 158, 11, 0.12), transparent 55%),
+        radial-gradient(900px circle at 50% 90%, rgba(99, 102, 241, 0.10), transparent 60%);
     }
-    .institutional-shadow {
-      box-shadow: 0 1px 3px 0 rgba(11, 59, 96, 0.08), 0 1px 2px -1px rgba(11, 59, 96, 0.04);
+    .bento-card {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .institutional-card {
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 12px;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    .bento-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(16, 185, 129, 0.38);
+      box-shadow: 0 20px 45px -15px rgba(16, 185, 129, 0.14);
     }
-    .institutional-card:hover {
-      border-color: #CBD5E1;
-      box-shadow: 0 4px 12px -2px rgba(11, 59, 96, 0.08);
+
+    /* Framer Spring View Transitions */
+    .view-panel {
+      display: none;
+      animation: framerSpringIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    /* Accessibility high-visibility focus */
-    button:focus-visible, input:focus-visible, select:focus-visible {
-      outline: 2px solid #0B3B60;
-      outline-offset: 2px;
+    .view-panel.active { display: block; }
+
+    @keyframes framerSpringIn {
+      0% { opacity: 0; transform: translateY(18px) scale(0.985); filter: blur(4px); }
+      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
     }
-    /* Dynamic Font Scale */
-    .text-scale-lg {
-      font-size: 1.125rem !important;
+
+    /* Staggered Card Reveal */
+    .stagger-card {
+      opacity: 0;
+      animation: cardPop 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    .text-scale-lg h1, .text-scale-lg h2, .text-scale-lg h3 {
-      font-size: 1.25em !important;
+    @keyframes cardPop {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .text-scale-lg p, .text-scale-lg span, .text-scale-lg button, .text-scale-lg input {
-      font-size: 1.1em !important;
+
+    /* 21st.dev Glowing Vault Card */
+    .vault-glow {
+      background: linear-gradient(135deg, rgba(6, 78, 59, 0.55) 0%, rgba(15, 23, 42, 0.85) 55%, rgba(30, 27, 75, 0.65) 100%);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      box-shadow: 0 0 60px -15px rgba(16, 185, 129, 0.28);
     }
   </style>
 </head>
-<body id="appBody" class="min-h-screen text-[#0F172A] flex flex-col justify-between selection:bg-[#0B3B60] selection:text-white">
+<body class="aurora-bg text-slate-100 min-h-screen flex flex-col">
 
-  <!-- ========================================================= -->
-  <!-- 1. STICKY INSTITUTIONAL DPI HEADER -->
-  <!-- ========================================================= -->
-  <header class="bg-[#0B3B60] text-white sticky top-0 z-50 shadow-md border-b-2 border-[#D97706]">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
-      
-      <!-- National DPI Symbol & Branding -->
-      <div class="flex items-center space-x-3">
-        <div class="w-9 h-9 bg-white rounded-lg flex items-center justify-center p-1 shadow-sm border border-white/20">
-          <div class="w-full h-full bg-[#0B3B60] rounded flex items-center justify-center text-white font-black text-xs tracking-tighter">
-            <span>H</span><span>A</span>
-          </div>
+  <!-- Top Zero-Storage Trust Strip -->
+  <div class="bg-emerald-950/70 border-b border-emerald-500/20 text-emerald-300 text-xs py-2 px-4 text-center backdrop-blur">
+    🔒 <b>100% In-Memory Zero-Storage Guarantee:</b> No database. Zero Aadhaar/Bank numbers saved. Powered by BharatCode 5-Agent Statutory Harness.
+  </div>
+
+  <!-- Top Navbar + 21st.dev Floating Pill Switcher -->
+  <header class="sticky top-0 z-30 border-b border-white/10 bg-slate-950/75 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-3">
+      <!-- Brand -->
+      <div class="flex items-center gap-3">
+        <div class="bg-gradient-to-br from-amber-400 to-emerald-400 text-slate-950 font-black px-3.5 py-1.5 rounded-xl text-base tracking-tight shadow-lg">
+          ಹಕ್ಕು • HAKKU
         </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <h1 class="text-sm sm:text-base font-extrabold tracking-wide uppercase">Hakku Welfare Core</h1>
-            <span class="text-[9px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-[#07263E] text-[#93C5FD] border border-[#1E40AF]">
-              DPI Standard
-            </span>
-          </div>
-          <p class="text-[10px] text-[#93C5FD] tracking-tight font-mono">BHARATCODE API v2.4 SECURE • STATUTORY COMPLIANCE OS</p>
+        <div class="hidden sm:block">
+          <div class="font-bold text-sm text-white">Your Government Money Vault</div>
+          <div class="text-[11px] text-slate-400">20 Verified Central & State Cash Schemes</div>
         </div>
       </div>
 
-      <!-- Verification Badge & Accessibility Controls -->
-      <div class="flex items-center gap-2.5">
-        
-        <!-- Live Agent Monitor Pill -->
-        <div class="hidden sm:flex items-center space-x-1.5 bg-[#07263E] px-2.5 py-1.5 rounded-lg border border-[#1E40AF]">
-          <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
-          <span class="text-[10px] uppercase font-mono tracking-widest text-[#93C5FD] font-bold">5 AGENTS LIVE</span>
-        </div>
-
-        <!-- High-Accessibility: Audio Synthesizer Button -->
-        <button onclick="speakSummary()" id="ttsBtn" class="bg-[#07263E] hover:bg-[#144D7A] text-[#93C5FD] hover:text-white border border-[#1E40AF] text-xs font-semibold px-2.5 py-1.5 rounded-lg transition flex items-center gap-1.5" title="Read Aloud in Kannada/Hindi/English">
-          <span id="ttsIcon">🔊</span>
-          <span id="ttsBtnText" class="hidden sm:inline">Listen</span>
+      <!-- 21st.dev Floating Navigation Dock (Solves Page Congestion!) -->
+      <nav class="flex items-center bg-slate-900/90 border border-white/10 p-1 rounded-2xl shadow-inner">
+        <button onclick="switchTab('vault')" id="tab-vault" class="tab-btn bg-emerald-500 text-slate-950 font-bold text-xs px-3.5 py-2 rounded-xl transition-all">
+          1. 💰 Money Vault
         </button>
-
-        <!-- Font Scale Adjuster Toggle (A🗚) -->
-        <button onclick="toggleFontScale()" id="fontScaleBtn" class="bg-[#07263E] hover:bg-[#144D7A] text-[#93C5FD] hover:text-white border border-[#1E40AF] text-xs font-bold px-2.5 py-1.5 rounded-lg transition" title="Adjust Font Size for Senior Citizens">
-          A🗚
+        <button onclick="switchTab('schemes')" id="tab-schemes" class="tab-btn text-slate-300 hover:text-white font-semibold text-xs px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5">
+          2. 🎯 Schemes <span id="navSchemeCount" class="bg-emerald-500/20 text-emerald-300 px-1.5 py-0.2 rounded-full text-[10px]">0</span>
         </button>
+        <button onclick="switchTab('shield')" id="tab-shield" class="tab-btn text-slate-300 hover:text-white font-semibold text-xs px-3.5 py-2 rounded-xl transition-all">
+          3. 🛡️ Docs & Shield
+        </button>
+        <button onclick="switchTab('kit')" id="tab-kit" class="tab-btn text-slate-300 hover:text-white font-semibold text-xs px-3.5 py-2 rounded-xl transition-all">
+          4. 🖨️ Cyber-Café Kit
+        </button>
+      </nav>
 
-        <!-- Multilingual Dropdown -->
-        <select id="languageSelect" onchange="runHarness('')" class="bg-[#07263E] border border-[#1E40AF] text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg outline-none cursor-pointer">
-          <option value="English">English</option>
-          <option value="Kannada (ಕನ್ನಡ)">ಕನ್ನಡ (Kannada)</option>
-          <option value="Hinglish (Hindi + English)">हिंदी / Hinglish</option>
+      <!-- Language + Voice + Agent Drawer Button -->
+      <div class="flex items-center gap-2">
+        <button onclick="speakSummary()" class="bg-slate-900 hover:bg-slate-800 border border-white/10 text-emerald-300 text-xs font-semibold px-3 py-2 rounded-xl transition" title="Listen in your language">
+          🔊 Listen
+        </button>
+        <select id="languageSelect" onchange="runHarness('')" class="bg-slate-900 border border-white/10 rounded-xl px-2.5 py-2 text-xs text-slate-200 outline-none">
+          <option value="English">🌐 English</option>
+          <option value="Kannada (ಕನ್ನಡ)">🌐 ಕನ್ನಡ</option>
+          <option value="Hinglish (Hindi + English)">🌐 हिंदी / Hinglish</option>
         </select>
+        <button onclick="toggleAgentDrawer()" class="bg-indigo-950/90 hover:bg-indigo-900 border border-indigo-500/40 text-indigo-300 text-xs font-semibold px-3 py-2 rounded-xl transition">
+          🤖 5 Agents
+        </button>
       </div>
-
     </div>
   </header>
 
-  <!-- ========================================================= -->
-  <!-- 2. ZERO-PII STATUTORY TRUST NOTICE -->
-  <!-- ========================================================= -->
-  <div class="bg-[#FEF9C3] border-b border-[#FDE047] text-[#854D0E] text-[11px] py-1.5 px-4 font-medium">
-    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
-      <div class="flex items-center gap-2">
-        <span class="text-sm">🛡️</span>
-        <span><b>Official DPDP Act 2023 Compliance Notice:</b> Hakku evaluates claims locally via verified government rules. We never collect or store Aadhaar numbers, OTPs, or bank passwords.</span>
-      </div>
-      <div class="hidden md:flex items-center gap-3 font-mono text-[10px] text-[#A16207]">
-        <span>Sakala Act SLAs</span>
-        <span>•</span>
-        <span>RTI §6(1) & §7(5) Ready</span>
-      </div>
-    </div>
-  </div>
+  <!-- MAIN WORKSPACE CONTAINER (Spacious Max-Width 6XL) -->
+  <main class="max-w-6xl w-full mx-auto px-4 py-8 flex-1">
 
-  <!-- ========================================================= -->
-  <!-- 3. MAIN DASHBOARD VIEWPORT (BENTO GRID WITH DPI TOKENS) -->
-  <!-- ========================================================= -->
-  <main class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6 space-y-5">
+    <!-- ================================================================= -->
+    <!-- VIEW 1: THE MONEY VAULT & CITIZEN STUDIO (Clean, Heroic, Zero Clutter) -->
+    <!-- ================================================================= -->
+    <section id="view-vault" class="view-panel active space-y-8">
 
-    <!-- 1-CLICK RATION CARD UNIT SCANNER -->
-    <div class="bg-white border border-[#E2E8F0] p-4 rounded-xl institutional-shadow flex flex-col md:flex-row md:items-center justify-between gap-3">
-      <div>
-        <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#0B3B60] block">Citizen Household Unit Discovery</span>
-        <h2 class="text-sm font-bold text-[#0F172A]">Select a Family Ration Card or Individual Profile to Scan:</h2>
-      </div>
-      <div class="flex flex-wrap gap-2">
-        <button id="btnFamily" onclick="loadWholeFamilyDemo()" class="bg-[#0B3B60] hover:bg-[#07263E] text-white text-xs font-bold px-4 py-2 rounded-lg shadow-sm transition flex items-center gap-1.5">
-          <span>👨‍👩‍👧‍👦</span>
-          <span>Scan Full 4-Member Family (Ration Unit)</span>
-        </button>
-        <button id="btnAarav" onclick="loadPersona('aarav')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-3 py-2 rounded-lg transition">
-          🎓 Aarav (Student)
-        </button>
-        <button id="btnLakshmi" onclick="loadPersona('lakshmi')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-3 py-2 rounded-lg transition">
-          👵 Lakshmi (Widow)
-        </button>
-        <button id="btnRamesh" onclick="loadPersona('ramesh')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-3 py-2 rounded-lg transition">
-          🌾 Ramesh (Farmer)
-        </button>
-      </div>
-    </div>
-
-    <!-- PRIMARY BENTO GRID -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-
-      <!-- LEFT COLUMN: TOTAL RUPEE CLAIMS + REJECTION SHIELD + AGENT TRACE (7 COLS) -->
-      <div class="lg:col-span-7 space-y-4">
-
-        <!-- EXACT RUPEE ELIGIBILITY SUMMARY ACCENT BLOCK -->
-        <div class="bg-[#FFFBEB] border-l-4 border-[#D97706] border-y border-r border-[#FDE68A] p-5 rounded-r-xl rounded-l-sm institutional-shadow relative overflow-hidden">
-          <div class="flex items-center justify-between">
-            <span id="meterModeLabel" class="text-[10px] text-[#854D0E] uppercase tracking-wider font-extrabold font-mono">
-              Total Legal Claims Found (Ration Card Unit)
-            </span>
-            <span id="schemeCountBadge" class="text-xs bg-[#D97706] text-white font-bold px-2.5 py-0.5 rounded-full font-mono">
-              0 Verified Schemes
-            </span>
-          </div>
-
-          <div class="mt-2 flex items-baseline gap-2">
-            <span id="directBenefitMeter" class="text-4xl sm:text-5xl font-black text-[#D97706] tracking-tight font-mono">₹0</span>
-            <span class="text-sm font-bold text-[#1E293B]">/ year legal direct bank credit</span>
-          </div>
-
-          <div class="mt-3 pt-3 border-t border-[#FCD34D] flex flex-wrap items-center justify-between gap-2 text-xs text-[#854D0E]">
-            <div class="flex items-center gap-1.5">
-              <span>🏥</span>
-              <span>Plus Cashless Family Health Cover:</span>
-              <span id="healthCoverMeter" class="font-bold font-mono text-[#B45309]">₹5,00,000 / year</span>
-              <span class="text-[11px] text-[#A16207]">(PM-JAY Universal)</span>
+      <!-- Hero Money Vault Card -->
+      <div class="vault-glow rounded-3xl p-6 sm:p-10 relative overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7 space-y-4">
+            <div class="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-semibold px-3.5 py-1.5 rounded-full">
+              ✨ <span id="vaultModeBadge">Combined 4-Member Family Entitlement Vault</span>
             </div>
-            <span class="text-[11px] font-mono font-semibold">100% Legal Entitlement</span>
+            <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+              Claim Every Rupee the Government Owes You.
+            </h1>
+            <p id="aiSummaryBox" class="text-sm sm:text-base text-slate-300 leading-relaxed">
+              Scanning your household against 20 verified Central & State schemes...
+            </p>
+            <div class="pt-2 flex flex-wrap gap-3">
+              <button onclick="switchTab('schemes')" class="bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-sm px-6 py-3.5 rounded-2xl shadow-lg shadow-emerald-500/20 transition transform hover:scale-[1.02]">
+                Explore All Claimable Money Schemes →
+              </button>
+              <button onclick="switchTab('kit'); loadDocPreview(null, 'application')" class="bg-white/10 hover:bg-white/15 border border-white/15 text-white font-semibold text-sm px-5 py-3.5 rounded-2xl transition">
+                🖨️ Print Cyber-Café Operator Slip
+              </button>
+            </div>
           </div>
 
-          <!-- PRIMARY ACTION BUTTONS -->
-          <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
-            <button onclick="openDocKitModal(null, 'application')" class="bg-[#0B3B60] hover:bg-[#07263E] text-white text-xs font-bold py-2.5 px-3 rounded-lg shadow-sm transition flex items-center justify-center gap-1.5">
-              <span>📥</span>
-              <span>Cyber-Cafe Kit</span>
-            </button>
-            <button onclick="openDocKitModal(null, 'npci')" class="bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold py-2.5 px-3 rounded-lg shadow-sm transition flex items-center justify-center gap-1.5">
-              <span>🏦</span>
-              <span>Bank NPCI Form</span>
-            </button>
-            <button onclick="openDocKitModal(null, 'rti')" class="bg-[#991B1B] hover:bg-[#7F1D1D] text-white text-xs font-bold py-2.5 px-3 rounded-lg shadow-sm transition flex items-center justify-center gap-1.5">
-              <span>⚖️</span>
-              <span>Sakala RTI Form</span>
+          <!-- Animated Money Counter Box -->
+          <div class="lg:col-span-5 bg-slate-950/75 border border-white/10 rounded-3xl p-6 space-y-5">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">💸 Direct Annual Bank Cash & Subsidies</span>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span id="directBenefitMeter" class="text-4xl sm:text-5xl font-black text-white tracking-tight">₹0</span>
+                <span class="text-xs text-slate-400 font-semibold">/ year</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-white/10">
+              <div class="bg-slate-900/90 rounded-2xl p-3 border border-white/5">
+                <span class="text-[11px] text-slate-400 block">📈 5-Year Family Wealth</span>
+                <span id="fiveYearMeter" class="text-lg font-extrabold text-amber-400">₹0</span>
+              </div>
+              <div class="bg-slate-900/90 rounded-2xl p-3 border border-white/5">
+                <span class="text-[11px] text-slate-400 block">🏥 Free Hospital Cover</span>
+                <span id="healthCoverMeter" class="text-lg font-extrabold text-emerald-400">₹5,00,000</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-slate-400 pt-1">
+              <span>Verified `.gov.in` Matches:</span>
+              <span id="heroSchemeBadge" class="text-emerald-300 font-bold">0 Schemes Ready</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1-Click Citizen & Family Personas (21st.dev Bento Pills) -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-bold uppercase tracking-wider text-amber-400">⚡ Instant Demo Profiles — Pick Who You Want to Check</h2>
+          <span class="text-xs text-slate-400">Or speak/customize below</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <button onclick="loadWholeFamilyDemo()" class="bento-card text-left p-4 rounded-2xl border-amber-500/40 bg-amber-500/10">
+            <div class="text-lg">👨‍👩‍👧‍👦 Full Family (4)</div>
+            <div class="font-bold text-xs text-white mt-1">Ration Card Household</div>
+            <div class="text-[11px] text-amber-300 mt-0.5">Farmer + Wife + Student + Grandma</div>
+          </button>
+          <button onclick="loadPersona('aarav')" class="bento-card text-left p-4 rounded-2xl">
+            <div class="text-lg">🎓 College Student</div>
+            <div class="font-bold text-xs text-white mt-1">Aarav, 19 • OBC</div>
+            <div class="text-[11px] text-emerald-400 mt-0.5">Scholarships + Free Power</div>
+          </button>
+          <button onclick="loadPersona('ananya')" class="bento-card text-left p-4 rounded-2xl">
+            <div class="text-lg">👩‍💻 Girl Tech Student</div>
+            <div class="font-bold text-xs text-white mt-1">Ananya, 20 • B.Tech</div>
+            <div class="text-[11px] text-emerald-400 mt-0.5">₹50k Pragati + Gruha Lakshmi</div>
+          </button>
+          <button onclick="loadPersona('lakshmi')" class="bento-card text-left p-4 rounded-2xl">
+            <div class="text-lg">👵 Senior Widow</div>
+            <div class="font-bold text-xs text-white mt-1">Lakshmi, 67 • BPL</div>
+            <div class="text-[11px] text-emerald-400 mt-0.5">Pensions + Housing + Ration</div>
+          </button>
+          <button onclick="loadPersona('kiran')" class="bento-card text-left p-4 rounded-2xl">
+            <div class="text-lg">🛠️ Youth / Artisan</div>
+            <div class="font-bold text-xs text-white mt-1">Kiran, 24 • Unemployed</div>
+            <div class="text-[11px] text-emerald-400 mt-0.5">Yuva Nidhi ₹36k + Vishwakarma</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Voice Intake + Simple Custom Profile Builder (2-Column Bento) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Voice / Natural Language Box -->
+        <div class="lg:col-span-5 bento-card rounded-3xl p-6 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">🎙️ Speak or Type in Your Language</span>
+            <h3 class="text-lg font-bold text-white">Tell Hakku About Yourself</h3>
+            <p class="text-xs text-slate-400">Speak naturally in English, Kannada, or Hindi. Example: <i>"I am a 23 year old unemployed graduate from a BPL family."</i></p>
+          </div>
+          <div class="space-y-3">
+            <div class="flex gap-2">
+              <input id="chatInput" type="text" placeholder="Type your age, occupation, income..." class="flex-1 bg-slate-950/90 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs outline-none focus:border-emerald-400" />
+              <button onclick="submitChatIntake()" class="bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl">
+                Find Money
+              </button>
+            </div>
+            <button onclick="startVoiceInput()" id="voiceBtn" class="w-full bg-indigo-950/80 hover:bg-indigo-900 border border-indigo-500/30 text-indigo-200 font-semibold text-xs py-2.5 rounded-xl transition">
+              🎙️ Tap to Speak (English / ಕನ್ನಡ / हिंदी)
             </button>
           </div>
         </div>
 
-        <!-- CRITICAL DOCUMENT WARNING ALERT SYSTEM (REJECTION CRIMSON) -->
-        <div class="bg-[#FEF2F2] border border-[#FEE2E2] p-4 rounded-xl institutional-shadow space-y-3">
+        <!-- Clean Citizen Parameters -->
+        <div class="lg:col-span-7 bento-card rounded-3xl p-6 space-y-4">
           <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-              <span class="text-[#EF4444] text-base shrink-0 leading-none">⚠️</span>
-              <h3 class="text-[#7F1D1D] font-bold text-xs uppercase tracking-wide">
-                Pre-Submission Rejection Shield (Agent 3 Audit)
-              </h3>
-            </div>
-            <span id="readinessBadge" class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#991B1B] text-white">
-              100/100 Safe
-            </span>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">🧮 Customize Citizen Details (Instant Recalculation)</span>
+            <span class="text-[11px] text-slate-400">Zero data leaves your session</span>
           </div>
-          
-          <p class="text-[11px] text-[#991B1B] leading-tight">
-            Over 40% of approved applications bounce at the bank. Toggle these items to simulate common bureaucratic traps:
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+            <div>
+              <label class="text-slate-400">Name</label>
+              <input id="pName" value="Aarav Kumar" onchange="syncFromForm()" class="w-full mt-1 bg-slate-950 border border-white/10 rounded-xl px-3 py-2" />
+            </div>
+            <div>
+              <label class="text-slate-400">Age (Years)</label>
+              <input id="pAge" type="number" value="19" onchange="syncFromForm()" class="w-full mt-1 bg-slate-950 border border-white/10 rounded-xl px-3 py-2" />
+            </div>
+            <div>
+              <label class="text-slate-400">Gender</label>
+              <select id="pGender" onchange="syncFromForm()" class="w-full mt-1 bg-slate-950 border border-white/10 rounded-xl px-3 py-2">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-slate-400">Occupation / Status</label>
+              <select id="pOccupation" onchange="syncFromForm()" class="w-full mt-1 bg-slate-950 border border-white/10 rounded-xl px-3 py-2">
+                <option value="student">College / School Student</option>
+                <option value="farmer">Farmer (Agriculture)</option>
+                <option value="unemployed">Unemployed Graduate / Youth</option>
+                <option value="worker">Artisan / Self-Employed / Worker</option>
+                <option value="homemaker">Homemaker</option>
+                <option value="senior">Senior Citizen / Retired</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-slate-400">Annual Family Income (₹)</label>
+              <input id="pIncome" type="number" step="10000" value="140000" onchange="syncFromForm()" class="w-full mt-1 bg-slate-950 border border-white/10 rounded-xl px-3 py-2" />
+            </div>
+            <div>
+              <label class="text-slate-400">Category</label>
+              <select id="pCategory" onchange="syncFromForm()" class="w-full mt-1 bg-slate-950 border border-white/10 rounded-xl px-3 py-2">
+                <option value="OBC">OBC</option>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+                <option value="EWS">EWS</option>
+                <option value="Minority">Minority</option>
+                <option value="General">General</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-5 pt-2 border-t border-white/10 text-xs">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input id="pBPL" type="checkbox" checked onchange="syncFromForm()" class="accent-emerald-400" />
+              <span>BPL / Antyodaya Ration Card</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input id="pStudent" type="checkbox" checked onchange="syncFromForm()" class="accent-emerald-400" />
+              <span>Currently Studying</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input id="pWidow" type="checkbox" onchange="syncFromForm()" class="accent-emerald-400" />
+              <span>Widow Status</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input id="pTax" type="checkbox" onchange="syncFromForm()" class="accent-rose-400" />
+              <span>Income Tax Payer</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 2: CLAIMABLE SCHEMES EXPLORER (Spacious Bento Grid + Filters) -->
+    <!-- ================================================================= -->
+    <section id="view-schemes" class="view-panel space-y-6">
+
+      <!-- Top Filter Bar -->
+      <div class="bento-card rounded-3xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-black text-white">🎯 Government Money & Subsidy Explorer</h2>
+          <p class="text-xs text-slate-400">Every card shows exact annual cash value, which physical counter/cyber-café to visit, and 1-click printable forms.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <input id="schemeSearch" type="text" oninput="renderSchemesGrid()" placeholder="Search scheme, e.g. solar, scholarship, bus..." class="bg-slate-950 border border-white/10 rounded-xl px-3.5 py-2 text-xs outline-none focus:border-emerald-400 w-56" />
+          <label class="flex items-center gap-2 text-xs bg-slate-950 border border-white/10 px-3 py-2 rounded-xl cursor-pointer">
+            <input id="showAllToggle" type="checkbox" onchange="renderSchemesGrid()" class="accent-amber-400" />
+            <span>Browse All 20 Schemes</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap gap-2" id="categoryPills">
+        <button onclick="setCategoryFilter('ALL')" class="cat-pill bg-emerald-400 text-slate-950 font-bold text-xs px-4 py-2 rounded-full transition">All Matched</button>
+        <button onclick="setCategoryFilter('Women & Family Cash')" class="cat-pill bg-slate-900 text-slate-300 border border-white/10 text-xs px-4 py-2 rounded-full transition">👩 Women & Pensions</button>
+        <button onclick="setCategoryFilter('Student Scholarships')" class="cat-pill bg-slate-900 text-slate-300 border border-white/10 text-xs px-4 py-2 rounded-full transition">🎓 Student Scholarships</button>
+        <button onclick="setCategoryFilter('Farmer Grants')" class="cat-pill bg-slate-900 text-slate-300 border border-white/10 text-xs px-4 py-2 rounded-full transition">🌾 Farmer Grants</button>
+        <button onclick="setCategoryFilter('Youth & Workers')" class="cat-pill bg-slate-900 text-slate-300 border border-white/10 text-xs px-4 py-2 rounded-full transition">🛠️ Youth & Workers</button>
+        <button onclick="setCategoryFilter('Household Freebies')" class="cat-pill bg-slate-900 text-slate-300 border border-white/10 text-xs px-4 py-2 rounded-full transition">⚡ Free Electricity / Ration / Gas</button>
+        <button onclick="setCategoryFilter('Health & Housing')" class="cat-pill bg-slate-900 text-slate-300 border border-white/10 text-xs px-4 py-2 rounded-full transition">🏠 Housing & ₹5L Health</button>
+      </div>
+
+      <!-- Statutory Anti-Double-Dipping Banner -->
+      <div id="conflictSection" class="hidden bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 space-y-1.5">
+        <div class="text-xs font-bold text-amber-300">⚖️ Government Anti-Double-Dipping Rules Automatically Applied:</div>
+        <div id="conflictList" class="text-xs text-amber-100/90 space-y-1"></div>
+      </div>
+
+      <!-- 2-Column Spacious Bento Grid for Schemes -->
+      <div id="schemesContainer" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 3: REJECTION SHIELD & SINGLE-WINDOW DOCUMENT VAULT           -->
+    <!-- ================================================================= -->
+    <section id="view-shield" class="view-panel space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Left: Pre-Submission Rejection Shield -->
+        <div class="lg:col-span-6 bento-card rounded-3xl p-6 space-y-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-amber-400">🛡️ Agent 3 • Pre-Submission Audit</span>
+              <h3 class="text-xl font-black text-white mt-0.5">Bureaucratic Rejection Shield</h3>
+            </div>
+            <span id="readinessBadge" class="text-sm font-black px-3.5 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">100% Ready</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            40% of government cash transfers fail <i>after</i> approval because of these 3 technical traps. Uncheck any box below if you are unsure:
           </p>
 
-          <div class="space-y-2 text-xs bg-white p-3 rounded-lg border border-[#FCA5A5]/40">
-            <label class="flex items-center gap-2 cursor-pointer">
-              <input id="chkNpci" type="checkbox" checked onchange="runHarness('')" class="accent-[#0B3B60] w-4 h-4" />
-              <span class="text-[#1E293B]">Bank account has active <b>NPCI Aadhaar DBT Mapper</b> seeding</span>
+          <div class="space-y-3 text-xs">
+            <label class="flex items-start gap-3 bg-slate-950/80 border border-white/10 p-3.5 rounded-2xl cursor-pointer">
+              <input id="chkNpci" type="checkbox" checked onchange="runHarness('')" class="mt-0.5 accent-emerald-400" />
+              <div>
+                <div class="font-bold text-white">Bank Account has Active NPCI Aadhaar DBT Seeding</div>
+                <div class="text-slate-400 text-[11px] mt-0.5">Normal Aadhaar KYC is not enough—your bank must enable the NPCI DBT mapper.</div>
+              </div>
             </label>
-            <label class="flex items-center gap-2 cursor-pointer">
-              <input id="chkName" type="checkbox" checked onchange="runHarness('')" class="accent-[#0B3B60] w-4 h-4" />
-              <span class="text-[#1E293B]">Exact <b>Name Spelling Match</b> across Aadhaar & Bank Passbook</span>
+            <label class="flex items-start gap-3 bg-slate-950/80 border border-white/10 p-3.5 rounded-2xl cursor-pointer">
+              <input id="chkName" type="checkbox" checked onchange="runHarness('')" class="mt-0.5 accent-emerald-400" />
+              <div>
+                <div class="font-bold text-white">Exact Name Spelling Match Across Aadhaar & Ration/SSLC Card</div>
+                <div class="text-slate-400 text-[11px] mt-0.5">Even a missing initial causes Seva Sindhu / NSP e-KYC auto-rejection.</div>
+              </div>
             </label>
-            <label class="flex items-center gap-2 cursor-pointer">
-              <input id="chkRd" type="checkbox" checked onchange="runHarness('')" class="accent-[#0B3B60] w-4 h-4" />
-              <span class="text-[#1E293B]">Valid <b>Nadakacheri RD Number</b> on Income Certificate</span>
+            <label class="flex items-start gap-3 bg-slate-950/80 border border-white/10 p-3.5 rounded-2xl cursor-pointer">
+              <input id="chkRd" type="checkbox" checked onchange="runHarness('')" class="mt-0.5 accent-emerald-400" />
+              <div>
+                <div class="font-bold text-white">Unexpired Nadakacheri RD Number on Income & Caste Certificate</div>
+                <div class="text-slate-400 text-[11px] mt-0.5">Income certificates must have a valid digital RD barcode number.</div>
+              </div>
             </label>
           </div>
 
-          <div id="rejectionRisksBox" class="space-y-2"></div>
+          <div id="rejectionRisksBox" class="space-y-2.5"></div>
         </div>
 
-        <!-- CONFLICT FILTER RESOLUTION BLOCK -->
-        <div id="conflictSection" class="hidden bg-white border border-[#CBD5E1] p-4 rounded-xl institutional-shadow space-y-2">
-          <div class="flex items-center gap-2 text-[#0B3B60] font-bold text-xs uppercase tracking-wide">
-            <span>⚖️</span>
-            <span>Statutory Anti-Double-Dipping Safeguards Applied:</span>
+        <!-- Right: Single-Window Consolidated Document Folder -->
+        <div class="lg:col-span-6 bento-card rounded-3xl p-6 space-y-5">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">📋 Deduplicated Across All Matched Schemes</span>
+            <h3 class="text-xl font-black text-white mt-0.5">Single-Window Document Folder</h3>
+            <p class="text-xs text-slate-400 mt-1">Carry one folder with these documents (Originals + 2 Photocopies) to apply for all your matched schemes in a single trip:</p>
           </div>
-          <div id="conflictList" class="space-y-1.5 text-xs text-[#334155] font-mono"></div>
-        </div>
 
-        <!-- 5-AGENT LIVE EXECUTION TRACE -->
-        <div class="bg-white border border-[#E2E8F0] p-4 rounded-xl institutional-shadow space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-wider text-[#0B3B60] font-mono flex items-center gap-1.5">
-              <span>🤖</span> Autonomous 5-Agent Execution Pipeline Trace
-            </span>
-            <span class="text-[10px] text-[#64748B] font-mono">Verified Deterministic Tools</span>
+          <div id="consolidatedDocs" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs"></div>
+
+          <div class="bg-indigo-950/40 border border-indigo-500/30 rounded-2xl p-4 text-xs space-y-2">
+            <div class="font-bold text-indigo-300">🏪 Where to Go in One Trip:</div>
+            <p class="text-slate-300">Take this folder + your printed <b>Hakku Cyber-Café Operator Slip</b> to your nearest <b>GramaOne / KarnatakaOne / CSC Centre</b>. Never pay middlemen—official government service charges are ₹0 to ₹30 max.</p>
           </div>
-          <div id="agentTraceBox" class="space-y-2 text-xs"></div>
         </div>
 
       </div>
+    </section>
 
-      <!-- RIGHT COLUMN: CITIZEN INPUT & VERIFIED SCHEME CARDS (5 COLS) -->
-      <div class="lg:col-span-5 space-y-4">
-
-        <!-- CITIZEN CONVERSATIONAL INTAKE BOX -->
-        <div class="bg-white border border-[#E2E8F0] p-4 rounded-xl institutional-shadow space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-[#0B3B60] uppercase tracking-wide">Speak or Type Your Situation</span>
-            <span class="text-[10px] text-[#64748B] font-mono">Natural Language Intake</span>
+    <!-- ================================================================= -->
+    <!-- VIEW 4: CYBER-CAFÉ OPERATOR SLIP, NPCI FORM & SAKALA RTI STUDIO    -->
+    <!-- ================================================================= -->
+    <section id="view-kit" class="view-panel space-y-6">
+      <div class="bento-card rounded-3xl p-6 space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-400">🖨️ Agent 5 • Ready-to-Print Citizen Action Packet</span>
+            <h2 id="kitTitle" class="text-xl font-black text-white mt-0.5">3-in-1 Cyber-Café Operator Slip & Application</h2>
           </div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="loadDocPreview(selectedSchemeIdx, 'application')" class="bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl">
+              🏪 1. Cyber-Café & App Packet
+            </button>
+            <button onclick="loadDocPreview(selectedSchemeIdx, 'npci')" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl">
+              🏦 2. Bank NPCI DBT Form
+            </button>
+            <button onclick="loadDocPreview(selectedSchemeIdx, 'rti')" class="bg-rose-900 hover:bg-rose-800 text-rose-100 border border-rose-600 font-bold text-xs px-4 py-2.5 rounded-xl">
+              ⚖️ 3. Sakala Delay RTI Notice
+            </button>
+          </div>
+        </div>
 
+        <!-- Scheme Selector for Document Generator -->
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2 text-xs">
+            <span class="text-slate-400">Generating packet for scheme:</span>
+            <select id="kitSchemeSelect" onchange="selectedSchemeIdx = Number(this.value); loadDocPreview(selectedSchemeIdx, currentDocMode)" class="bg-slate-950 border border-white/15 rounded-xl px-3 py-2 text-white font-semibold"></select>
+          </div>
           <div class="flex gap-2">
-            <button onclick="startVoiceInput()" id="voiceBtn" class="bg-[#E2F0FD] hover:bg-[#DBEAFE] border border-[#BFDBFE] px-3 py-2 rounded-lg text-sm shrink-0" title="Tap to Speak in Hindi, Kannada or English">
-              🎙️
-            </button>
-            <input id="chatInput" type="text" placeholder="e.g. 'मेरी बेटी की स्कॉलरशिप और दादाजी की पेंशन चेक करो...'" class="flex-1 bg-[#F8FAFC] border border-[#CBD5E1] rounded-lg px-3 py-2 text-xs text-[#0F172A] outline-none focus:border-[#0B3B60]" />
-            <button onclick="submitChatIntake()" class="bg-[#0B3B60] hover:bg-[#07263E] text-white font-bold text-xs px-3.5 py-2 rounded-lg transition">
-              Verify
-            </button>
-          </div>
-
-          <!-- Hakku Officer Summary Output -->
-          <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-3 rounded-lg text-xs text-[#334155] leading-relaxed">
-            <div class="font-bold text-[#0B3B60] text-[11px] mb-1">🏛️ Officer Briefing:</div>
-            <div id="aiSummaryBox">Evaluating citizen welfare parameters...</div>
+            <button onclick="copyDocText()" class="bg-slate-800 hover:bg-slate-700 text-xs font-semibold px-4 py-2 rounded-xl">📋 Copy Text</button>
+            <button onclick="printDocText()" class="bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black px-5 py-2 rounded-xl">🖨️ Print / Save PDF</button>
           </div>
         </div>
 
-        <!-- CONSOLIDATED SINGLE-WINDOW DOCUMENT CHECKLIST -->
-        <div class="bg-white border border-[#E2E8F0] p-4 rounded-xl institutional-shadow space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-[#0B3B60] uppercase tracking-wide">Single-Window Document Kit</span>
-            <span class="text-[10px] bg-[#E2F0FD] text-[#0B3B60] px-2 py-0.5 rounded font-mono font-bold">Carry Once</span>
-          </div>
-          <p class="text-[11px] text-[#64748B]">Deduplicated list of papers required for all matched schemes at your GramaOne / CSC centre:</p>
-          <div id="consolidatedDocs" class="flex flex-wrap gap-1.5 pt-1 text-xs"></div>
-        </div>
-
-        <!-- SCHEME CARDS LIST -->
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <h3 class="text-xs font-bold text-[#0B3B60] uppercase tracking-wide">Verified Statutory Schemes</h3>
-            <span class="text-[10px] text-[#64748B] font-mono">Sakala SLA Protected</span>
-          </div>
-          <div id="schemesContainer" class="space-y-3"></div>
-        </div>
-
+        <pre id="kitContent" class="bg-slate-950 border border-white/10 rounded-2xl p-5 text-xs text-slate-200 font-mono whitespace-pre-wrap leading-relaxed max-h-[480px] overflow-y-auto"></pre>
       </div>
-
-    </div>
+    </section>
 
   </main>
 
-  <!-- ========================================================= -->
-  <!-- 4. ACCESSIBILITY CONTROLS & PRINT KIT TRIGGER FOOTER -->
-  <!-- ========================================================= -->
-  <footer class="bg-white border-t border-[#E2E8F0] p-4 sticky bottom-0 z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-      
-      <!-- Safe Infrastructure Disclaimer -->
-      <div class="flex items-center space-x-2 text-[#64748B] text-[11px]">
-        <span>🔒</span>
-        <span><b>DPDP Act 2023 Secure:</b> End-to-end encrypted. Hakku does not retain Aadhaar numbers or bank credentials.</span>
-      </div>
-
-      <!-- Quick Action Buttons -->
-      <div class="flex items-center gap-2 w-full sm:w-auto">
-        <button onclick="openDocKitModal(null, 'application')" class="flex-1 sm:flex-initial bg-[#0B3B60] hover:bg-[#07263E] text-white py-2.5 px-4 rounded-lg text-xs font-bold shadow transition flex items-center justify-center gap-1.5">
-          <span>📥</span>
-          <span>Download Printable Cyber-Cafe Kit (PDF)</span>
-        </button>
-        <button onclick="openDocKitModal(null, 'npci')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0B3B60] border border-[#CBD5E1] py-2.5 px-3 rounded-lg text-xs font-bold transition">
-          🏦 NPCI Seeding Form
-        </button>
-      </div>
-
-    </div>
-  </footer>
-
-  <!-- ========================================================= -->
-  <!-- 5. PRINTABLE DOCUMENT / RTI / NPCI MODAL -->
-  <!-- ========================================================= -->
-  <div id="docModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-    <div class="bg-white border border-[#CBD5E1] rounded-xl max-w-3xl w-full p-5 sm:p-6 flex flex-col max-h-[90vh] shadow-2xl">
-      <div class="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
+  <!-- SLIDE-OVER 5-AGENT TELEMETRY DRAWER (For Judges!) -->
+  <div id="agentDrawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-slate-950/95 backdrop-blur-2xl border-l border-white/15 z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between">
+    <div class="space-y-4 overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
         <div>
-          <span class="text-[10px] font-mono font-bold uppercase text-[#0B3B60]">Official DPI Statutory Document Output</span>
-          <h3 id="modalTitle" class="text-base font-bold text-[#0F172A]">Welfare Protection Kit</h3>
+          <span class="text-xs font-bold uppercase text-indigo-400">BharatCode API Harness</span>
+          <h3 class="text-base font-black text-white">🤖 Autonomous 5-Agent Execution Trace</h3>
         </div>
-        <button onclick="closeDocModal()" class="text-[#64748B] hover:text-[#0F172A] text-lg font-bold px-2 py-1">✕</button>
+        <button onclick="toggleAgentDrawer()" class="text-slate-400 hover:text-white text-sm px-2 py-1">✕</button>
       </div>
-
-      <pre id="modalContent" class="my-4 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg p-4 text-xs text-[#0F172A] font-mono whitespace-pre-wrap overflow-y-auto flex-1 leading-relaxed selection:bg-[#0B3B60] selection:text-white"></pre>
-
-      <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-[#E2E8F0]">
-        <span class="text-xs text-[#166534] font-medium flex items-center gap-1">
-          <span>✓</span> <span>Legal Hard Copy Ready: Carry to CSC / GramaOne centre or Bank branch.</span>
-        </span>
-        <div class="flex gap-2">
-          <button onclick="copyDocText()" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-4 py-2 rounded-lg transition">
-            <span id="copyBtnText">📋 Copy Text</span>
-          </button>
-          <button onclick="printDocText()" class="bg-[#0B3B60] hover:bg-[#07263E] text-white text-xs font-bold px-4 py-2 rounded-lg transition shadow">
-            🖨️ Print / Save as PDF
-          </button>
-        </div>
-      </div>
+      <div id="agentTraceBox" class="space-y-3 text-xs"></div>
+    </div>
+    <div class="pt-4 border-t border-white/10 text-[11px] text-slate-400">
+      🔒 <b>Zero Hallucination Architecture:</b> Eligibility is computed deterministically via <code>matcher.js</code>; BharatCode LLM handles intake, multilingual explanation & legal drafting.
     </div>
   </div>
 
@@ -404,90 +470,84 @@
     let currentProfile = {};
     let currentHousehold = [];
     let latestMatchedSchemes = [];
-    let isLargeFont = false;
+    let allCatalogSchemes = [];
+    let activeCategory = 'ALL';
+    let selectedSchemeIdx = 0;
+    let currentDocMode = 'application';
 
     const PERSONAS = {
-      aarav: {
-        name: 'Aarav Kumar',
-        age: 19,
-        gender: 'male',
-        occupation: 'student',
-        income: 180000,
-        category: 'OBC',
-        isBPL: true,
-        isStudent: true,
-        isWidow: false,
-        isTaxPayer: false
-      },
-      lakshmi: {
-        name: 'Lakshmi Devi',
-        age: 67,
-        gender: 'female',
-        occupation: 'senior',
-        income: 45000,
-        category: 'SC',
-        isBPL: true,
-        isStudent: false,
-        isWidow: true,
-        isTaxPayer: false
-      },
-      ramesh: {
-        name: 'Ramesh Gowda',
-        age: 41,
-        gender: 'male',
-        occupation: 'farmer',
-        income: 110000,
-        category: 'OBC',
-        isBPL: true,
-        isStudent: false,
-        isWidow: false,
-        isTaxPayer: false
-      }
+      aarav: { name: 'Aarav Kumar', age: 19, gender: 'male', occupation: 'student', income: 140000, category: 'OBC', isBPL: true, isStudent: true, isWidow: false, isTaxPayer: false },
+      ananya: { name: 'Ananya Rao', age: 20, gender: 'female', occupation: 'student', income: 180000, category: 'General', isBPL: true, isStudent: true, isWidow: false, isTaxPayer: false },
+      lakshmi: { name: 'Lakshmi Devi', age: 67, gender: 'female', occupation: 'senior', income: 45000, category: 'SC', isBPL: true, isStudent: false, isWidow: true, isTaxPayer: false },
+      kiran: { name: 'Kiran Shetty', age: 24, gender: 'male', occupation: 'unemployed', income: 110000, category: 'OBC', isBPL: true, isStudent: false, isWidow: false, isTaxPayer: false },
+      ramesh: { name: 'Ramesh Gowda', age: 41, gender: 'male', occupation: 'farmer', income: 110000, category: 'OBC', isBPL: true, isStudent: false, isWidow: false, isTaxPayer: false }
     };
 
-    function toggleFontScale() {
-      isLargeFont = !isLargeFont;
-      const body = document.getElementById('appBody');
-      const btn = document.getElementById('fontScaleBtn');
-      if (isLargeFont) {
-        body.classList.add('text-scale-lg');
-        btn.classList.add('bg-[#144D7A]', 'text-white');
-      } else {
-        body.classList.remove('text-scale-lg');
-        btn.classList.remove('bg-[#144D7A]', 'text-white');
-      }
+    function switchTab(tabId) {
+      document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('view-' + tabId).classList.add('active');
+
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.className = 'tab-btn text-slate-300 hover:text-white font-semibold text-xs px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5';
+      });
+      const activeBtn = document.getElementById('tab-' + tabId);
+      activeBtn.className = 'tab-btn bg-emerald-400 text-slate-950 font-bold text-xs px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 shadow';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function highlightButton(activeId) {
-      ['btnFamily', 'btnAarav', 'btnLakshmi', 'btnRamesh'].forEach(id => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        if (id === activeId) {
-          el.className = 'bg-[#0B3B60] text-white text-xs font-bold px-4 py-2 rounded-lg shadow-sm transition';
-        } else {
-          el.className = 'bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-3 py-2 rounded-lg transition';
-        }
-      });
+    function toggleAgentDrawer() {
+      document.getElementById('agentDrawer').classList.toggle('translate-x-full');
+    }
+
+    function syncFormUI() {
+      document.getElementById('pName').value = currentProfile.name || '';
+      document.getElementById('pAge').value = currentProfile.age || 25;
+      document.getElementById('pGender').value = currentProfile.gender || 'male';
+      document.getElementById('pOccupation').value = currentProfile.occupation || 'student';
+      document.getElementById('pIncome').value = currentProfile.income || 120000;
+      document.getElementById('pCategory').value = currentProfile.category || 'OBC';
+      document.getElementById('pBPL').checked = Boolean(currentProfile.isBPL);
+      document.getElementById('pStudent').checked = Boolean(currentProfile.isStudent);
+      document.getElementById('pWidow').checked = Boolean(currentProfile.isWidow);
+      document.getElementById('pTax').checked = Boolean(currentProfile.isTaxPayer);
+    }
+
+    function syncFromForm() {
+      currentHousehold = [];
+      currentProfile = {
+        name: document.getElementById('pName').value,
+        age: Number(document.getElementById('pAge').value),
+        gender: document.getElementById('pGender').value,
+        occupation: document.getElementById('pOccupation').value,
+        income: Number(document.getElementById('pIncome').value),
+        category: document.getElementById('pCategory').value,
+        isBPL: document.getElementById('pBPL').checked,
+        isStudent: document.getElementById('pStudent').checked,
+        isWidow: document.getElementById('pWidow').checked,
+        isTaxPayer: document.getElementById('pTax').checked
+      };
+      document.getElementById('vaultModeBadge').innerText = `Individual Citizen Entitlement Vault (${currentProfile.name})`;
+      runHarness('');
     }
 
     function loadPersona(key) {
       currentProfile = { ...PERSONAS[key] };
       currentHousehold = [];
-      highlightButton(key === 'aarav' ? 'btnAarav' : key === 'lakshmi' ? 'btnLakshmi' : 'btnRamesh');
-      document.getElementById('meterModeLabel').innerText = `Legal Claims Found for ${currentProfile.name}`;
+      syncFormUI();
+      document.getElementById('vaultModeBadge').innerText = `Individual Citizen Entitlement Vault (${currentProfile.name})`;
       runHarness('');
     }
 
     function loadWholeFamilyDemo() {
-      currentProfile = { ...PERSONAS.ramesh, name: 'Gowda Family (4-Member Household)' };
+      currentProfile = { ...PERSONAS.ramesh, name: 'Gowda Family Ration Card (4 Members)' };
       currentHousehold = [
         { ...PERSONAS.ramesh, name: 'Ramesh (41, Father • Farmer)' },
         { name: 'Savitha (36, Mother • Homemaker)', age: 36, gender: 'female', occupation: 'homemaker', income: 110000, category: 'OBC', isBPL: true },
-        { ...PERSONAS.aarav, name: 'Aarav (19, Son • B.Com Student)' },
-        { ...PERSONAS.lakshmi, name: 'Lakshmi (67, Grandmother • Senior Widow)' }
+        { ...PERSONAS.aarav, name: 'Aarav (19, Son • College Student)' },
+        { ...PERSONAS.lakshmi, name: 'Lakshmi (67, Grandmother • Widow)' }
       ];
-      highlightButton('btnFamily');
-      document.getElementById('meterModeLabel').innerText = 'Total Legal Claims Found (Full Ration Card Unit)';
+      syncFormUI();
+      document.getElementById('vaultModeBadge').innerText = '👨‍👩‍👧‍👦 Combined 4-Member Family Entitlement Vault';
       runHarness('');
     }
 
@@ -500,7 +560,7 @@
     }
 
     function animateCounter(el, targetValue) {
-      const duration = 400;
+      const duration = 550;
       const startTime = performance.now();
       function tick(now) {
         const progress = Math.min((now - startTime) / duration, 1);
@@ -508,6 +568,17 @@
         if (progress < 1) requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
+    }
+
+    function setCategoryFilter(cat) {
+      activeCategory = cat;
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        const isMatch = (cat === 'ALL' && btn.innerText.includes('All')) || btn.innerText.includes(cat.split(' ')[0]);
+        btn.className = isMatch
+          ? 'cat-pill bg-emerald-400 text-slate-950 font-bold text-xs px-4 py-2 rounded-full transition'
+          : 'cat-pill bg-slate-900 text-slate-300 border border-white/10 text-xs px-4 py-2 rounded-full transition hover:border-white/30';
+      });
+      renderSchemesGrid();
     }
 
     async function runHarness(userMessage) {
@@ -518,210 +589,197 @@
         rdValid: document.getElementById('chkRd').checked
       };
 
-      try {
-        const res = await fetch('/api/harness/discover', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            userMessage,
-            currentProfile,
-            householdMembers: currentHousehold,
-            readinessChecks,
-            language
-          })
-        });
-        const data = await res.json();
+      const res = await fetch('/api/harness/discover', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userMessage, currentProfile, householdMembers: currentHousehold, readinessChecks, language })
+      });
+      const data = await res.json();
 
-        currentProfile = data.profile;
-        latestMatchedSchemes = data.matchedSchemes || [];
+      currentProfile = data.profile;
+      latestMatchedSchemes = data.matchedSchemes || [];
+      allCatalogSchemes = data.allCatalogSchemes || latestMatchedSchemes;
+      syncFormUI();
 
-        animateCounter(document.getElementById('directBenefitMeter'), data.totalDirectAnnualINR || 0);
-        document.getElementById('healthCoverMeter').innerText = '₹' + Number(data.totalHealthCoverINR || 0).toLocaleString('en-IN') + ' / year';
-        document.getElementById('schemeCountBadge').innerText = `${data.schemeCount} Verified Schemes`;
-        document.getElementById('aiSummaryBox').innerText = data.aiSummary;
+      // Update Money Vault Counters
+      animateCounter(document.getElementById('directBenefitMeter'), data.totalDirectAnnualINR || 0);
+      animateCounter(document.getElementById('fiveYearMeter'), data.fiveYearWealthINR || (data.totalDirectAnnualINR * 5) || 0);
+      document.getElementById('healthCoverMeter').innerText = '₹' + Number(data.totalHealthCoverINR || 500000).toLocaleString('en-IN');
+      document.getElementById('heroSchemeBadge').innerText = `${data.schemeCount} Verified Schemes`;
+      document.getElementById('navSchemeCount').innerText = data.schemeCount;
+      document.getElementById('aiSummaryBox').innerText = data.aiSummary;
 
-        // Render Pre-Submission Rejection Shield
-        const score = data.readinessAudit.readinessScore;
-        const rBadge = document.getElementById('readinessBadge');
-        rBadge.innerText = `${score}/100 Safe`;
-        rBadge.className = score === 100
-          ? 'text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#166534] text-white'
-          : 'text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#991B1B] text-white animate-pulse';
+      // Update Rejection Shield
+      const score = data.readinessAudit.readinessScore;
+      const rBadge = document.getElementById('readinessBadge');
+      rBadge.innerText = `${score}% Ready`;
+      rBadge.className = score === 100
+        ? 'text-sm font-black px-3.5 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+        : 'text-sm font-black px-3.5 py-1.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30';
 
-        document.getElementById('rejectionRisksBox').innerHTML = (data.readinessAudit.rejectionRisks || []).map(r => `
-          <div class="bg-[#FEF2F2] border border-[#FCA5A5] rounded-lg p-2.5 text-xs space-y-1">
-            <div class="font-bold text-[#7F1D1D] flex items-center justify-between">
-              <span>⚠️ ${r.severity}: ${r.title}</span>
-              <button onclick="openDocKitModal(null, 'npci')" class="text-[10px] bg-[#991B1B] text-white px-2 py-0.5 rounded font-mono font-bold">
-                Get Bank Form →
-              </button>
-            </div>
-            <div class="text-[#991B1B] text-[11px]">${r.fix}</div>
+      document.getElementById('rejectionRisksBox').innerHTML = (data.readinessAudit.rejectionRisks || []).map(r => `
+        <div class="bg-rose-950/60 border border-rose-700/60 rounded-2xl p-3.5 text-xs">
+          <div class="font-bold text-rose-300">⚠️ ${r.severity}: ${r.title}</div>
+          <div class="text-slate-300 mt-1">${r.fix}</div>
+        </div>
+      `).join('');
+
+      // Update Consolidated Docs
+      document.getElementById('consolidatedDocs').innerHTML = (data.consolidatedDocuments || []).map(d => `
+        <label class="flex items-center gap-2.5 bg-slate-950 border border-white/10 p-3 rounded-xl cursor-pointer">
+          <input type="checkbox" checked class="accent-emerald-400" />
+          <span class="text-slate-200 font-medium">${d}</span>
+        </label>
+      `).join('');
+
+      // Update Conflicts
+      const conflictSec = document.getElementById('conflictSection');
+      if (data.statutoryConflictsResolved && data.statutoryConflictsResolved.length > 0) {
+        conflictSec.classList.remove('hidden');
+        document.getElementById('conflictList').innerHTML = data.statutoryConflictsResolved.map(c =>
+          `<div>• Kept <b>${c.kept}</b> over <s>${c.dropped}</s> — ${c.rule}</div>`
+        ).join('');
+      } else {
+        conflictSec.classList.add('hidden');
+      }
+
+      // Update 5-Agent Drawer
+      document.getElementById('agentTraceBox').innerHTML = (data.agentTrace || []).map(t => `
+        <div class="bg-slate-900 border border-white/10 rounded-2xl p-3.5 space-y-1">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-indigo-300">${t.agent}</span>
+            <span class="text-[10px] font-mono bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded">${t.ms}ms</span>
           </div>
-        `).join('');
+          <p class="text-slate-400 text-[11px]">${t.detail}</p>
+        </div>
+      `).join('');
 
-        // Render 5-Agent Trace
-        document.getElementById('agentTraceBox').innerHTML = (data.agentTrace || []).map(t => `
-          <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg p-2.5 flex items-start justify-between gap-2">
-            <div>
-              <div class="font-bold text-[#0B3B60] text-xs font-mono">${t.agent}</div>
-              <div class="text-[#475569] text-[11px] mt-0.5">${t.detail}</div>
-            </div>
-            <span class="text-[10px] font-mono bg-[#E2F0FD] text-[#0B3B60] border border-[#BFDBFE] px-2 py-0.5 rounded font-bold">${t.ms}ms</span>
-          </div>
-        `).join('');
+      // Populate Kit Dropdown
+      const selectEl = document.getElementById('kitSchemeSelect');
+      selectEl.innerHTML = latestMatchedSchemes.map((s, i) => `<option value="${i}">${s.name} (+₹${s.annualValueINR.toLocaleString('en-IN')}/yr)</option>`).join('');
+      selectedSchemeIdx = 0;
 
-        // Render Statutory Conflicts Resolved
-        const conflictSec = document.getElementById('conflictSection');
-        if (data.statutoryConflictsResolved && data.statutoryConflictsResolved.length > 0) {
-          conflictSec.classList.remove('hidden');
-          document.getElementById('conflictList').innerHTML = data.statutoryConflictsResolved.map(c => `
-            <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded p-2 text-xs">
-              <span class="text-[#166534] font-bold">✓ Selected: ${c.kept}</span><br>
-              <span class="text-[#64748B] line-through">Filtered out: ${c.dropped}</span><br>
-              <span class="text-[11px] text-[#475569]">${c.rule}</span>
-            </div>
-          `).join('');
-        } else {
-          conflictSec.classList.add('hidden');
-        }
+      renderSchemesGrid();
+      loadDocPreview(0, currentDocMode);
+    }
 
-        // Render Consolidated Documents
-        document.getElementById('consolidatedDocs').innerHTML = (data.consolidatedDocuments || [])
-          .map(d => `<span class="bg-[#F1F5F9] border border-[#CBD5E1] text-[#0F172A] px-2.5 py-1 rounded text-[11px] font-medium">✓ ${d}</span>`)
-          .join('');
+    function renderSchemesGrid() {
+      const search = (document.getElementById('schemeSearch').value || '').toLowerCase();
+      const showAll = document.getElementById('showAllToggle').checked;
+      const sourceList = showAll ? allCatalogSchemes : latestMatchedSchemes;
+      const matchedIds = new Set(latestMatchedSchemes.map(m => m.id));
 
-        // Render Scheme Cards
-        document.getElementById('schemesContainer').innerHTML = latestMatchedSchemes.map((s, idx) => `
-          <div class="bg-white border border-[#E2E8F0] p-4 rounded-xl institutional-shadow space-y-3">
-            <div class="flex items-start justify-between gap-2">
-              <div>
-                <div class="flex flex-wrap items-center gap-1.5">
-                  <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-[#E2F0FD] text-[#0B3B60] border border-[#BFDBFE]">${s.level}</span>
-                  <span class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-[#FEF3C7] text-[#92400E] border border-[#FDE68A]">${s.beneficiaryName}</span>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F1F5F9] text-[#475569] border border-[#E2E8F0]">SLA: ${s.sakalaSlaDays}d</span>
-                </div>
-                <h4 class="font-bold text-sm text-[#0F172A] mt-1.5 leading-snug">${s.name}</h4>
-              </div>
-              <span class="text-xs font-mono font-bold text-[#166534] bg-[#F0FDF4] border border-[#BBF7D0] px-2.5 py-1 rounded-full whitespace-nowrap">
-                + ₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')}/yr
+      const filtered = sourceList.filter(s => {
+        if (activeCategory !== 'ALL' && s.categoryTag !== activeCategory) return false;
+        if (search && !`${s.name} ${s.benefitSummary} ${s.categoryTag} ${s.physicalCounter}`.toLowerCase().includes(search)) return false;
+        return true;
+      });
+
+      const container = document.getElementById('schemesContainer');
+      container.innerHTML = filtered.map((s, idx) => {
+        const isEligible = matchedIds.has(s.id);
+        const matchIdx = latestMatchedSchemes.findIndex(m => m.id === s.id);
+        return `
+        <div style="animation-delay: ${idx * 45}ms" class="stagger-card bento-card rounded-3xl p-6 flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[11px] font-bold uppercase px-2.5 py-1 rounded-full bg-white/5 text-amber-300 border border-white/10">
+                ${s.categoryTag || s.level}
+              </span>
+              <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 font-black text-xs px-3 py-1 rounded-full">
+                + ₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')} / yr
               </span>
             </div>
 
-            <p class="text-xs text-[#475569] leading-relaxed">${s.benefitSummary}</p>
-
-            <div class="text-[11px] bg-[#F8FAFC] border border-[#E2E8F0] p-2.5 rounded-lg space-y-1 text-[#334155]">
-              <div><b class="text-[#0B3B60]">Statutory Rule:</b> ${s.statutoryRule}</div>
-              <div><b class="text-[#991B1B]">Rejection Trap:</b> ${s.commonRejectionTrap}</div>
+            <div>
+              <h3 class="font-extrabold text-base text-white leading-snug">${s.name}</h3>
+              <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">${s.benefitSummary}</p>
             </div>
 
-            <div class="flex items-center justify-between gap-2 pt-1 border-t border-[#E2E8F0] text-xs">
-              <a href="${s.source}" target="_blank" rel="noopener" class="text-[#0B3B60] hover:underline font-bold text-[11px] font-mono">
-                Portal ↗
-              </a>
-              <div class="flex gap-1.5">
-                <button onclick="openDocKitModal(${idx}, 'application')" class="bg-[#0B3B60] hover:bg-[#07263E] text-white text-[11px] font-bold px-2.5 py-1.5 rounded transition">
-                  App Kit
-                </button>
-                <button onclick="openDocKitModal(${idx}, 'npci')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0B3B60] border border-[#CBD5E1] text-[11px] font-bold px-2 py-1.5 rounded transition">
-                  NPCI
-                </button>
-                <button onclick="openDocKitModal(${idx}, 'rti')" class="bg-[#FEF2F2] hover:bg-[#FEE2E2] text-[#991B1B] border border-[#FCA5A5] text-[11px] font-bold px-2 py-1.5 rounded transition">
-                  RTI
-                </button>
-              </div>
+            <div class="bg-slate-950/90 border border-white/10 rounded-2xl p-3.5 text-xs space-y-1.5">
+              <div class="text-emerald-300 font-semibold">🏪 Visit Counter: <span class="text-slate-200 font-normal">${s.physicalCounter || s.applyWhere}</span></div>
+              <div class="text-amber-300 font-semibold">⏱️ Sakala Legal SLA: <span class="text-slate-200 font-normal">${s.sakalaSlaDays} Working Days</span></div>
+              <div class="text-rose-300 font-semibold">🛡️ Avoid Trap: <span class="text-slate-300 font-normal">${s.commonRejectionTrap}</span></div>
             </div>
           </div>
-        `).join('');
-      } catch (err) {
-        console.error('Harness error:', err);
-      }
+
+          <div class="pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-2">
+            <a href="${s.source}" target="_blank" class="text-xs text-slate-400 hover:text-amber-300 font-semibold">
+              🔗 Official Portal ↗
+            </a>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="openSchemeKit(${matchIdx >= 0 ? matchIdx : 0}, 'application')" class="bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-xs px-3 py-1.5 rounded-xl transition">
+                🏪 Cyber-Café Slip
+              </button>
+              <button onclick="openSchemeKit(${matchIdx >= 0 ? matchIdx : 0}, 'rti')" class="bg-rose-950 hover:bg-rose-900 text-rose-200 border border-rose-700/60 font-semibold text-xs px-3 py-1.5 rounded-xl transition">
+                ⚖️ File RTI
+              </button>
+            </div>
+          </div>
+        </div>
+      `}).join('');
     }
 
-    // High Accessibility: Text-to-Speech Audio Read-Aloud
-    function speakSummary() {
-      if (!('speechSynthesis' in window)) return alert('Text-to-speech audio synthesis is not supported on this device.');
-      const ttsBtnText = document.getElementById('ttsBtnText');
-      const ttsIcon = document.getElementById('ttsIcon');
-      if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.cancel();
-        ttsBtnText.innerText = 'Listen';
-        ttsIcon.innerText = '🔊';
-        return;
-      }
-      const text = document.getElementById('aiSummaryBox').innerText;
-      const utter = new SpeechSynthesisUtterance(text);
-      const lang = document.getElementById('languageSelect').value;
-      utter.lang = lang.includes('Kannada') ? 'kn-IN' : lang.includes('Hindi') ? 'hi-IN' : 'en-IN';
-      utter.onstart = () => { ttsBtnText.innerText = 'Stop'; ttsIcon.innerText = '⏹️'; };
-      utter.onend = () => { ttsBtnText.innerText = 'Listen'; ttsIcon.innerText = '🔊'; };
-      utter.onerror = () => { ttsBtnText.innerText = 'Listen'; ttsIcon.innerText = '🔊'; };
-      window.speechSynthesis.speak(utter);
+    function openSchemeKit(idx, mode) {
+      selectedSchemeIdx = idx;
+      document.getElementById('kitSchemeSelect').value = String(idx);
+      switchTab('kit');
+      loadDocPreview(idx, mode);
     }
 
-    async function openDocKitModal(schemeIndex, mode) {
-      const modal = document.getElementById('docModal');
-      const content = document.getElementById('modalContent');
-      const title = document.getElementById('modalTitle');
-      const scheme = schemeIndex !== null ? latestMatchedSchemes[schemeIndex] : latestMatchedSchemes[0];
+    async function loadDocPreview(schemeIndex, mode) {
+      currentDocMode = mode;
+      const scheme = latestMatchedSchemes[schemeIndex || 0] || allCatalogSchemes[0];
+      document.getElementById('kitContent').innerText = 'Generating official document via Agent 5...';
 
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      content.innerText = 'Generating official DPI document via Agent 5...';
-
-      try {
-        const res = await fetch('/api/harness/dockit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ profile: currentProfile, scheme, mode })
-        });
-        const data = await res.json();
-        title.innerText = data.documentTitle;
-        content.innerText = data.generatedText;
-      } catch (e) {
-        content.innerText = 'Error generating document. Please try again.';
-      }
-    }
-
-    function closeDocModal() {
-      document.getElementById('docModal').classList.add('hidden');
-      document.getElementById('docModal').classList.remove('flex');
+      const res = await fetch('/api/harness/dockit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ profile: currentProfile, scheme, mode })
+      });
+      const data = await res.json();
+      document.getElementById('kitTitle').innerText = data.documentTitle;
+      document.getElementById('kitContent').innerText = data.generatedText;
     }
 
     function copyDocText() {
-      navigator.clipboard.writeText(document.getElementById('modalContent').innerText);
-      const btnText = document.getElementById('copyBtnText');
-      btnText.innerText = '✓ Copied!';
-      setTimeout(() => { btnText.innerText = '📋 Copy Text'; }, 2000);
+      navigator.clipboard.writeText(document.getElementById('kitContent').innerText);
+      alert('Copied to clipboard!');
     }
 
     function printDocText() {
-      const text = document.getElementById('modalContent').innerText;
+      const text = document.getElementById('kitContent').innerText;
       const win = window.open('', '_blank');
-      win.document.write(`<pre style="font-family: 'JetBrains Mono', monospace; font-size: 12px; white-space: pre-wrap; padding: 28px; line-height: 1.6;">${text}</pre>`);
+      win.document.write(`<pre style="font-family: monospace; font-size: 12px; white-space: pre-wrap; padding: 28px;">${text}</pre>`);
       win.document.close();
       win.print();
     }
 
+    function speakSummary() {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(document.getElementById('aiSummaryBox').innerText);
+      const lang = document.getElementById('languageSelect').value;
+      utter.lang = lang.includes('Kannada') ? 'kn-IN' : lang.includes('Hindi') ? 'hi-IN' : 'en-IN';
+      window.speechSynthesis.speak(utter);
+    }
+
     function startVoiceInput() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) return alert('Speech recognition requires Chrome or Edge browser.');
+      if (!SpeechRecognition) return alert('Please use Chrome or Edge for Voice Input.');
       const rec = new SpeechRecognition();
-      const lang = document.getElementById('languageSelect').value;
-      rec.lang = lang.includes('Kannada') ? 'kn-IN' : lang.includes('Hindi') ? 'hi-IN' : 'en-IN';
+      rec.lang = 'en-IN';
       const btn = document.getElementById('voiceBtn');
-      btn.innerText = '🔴';
+      btn.innerText = '🔴 Listening... Speak now';
       rec.onresult = (e) => {
         document.getElementById('chatInput').value = e.results[0][0].transcript;
-        btn.innerText = '🎙️';
+        btn.innerText = '🎙️ Tap to Speak (English / ಕನ್ನಡ / हिंदी)';
         submitChatIntake();
       };
-      rec.onerror = () => { btn.innerText = '🎙️'; };
-      rec.onend = () => { btn.innerText = '🎙️'; };
+      rec.onerror = () => { btn.innerText = '🎙️ Tap to Speak (English / ಕನ್ನಡ / हिंदी)'; };
       rec.start();
     }
 
-    // Auto-load 4-Member Household on page load
     window.addEventListener('DOMContentLoaded', () => loadWholeFamilyDemo());
   </script>
 </body>
