@@ -266,6 +266,16 @@ Mobile Number : [Enter 10-Digit Mobile No.]`;
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`🚀 Hakku (ಹಕ್ಕು / हक़) Welfare & RTI Harness running at http://localhost:${PORT}`);
+}).on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    const nextPort = Number(PORT) + 1;
+    console.log(`⚠️ Port ${PORT} busy, starting on port ${nextPort}...`);
+    app.listen(nextPort, () => {
+      console.log(`🚀 Hakku (ಹಕ್ಕು / हक़) Welfare & RTI Harness running at http://localhost:${nextPort}`);
+    });
+  } else {
+    console.error(err);
+  }
 });
