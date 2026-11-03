@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hakku (ಹಕ್ಕು) — Citizen Welfare Discovery & Statutory Rights OS</title>
+  <title>Hakku 5.0 (ಹಕ್ಕು / हक़) — Proactive Citizen Rights OS & National DPI</title>
   
   <!-- Premium Typography: Plus Jakarta Sans & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,7 +66,6 @@
       letter-spacing: -0.011em;
     }
 
-    /* Ambient atmospheric glow */
     .hero-glow {
       background: radial-gradient(1100px 520px at 50% -50px, rgba(14, 165, 233, 0.08), rgba(99, 102, 241, 0.04), transparent 70%);
     }
@@ -101,7 +100,6 @@
       transform: translateY(-2px);
     }
 
-    /* High Value Hidden Gem Accent */
     .gem-card {
       position: relative;
       background: linear-gradient(180deg, #FFFFFF 0%, #FFFDF9 100%);
@@ -112,7 +110,6 @@
       box-shadow: 0 12px 28px -6px rgba(217, 119, 6, 0.12);
     }
 
-    /* Framer Spring Modal Transitions */
     .modal-backdrop {
       background: rgba(15, 23, 42, 0.5);
       backdrop-filter: blur(8px);
@@ -127,7 +124,6 @@
       100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    /* Clean Input Styling */
     .clean-input {
       background: #FFFFFF;
       border: 1px solid #CBD5E1;
@@ -141,7 +137,6 @@
       outline: none;
     }
 
-    /* Smooth Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 99px; }
@@ -172,7 +167,7 @@
       <!-- Statutory Trust Tag -->
       <div class="hidden lg:flex items-center gap-2 shrink-0 text-[11px] text-slate-300">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-        <span>DPDP Act 2023 Compliant · 100% In-Memory RAM</span>
+        <span>DPDP Act 2023 · 100% Volatile RAM · Zero PII Stored</span>
       </div>
 
     </div>
@@ -193,23 +188,24 @@
           <div>
             <div class="flex items-center gap-2">
               <span class="font-display font-extrabold text-base tracking-tight text-slate-900">Hakku</span>
-              <span class="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">v4.2</span>
+              <span class="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">v5.0 DPI</span>
             </div>
-            <p class="text-[11px] text-slate-500 font-medium hidden sm:block">Citizen Welfare Discovery &amp; Statutory Rights OS</p>
+            <p class="text-[11px] text-slate-500 font-medium hidden sm:block">Proactive Citizen Rights OS &amp; Anti-Tout Welfare Harness</p>
           </div>
         </div>
 
         <!-- Center Nav Links -->
         <nav class="hidden md:flex items-center gap-1 bg-slate-50 p-1 rounded-xl border border-slate-200/60">
-          <button onclick="scrollToSection('sec-intake')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-white transition-all">1. Citizen Intake</button>
-          <button onclick="scrollToSection('sec-results')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-white transition-all">2. Eligible Schemes</button>
-          <button onclick="scrollToSection('sec-shield')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-white transition-all">3. Rejection Shield</button>
-          <button onclick="scrollToSection('sec-kit')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-white transition-all">4. Cyber-Café Slip</button>
+          <button onclick="scrollToSection('sec-bundles')" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-white transition-all">Life Bundles</button>
+          <button onclick="scrollToSection('sec-intake')" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-white transition-all">Citizen Intake</button>
+          <button onclick="scrollToSection('sec-results')" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-white transition-all">Matched Vault</button>
+          <button onclick="scrollToSection('sec-shield')" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-white transition-all">Rejection Shield 3.0</button>
+          <button onclick="scrollToSection('sec-kit')" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-white transition-all">Cyber &amp; RTI Slip</button>
         </nav>
 
         <!-- Right Controls -->
         <div class="flex items-center gap-2.5">
-          <!-- Voice Audio Readout -->
+          <!-- Voice Summary -->
           <button onclick="speakSummary()" id="ttsBtn" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 border border-slate-200/60" title="Read summary aloud">
             <svg class="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
             <span id="ttsBtnText" class="hidden sm:inline">Listen</span>
@@ -222,7 +218,7 @@
             <option value="Hinglish (Hindi + English)">हिंदी / Hinglish</option>
           </select>
 
-          <!-- Telemetry Drawer Button -->
+          <!-- Telemetry Drawer -->
           <button onclick="toggleAgentDrawer()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 text-xs font-mono px-2.5 py-1.5 rounded-xl border border-slate-200/60 transition" title="Inspect verification telemetry">
             Trace
           </button>
@@ -238,6 +234,26 @@
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12 flex-1 w-full hero-glow">
 
     <!-- ===================================================== -->
+    <!-- PILLAR 1: LIFE-EVENT & CRISIS TRIGGER BUNDLES         -->
+    <!-- ===================================================== -->
+    <section id="sec-bundles" class="space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-slate-200 pb-3">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-brand-600">Pillar 1 // Proactive Rights</span>
+          <h2 class="text-xl sm:text-2xl font-display font-extrabold text-slate-900 tracking-tight mt-0.5">
+            Life-Event &amp; Crisis Trigger Bundles
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">1-Click bundles that cross-assemble Central &amp; State benefits for life milestones or emergencies.</p>
+        </div>
+        <span class="text-[11px] font-mono text-slate-400">Click any card to auto-configure</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5" id="bundlesContainer">
+        <!-- Bundles rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- ===================================================== -->
     <!-- STEP 1: STRUCTURED CITIZEN INTAKE & PROFILE FORM      -->
     <!-- ===================================================== -->
     <section id="sec-intake" class="space-y-6">
@@ -246,22 +262,22 @@
       <div class="text-center max-w-3xl mx-auto space-y-3">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-100 text-xs font-semibold text-brand-900 shadow-xs">
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span>Step 1: Enter Your Particulars</span>
+          <span>Individual Citizen Intake &amp; Household Scanner</span>
           <span class="text-slate-400">·</span>
-          <span class="text-slate-600 font-normal">Zero-Storage In-Memory Evaluation</span>
+          <span class="text-slate-600 font-normal">Section 6 DPDP Act Safe-Harbor</span>
         </div>
 
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-slate-900 tracking-tight leading-[1.15]">
           Find every rupee the Government owes you.<br />
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-indigo-700">Calculated with statutory precision.</span>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-indigo-700">Protected against touts, delay &amp; double-dipping.</span>
         </h1>
         <p class="text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">
-          Fill in your details below or select a quick profile. Hakku will audit 24 Central &amp; State welfare statutes, eliminate conflicting double-dipping, and calculate your exact legal entitlement.
+          Hakku evaluates statutory welfare gazettes across Central and State ministries, resolves mutual exclusivity, maps the exact physical counter, and prints an official cyber-café slip.
         </p>
 
-        <!-- Quick Fill Profile Pills -->
+        <!-- Quick Pre-fills -->
         <div class="flex flex-wrap items-center justify-center gap-2 pt-2 text-xs">
-          <span class="text-slate-400 font-medium uppercase tracking-wider text-[11px] mr-1">Quick Pre-fills:</span>
+          <span class="text-slate-400 font-medium uppercase tracking-wider text-[11px] mr-1">Quick Presets:</span>
           <button onclick="fillAndRunPersona('ananya')" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium transition shadow-xs">
             🎓 Girl Student (B.Tech)
           </button>
@@ -286,11 +302,11 @@
           
           <div class="flex items-center justify-between border-b border-slate-100 pb-4">
             <div>
-              <h2 class="text-lg font-display font-bold text-slate-900">Citizen Profile &amp; Household Information</h2>
-              <p class="text-xs text-slate-500">All data stays in volatile RAM and is never stored on disk (DPDP Act 2023 compliant).</p>
+              <h2 class="text-lg font-display font-bold text-slate-900">Citizen Profile &amp; Banking Parameters</h2>
+              <p class="text-xs text-slate-500">100% Volatile RAM execution — zero data written to disk or database.</p>
             </div>
             <span class="text-[11px] font-mono font-medium px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-              100% Secure &amp; Ephemeral
+              DPDP Act 2023 Compliant
             </span>
           </div>
 
@@ -345,7 +361,7 @@
             <!-- 6. Annual Family Income -->
             <div class="space-y-1.5">
               <label class="block font-semibold text-slate-700">Annual Family Income (₹)</label>
-              <input id="formIncome" type="number" step="5000" value="140000" class="clean-input w-full px-3.5 py-2 text-xs font-medium" placeholder="e.g. 120000" />
+              <input id="formIncome" type="number" step="5000" value="140000" class="clean-input w-full px-3.5 py-2 text-xs font-medium" />
             </div>
 
             <!-- 7. Ration Card Status -->
@@ -371,19 +387,18 @@
               </select>
             </div>
 
-            <!-- 9. Special Eligibility Attributes -->
+            <!-- 9. Bank Account Type (Rejection Shield 3.0) -->
             <div class="space-y-1.5">
-              <label class="block font-semibold text-slate-700">Land Holding / Status</label>
-              <select id="formLand" class="clean-input w-full px-3.5 py-2 text-xs font-medium cursor-pointer">
-                <option value="none">No Agricultural Land</option>
-                <option value="small">Small / Marginal Farmer (&lt; 5 Acres)</option>
-                <option value="large">Large Farmer (&gt; 5 Acres)</option>
+              <label class="block font-semibold text-slate-700">Bank Account Type (Forensic Audit)</label>
+              <select id="formBankType" class="clean-input w-full px-3.5 py-2 text-xs font-medium cursor-pointer">
+                <option value="regular">Regular Savings Account (No Balance Cap)</option>
+                <option value="pmjdy">PMJDY / Jan Dhan (₹50k Balance Cap Freeze)</option>
               </select>
             </div>
 
           </div>
 
-          <!-- Checkboxes for Special Conditions -->
+          <!-- Forensic Flags & Condition Checkboxes -->
           <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
             <label class="flex items-center gap-2 cursor-pointer select-none">
               <input id="formIsStudent" type="checkbox" checked class="accent-brand-600 rounded w-4 h-4" />
@@ -394,8 +409,8 @@
               <span class="text-slate-700 font-medium">Widow / Destitute</span>
             </label>
             <label class="flex items-center gap-2 cursor-pointer select-none">
-              <input id="formHasRoof" type="checkbox" checked class="accent-brand-600 rounded w-4 h-4" />
-              <span class="text-slate-700 font-medium">Have electricity connection</span>
+              <input id="formHasMergedBank" type="checkbox" class="accent-brand-600 rounded w-4 h-4" />
+              <span class="text-slate-700 font-medium">Old Merged PSU Passbook (Syndicate/Vijaya)</span>
             </label>
             <label class="flex items-center gap-2 cursor-pointer select-none">
               <input id="formIsTaxPayer" type="checkbox" class="accent-brand-600 rounded w-4 h-4" />
@@ -403,10 +418,10 @@
             </label>
           </div>
 
-          <!-- Natural Language Search / Niche Profession Bar -->
+          <!-- Natural Language Intake -->
           <div class="space-y-1.5">
             <label class="block font-semibold text-slate-700 text-xs">
-              Natural Language Intake or Custom Profession (Optional)
+              Natural Language Intake or Custom Profession (BharatCode AI Deep Hunter)
             </label>
             <div class="relative flex items-center">
               <input id="chatInput" type="text" placeholder="Or describe your exact situation (e.g. 'Single mother in Hubli running tailoring shop, two school children, BPL card')..." class="clean-input w-full pl-4 pr-24 py-2.5 text-xs text-slate-900 placeholder-slate-400" />
@@ -421,7 +436,7 @@
           <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="text-xs text-slate-500 flex items-center gap-2">
               <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-              <span>Instant statutory audit: Anti-double-dipping statutes applied automatically.</span>
+              <span>Deterministic Statutory Engine: Anti-double-dipping statutes applied with zero hallucination.</span>
             </div>
 
             <button type="submit" class="w-full sm:w-auto bg-ashoka-navy hover:bg-ashoka-dark text-white font-display font-bold text-sm px-7 py-3 rounded-xl transition shadow-card flex items-center justify-center gap-2">
@@ -528,7 +543,7 @@
         <div class="md:col-span-12 lg:col-span-3 framer-card p-6 flex flex-col justify-between shadow-subtle">
           <div>
             <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Pre-Audit Score</span>
+              <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Rejection Shield 3.0</span>
               <span id="readinessScoreVal" class="font-mono text-xs font-bold text-emerald-600">100%</span>
             </div>
 
@@ -537,13 +552,13 @@
                 <div id="readinessBar" class="bg-emerald-500 h-2.5 rounded-full transition-all duration-500" style="width: 100%;"></div>
               </div>
               <p class="text-xs text-slate-500 mt-3 leading-relaxed">
-                Audited against bank NPCI Aadhaar mapper, spelling match, and unexpired RD certificates.
+                Audited against bank NPCI Aadhaar mapper, merged PSU IFSC, and unexpired RD certificates.
               </p>
             </div>
           </div>
 
           <div class="pt-4 border-t border-slate-100 mt-5 flex items-center justify-between text-xs">
-            <span class="text-slate-500">Zero submission traps</span>
+            <span class="text-slate-500">Forensic bank audit</span>
             <button onclick="scrollToSection('sec-shield')" class="text-brand-600 font-semibold hover:underline">Verify &rarr;</button>
           </div>
         </div>
@@ -579,24 +594,38 @@
     </section>
 
     <!-- ===================================================== -->
-    <!-- STEP 3: REJECTION SHIELD & DOCUMENT BAG CHECKLIST     -->
+    <!-- PILLAR 2 & 3: CRITICAL-PATH SEQUENCER & REJECTION SHIELD 3.0 -->
     <!-- ===================================================== -->
-    <section id="sec-shield" class="space-y-4 pt-4">
-      <div class="border-b border-slate-200 pb-3">
-        <span class="text-xs font-semibold uppercase tracking-wider text-brand-600">Step 3 // Safeguard Audit</span>
-        <h2 class="text-2xl font-display font-extrabold text-slate-900 tracking-tight mt-0.5">Pre-Submission Rejection Shield &amp; Document Bag</h2>
+    <section id="sec-shield" class="space-y-6 pt-4">
+      <div class="border-b border-slate-200 pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-brand-600">Pillar 2 &amp; 3 // Safeguard Audit</span>
+          <h2 class="text-2xl font-display font-extrabold text-slate-900 tracking-tight mt-0.5">
+            Critical-Path Prerequisite Sequencer &amp; Rejection Shield 3.0
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">Organized chronologically so citizens never waste a single trip or suffer silent bank payment bounces.</p>
+        </div>
+        <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+          Zero-Trip Wastage Guarantee
+        </span>
       </div>
 
+      <!-- Prerequisite Sequencer 3-Phase Roadmap -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs" id="prerequisiteContainer">
+        <!-- Dynamically rendered roadmap -->
+      </div>
+
+      <!-- Rejection Shield Checks Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         
         <!-- Rejection Checks -->
         <div class="framer-card p-6 space-y-4 shadow-subtle">
           <div class="flex items-center justify-between">
-            <h3 class="text-sm font-bold text-slate-900">Rejection Prevention Checks</h3>
+            <h3 class="text-sm font-bold text-slate-900">Forensic Pre-Submission Audit Checks</h3>
             <span id="shieldReadinessBadge" class="font-mono text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200">100% READY</span>
           </div>
           <p class="text-xs text-slate-500 leading-relaxed">
-            Over 40% of government DBT transfers fail because of these three issues. Uncheck any box to see the resolution:
+            Over 42% of government DBT transfers fail because of these issues. Uncheck any box to see the resolution:
           </p>
 
           <div class="space-y-2.5 text-xs pt-1">
@@ -623,10 +652,10 @@
         <div class="framer-card p-6 space-y-4 shadow-subtle">
           <div class="flex items-center justify-between">
             <h3 class="text-sm font-bold text-slate-900">Single-Window Document Bag</h3>
-            <span class="text-[11px] font-mono text-slate-500 font-medium">Carry Once to Cyber/GramaOne</span>
+            <span class="text-[11px] font-mono text-slate-500 font-medium">Pack in Bag Before Leaving</span>
           </div>
           <p class="text-xs text-slate-500 leading-relaxed">
-            Deduplicated papers required across all your eligible schemes. Pack these in your bag for a single visit:
+            Deduplicated papers required across all your eligible schemes. Pack these in your folder for a single visit:
           </p>
 
           <div id="consolidatedDocs" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 text-xs">
@@ -638,18 +667,36 @@
     </section>
 
     <!-- ===================================================== -->
-    <!-- STEP 4: PRINTABLE CYBER-CAFÉ SLIP & RTI STUDIO        -->
+    <!-- PILLAR 5 & 6: PRINTABLE SLIP, ANTI-TOUT & 3-TIER RTI  -->
     <!-- ===================================================== -->
     <section id="sec-kit" class="space-y-4 pt-4">
       <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
         <div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-brand-600">Step 4 // Physical Output</span>
-          <h2 class="text-2xl font-display font-extrabold text-slate-900 tracking-tight mt-0.5">Printable Cyber-Café Slip &amp; Sakala RTI Dossier</h2>
+          <span class="text-xs font-semibold uppercase tracking-wider text-brand-600">Pillar 5 &amp; 6 // Physical Studio</span>
+          <h2 class="text-2xl font-display font-extrabold text-slate-900 tracking-tight mt-0.5">
+            Printable Cyber-Café Slip &amp; 3-Tier Legal RTI Studio
+          </h2>
         </div>
         <div class="flex gap-2">
           <button onclick="copyDocText()" class="bg-white hover:bg-slate-100 border border-slate-200 text-xs font-semibold px-3.5 py-1.5 rounded-xl text-slate-700 transition shadow-xs">Copy</button>
           <button onclick="printDocText()" class="bg-ashoka-navy hover:bg-ashoka-dark text-white font-semibold text-xs px-4 py-1.5 rounded-xl transition shadow-xs">Print / Save PDF</button>
         </div>
+      </div>
+
+      <!-- Anti-Tout Notice Top Banner -->
+      <div class="bg-amber-50 border border-amber-300 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-amber-900">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-base shrink-0">
+            🛡️
+          </div>
+          <div>
+            <div class="font-bold text-amber-900">ANTI-TOUT STATUTORY FEE SHIELD (NO BRIBES)</div>
+            <div class="text-amber-800 text-[11px] mt-0.5">
+              Official Service Fee: <b>₹0 (Self-Online) | ₹25–₹30 (Authorized Counter)</b>. No middleman can influence sanctioning. Report touts to <b>1902 (Sakala)</b>.
+            </div>
+          </div>
+        </div>
+        <span class="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-amber-200 text-amber-900 font-bold shrink-0">Toll-Free: 1902</span>
       </div>
 
       <div class="framer-card p-6 space-y-4 shadow-subtle">
@@ -661,7 +708,7 @@
           <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs">
             <button onclick="loadDocInKit('application')" class="px-3 py-1 rounded-lg text-slate-700 font-medium hover:bg-white transition">Cyber-Café Slip</button>
             <button onclick="loadDocInKit('npci')" class="px-3 py-1 rounded-lg text-slate-700 font-medium hover:bg-white transition">NPCI Mandate</button>
-            <button onclick="loadDocInKit('rti')" class="px-3 py-1 rounded-lg text-slate-700 font-medium hover:bg-white transition">Sakala Delay RTI</button>
+            <button onclick="loadDocInKit('rti')" class="px-3 py-1 rounded-lg text-slate-700 font-medium hover:bg-white transition">3-Tier RTI Notice</button>
           </div>
         </div>
 
@@ -670,6 +717,24 @@
           <pre id="kitContent" class="text-xs font-mono text-slate-800 leading-relaxed whitespace-pre-wrap max-h-96 overflow-y-auto selection:bg-brand-100"></pre>
         </div>
       </div>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- PILLAR 7: NATIONAL DPI PLUG-AND-PLAY BLUEPRINT        -->
+    <!-- ===================================================== -->
+    <section class="framer-card p-6 bg-gradient-to-r from-slate-900 via-ashoka-navy to-slate-900 text-white rounded-2xl space-y-3">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span class="text-xs font-mono uppercase tracking-wider text-emerald-400">Pillar 7 // National DPI Integration</span>
+        </div>
+        <span class="text-[11px] font-mono text-slate-300">Phase 3 Production Deployment</span>
+      </div>
+
+      <h3 class="text-lg font-display font-bold">Ready for Government of Karnataka &amp; DBT Bharat Deployment</h3>
+      <p class="text-xs text-slate-300 leading-relaxed max-w-4xl">
+        Hakku’s modular architecture connects directly into <b>Kutumba Family ID</b> (instant ration card auto-fetch), <b>Bhoomi RTC</b> (land verification), <b>DigiLocker Sandbox</b> (digital certificate pull), and <b>1902 Toll-Free IVR</b> for zero-smartphone rural voice discovery.
+      </p>
     </section>
 
   </main>
@@ -729,7 +794,7 @@
           <div class="bg-amber-50/40 rounded-2xl p-4 border border-amber-200 space-y-3">
             <div class="font-bold text-amber-900 flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-              <span>🎒 IDs to Take to Cyber-Café</span>
+              <span>🎒 IDs to Take in Bag</span>
             </div>
             <ul id="modalDocsList" class="space-y-2 text-slate-700 leading-relaxed text-[11px]"></ul>
             <div class="pt-2 border-t border-amber-200 text-[11px]">
@@ -738,16 +803,17 @@
             </div>
           </div>
 
-          <!-- Column 3: Where & How to Apply (Operator Instructions) -->
+          <!-- Column 3: Where & How to Apply (Pillar 4 Routing) -->
           <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 space-y-3">
             <div class="font-bold text-slate-900 flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-blue-500"></span>
-              <span>🖥️ Cyber-Café / GramaOne Steps</span>
+              <span>🖥️ Physical Counter Routing</span>
             </div>
-            <div id="modalStepsList" class="space-y-2 text-slate-600 leading-relaxed text-[11px]"></div>
+            <div id="modalChannelBox" class="p-2.5 rounded-xl bg-white border border-slate-200 text-[11px] space-y-1"></div>
+            <div id="modalStepsList" class="space-y-2 text-slate-600 leading-relaxed text-[11px] pt-1"></div>
             <div class="pt-2 border-t border-slate-200 text-[11px] space-y-1">
-              <div><span class="text-slate-400 font-semibold uppercase tracking-wider">COUNTER:</span> <span id="modalCounter" class="text-slate-800 font-medium"></span></div>
-              <div><span class="text-slate-400 font-semibold uppercase tracking-wider">SAKALA SLA:</span> <span id="modalSla" class="text-emerald-700 font-mono font-semibold"></span></div>
+              <div><span class="text-slate-400 font-semibold uppercase tracking-wider">STATUTORY FEE:</span> <span id="modalFee" class="text-emerald-700 font-semibold"></span></div>
+              <div><span class="text-slate-400 font-semibold uppercase tracking-wider">SAKALA SLA:</span> <span id="modalSla" class="text-slate-800 font-mono font-medium"></span></div>
             </div>
           </div>
 
@@ -802,10 +868,10 @@
   <footer class="border-t border-slate-200 bg-white py-8 px-4 mt-16 text-xs text-slate-500">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
       <div>
-        <span class="font-bold text-slate-800">Hakku (ಹಕ್ಕು)</span> · Zero-Storage Citizen Welfare Discovery &amp; Rights OS
+        <span class="font-bold text-slate-800">Hakku 5.0 (ಹಕ್ಕು / हक़)</span> · Proactive National Welfare Rights OS &amp; Anti-Tout Harness
       </div>
       <div class="font-mono text-[11px] text-slate-500">
-        DPDP Act 2023 Compliant · 100% In-Memory RAM Execution · Zero Disk PII
+        DPDP Act 2023 Compliant · 100% Volatile RAM Execution · Zero PII Stored
       </div>
     </div>
   </footer>
@@ -823,10 +889,10 @@
     let currentDocMode = 'application';
 
     const PERSONAS = {
-      ananya: { name: 'Ananya Rao', state: 'karnataka', age: 20, gender: 'female', occupation: 'student', income: 140000, category: 'OBC', rationCard: 'BPL', isBPL: true, isStudent: true, isWidow: false, isTaxPayer: false, land: 'none' },
-      ramesh: { name: 'Ramesh Gowda', state: 'karnataka', age: 41, gender: 'male', occupation: 'farmer', income: 95000, category: 'OBC', rationCard: 'BPL', isBPL: true, isStudent: false, isWidow: false, isTaxPayer: false, land: 'small' },
-      kiran: { name: 'Kiran Shetty', state: 'karnataka', age: 24, gender: 'male', occupation: 'worker', income: 110000, category: 'OBC', rationCard: 'BPL', isBPL: true, isStudent: false, isWidow: false, isTaxPayer: false, land: 'none' },
-      lakshmi: { name: 'Lakshmi Devi', state: 'karnataka', age: 71, gender: 'female', occupation: 'senior', income: 45000, category: 'SC', rationCard: 'BPL', isBPL: true, isStudent: false, isWidow: true, isTaxPayer: false, land: 'none' }
+      ananya: { name: 'Ananya Rao', state: 'karnataka', age: 20, gender: 'female', occupation: 'student', income: 140000, category: 'OBC', rationCard: 'BPL', isBPL: true, isStudent: true, isWidow: false, isTaxPayer: false, bankType: 'regular', hasMergedBank: false },
+      ramesh: { name: 'Ramesh Gowda', state: 'karnataka', age: 41, gender: 'male', occupation: 'farmer', income: 95000, category: 'OBC', rationCard: 'BPL', isBPL: true, isStudent: false, isWidow: false, isTaxPayer: false, bankType: 'regular', hasMergedBank: true },
+      kiran: { name: 'Kiran Shetty', state: 'karnataka', age: 24, gender: 'male', occupation: 'worker', income: 110000, category: 'OBC', rationCard: 'BPL', isBPL: true, isStudent: false, isWidow: false, isTaxPayer: false, bankType: 'regular', hasMergedBank: false },
+      lakshmi: { name: 'Lakshmi Devi', state: 'karnataka', age: 71, gender: 'female', occupation: 'senior', income: 45000, category: 'SC', rationCard: 'BPL', isBPL: true, isStudent: false, isWidow: true, isTaxPayer: false, bankType: 'pmjdy', hasMergedBank: false }
     };
 
     function scrollToSection(id) {
@@ -847,9 +913,10 @@
       if (p.income) document.getElementById('formIncome').value = p.income;
       if (p.category) document.getElementById('formCategory').value = p.category;
       if (p.rationCard) document.getElementById('formRationCard').value = p.rationCard;
-      if (p.land) document.getElementById('formLand').value = p.land;
+      if (p.bankType) document.getElementById('formBankType').value = p.bankType;
       document.getElementById('formIsStudent').checked = Boolean(p.isStudent);
       document.getElementById('formIsWidow').checked = Boolean(p.isWidow);
+      document.getElementById('formHasMergedBank').checked = Boolean(p.hasMergedBank);
       document.getElementById('formIsTaxPayer').checked = Boolean(p.isTaxPayer);
     }
 
@@ -858,8 +925,9 @@
       const rationCard = document.getElementById('formRationCard').value;
       const isStudentChecked = document.getElementById('formIsStudent').checked;
       const isWidowChecked = document.getElementById('formIsWidow').checked;
+      const hasMergedBank = document.getElementById('formHasMergedBank').checked;
       const isTaxChecked = document.getElementById('formIsTaxPayer').checked;
-      const landVal = document.getElementById('formLand').value;
+      const bankType = document.getElementById('formBankType').value;
 
       return {
         name: document.getElementById('formName').value.trim() || 'Citizen',
@@ -870,10 +938,11 @@
         income: Number(document.getElementById('formIncome').value) || 120000,
         category: document.getElementById('formCategory').value,
         rationCard: rationCard,
-        land: landVal,
+        bankType: bankType,
+        hasMergedBank: hasMergedBank,
         isBPL: rationCard === 'BPL' || rationCard === 'AAY',
         isStudent: occupation === 'student' || isStudentChecked,
-        isFarmer: occupation === 'farmer' || landVal === 'small',
+        isFarmer: occupation === 'farmer',
         isWidow: isWidowChecked,
         isTaxPayer: isTaxChecked
       };
@@ -898,6 +967,23 @@
       syncProfileToForm(currentProfile);
       document.getElementById('chatInput').value = '';
       runHarnessFromForm();
+    }
+
+    function applyLifeEventBundle(bundleId) {
+      if (bundleId === 'BUNDLE_COLLEGE') {
+        fillAndRunPersona('ananya');
+      } else if (bundleId === 'BUNDLE_FARM_UPGRADE') {
+        fillAndRunPersona('ramesh');
+      } else if (bundleId === 'BUNDLE_WIDOW_EMERGENCY') {
+        fillAndRunPersona('lakshmi');
+      } else if (bundleId === 'BUNDLE_MATERNITY_BIRTH') {
+        currentProfile = { name: 'Pooja Devi', state: 'karnataka', age: 24, gender: 'female', occupation: 'homemaker', income: 90000, category: 'OBC', rationCard: 'BPL', isBPL: true, isStudent: false, isWidow: false, isTaxPayer: false };
+        syncProfileToForm(currentProfile);
+        runHarnessFromForm();
+      } else if (bundleId === 'BUNDLE_WORKER_UPGRADE') {
+        fillAndRunPersona('kiran');
+      }
+      scrollToSection('sec-results');
     }
 
     function runHarnessFromForm() {
@@ -936,7 +1022,9 @@
       const readinessChecks = {
         npciSeeded: document.getElementById('chkNpci').checked,
         nameMatched: document.getElementById('chkName').checked,
-        rdValid: document.getElementById('chkRd').checked
+        rdValid: document.getElementById('chkRd').checked,
+        hasMergedBankPassbook: document.getElementById('formHasMergedBank').checked,
+        bankAccountType: document.getElementById('formBankType').value
       };
 
       try {
@@ -959,10 +1047,27 @@
             <span class="w-2 h-2 rounded-full ${n.status === 'ENDING_2_DAYS' ? 'bg-amber-400' : n.status === 'EXPIRED_TODAY' ? 'bg-rose-400' : 'bg-emerald-400'}"></span>
             <span class="font-bold uppercase tracking-wider text-[10px] ${n.status === 'ENDING_2_DAYS' ? 'text-amber-300' : n.status === 'EXPIRED_TODAY' ? 'text-rose-300' : 'text-emerald-300'}">${n.label}:</span>
             <span class="text-slate-100 font-medium">${n.name.split('(')[0]}</span>
+            <span class="text-slate-400 text-[10px]">(${n.channel?.channelName?.split('/')[0] || 'Counter'})</span>
           </span>
         `).join('');
 
-        // 2. Metrics & Labels
+        // 2. Life-Event Bundles (Pillar 1)
+        const bundles = data.lifeEventBundles || [];
+        document.getElementById('bundlesContainer').innerHTML = bundles.map(b => `
+          <div onclick="applyLifeEventBundle('${b.id}')" class="framer-card p-4 flex flex-col justify-between cursor-pointer hover:border-brand-500 shadow-subtle group">
+            <div class="space-y-1.5">
+              <span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[10px] font-semibold">${b.badge}</span>
+              <h4 class="font-display font-bold text-xs text-slate-900 group-hover:text-brand-600 transition leading-snug">${b.name}</h4>
+              <p class="text-[11px] text-slate-500 line-clamp-2 leading-relaxed">${b.description}</p>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] mt-2">
+              <span class="font-mono text-emerald-600 font-bold">~₹${Number(b.annualTarget).toLocaleString('en-IN')}/yr</span>
+              <span class="text-brand-600 font-semibold group-hover:underline">Select &rarr;</span>
+            </div>
+          </div>
+        `).join('');
+
+        // 3. Metrics & Labels
         document.getElementById('profileScopeLabel').innerText = `${currentProfile.name} (${currentProfile.age}y, ${currentProfile.occupation || 'Citizen'}) — ${currentProfile.state.toUpperCase()}`;
         animateCounter(document.getElementById('directBenefitMeter'), data.totalDirectAnnualINR || 0);
         document.getElementById('fiveYearMeter').innerText = '₹' + Number(data.fiveYearWealthINR || 0).toLocaleString('en-IN');
@@ -971,7 +1076,20 @@
         document.getElementById('schemeCountBadge').innerText = `${data.schemeCount} Schemes Matched`;
         document.getElementById('aiSummaryBox').innerText = data.aiSummary;
 
-        // 3. Readiness Bar
+        // 4. Prerequisite Sequencer Roadmap (Pillar 2)
+        const seq = data.prerequisiteSequence || [];
+        document.getElementById('prerequisiteContainer').innerHTML = seq.map((p, idx) => `
+          <div class="framer-card p-4 space-y-2 border-l-4 ${idx === 0 ? 'border-l-blue-500' : idx === 1 ? 'border-l-amber-500' : 'border-l-emerald-500'}">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-slate-900">${p.phase.split('(')[0]}</span>
+              <span class="font-mono text-[10px] bg-slate-100 px-2 py-0.5 rounded-md text-slate-600">${p.timing}</span>
+            </div>
+            <div class="font-semibold text-brand-700 text-[11px]">${p.action}</div>
+            <p class="text-slate-500 text-[11px] leading-relaxed">${p.details}</p>
+          </div>
+        `).join('');
+
+        // 5. Readiness Score & Rejection Shield 3.0
         const score = data.readinessAudit.readinessScore;
         document.getElementById('readinessScoreVal').innerText = `${score}%`;
         document.getElementById('readinessBar').style.width = `${score}%`;
@@ -988,7 +1106,7 @@
           </div>
         `).join('');
 
-        // 4. Consolidated Documents
+        // 6. Consolidated Documents
         document.getElementById('consolidatedDocs').innerHTML = (data.consolidatedDocuments || []).map(d => `
           <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-3 flex items-center gap-2.5">
             <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs shrink-0">✓</span>
@@ -996,7 +1114,7 @@
           </div>
         `).join('');
 
-        // 5. Conflict Resolution
+        // 7. Conflict Resolution
         const conflictSec = document.getElementById('conflictSection');
         if (data.statutoryConflictsResolved && data.statutoryConflictsResolved.length > 0) {
           conflictSec.classList.remove('hidden');
@@ -1007,7 +1125,7 @@
           conflictSec.classList.add('hidden');
         }
 
-        // 6. Telemetry Trace
+        // 8. Telemetry Trace
         document.getElementById('agentTraceBox').innerHTML = (data.agentTrace || []).map(t => `
           <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 space-y-1">
             <div class="flex items-center justify-between text-[11px]">
@@ -1018,7 +1136,7 @@
           </div>
         `).join('');
 
-        // 7. Kit dropdown
+        // 9. Kit dropdown
         document.getElementById('kitSchemeSelect').innerHTML = allCatalogSchemes.map(s => `
           <option value="${s.id}">${s.name} (+₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')}/yr)</option>
         `).join('');
@@ -1026,7 +1144,6 @@
         renderSchemesGrid();
         loadDocInKit(currentDocMode);
 
-        // Scroll to results smoothly if user triggered calculation
         if (userMessage || window.location.hash === '#sec-results') {
           scrollToSection('sec-results');
         }
@@ -1044,7 +1161,7 @@
         if (activeCategory === 'HIDDEN_GEMS' && !s.isHiddenGem) return false;
         if (activeCategory === 'ENDING_SOON' && !['ENDING_2_DAYS', 'EXPIRED_TODAY'].includes(s.deadlineStatus)) return false;
         if (!['ALL', 'HIDDEN_GEMS', 'ENDING_SOON'].includes(activeCategory) && s.categoryTag !== activeCategory) return false;
-        if (search && !`${s.name} ${s.benefitSummary} ${s.categoryTag} ${s.physicalCounter}`.toLowerCase().includes(search)) return false;
+        if (search && !`${s.name} ${s.benefitSummary} ${s.categoryTag} ${s.channel?.channelName}`.toLowerCase().includes(search)) return false;
         return true;
       });
 
@@ -1070,6 +1187,8 @@
           badgeHtml += `<span class="px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-800 border border-rose-300 text-[10px] font-bold">🔴 Expired Today</span>`;
         }
 
+        const ch = s.channel || {};
+
         return `
           <div onclick="openSchemeModal('${s.id}')" class="framer-card p-5 flex flex-col justify-between gap-4 cursor-pointer ${s.isHiddenGem ? 'gem-card' : ''}">
             <div class="space-y-3">
@@ -1077,6 +1196,7 @@
               <div class="flex items-center justify-between gap-2">
                 <div class="flex flex-wrap items-center gap-1.5">
                   <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[10px] font-semibold">${s.level.split(' ')[0]}</span>
+                  <span class="px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 text-[10px] font-semibold">Ch ${ch.channelNumber || 1}</span>
                   ${badgeHtml}
                 </div>
                 <span class="text-xs font-display font-extrabold text-emerald-600">
@@ -1090,8 +1210,8 @@
               </div>
 
               <div class="bg-slate-50 rounded-xl p-3 text-[11px] space-y-1 text-slate-600 border border-slate-100">
-                <div><span class="text-slate-400 font-semibold uppercase tracking-wider">Where:</span> <span class="text-slate-800 font-medium">${s.physicalCounter || s.applyWhere}</span></div>
-                <div><span class="text-slate-400 font-semibold uppercase tracking-wider">Required IDs:</span> <span class="text-slate-800 font-medium">${(s.documents || []).slice(0, 2).join(', ')}...</span></div>
+                <div><span class="text-slate-400 font-semibold uppercase tracking-wider">COUNTER:</span> <span class="text-slate-800 font-medium">${ch.channelName || s.physicalCounter}</span></div>
+                <div><span class="text-slate-400 font-semibold uppercase tracking-wider">LEGAL FEE:</span> <span class="text-emerald-700 font-semibold">${ch.statutoryFee || '₹25 GramaOne'}</span></div>
               </div>
             </div>
 
@@ -1112,6 +1232,8 @@
       if (!selectedSchemeObj) return;
 
       const s = selectedSchemeObj;
+      const ch = s.channel || {};
+
       document.getElementById('modalTitle').innerText = s.name;
       document.getElementById('modalMinistry').innerText = `${s.level} · ${s.ministry}`;
       document.getElementById('modalValue').innerText = `₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')} / yr`;
@@ -1119,12 +1241,13 @@
       document.getElementById('modalSummary').innerText = s.benefitSummary;
       document.getElementById('modalStatutory').innerText = s.statutoryRule;
       document.getElementById('modalTrap').innerText = s.commonRejectionTrap;
-      document.getElementById('modalCounter').innerText = s.physicalCounter || s.applyWhere;
-      document.getElementById('modalSla').innerText = `${s.sakalaSlaDays || 21} Working Days (Sakala Statutory Guarantee)`;
+      document.getElementById('modalFee').innerText = ch.statutoryFee || '₹0 Online | ₹25 GramaOne';
+      document.getElementById('modalSla').innerText = `${s.sakalaSlaDays || 21} Working Days (Sakala Guarantee)`;
       document.getElementById('modalPortalLink').href = s.source;
 
       document.getElementById('modalBadges').innerHTML = `
         <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[10px] font-semibold">${s.level}</span>
+        <span class="px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 text-[10px] font-semibold">Channel ${ch.channelNumber || 1}</span>
         ${s.isHiddenGem ? `<span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300 text-[10px] font-bold">💎 Hidden Gem</span>` : ''}
         <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-medium">${s.deadlineLabel || 'Active Window'}</span>
       `;
@@ -1133,10 +1256,15 @@
         <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">✓</span><span>${c}</span></li>
       `).join('');
 
-      // Exact IDs & Documents checklist
       document.getElementById('modalDocsList').innerHTML = (s.documents || []).map(d => `
         <li class="flex items-start gap-2"><span class="text-amber-500 font-bold">🪪</span><span>${d}</span></li>
       `).join('');
+
+      document.getElementById('modalChannelBox').innerHTML = `
+        <div class="font-bold text-slate-900">${ch.channelName}</div>
+        <div class="text-slate-500 text-[10px]">Officer: ${ch.channelAuthority}</div>
+        <div class="text-brand-700 text-[10px] font-medium">${ch.specialNote}</div>
+      `;
 
       document.getElementById('modalStepsList').innerHTML = (s.selfApplySteps || [s.cscSteps]).map(st => `
         <div class="leading-relaxed">${st}</div>
@@ -1216,7 +1344,6 @@
       rec.start();
     }
 
-    // Keyboard shortcut to close modal
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeSchemeModal();
     });

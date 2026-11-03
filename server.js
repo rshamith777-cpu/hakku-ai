@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { matchCitizenProfile } = require('./matcher');
+const { matchCitizenProfile, LIFE_EVENT_BUNDLES } = require('./matcher');
 
 const app = express();
 app.use(cors());
@@ -222,7 +222,7 @@ Return ONLY valid JSON:
   });
 });
 
-// STAGE 5: Document Generator (Cyber-Café Slip + Late Condonation + NPCI Form + Sakala RTI)
+// STAGE 5: Document Generator (Cyber-Café Slip + Late Condonation + NPCI Form + Sakala RTI + Anti-Tout Shield)
 app.post('/api/harness/dockit', async (req, res) => {
   const { profile = {}, scheme, mode = 'application' } = req.body;
   const today = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' });
@@ -237,11 +237,43 @@ app.post('/api/harness/dockit', async (req, res) => {
     documents: ['Aadhaar Card', 'Ration Card', 'Bank Passbook'],
     physicalCounter: 'GramaOne / CSC',
     applyWhere: 'Official Portal',
-    source: 'https://india.gov.in'
+    source: 'https://india.gov.in',
+    channel: {
+      channelNumber: 1,
+      channelName: 'GramaOne / KarnatakaOne / CSC',
+      channelAuthority: 'Designated Public Service Operator',
+      statutoryFee: '₹0 Self-Apply | ₹25–₹30 Authorized Counter Fee',
+      specialNote: 'Demand printed official receipt.'
+    }
+  };
+
+  const ch = s.channel || {
+    channelNumber: 1,
+    channelName: s.physicalCounter || 'GramaOne / CSC',
+    channelAuthority: 'Designated Public Service Operator',
+    statutoryFee: '₹0 Self-Apply | ₹25–₹30 Authorized Counter Fee',
+    specialNote: 'Demand printed official receipt.'
   };
 
   let generatedText = '';
   let documentTitle = '';
+
+  const antiToutNotice = `====================================================================
+ANTI-TOUT & ZERO-BRIBE STATUTORY NOTICE / ಮಧ್ಯವರ್ತಿಗಳ ನಿರ್ಬಂಧ ಸೂಚನೆ
+====================================================================
+[EN] All Government DBT benefits are 100% automated via NPCI directly
+     to your bank account. No middleman or agent can influence sanctioning.
+     Official Counter Service Fee: ₹25 - ₹30 ONLY (Demand Official Receipt).
+     Report any tout / bribe demands to 24/7 Sakala Toll-Free: 1902.
+
+[KN] ಸರ್ಕಾರದ ಎಲ್ಲಾ ಡಿಬಿಟಿ ಅನುದಾನಗಳು ನೇರವಾಗಿ ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಖಾತೆಗೆ ಜಮೆಯಾಗುತ್ತವೆ.
+     ಯಾವುದೇ ಮಧ್ಯವರ್ತಿಗಳಿಗೆ ಹಣ ನೀಡಬೇಡಿ. ಅಧಿಕೃತ ಸೇವಾ ಶುಲ್ಕ ಕೇವಲ ₹25-₹30.
+     ದೂರುಗಳಿಗಾಗಿ 1902 (ಸಕಾಲ ಸಹಾಯವಾಣಿ) ಗೆ ಕರೆ ಮಾಡಿ.
+
+[HI] सरकार का सारा पैसा सीधे आपके बैंक खाते में आता है। किसी भी दलाल को
+     रिश्वत न दें। ग्राम वन / सीएससी की सरकारी फीस सिर्फ ₹25-₹30 है।
+     शिकायत के लिए 1902 पर कॉल करें।
+====================================================================`;
 
   if (mode === 'npci') {
     documentTitle = `Bank NPCI Aadhaar DBT Seeding Mandate — ${profile.name || 'Citizen'}`;
@@ -262,6 +294,10 @@ Dear Sir / Madam,
 
 I hold Savings Account No. [____________________] in your branch. I am applying for "${s.name}" (${s.ministry}) worth ₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')}/year, which credits funds strictly via the NPCI Aadhaar Payment Bridge (APBS).
 
+IMPORTANT FORENSIC AUDIT CHECKS:
+1. Legacy Merged Bank IFSC: If this account belongs to a merged PSU bank (Syndicate, Vijaya, Corporation, State Bank of Mysore), please confirm the current active IFSC on Khajane-II.
+2. Balance Ceiling Check: For grants exceeding ₹45,000, ensure account is upgraded from PMJDY / Basic Savings so the ₹50,000 balance ceiling does not bounce the treasury credit.
+
 Please link my Aadhaar [XXXX-XXXX-____] to my account and mark it ACTIVE on the NPCI DBT Mapper today.
 
 Enclosures: [✓] Aadhaar Copy   [✓] Bank Passbook Copy
@@ -269,11 +305,15 @@ Enclosures: [✓] Aadhaar Copy   [✓] Bank Passbook Copy
 Signature / Thumb Impression: ___________________________
 Name: ${profile.name || '[Citizen Name]'}`;
   } else if (mode === 'rti') {
-    documentTitle = `Section 6(1) & 7(5) RTI + Sakala SLA Breach Notice — ${s.name}`;
+    documentTitle = `3-Tier Legal Escalation & Section 6(1) RTI Notice — ${s.name}`;
     generatedText = `====================================================================
-STATUTORY RTI APPLICATION UNDER SECTION 6(1) OF THE RTI ACT, 2005
-(For Delayed / Pending Government Scheme Benefit Beyond ${s.sakalaSlaDays || 21} Days)
+3-TIER LEGAL ESCALATION LADDER & STATUTORY RTI APPLICATION
+(Under Section 6(1) of RTI Act 2005 & Karnataka Sakala Act 2011)
 ====================================================================
+
+TIER 1 (Day +1 Past SLA) : Sakala Compensatory Appeal (Call 1902 / ₹20/day penalty)
+TIER 2 (Day +15 Past SLA): Section 6(1) BPL Zero-Fee Statutory RTI Notice (Below)
+TIER 3 (Day +30 Past SLA): Janaspandana (ipgrs.karnataka.gov.in) / Central CPGRAMS
 
 Date: ${today}
 
@@ -284,12 +324,12 @@ ${s.ministry}
 1. Applicant Name             : ${profile.name || '[Citizen Name]'}
 2. BPL Fee Exemption (Sec 7(5)): ${profile.isBPL ? 'EXEMPT FROM ₹10 FEE (BPL Card Attached)' : '₹10 Court Fee / IPO Attached'}
 3. Scheme & Statutory SLA     : ${s.name} (Mandated SLA: ${s.sakalaSlaDays || 21} Working Days)
-4. Application Ack. Number    : [Enter Seva Sindhu / NSP / Portal Ack. No.]
+4. Application Ack. Number    : [Enter Seva Sindhu / NSP / Portal GSC Number]
 
 Respected Sir / Madam,
 
 My application for "${s.name}" has exceeded the statutory ${s.sakalaSlaDays || 21}-day Sakala / Citizens' Charter timeline. Under Section 6(1) of the RTI Act, 2005, please provide:
-1. Daily progress report and file movement on my application.
+1. Daily progress report and file movement register for my application.
 2. Name and designation of the officer with whom my application is currently pending.
 3. Exact technical reason for delay (PFMS / NPCI status / field verification) and expected date of DBT credit.
 
@@ -299,33 +339,43 @@ Name: ${profile.name || '[Citizen Name]'}`;
     const expiredNote = s.deadlineStatus === 'EXPIRED_TODAY'
       ? `\n⚠️ SPECIAL NOTE (EXPIRED TODAY): Since Round-1 online portal closed today, submit this signed sheet as a Formal Late-Condonation / Round-2 Representation to the Nodal Officer.`
       : '';
+
+    const highValueWarning = (s.annualValueINR || 0) >= 45000
+      ? `\n⚠️ FORENSIC BANK ALERT: Payout of ₹${Number(s.annualValueINR).toLocaleString('en-IN')} exceeds Jan Dhan ₹50k balance ceiling. Ensure your bank account is upgraded to a Regular Savings Account.`
+      : '';
+
     documentTitle = `3-in-1 Cyber-Café Operator Slip & Application — ${s.name}`;
-    generatedText = `====================================================================
-HAKKU 3-IN-1 CYBER-CAFÉ OPERATOR SLIP & CITIZEN APPLICATION PACKET
-100% In-Memory Zero-Storage • Verified .gov.in Rules
+    generatedText = `${antiToutNotice}
+
+====================================================================
+HAKKU 5.0 OFFICIAL CITIZEN APPLICATION DOSSIER & OPERATOR SLIP
+100% In-Memory RAM • Zero Data Stored • Verified .gov.in Rules
 ====================================================================
 
 Date: ${today}
 Beneficiary: ${profile.name || 'Citizen'} (Age: ${profile.age || 25} | Category: ${profile.category || 'OBC'} | Income: ₹${Number(profile.income || 0).toLocaleString('en-IN')})
 Scheme Name: ${s.name}
-Annual Benefit: ₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')}/year (${s.payoutTag || s.benefitType})${expiredNote}
+Annual Benefit: ₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')}/year (${s.payoutTag || s.benefitType})${expiredNote}${highValueWarning}
 
 --------------------------------------------------------------------
-PART A: EXACT INSTRUCTIONS FOR CYBER-CAFÉ / GRAMA-ONE OPERATOR
+PART A: LAST-MILE PHYSICAL ROUTING & OPERATOR INSTRUCTIONS
 --------------------------------------------------------------------
-1. Physical Counter      : ${s.physicalCounter || s.applyWhere}
-2. Official Portal URL   : ${s.source}
-3. Operator Click-Path   : ${s.cscSteps}
-4. #1 Rejection Trap     : ${s.commonRejectionTrap}
-5. Legal Processing Time : ${s.sakalaSlaDays || 21} Working Days (Always hand printed Ack. Receipt to citizen)
+1. Physical Channel      : Channel ${ch.channelNumber || 1} • ${ch.channelName}
+2. Authorized Officer    : ${ch.channelAuthority || s.physicalCounter || 'Designated Operator'}
+3. Statutory Service Fee : ${ch.statutoryFee} (Do not pay more)
+4. Official Portal URL   : ${s.source}
+5. Operator Click-Path   : ${s.cscSteps}
+6. #1 Rejection Trap     : ${s.commonRejectionTrap}
+7. Legal Processing Time : ${s.sakalaSlaDays || 21} Working Days (Sakala Guarantee)
+8. Channel Requirement   : ${ch.specialNote}
 
 --------------------------------------------------------------------
-PART B: REQUIRED DOCUMENTS CHECKLIST (CARRY ORIGINALS + 1 COPY)
+PART B: REQUIRED DOCUMENTS TO CARRY (MASTER FOLDER CHECKLIST)
 --------------------------------------------------------------------
 ${(s.documents || []).map((d, i) => `[✓] ${i + 1}. ${d}`).join('\n')}
 
 --------------------------------------------------------------------
-PART C: SELF-APPLY STEP-BY-STEP GUIDE
+PART C: CITIZEN SELF-APPLY STEP-BY-STEP GUIDE
 --------------------------------------------------------------------
 ${(s.selfApplySteps || []).map(step => `• ${step}`).join('\n')}
 

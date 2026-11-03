@@ -6,6 +6,122 @@ function loadSchemes() {
   return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 }
 
+// =====================================================================
+// PILLAR 4: 6-CHANNEL LAST-MILE PHYSICAL COUNTER MATRIX
+// =====================================================================
+function getChannelForScheme(s) {
+  const id = s.id || '';
+  if (id.includes('pragati') || id.includes('laptop') || id.includes('nsp') || id.includes('vidyasiri') || id.includes('csis')) {
+    return {
+      channelNumber: 2,
+      channelId: 'CHANNEL_2_COLLEGE_INO',
+      channelName: 'College Nodal Officer (INO) / Principal Desk',
+      channelAuthority: 'Institutional Nodal Officer',
+      statutoryFee: '₹0 (Institutional Free Service)',
+      specialNote: 'Mandatory: Submit printed acknowledgement to College Clerk within 48h for portal verification.'
+    };
+  }
+  if (id.includes('kisan') || id.includes('borewell') || id.includes('kusum') || id.includes('crop') || id.includes('kcc')) {
+    return {
+      channelNumber: 3,
+      channelId: 'CHANNEL_3_RSK_AGRI',
+      channelName: 'Raitha Samparka Kendra (RSK) / Agriculture Dept',
+      channelAuthority: 'Assistant Agriculture Officer (AAO)',
+      statutoryFee: '₹0 (Department Counter)',
+      specialNote: 'Bhoomi RTC / Pahani land record e-verification required on site.'
+    };
+  }
+  if (id.includes('maternity') || id.includes('pmmvy') || id.includes('janani') || id.includes('bhagyalakshmi')) {
+    return {
+      channelNumber: 4,
+      channelId: 'CHANNEL_4_ANGANWADI_ASHA',
+      channelName: 'Anganwadi Worker / ASHA / CDPO Health Office',
+      channelAuthority: 'Local Anganwadi Worker (AWW)',
+      statutoryFee: '₹0 (Zero Fee Child Nutrition Program)',
+      specialNote: 'Requires MCP (Mother & Child Protection) card and ANC registration.'
+    };
+  }
+  if (id.includes('labour') || id.includes('bocw')) {
+    return {
+      channelNumber: 5,
+      channelId: 'CHANNEL_5_LABOUR_BOCW',
+      channelName: 'Labour Inspector / Seva Sindhu BOCW Desk',
+      channelAuthority: 'Senior Labour Inspector (SLI)',
+      statutoryFee: '₹25 (GramaOne Service Charge) | ₹0 Online',
+      specialNote: 'Requires 12-month active BOCW identity card renewal and employer certificate.'
+    };
+  }
+  if (id.includes('pmegp') || id.includes('svanidhi') || id.includes('vishwakarma')) {
+    return {
+      channelNumber: 6,
+      channelId: 'CHANNEL_6_LEAD_BANK_DIC',
+      channelName: 'Lead Bank Branch Manager / District Industries Centre (DIC)',
+      channelAuthority: 'Branch Manager / DIC General Manager',
+      statutoryFee: '₹0 (Government Sponsored Credit Portal)',
+      specialNote: 'Includes EDP training stipend and credit subsidy appraisal.'
+    };
+  }
+  return {
+    channelNumber: 1,
+    channelId: 'CHANNEL_1_GRAMA_ONE_CSC',
+    channelName: 'GramaOne / KarnatakaOne / BangaloreOne / CSC',
+    channelAuthority: 'Designated Public Service Operator',
+    statutoryFee: '₹0 Self-Apply | ₹25–₹30 Authorized Counter Fee',
+    specialNote: 'Official Sakala fixed counter fee. Demand a printed government receipt.'
+  };
+}
+
+// =====================================================================
+// PILLAR 1: LIFE-EVENT & CRISIS TRIGGER BUNDLES
+// =====================================================================
+const LIFE_EVENT_BUNDLES = [
+  {
+    id: 'BUNDLE_COLLEGE',
+    name: '🎓 12th Pass / College Admission Mobility Bundle',
+    tagline: 'Higher Education & Tech Upgrades',
+    description: 'Combines AICTE Pragati, NSP Scholarships, Free Laptop Grant, Vidyasiri Hostel & Education Loan Interest Waiver.',
+    schemeIds: ['aicte-pragati-girl', 'state-free-laptop-grant', 'nsp-postmatric', 'pm-usp-csis', 'ka-ssp-vidyasiri'],
+    badge: 'Higher Education',
+    annualTarget: 170000
+  },
+  {
+    id: 'BUNDLE_FARM_UPGRADE',
+    name: '🌾 Monsoon / Crop Risk & Farm Upgrade Bundle',
+    tagline: 'Small Farmer Climate & Irrigation Protection',
+    description: 'Combines PM-KISAN, Ganga Kalyana ₹3.5L Free Borewell, PM-KUSUM 60% Solar Pump, PMFBY Insurance & KCC 4% Credit.',
+    schemeIds: ['pm-kisan', 'ganga-kalyana-borewell', 'pm-kusum-solar', 'pmfby-crop-insurance', 'kcc-interest-subvention'],
+    badge: 'Farmer Security',
+    annualTarget: 114000
+  },
+  {
+    id: 'BUNDLE_WIDOW_EMERGENCY',
+    name: '🕊️ Breadwinner Loss / Widowhood Emergency Bundle',
+    tagline: 'Immediate Survival & Single-Parent Pension',
+    description: 'Combines Destitute Widow Pension, Gruha Lakshmi Head-of-Family cash, Sandhya Suraksha & Ayushman 70+ cover.',
+    schemeIds: ['widow-pension-destitute', 'gruha-lakshmi', 'nsap-old-age-sandhya', 'pmjay-ayushman'],
+    badge: 'Crisis Protection',
+    annualTarget: 45600
+  },
+  {
+    id: 'BUNDLE_MATERNITY_BIRTH',
+    name: '👶 Maternity & Girl Child Birth Wealth Bundle',
+    tagline: 'Mother Nutrition & Family Health Protection',
+    description: 'Combines PMMVY ₹6,000 cash nutrition grant, Gruha Lakshmi household support & Ayushman family health cover.',
+    schemeIds: ['pmmvy-maternity', 'gruha-lakshmi', 'pmjay-ayushman'],
+    badge: 'Maternity Nutrition',
+    annualTarget: 30000
+  },
+  {
+    id: 'BUNDLE_WORKER_UPGRADE',
+    name: '👷 Informal Worker & Artisan Upgrade Bundle',
+    tagline: 'Toolkits, Marriage Grants & Working Capital',
+    description: 'Combines Construction Welfare (BOCW) ₹60k Marriage/Education Grants, PM Vishwakarma ₹15k Toolkit, PM SVANidhi & 35% PMEGP.',
+    schemeIds: ['kbocwwb-labour-grants', 'pm-vishwakarma', 'pm-svanidhi-vendor', 'pmegp-business-subsidy', 'yuva-nidhi'],
+    badge: 'Livelihood & Skills',
+    annualTarget: 195000
+  }
+];
+
 function evaluateMember(profile, schemes) {
   const age = Number(profile.age || 25);
   const income = Number(profile.income || 100000);
@@ -21,7 +137,15 @@ function evaluateMember(profile, schemes) {
   const rawMatches = [];
   const statutoryConflictsResolved = [];
 
-  for (const scheme of schemes) {
+  for (const rawScheme of schemes) {
+    const channelInfo = getChannelForScheme(rawScheme);
+    const scheme = {
+      ...rawScheme,
+      channel: channelInfo,
+      statutoryFee: channelInfo.statutoryFee,
+      isHighValueGrant: (rawScheme.annualValueINR || 0) >= 45000
+    };
+
     const e = scheme.eligibility || {};
     const reasons = [];
 
@@ -129,7 +253,7 @@ function matchCitizenProfile(profile, householdMembers = [], readinessChecks = {
   const consolidatedDocuments = Array.from(new Set(allMatched.flatMap(s => s.documents || [])));
   const hiddenGemsCount = allMatched.filter(s => s.isHiddenGem).length;
 
-  // Build Live Notification Bar Alerts (NEW, ENDING IN 2 DAYS, EXPIRED TODAY)
+  // Build Live Notification Bar Alerts
   const notifications = schemes
     .filter(s => ['NEW', 'ENDING_2_DAYS', 'EXPIRED_TODAY'].includes(s.deadlineStatus))
     .map(s => ({
@@ -138,45 +262,107 @@ function matchCitizenProfile(profile, householdMembers = [], readinessChecks = {
       status: s.deadlineStatus,
       label: s.deadlineLabel,
       annualValueINR: s.annualValueINR,
-      payoutTag: s.payoutTag
+      payoutTag: s.payoutTag,
+      channel: getChannelForScheme(s)
     }));
 
-  // Agent 3: Pre-Submission Rejection Shield
+  // ===================================================================
+  // PILLAR 3: REJECTION SHIELD 3.0 (FORENSIC BANK MERGER & CEILING AUDIT)
+  // ===================================================================
   const npciSeeded = readinessChecks.npciSeeded !== false;
   const nameMatched = readinessChecks.nameMatched !== false;
   const rdValid = readinessChecks.rdValid !== false;
+  const bankAccountType = readinessChecks.bankAccountType || 'regular';
+  const hasMergedBankPassbook = Boolean(readinessChecks.hasMergedBankPassbook);
 
   const rejectionRisks = [];
   let readinessScore = 100;
 
   if (!npciSeeded) {
-    readinessScore -= 45;
+    readinessScore -= 40;
     rejectionRisks.push({
       severity: 'CRITICAL',
       title: 'NPCI Aadhaar DBT Mapper Inactive',
-      fix: 'DBT money will bounce even after scheme approval. Print the NPCI Bank Mandate Form inside any scheme drawer and submit it to your bank manager.'
-    });
-  }
-  if (!nameMatched) {
-    readinessScore -= 30;
-    rejectionRisks.push({
-      severity: 'HIGH',
-      title: 'Name Spelling Mismatch Across Aadhaar & Ration/SSLC Card',
-      fix: 'Portal e-KYC will auto-reject. Update Aadhaar spelling at the nearest Aadhaar Seva Kendra or GramaOne.'
-    });
-  }
-  if (!rdValid) {
-    readinessScore -= 25;
-    rejectionRisks.push({
-      severity: 'MEDIUM',
-      title: 'Income / Caste Certificate RD Number Expired',
-      fix: 'Apply for a fresh Nadakacheri RD Certificate (7-day Sakala SLA) before visiting the cyber-café.'
+      fix: 'DBT treasury payments will silently bounce. Submit the Annexure-I Bank NPCI Mandate inside Hakku to your branch manager.'
     });
   }
 
+  if (!nameMatched) {
+    readinessScore -= 25;
+    rejectionRisks.push({
+      severity: 'HIGH',
+      title: 'Name Spelling Mismatch Across Aadhaar & Passbook',
+      fix: 'Automated UIDAI portal e-KYC will reject during biometric validation. Update name spelling at nearest Aadhaar Seva Kendra or GramaOne.'
+    });
+  }
+
+  if (!rdValid) {
+    readinessScore -= 20;
+    rejectionRisks.push({
+      severity: 'MEDIUM',
+      title: 'Income / Caste Certificate RD Number Expired',
+      fix: 'Apply for fresh Nadakacheri RD Certificate (7-Day Sakala SLA Guarantee) before visiting the cyber-café.'
+    });
+  }
+
+  // Merged Bank IFSC Warning (Syndicate, Vijaya, Corp, SBM)
+  if (hasMergedBankPassbook) {
+    readinessScore -= 15;
+    rejectionRisks.push({
+      severity: 'HIGH',
+      title: 'Legacy Merged PSU Bank Passbook Detected',
+      fix: 'Old IFSC codes (Syndicate->Canara, Vijaya->BoB, Corp->Union, SBM->SBI) cause Khajane-II state treasury failures. Obtain updated passbook with new IFSC and re-verify IIN on NPCI mapper.'
+    });
+  }
+
+  // PMJDY / Basic Savings ₹50,000 Ceiling Check
+  const highValueGrants = allMatched.filter(s => (s.annualValueINR || 0) >= 45000);
+  if (highValueGrants.length > 0 && bankAccountType === 'pmjdy') {
+    readinessScore -= 20;
+    rejectionRisks.push({
+      severity: 'CRITICAL',
+      title: `High-Value Grant (${highValueGrants[0].name.split('(')[0]}) Exceeds Jan Dhan ₹50k Cap`,
+      fix: `Grants over ₹45,000 freeze on PMJDY / Basic Savings accounts due to RBI balance caps. Visit your branch to upgrade to a Regular Savings Account before disbursement.`
+    });
+  }
+
+  // Institutional Nodal Officer (INO) 48-Hour Student Rule
+  const hasStudentScheme = allMatched.some(s => s.channel.channelNumber === 2);
+  if (hasStudentScheme) {
+    rejectionRisks.push({
+      severity: 'INFO',
+      title: 'Student Institutional Nodal Officer (INO) Counter-Sign Required',
+      fix: 'Online submission is only 50% complete. You must hand the printed acknowledgement slip to your College Clerk/Principal within 48h for portal verification.'
+    });
+  }
+
+  // ===================================================================
+  // PILLAR 2: CRITICAL-PATH PREREQUISITE SEQUENCER
+  // ===================================================================
+  const prerequisiteSequence = [
+    {
+      phase: 'Phase A: Identity & Bank Foundation (Do Once)',
+      timing: 'Day 0 – 2',
+      action: 'Aadhaar Mobile Seeding + NPCI Bank Mapper Active',
+      details: 'Ensure mobile number is linked to Aadhaar for OTP e-KYC. Confirm bank account has active NPCI Aadhaar DBT mapper (takes 48h to reflect on PFMS).'
+    },
+    {
+      phase: 'Phase B: Statutory Certificates (Valid 1–5 Years)',
+      timing: 'Day 3 – 7',
+      action: 'Nadakacheri Income RD Certificate + Ration Card e-KYC',
+      details: 'Obtain unexpired 15-digit RD0038... number. Verify all family members are active on Ahara Ration Card registry.'
+    },
+    {
+      phase: 'Phase C: Single-Visit Zero-Failure Scheme Filing',
+      timing: 'Day 8 – 10',
+      action: 'Visit Exact Mapped Channel Counter with Hakku Master Folder',
+      details: 'Carry deduplicated documents to the designated counter (GramaOne, College INO, RSK, or Labour Desk) paying only ₹0 to ₹30 statutory fee.'
+    }
+  ];
+
   return {
     matchedSchemes: allMatched,
-    allCatalogSchemes: schemes,
+    allCatalogSchemes: schemes.map(s => ({ ...s, channel: getChannelForScheme(s) })),
     notifications,
     statutoryConflictsResolved: allConflicts,
     totalDirectAnnualINR,
@@ -186,6 +372,8 @@ function matchCitizenProfile(profile, householdMembers = [], readinessChecks = {
     hiddenGemsCount,
     totalCatalogCount: schemes.length,
     consolidatedDocuments,
+    lifeEventBundles: LIFE_EVENT_BUNDLES,
+    prerequisiteSequence,
     readinessAudit: {
       readinessScore: Math.max(5, readinessScore),
       rejectionRisks
@@ -193,4 +381,4 @@ function matchCitizenProfile(profile, householdMembers = [], readinessChecks = {
   };
 }
 
-module.exports = { matchCitizenProfile, loadSchemes };
+module.exports = { matchCitizenProfile, loadSchemes, LIFE_EVENT_BUNDLES, getChannelForScheme };
