@@ -103,6 +103,7 @@ function matchCitizenProfile(profile, householdMembers = [], readinessChecks = {
 
   let allMatched = [];
   let allConflicts = [];
+  const seenIds = new Set();
   const seenHouseholdLevelGroups = new Set();
 
   for (const member of membersToScan) {
@@ -114,17 +115,31 @@ function matchCitizenProfile(profile, householdMembers = [], readinessChecks = {
         if (seenHouseholdLevelGroups.has(s.exclusivityGroup)) continue;
         seenHouseholdLevelGroups.add(s.exclusivityGroup);
       }
+      if (seenIds.has(s.id + ':' + s.beneficiaryName)) continue;
+      seenIds.add(s.id + ':' + s.beneficiaryName);
       allMatched.push(s);
     }
   }
 
-  // Sort highest annual cash value first
   allMatched.sort((a, b) => (b.annualValueINR || 0) - (a.annualValueINR || 0));
 
   const totalDirectAnnualINR = allMatched.reduce((sum, s) => sum + (s.annualValueINR || 0), 0);
   const fiveYearWealthINR = totalDirectAnnualINR * 5;
   const totalHealthCoverINR = Math.max(500000, allMatched.reduce((sum, s) => sum + (s.coverageValueINR || 0), 0));
   const consolidatedDocuments = Array.from(new Set(allMatched.flatMap(s => s.documents || [])));
+  const hiddenGemsCount = allMatched.filter(s => s.isHiddenGem).length;
+
+  // Build Live Notification Bar Alerts (NEW, ENDING IN 2 DAYS, EXPIRED TODAY)
+  const notifications = schemes
+    .filter(s => ['NEW', 'ENDING_2_DAYS', 'EXPIRED_TODAY'].includes(s.deadlineStatus))
+    .map(s => ({
+      id: s.id,
+      name: s.name,
+      status: s.deadlineStatus,
+      label: s.deadlineLabel,
+      annualValueINR: s.annualValueINR,
+      payoutTag: s.payoutTag
+    }));
 
   // Agent 3: Pre-Submission Rejection Shield
   const npciSeeded = readinessChecks.npciSeeded !== false;
@@ -139,7 +154,7 @@ function matchCitizenProfile(profile, householdMembers = [], readinessChecks = {
     rejectionRisks.push({
       severity: 'CRITICAL',
       title: 'NPCI Aadhaar DBT Mapper Inactive',
-      fix: 'DBT money will bounce even after scheme approval. Print the NPCI Bank Mandate Form in Tab 4 and give it to your bank manager.'
+      fix: 'DBT money will bounce even after scheme approval. Print the NPCI Bank Mandate Form inside any scheme drawer and submit it to your bank manager.'
     });
   }
   if (!nameMatched) {
@@ -162,11 +177,13 @@ function matchCitizenProfile(profile, householdMembers = [], readinessChecks = {
   return {
     matchedSchemes: allMatched,
     allCatalogSchemes: schemes,
+    notifications,
     statutoryConflictsResolved: allConflicts,
     totalDirectAnnualINR,
     fiveYearWealthINR,
     totalHealthCoverINR,
     schemeCount: allMatched.length,
+    hiddenGemsCount,
     totalCatalogCount: schemes.length,
     consolidatedDocuments,
     readinessAudit: {

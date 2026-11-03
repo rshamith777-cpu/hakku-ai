@@ -1,0 +1,332 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 2180" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#04060A"/>
+      <stop offset="50%" stop-color="#080D18"/>
+      <stop offset="100%" stop-color="#050811"/>
+    </linearGradient>
+    <radialGradient id="auroraGreen" cx="20%" cy="12%" r="45%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="auroraPurple" cx="85%" cy="18%" r="40%">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="50%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827" stop-opacity="0.92"/>
+      <stop offset="100%" stop-color="#0B101B" stop-opacity="0.96"/>
+    </linearGradient>
+    <linearGradient id="gemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E1B4B" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.95"/>
+    </linearGradient>
+    <style>
+      .font-sans { font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', 'Consolas', monospace; }
+      .title { fill: #F8FAFC; font-weight: 800; }
+      .muted { fill: #94A3B8; font-weight: 500; }
+      .green { fill: #34D399; font-weight: 700; }
+      .amber { fill: #FBBF24; font-weight: 700; }
+      .red { fill: #F87171; font-weight: 700; }
+      .purple { fill: #C4B5FD; font-weight: 700; }
+      .cyan { fill: #38BDF8; font-weight: 700; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="2180" fill="url(#bgGrad)"/>
+  <rect width="1600" height="2180" fill="url(#auroraGreen)"/>
+  <rect width="1600" height="2180" fill="url(#auroraPurple)"/>
+
+  <!-- ================= 0. TOP LIVE DEADLINE NOTIFICATION BAR ================= -->
+  <rect x="0" y="0" width="1600" height="54" fill="#090D16" stroke="#1E293B" stroke-width="1"/>
+  <rect x="36" y="13" width="142" height="28" rx="14" fill="#EF4444" fill-opacity="0.18" stroke="#EF4444" stroke-opacity="0.5"/>
+  <circle cx="52" cy="27" r="5" fill="#EF4444"/>
+  <text x="66" y="31" class="font-mono red" font-size="11">LIVE ALERTS</text>
+
+  <!-- Pill 1: Ending in 2 Days -->
+  <rect x="195" y="11" width="420" height="32" rx="16" fill="#F59E0B" fill-opacity="0.14" stroke="#F59E0B" stroke-opacity="0.45"/>
+  <text x="212" y="31" class="font-sans amber" font-size="12">⏳ ENDS IN 2 DAYS (38h): AICTE Pragati Girl Grant · ₹50,000/yr</text>
+
+  <!-- Pill 2: Ending in 2 Days -->
+  <rect x="630" y="11" width="390" height="32" rx="16" fill="#F59E0B" fill-opacity="0.14" stroke="#F59E0B" stroke-opacity="0.45"/>
+  <text x="647" y="31" class="font-sans amber" font-size="12">⏳ ENDS IN 2 DAYS (44h): State Free Laptop · ₹35,000</text>
+
+  <!-- Pill 3: New Scheme -->
+  <rect x="1035" y="11" width="285" height="32" rx="16" fill="#10B981" fill-opacity="0.14" stroke="#10B981" stroke-opacity="0.45"/>
+  <text x="1052" y="31" class="font-sans green" font-size="12">🟢 NEW: PM Surya Ghar · ₹78,000</text>
+
+  <!-- Pill 4: Expired Today -->
+  <rect x="1335" y="11" width="235" height="32" rx="16" fill="#EF4444" fill-opacity="0.16" stroke="#EF4444" stroke-opacity="0.45"/>
+  <text x="1350" y="31" class="font-sans red" font-size="12">🔴 EXPIRED TODAY: Yuva Nidhi</text>
+
+  <!-- ================= 1. FLOATING GLASS NAVBAR ================= -->
+  <rect x="36" y="72" width="1528" height="64" rx="20" fill="#0F172A" fill-opacity="0.85" stroke="#334155" stroke-width="1"/>
+  <rect x="54" y="84" width="40" height="40" rx="12" fill="url(#goldGrad)"/>
+  <text x="67" y="111" class="font-sans" fill="#04100C" font-weight="900" font-size="21">ಹ</text>
+  <text x="108" y="103" class="font-sans title" font-size="18">Hakku 4.0</text>
+  <text x="202" y="103" class="font-mono green" font-size="11">ಹಕ್ಕು · हक़</text>
+  <text x="108" y="121" class="font-sans muted" font-size="11">All-in-One-Page Famous &amp; Hidden Gov Money OS · Zero-PII RAM</text>
+
+  <!-- Center Nav Pills -->
+  <rect x="470" y="82" width="650" height="44" rx="22" fill="#090D16" stroke="#1E293B"/>
+  <rect x="478" y="87" width="150" height="34" rx="17" fill="#10B981"/>
+  <text x="497" y="109" class="font-sans" fill="#04120C" font-weight="800" font-size="12">🌌 1-Page Full View</text>
+  <text x="648" y="109" class="font-sans muted" font-size="12">01 · Money Vault</text>
+  <text x="768" y="109" class="font-sans muted" font-size="12">02 · Hidden Gems</text>
+  <text x="892" y="109" class="font-sans muted" font-size="12">03 · Deep-Dive</text>
+  <text x="1002" y="109" class="font-sans muted" font-size="12">04 · Print Kit</text>
+
+  <!-- Right Controls -->
+  <rect x="1150" y="86" width="135" height="36" rx="18" fill="#10B981" fill-opacity="0.12" stroke="#10B981" stroke-opacity="0.4"/>
+  <text x="1168" y="108" class="font-mono green" font-size="11">🔒 0-PII RAM Mode</text>
+  <rect x="1298" y="86" width="115" height="36" rx="18" fill="#1E293B"/>
+  <text x="1316" y="108" class="font-sans title" font-size="12">🌐 EN | ಕನ್ನಡ</text>
+  <rect x="1425" y="86" width="122" height="36" rx="18" fill="#8B5CF6" fill-opacity="0.2" stroke="#8B5CF6" stroke-opacity="0.5"/>
+  <text x="1442" y="108" class="font-sans purple" font-size="12">🤖 5 Agents (8ms)</text>
+
+  <!-- ================= SECTION 1: HERO MONEY VAULT & AI HUNTER ================= -->
+  <text x="42" y="172" class="font-mono green" font-size="12">SECTION 01 // UNCLAIMED GOVERNMENT MONEY VAULT &amp; REAL-TIME AI CITIZEN HUNTER</text>
+
+  <!-- Left Hero Vault Card -->
+  <rect x="36" y="186" width="820" height="310" rx="28" fill="url(#cardGrad)" stroke="#10B981" stroke-opacity="0.4" stroke-width="1.5"/>
+  <rect x="64" y="212" width="335" height="28" rx="14" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-opacity="0.4"/>
+  <text x="80" y="230" class="font-mono green" font-size="11">💎 TOTAL UNCLAIMED GOVERNMENT MONEY FOUND</text>
+
+  <text x="64" y="312" class="font-sans" fill="url(#goldGrad)" font-weight="900" font-size="68">₹1,43,000 / yr</text>
+  <text x="64" y="344" class="font-sans muted" font-size="14">Legal maximum after Statutory Anti-Double-Dipping Resolution · Zero middlemen · Direct NPCI Bank Transfer</text>
+
+  <!-- Sub Metrics -->
+  <rect x="64" y="368" width="175" height="98" rx="18" fill="#090E1A" stroke="#1E293B"/>
+  <text x="82" y="394" class="font-mono muted" font-size="10">5-YEAR WEALTH</text>
+  <text x="82" y="428" class="font-sans amber" font-size="24">₹7,15,000</text>
+  <text x="82" y="448" class="font-sans muted" font-size="11">Cumulative DBT</text>
+
+  <rect x="253" y="368" width="175" height="98" rx="18" fill="#090E1A" stroke="#1E293B"/>
+  <text x="271" y="394" class="font-mono muted" font-size="10">HEALTH SHIELD</text>
+  <text x="271" y="428" class="font-sans cyan" font-size="24">+ ₹5,00,000</text>
+  <text x="271" y="448" class="font-sans muted" font-size="11">Ayushman Cashless</text>
+
+  <rect x="442" y="368" width="185" height="98" rx="18" fill="#1E1B4B" fill-opacity="0.5" stroke="#8B5CF6" stroke-opacity="0.4"/>
+  <text x="460" y="394" class="font-mono purple" font-size="10">💎 HIDDEN GEMS</text>
+  <text x="460" y="428" class="font-sans purple" font-size="24">4 Unlocked</text>
+  <text x="460" y="448" class="font-sans muted" font-size="11">Rare high-payout grants</text>
+
+  <rect x="641" y="368" width="185" height="98" rx="18" fill="#090E1A" stroke="#10B981" stroke-opacity="0.4"/>
+  <text x="659" y="394" class="font-mono green" font-size="10">NPCI DBT SHIELD</text>
+  <text x="659" y="428" class="font-sans green" font-size="24">95% Ready</text>
+  <text x="659" y="448" class="font-sans muted" font-size="11">Zero rejection traps</text>
+
+  <!-- Right AI Hunter Card -->
+  <rect x="876" y="186" width="688" height="310" rx="28" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5"/>
+  <text x="906" y="224" class="font-sans title" font-size="18">🎙️ Real-Time AI Citizen &amp; Family Money Hunter</text>
+  <rect x="1408" y="202" width="128" height="30" rx="15" fill="#EF4444" fill-opacity="0.15" stroke="#EF4444" stroke-opacity="0.4"/>
+  <text x="1424" y="221" class="font-sans red" font-size="11">🎙️ Voice Input</text>
+
+  <!-- Persona Chips -->
+  <rect x="906" y="242" width="150" height="30" rx="15" fill="#10B981" fill-opacity="0.2" stroke="#10B981"/>
+  <text x="920" y="261" class="font-sans green" font-size="11">🎓 Girl Engg Student</text>
+  <rect x="1066" y="242" width="165" height="30" rx="15" fill="#1E293B"/>
+  <text x="1080" y="261" class="font-sans title" font-size="11">👨👩👧👦 4-Member Family</text>
+  <rect x="1241" y="242" width="145" height="30" rx="15" fill="#1E293B"/>
+  <text x="1255" y="261" class="font-sans title" font-size="11">👷 Labour Worker</text>
+  <rect x="1396" y="242" width="138" height="30" rx="15" fill="#1E293B"/>
+  <text x="1410" y="261" class="font-sans title" font-size="11">🌾 Small Farmer</text>
+
+  <!-- Prompt Box -->
+  <rect x="906" y="286" width="628" height="72" rx="16" fill="#060911" stroke="#334155"/>
+  <text x="924" y="314" class="font-sans title" font-size="13">"I am a 19yo engineering girl student in Karnataka, family income ₹95,000, BPL card,</text>
+  <text x="924" y="338" class="font-sans title" font-size="13">need hidden scholarships, free laptop, and rooftop solar subsidy..."</text>
+
+  <!-- Action Button -->
+  <rect x="906" y="374" width="628" height="48" rx="14" fill="url(#goldGrad)"/>
+  <text x="1055" y="404" class="font-sans" fill="#04120C" font-weight="900" font-size="15">⚡ Unlock All Famous &amp; Hidden Government Money (8ms)</text>
+
+  <text x="906" y="454" class="font-mono purple" font-size="11">✨ Powered by BharatCode API (qwen-3.8-27b) + Deterministic Statutory Rule Engine</text>
+
+  <!-- ================= SECTION 2: FAMOUS & HIDDEN GEMS BENTO GRID ================= -->
+  <text x="42" y="538" class="font-mono green" font-size="12">SECTION 02 // FAMOUS &amp; HIDDEN GOVERNMENT MONEY GEMS (CLICK ANY CARD TO INSPECT)</text>
+
+  <!-- Filter Pills -->
+  <rect x="36" y="552" width="155" height="34" rx="17" fill="#10B981"/>
+  <text x="54" y="574" class="font-sans" fill="#04120C" font-weight="800" font-size="12">🔥 All Matched (8)</text>
+  <rect x="202" y="552" width="195" height="34" rx="17" fill="#8B5CF6" fill-opacity="0.2" stroke="#8B5CF6"/>
+  <text x="220" y="574" class="font-sans purple" font-size="12">💎 Hidden Money Gems (4)</text>
+  <rect x="408" y="552" width="245" height="34" rx="17" fill="#F59E0B" fill-opacity="0.16" stroke="#F59E0B"/>
+  <text x="426" y="574" class="font-sans amber" font-size="12">⏳ Ending in 2 Days / Expired Today</text>
+
+  <!-- Card 1: AICTE Pragati (Hidden Gem + Ending in 2 Days) -->
+  <rect x="36" y="602" width="500" height="250" rx="24" fill="url(#gemGrad)" stroke="#8B5CF6" stroke-width="2"/>
+  <rect x="58" y="622" width="128" height="24" rx="12" fill="#8B5CF6" fill-opacity="0.25"/>
+  <text x="70" y="638" class="font-mono purple" font-size="10">💎 HIDDEN GEM</text>
+  <rect x="196" y="622" width="165" height="24" rx="12" fill="#F59E0B" fill-opacity="0.2"/>
+  <text x="208" y="638" class="font-mono amber" font-size="10">⏳ ENDS IN 2 DAYS (38h)</text>
+
+  <text x="58" y="684" class="font-sans green" font-size="32">₹50,000 / yr</text>
+  <text x="58" y="714" class="font-sans title" font-size="17">AICTE Pragati Scholarship for Girls</text>
+  <text x="58" y="738" class="font-sans muted" font-size="12">78% of eligible 1st/2nd yr engineering &amp; diploma girls never apply.</text>
+  <text x="58" y="768" class="font-mono muted" font-size="11">📍 NSP Portal / College Nodal  •  ⏱️ Sakala: 45 Days</text>
+  <rect x="58" y="788" width="454" height="42" rx="12" fill="#8B5CF6" fill-opacity="0.25" stroke="#8B5CF6"/>
+  <text x="115" y="814" class="font-sans title" font-size="13">🔍 Selected Below: Full Criteria, Docs &amp; Cyber Slip ↓</text>
+
+  <!-- Card 2: State Free Laptop (Hidden Gem + Ending in 2 Days) -->
+  <rect x="552" y="602" width="496" height="250" rx="24" fill="url(#gemGrad)" stroke="#334155" stroke-width="1.5"/>
+  <rect x="574" y="622" width="128" height="24" rx="12" fill="#8B5CF6" fill-opacity="0.25"/>
+  <text x="586" y="638" class="font-mono purple" font-size="10">💎 HIDDEN GEM</text>
+  <rect x="712" y="622" width="165" height="24" rx="12" fill="#F59E0B" fill-opacity="0.2"/>
+  <text x="724" y="638" class="font-mono amber" font-size="10">⏳ ENDS IN 2 DAYS (44h)</text>
+
+  <text x="574" y="684" class="font-sans green" font-size="32">₹35,000 / yr</text>
+  <text x="574" y="714" class="font-sans title" font-size="17">State Free Laptop / Digital Grant</text>
+  <text x="574" y="738" class="font-sans muted" font-size="12">Separate from SSP tuition fee reimbursement via DCE / Social Welfare.</text>
+  <text x="574" y="768" class="font-mono muted" font-size="11">📍 College Principal / SSP Portal  •  ⏱️ Sakala: 30 Days</text>
+  <rect x="574" y="788" width="452" height="42" rx="12" fill="#1E293B"/>
+  <text x="645" y="814" class="font-sans title" font-size="13">🔍 Click for Full Criteria, Docs &amp; Cyber Slip →</text>
+
+  <!-- Card 3: PM Surya Ghar Solar (Hidden Gem + NEW) -->
+  <rect x="1064" y="602" width="500" height="250" rx="24" fill="url(#gemGrad)" stroke="#334155" stroke-width="1.5"/>
+  <rect x="1086" y="622" width="128" height="24" rx="12" fill="#8B5CF6" fill-opacity="0.25"/>
+  <text x="1098" y="638" class="font-mono purple" font-size="10">💎 HIDDEN GEM</text>
+  <rect x="1224" y="622" width="145" height="24" rx="12" fill="#10B981" fill-opacity="0.2"/>
+  <text x="1236" y="638" class="font-mono green" font-size="10">🟢 NEW 2026 QUOTA</text>
+
+  <text x="1086" y="684" class="font-sans green" font-size="32">₹78,000 / yr</text>
+  <text x="1086" y="714" class="font-sans title" font-size="17">PM Surya Ghar Rooftop Solar Grant</text>
+  <text x="1086" y="738" class="font-sans muted" font-size="12">Direct ₹78,000 capital subsidy into bank account within 30 days + free power.</text>
+  <text x="1086" y="768" class="font-mono muted" font-size="11">📍 pmsuryaghar.gov.in / DISCOM  •  ⏱️ Sakala: 30 Days</text>
+  <rect x="1086" y="788" width="454" height="42" rx="12" fill="#1E293B"/>
+  <text x="1155" y="814" class="font-sans title" font-size="13">🔍 Click for Full Criteria, Docs &amp; Cyber Slip →</text>
+
+  <!-- ================= SECTION 3: FULL DEEP-DIVE SCHEME INSPECTOR ================= -->
+  <text x="42" y="896" class="font-mono purple" font-size="12">SECTION 03 // FULL SCHEME DEEP-DIVE INSPECTOR (CRITERIA, DOCUMENTS, SELF-APPLY &amp; CYBER-CAFÉ GUIDE)</text>
+
+  <rect x="36" y="910" width="1528" height="420" rx="28" fill="url(#cardGrad)" stroke="#8B5CF6" stroke-width="2"/>
+
+  <!-- Inspector Header -->
+  <rect x="64" y="936" width="135" height="26" rx="13" fill="#8B5CF6" fill-opacity="0.25"/>
+  <text x="78" y="953" class="font-mono purple" font-size="11">💎 HIDDEN GEM</text>
+  <rect x="210" y="936" width="215" height="26" rx="13" fill="#F59E0B" fill-opacity="0.2"/>
+  <text x="224" y="953" class="font-mono amber" font-size="11">⏳ CLOSING IN 38 HOURS</text>
+
+  <text x="64" y="994" class="font-sans title" font-size="26">AICTE Pragati Scholarship for Girl Students (Degree &amp; Diploma)</text>
+  <text x="1280" y="992" class="font-sans green" font-size="36">₹50,000 / yr</text>
+
+  <!-- 3 Columns Inside Inspector -->
+  <!-- Col 1: Complete Eligibility & Gov Rule -->
+  <rect x="64" y="1018" width="470" height="230" rx="18" fill="#080C15" stroke="#1E293B"/>
+  <text x="86" y="1048" class="font-mono green" font-size="12">✅ 1. COMPLETE ELIGIBILITY &amp; STATUTORY RULE</text>
+  <text x="86" y="1078" class="font-sans title" font-size="13">• Gender: Female student only (Max 2 girls per family)</text>
+  <text x="86" y="1104" class="font-sans title" font-size="13">• Course: 1st Year or 2nd Year (Lateral) AICTE Degree/Diploma</text>
+  <text x="86" y="1130" class="font-sans title" font-size="13">• Family Income: Below ₹8,00,000/yr (Valid RD Certificate)</text>
+  <text x="86" y="1156" class="font-sans amber" font-size="12">⚠️ #1 Rejection Trap: College Institute Nodal Officer (INO)</text>
+  <text x="86" y="1176" class="font-sans muted" font-size="12">   failing to digitally verify application on NSP before deadline.</text>
+  <text x="86" y="1206" class="font-mono purple" font-size="11">⚖️ Statutory Rule: AICTE Pragati Notification · NSP Central</text>
+  <text x="86" y="1228" class="font-mono cyan" font-size="11">⏱️ Sakala Mandated SLA: 45 Working Days</text>
+
+  <!-- Col 2: Exact Required Documents -->
+  <rect x="554" y="1018" width="470" height="230" rx="18" fill="#080C15" stroke="#1E293B"/>
+  <text x="576" y="1048" class="font-mono amber" font-size="12">📁 2. EXACT DOCUMENTS TO CARRY (ORIGINALS + COPIES)</text>
+  <text x="576" y="1078" class="font-sans title" font-size="13">☑️ 1. Aadhaar Card (Name must match 10th/12th marks card)</text>
+  <text x="576" y="1104" class="font-sans title" font-size="13">☑️ 2. Nadakacheri Income Certificate (RD... under ₹8L)</text>
+  <text x="576" y="1130" class="font-sans title" font-size="13">☑️ 3. AICTE College Admission / CET Allotment Letter</text>
+  <text x="576" y="1156" class="font-sans title" font-size="13">☑️ 4. 10th &amp; 12th / Diploma Marks Cards + Tuition Receipt</text>
+  <text x="576" y="1182" class="font-sans title" font-size="13">☑️ 5. Student Bank Passbook (NPCI Aadhaar DBT Active)</text>
+  <text x="576" y="1208" class="font-sans title" font-size="13">☑️ 6. Parents Declaration (Max 2 girls in family)</text>
+
+  <!-- Col 3: How to Apply (Self vs Cyber-Cafe) -->
+  <rect x="1044" y="1018" width="490" height="230" rx="18" fill="#080C15" stroke="#1E293B"/>
+  <text x="1066" y="1048" class="font-mono cyan" font-size="12">🖥️ 3. HOW TO APPLY (ONLINE OR AT CYBER-CAFÉ)</text>
+  <text x="1066" y="1078" class="font-sans green" font-size="12">Option A — Apply Yourself Online (Free):</text>
+  <text x="1066" y="1100" class="font-sans muted" font-size="12">1. Open https://scholarships.gov.in &amp; complete OTR e-KYC.</text>
+  <text x="1066" y="1120" class="font-sans muted" font-size="12">2. Select "AICTE Pragati Scholarship for Girl Students".</text>
+  <text x="1066" y="1140" class="font-sans muted" font-size="12">3. Submit &amp; give hardcopy to College Nodal Officer immediately.</text>
+  <text x="1066" y="1170" class="font-sans amber" font-size="12">Option B — Visit Cyber-Café / GramaOne / CSC:</text>
+  <text x="1066" y="1192" class="font-sans muted" font-size="12">Print the Hakku Cyber-Café Slip below and hand it to the</text>
+  <text x="1066" y="1212" class="font-sans muted" font-size="12">operator so they select AICTE Pragati (not regular Post-Matric).</text>
+
+  <!-- Action Buttons Bar Inside Inspector -->
+  <rect x="64" y="1266" width="470" height="44" rx="12" fill="#10B981"/>
+  <text x="135" y="1293" class="font-sans" fill="#04120C" font-weight="800" font-size="14">🖨️ Load 3-in-1 Cyber-Café Slip Below</text>
+
+  <rect x="554" y="1266" width="470" height="44" rx="12" fill="#1E293B" stroke="#334155"/>
+  <text x="645" y="1293" class="font-sans title" font-size="14">🏦 Load Bank NPCI DBT Seeding Form</text>
+
+  <rect x="1044" y="1266" width="490" height="44" rx="12" fill="#EF4444" fill-opacity="0.18" stroke="#EF4444"/>
+  <text x="1135" y="1293" class="font-sans red" font-size="14">⚖️ Load Section 6(1) Sakala Delay RTI</text>
+
+  <!-- ================= SECTION 4: REJECTION SHIELD & MASTER DOC FOLDER ================= -->
+  <text x="42" y="1374" class="font-mono green" font-size="12">SECTION 04 // PRE-SUBMISSION REJECTION SHIELD &amp; DEDUPLICATED SINGLE-WINDOW DOCUMENT FOLDER</text>
+
+  <!-- Left: Rejection Shield -->
+  <rect x="36" y="1388" width="748" height="270" rx="26" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5"/>
+  <text x="66" y="1428" class="font-sans title" font-size="19">🛡️ Pre-Submission Rejection Shield</text>
+  <text x="650" y="1428" class="font-mono green" font-size="22">95% READY</text>
+
+  <rect x="66" y="1448" width="688" height="54" rx="14" fill="#080C15" stroke="#10B981" stroke-opacity="0.5"/>
+  <text x="88" y="1480" class="font-sans green" font-size="14">☑️ Bank Account NPCI Aadhaar DBT Mapper Active (Prevents 68% payment failure)</text>
+
+  <rect x="66" y="1514" width="688" height="54" rx="14" fill="#080C15" stroke="#10B981" stroke-opacity="0.5"/>
+  <text x="88" y="1546" class="font-sans green" font-size="14">☑️ Exact Name Spelling Match Across Aadhaar, Ration Card &amp; Marks Card</text>
+
+  <rect x="66" y="1580" width="688" height="54" rx="14" fill="#080C15" stroke="#10B981" stroke-opacity="0.5"/>
+  <text x="88" y="1612" class="font-sans green" font-size="14">☑️ Valid Nadakacheri RD Number (Income &amp; Caste Certificate under 12 months old)</text>
+
+  <!-- Right: Single-Window Deduplicated Folder -->
+  <rect x="812" y="1388" width="752" height="270" rx="26" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5"/>
+  <text x="842" y="1428" class="font-sans title" font-size="19">📁 Single-Window Master Document Folder (Carry Once for All 8 Schemes)</text>
+
+  <rect x="842" y="1450" width="335" height="52" rx="12" fill="#080C15" stroke="#1E293B"/>
+  <text x="860" y="1481" class="font-sans title" font-size="13">☑️ Aadhaar Card</text>
+  <text x="1075" y="1481" class="font-mono green" font-size="11">8 schemes</text>
+
+  <rect x="1195" y="1450" width="340" height="52" rx="12" fill="#080C15" stroke="#1E293B"/>
+  <text x="1213" y="1481" class="font-sans title" font-size="13">☑️ NPCI Bank Passbook</text>
+  <text x="1435" y="1481" class="font-mono green" font-size="11">8 schemes</text>
+
+  <rect x="842" y="1514" width="335" height="52" rx="12" fill="#080C15" stroke="#1E293B"/>
+  <text x="860" y="1545" class="font-sans title" font-size="13">☑️ Income Certificate (RD)</text>
+  <text x="1075" y="1545" class="font-mono green" font-size="11">6 schemes</text>
+
+  <rect x="1195" y="1514" width="340" height="52" rx="12" fill="#080C15" stroke="#1E293B"/>
+  <text x="1213" y="1545" class="font-sans title" font-size="13">☑️ BPL Ration Card</text>
+  <text x="1435" y="1545" class="font-mono green" font-size="11">5 schemes</text>
+
+  <rect x="842" y="1578" width="335" height="52" rx="12" fill="#080C15" stroke="#1E293B"/>
+  <text x="860" y="1609" class="font-sans title" font-size="13">☑️ College CET / Bonafide</text>
+  <text x="1075" y="1609" class="font-mono green" font-size="11">3 schemes</text>
+
+  <rect x="1195" y="1578" width="340" height="52" rx="12" fill="#080C15" stroke="#1E293B"/>
+  <text x="1213" y="1609" class="font-sans title" font-size="13">☑️ BESCOM Electricity Bill</text>
+  <text x="1435" y="1609" class="font-mono green" font-size="11">2 schemes</text>
+
+  <!-- ================= SECTION 5: CYBER-CAFE SLIP & LEGAL PRINT STUDIO ================= -->
+  <text x="42" y="1702" class="font-mono green" font-size="12">SECTION 05 // 1-CLICK PRINTABLE CYBER-CAFÉ SLIP, BANK NPCI MANDATE &amp; SECTION 6(1) SAKALA RTI STUDIO</text>
+
+  <rect x="36" y="1716" width="1528" height="425" rx="28" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5"/>
+
+  <text x="68" y="1758" class="font-sans title" font-size="20">🖨️ Official Printable Cyber-Café Operator Slip &amp; Legal RTI Dossier</text>
+  <rect x="1130" y="1734" width="190" height="40" rx="12" fill="#1E293B"/>
+  <text x="1158" y="1759" class="font-sans title" font-size="13">🔊 Read Aloud (TTS)</text>
+  <rect x="1335" y="1734" width="200" height="40" rx="12" fill="#10B981"/>
+  <text x="1365" y="1759" class="font-sans" fill="#04120C" font-weight="800" font-size="13">🖨️ Print / Save PDF</text>
+
+  <!-- White A4 Document Preview Sheet -->
+  <rect x="68" y="1790" width="1464" height="320" rx="16" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="104" y="1830" class="font-mono" fill="#0F172A" font-weight="800" font-size="14">========================================================================================================================</text>
+  <text x="104" y="1854" class="font-mono" fill="#0F172A" font-weight="800" font-size="15">   HAKKU 4.0 (ಹಕ್ಕು / हक़) — 3-IN-1 CYBER-CAFÉ OPERATOR SLIP, CHECKLIST &amp; SELF-APPLY GUIDE</text>
+  <text x="104" y="1876" class="font-mono" fill="#0F172A" font-weight="800" font-size="14">========================================================================================================================</text>
+  <text x="104" y="1906" class="font-mono" fill="#1E293B" font-size="13">SCHEME NAME       : AICTE Pragati Scholarship for Girl Students (Degree &amp; Diploma) [💎 HIDDEN GOVERNMENT GEM]</text>
+  <text x="104" y="1930" class="font-mono" fill="#047857" font-weight="700" font-size="13">ANNUAL BENEFIT    : Rs. 50,000 / year (Direct NPCI Aadhaar Bank Transfer — 100% Free to Apply)</text>
+  <text x="104" y="1954" class="font-mono" fill="#1E293B" font-size="13">OFFICIAL PORTAL   : https://scholarships.gov.in   |   SAKALA MANDATED SLA : 45 Working Days</text>
+  <text x="104" y="1986" class="font-mono" fill="#0F172A" font-weight="700" font-size="13">[PART A] INSTRUCTIONS FOR CYBER-CAFÉ / GRAMAONE / CSC OPERATOR:</text>
+  <text x="104" y="2010" class="font-mono" fill="#334155" font-size="12">1. Log into National Scholarship Portal (NSP) using Student OTR ID. Select "AICTE Pragati Scheme for Girls".</text>
+  <text x="104" y="2032" class="font-mono" fill="#334155" font-size="12">2. Verify Nadakacheri RD Income Certificate (&lt; Rs. 8,00,000) and upload CET Allotment + College Bonafide Certificate.</text>
+  <text x="104" y="2054" class="font-mono" fill="#B91C1C" font-weight="700" font-size="12">3. CRITICAL: Hand printed NSP acknowledgement to student so College Nodal Officer (INO) verifies it within 38 hours.</text>
+  <text x="104" y="2086" class="font-mono" fill="#64748B" font-size="12">Citizen Signature: ___________________________     Date: ___/___/2026     Zero-PII Verified by Hakku 4.0 Harness</text>
+</svg>

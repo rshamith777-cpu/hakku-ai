@@ -3,700 +3,1191 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hakku (ಹಕ್ಕು / हक़) — Comprehensive Government Welfare & Scheme Discovery Engine</title>
-  
-  <!-- Modern Premium Typography: Outfit (Headings) + Inter (Body) + JetBrains Mono (Codes/Money) -->
+  <title>Hakku 4.0 (ಹಕ್ಕು / हक़) — Famous & Hidden Government Money OS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            heading: ['"Outfit"', 'sans-serif'],
-            sans: ['"Inter"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          }
-        }
-      }
-    }
-  </script>
-
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #05070B;
+      --surface: rgba(15, 21, 35, 0.78);
+      --surface-hover: rgba(22, 31, 50, 0.92);
+      --border: rgba(255, 255, 255, 0.09);
+      --border-glow: rgba(16, 185, 129, 0.42);
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+      --emerald: #10B981;
+      --emerald-light: #34D399;
+      --gold: #F59E0B;
+      --purple: #8B5CF6;
+      --rose: #EF4444;
+      --cyan: #06B6D4;
+      --spring: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      background-color: #F8FAFC;
-      color: #0F172A;
-      font-family: "Inter", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      min-height: 100vh;
       overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at 12% 10%, rgba(16, 185, 129, 0.14), transparent 36%),
+        radial-gradient(circle at 86% 14%, rgba(139, 92, 246, 0.13), transparent 36%),
+        radial-gradient(circle at 50% 85%, rgba(245, 158, 11, 0.08), transparent 42%);
     }
 
-    h1, h2, h3, h4, h5, h6, .font-heading {
-      font-family: "Outfit", sans-serif;
-    }
-    
-    /* Infinite Loop Ticker Tape Animation */
-    @keyframes tickerTape {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .ticker-wrapper {
-      overflow: hidden;
+    /* 0. TOP LIVE DEADLINE NOTIFICATION BAR */
+    .notif-bar {
+      background: linear-gradient(90deg, rgba(16,185,129,0.14), rgba(245,158,11,0.16), rgba(239,68,68,0.15));
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      overflow-x: auto;
       white-space: nowrap;
-      position: relative;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
     }
-    .ticker-track {
+    .notif-bar::-webkit-scrollbar { height: 0; }
+    .notif-label {
       display: inline-flex;
-      animation: tickerTape 32s linear infinite;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 11px;
+      border-radius: 99px;
+      background: rgba(239,68,68,0.2);
+      border: 1px solid rgba(239,68,68,0.45);
+      color: #FCA5A5;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      flex-shrink: 0;
     }
-    .ticker-track:hover {
-      animation-play-state: paused;
+    .notif-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #EF4444;
+      animation: pulseDot 1.4s infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.45; }
+    }
+    .notif-items {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .notif-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 13px;
+      border-radius: 99px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s var(--spring);
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--text);
+    }
+    .notif-pill:hover {
+      transform: translateY(-2px);
+      border-color: var(--emerald);
+    }
+    .notif-pill.ending {
+      border-color: rgba(245, 158, 11, 0.45);
+      background: rgba(245, 158, 11, 0.12);
+      color: #FDE68A;
+    }
+    .notif-pill.expired {
+      border-color: rgba(239, 68, 68, 0.45);
+      background: rgba(239, 68, 68, 0.13);
+      color: #FECACA;
+    }
+    .notif-pill.new {
+      border-color: rgba(16, 185, 129, 0.45);
+      background: rgba(16, 185, 129, 0.12);
+      color: #A7F3D0;
     }
 
-    /* Custom form inputs */
-    .form-input {
-      background-color: #FFFFFF;
-      border: 1px solid #CBD5E1;
-      border-radius: 10px;
-      padding: 9px 12px;
-      font-size: 13px;
-      color: #0F172A;
-      outline: none;
-      transition: all 0.15s ease;
+    /* 1. STICKY TOP NAVBAR */
+    .navbar-wrap {
+      position: sticky;
+      top: 49px;
+      z-index: 95;
+      background: rgba(5, 7, 11, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .navbar {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      width: 42px; height: 42px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--emerald), var(--gold));
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: #04120C;
+      box-shadow: 0 0 24px rgba(16, 185, 129, 0.35);
+    }
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .brand-sub {
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+
+    /* SECTION JUMP PILLS */
+    .nav-pills {
+      display: flex;
+      gap: 6px;
+      background: rgba(15, 21, 35, 0.9);
+      padding: 5px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .nav-pill {
+      padding: 8px 15px;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s var(--spring);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .nav-pill:hover { color: var(--text); }
+    .nav-pill.active {
+      background: linear-gradient(135deg, var(--emerald), #059669);
+      color: #03120C;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .chip-btn {
+      padding: 8px 13px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s var(--spring);
+    }
+    .chip-btn:hover { border-color: var(--emerald); }
+
+    /* MAIN SINGLE-PAGE CONTAINER */
+    .container {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 28px 28px 90px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .page-section {
+      scroll-margin-top: 130px;
+      animation: sectionFade 0.5s var(--spring);
+    }
+    @keyframes sectionFade {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .eyebrow-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--emerald-light);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .eyebrow-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* BENTO CARD */
+    .bento-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 28px;
+      backdrop-filter: blur(20px);
+      transition: transform 0.35s var(--spring), border-color 0.35s var(--spring), box-shadow 0.35s var(--spring);
+    }
+    .bento-card:hover {
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    /* SECTION 01: HERO VAULT + AI HUNTER */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+    }
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+
+    .vault-card {
+      background: linear-gradient(155deg, rgba(16, 185, 129, 0.13) 0%, rgba(15, 21, 35, 0.88) 55%, rgba(139, 92, 246, 0.1) 100%);
+      border: 1px solid var(--border-glow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .vault-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 13px;
+      border-radius: 99px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--emerald-light);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+    .vault-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.8rem, 5vw, 4.4rem);
+      font-weight: 800;
+      line-height: 1.04;
+      margin: 16px 0 8px;
+      background: linear-gradient(95deg, #FFFFFF 0%, #6EE7B7 55%, #FCD34D 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .vault-sub {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .vault-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+    @media (max-width: 680px) {
+      .vault-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+    .stat-box {
+      background: rgba(5, 7, 11, 0.65);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 13px;
+    }
+    .stat-label {
+      font-size: 0.69rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .stat-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    /* PERSONAS & AI INPUT */
+    .persona-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 12px 0 14px;
+    }
+    .persona-pill {
+      padding: 7px 12px;
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.77rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.22s var(--spring);
+    }
+    .persona-pill:hover, .persona-pill.active {
+      background: rgba(16, 185, 129, 0.16);
+      border-color: var(--emerald);
+      color: var(--emerald-light);
+      transform: translateY(-2px);
+    }
+    .ai-textarea {
       width: 100%;
+      min-height: 78px;
+      background: rgba(5, 7, 11, 0.75);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.88rem;
+      resize: vertical;
+      outline: none;
     }
-    .form-input:focus {
-      border-color: #0A2540;
-      box-shadow: 0 0 0 3px rgba(10, 37, 64, 0.08);
+    .ai-textarea:focus { border-color: var(--emerald); }
+
+    .form-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .input-box {
+      background: rgba(5, 7, 11, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 7px 10px;
+    }
+    .input-box label {
+      display: block;
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .input-box select, .input-box input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      outline: none;
+    }
+    .input-box select option { background: #0F1523; color: var(--text); }
+
+    .btn-primary {
+      width: 100%;
+      margin-top: 12px;
+      padding: 13px 20px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(135deg, var(--emerald), #059669);
+      color: #03120C;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.25s var(--spring);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); }
+
+    /* SECTION 02: SCHEMES FILTER & BENTO GRID */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .cat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .cat-pill {
+      padding: 8px 14px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.22s var(--spring);
+    }
+    .cat-pill.active, .cat-pill:hover {
+      background: rgba(16, 185, 129, 0.16);
+      border-color: var(--emerald);
+      color: var(--text);
+    }
+    .schemes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    @media (max-width: 1120px) {
+      .schemes-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 720px) {
+      .schemes-grid { grid-template-columns: 1fr; }
+    }
+    .scheme-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.3s var(--spring);
+      position: relative;
+      overflow: hidden;
+    }
+    .scheme-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(16, 185, 129, 0.55);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+    }
+    .scheme-card.selected-card {
+      border: 2px solid var(--emerald);
+      box-shadow: 0 0 28px rgba(16, 185, 129, 0.22);
+    }
+    .scheme-card.hidden-gem {
+      border-color: rgba(139, 92, 246, 0.45);
+      background: linear-gradient(160deg, rgba(139, 92, 246, 0.12) 0%, rgba(15, 21, 35, 0.88) 65%);
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .gem-badge {
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      background: rgba(139, 92, 246, 0.22);
+      border: 1px solid rgba(139, 92, 246, 0.5);
+      color: #DDD6FE;
+    }
+    .deadline-badge {
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-size: 0.68rem;
+      font-weight: 800;
+    }
+    .deadline-badge.ENDING_2_DAYS {
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      color: #FDE68A;
+    }
+    .deadline-badge.EXPIRED_TODAY {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #FECACA;
+    }
+    .deadline-badge.NEW {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #A7F3D0;
+    }
+    .scheme-money {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--emerald-light);
+    }
+    .scheme-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+    .action-btn {
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .action-btn.primary {
+      background: rgba(16, 185, 129, 0.16);
+      border-color: rgba(16, 185, 129, 0.45);
+      color: var(--emerald-light);
     }
 
-    /* Badges */
-    .badge-state {
-      background-color: #F0FDF4;
-      color: #166534;
-      border: 1px solid #BBF7D0;
+    /* SECTION 03: INLINE DEEP-DIVE SCHEME INSPECTOR */
+    .inspector-card {
+      border: 1.5px solid rgba(139, 92, 246, 0.55);
+      background: linear-gradient(160deg, rgba(139, 92, 246, 0.1) 0%, rgba(15, 21, 35, 0.94) 50%);
     }
-    .badge-central {
-      background-color: #EFF6FF;
-      color: #1E40AF;
-      border: 1px solid #BFDBFE;
+    .inspector-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 20px;
     }
-    .badge-joint {
-      background-color: #FAF5FF;
-      color: #6B21A8;
-      border: 1px solid #E9D5FF;
+    @media (max-width: 980px) {
+      .inspector-grid { grid-template-columns: 1fr; }
+    }
+    .inspector-col {
+      background: rgba(5, 7, 11, 0.65);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+    }
+    .inspector-col h4 {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--emerald-light);
+      margin-bottom: 12px;
+    }
+    .detail-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .detail-list li {
+      font-size: 0.84rem;
+      line-height: 1.5;
+      padding-left: 20px;
+      position: relative;
+      color: #E2E8F0;
+    }
+    .detail-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--emerald-light);
+      font-weight: 800;
     }
 
-    button:focus-visible, input:focus-visible, select:focus-visible {
-      outline: 2px solid #0A2540;
-      outline-offset: 2px;
+    /* SECTION 04: SHIELD & SINGLE-WINDOW DOCS */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 920px) {
+      .two-col-grid { grid-template-columns: 1fr; }
+    }
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 15px;
+      background: rgba(5, 7, 11, 0.55);
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    .check-row input {
+      width: 18px; height: 18px;
+      accent-color: var(--emerald);
+      margin-top: 2px;
+    }
+
+    /* SECTION 05: PRINTABLE A4 CYBER-CAFE & RTI STUDIO */
+    .doc-sheet {
+      background: #FFFFFF;
+      color: #0F172A;
+      border-radius: 18px;
+      padding: 26px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      max-height: 480px;
+      overflow-y: auto;
+      border: 2px solid #CBD5E1;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    /* FULL-SCREEN MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-dialog {
+      background: #0B101D;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 26px;
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-[#0A2540] selection:text-white">
+<body>
 
-  <!-- ========================================================= -->
-  <!-- 1. LIVE DEADLINES & ANNOUNCEMENTS TICKER TAPE -->
-  <!-- ========================================================= -->
-  <div class="bg-[#0A2540] text-white border-b border-[#0F355C] text-xs py-2 px-3 flex items-center overflow-hidden z-50">
-    <div class="shrink-0 flex items-center gap-1.5 bg-[#0E3A66] text-white font-heading font-black text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-md mr-3 border border-[#1E4D7A]">
-      <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-      <span>LIVE NOTICES</span>
+  <!-- ================= 0. TOP NOTIFICATION & DEADLINE TICKER BAR ================= -->
+  <div class="notif-bar">
+    <div class="notif-label">
+      <span class="notif-dot"></span>
+      <span>Live Scheme Alerts</span>
     </div>
-
-    <div class="ticker-wrapper flex-1">
-      <div class="ticker-track text-[11px] font-mono tracking-tight text-slate-200">
-        <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-400/30 text-[9px] font-bold">CENTRAL DEADLINE</span>
-          <span><b>NSP Central Sector Scholarship:</b> College e-verification deadline closes at 11:59 PM today.</span>
-        </span>
-        <span class="text-slate-500">•</span>
-        <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[9px] font-bold">STATE QUOTA</span>
-          <span><b>Karnataka Gruha Lakshmi:</b> ₹2,000/mo DBT active. Seed Bank NPCI Aadhaar mapper to prevent bounce.</span>
-        </span>
-        <span class="text-slate-500">•</span>
-        <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30 text-[9px] font-bold">SOLAR PUMP</span>
-          <span><b>PM-KUSUM 60% Subsidy:</b> Fresh district quota open for farmers via state energy portals.</span>
-        </span>
-        <span class="text-slate-500">•</span>
-        <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-400/30 text-[9px] font-bold">SENIORS 70+</span>
-          <span><b>Ayushman Vay Vandana:</b> Universal ₹5 Lakh cashless health cover now available for all seniors aged 70+.</span>
-        </span>
-        <span class="text-slate-500">•</span>
-        <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-400/30 text-[9px] font-bold">KARNATAKA YOUTH</span>
-          <span><b>Yuva Nidhi (₹3,000/mo):</b> Unemployed graduate self-declaration window open on Seva Sindhu.</span>
-        </span>
-        <span class="text-slate-500">•</span>
-
-        <!-- Continuous loop duplicate -->
-        <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-400/30 text-[9px] font-bold">CENTRAL DEADLINE</span>
-          <span><b>NSP Central Sector Scholarship:</b> College e-verification deadline closes at 11:59 PM today.</span>
-        </span>
-        <span class="text-slate-500">•</span>
-        <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[9px] font-bold">STATE QUOTA</span>
-          <span><b>Karnataka Gruha Lakshmi:</b> ₹2,000/mo DBT active. Seed Bank NPCI Aadhaar mapper to prevent bounce.</span>
-        </span>
-        <span class="text-slate-500">•</span>
-        <span class="inline-flex items-center gap-2 mx-4">
-          <span class="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-400/30 text-[9px] font-bold">SENIORS 70+</span>
-          <span><b>Ayushman Vay Vandana:</b> Universal ₹5 Lakh cashless health cover now available for all seniors aged 70+.</span>
-        </span>
-      </div>
+    <div id="notifContainer" class="notif-items">
+      <!-- Injected dynamically -->
     </div>
   </div>
 
-  <!-- ========================================================= -->
-  <!-- 2. NAVBAR -->
-  <!-- ========================================================= -->
-  <header class="bg-white border-b border-[#E2E8F0] sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3">
-      
-      <!-- Brand & Title -->
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-[#0A2540] text-white flex items-center justify-center font-heading font-black text-sm tracking-tight shadow-sm">
-          <span>ಹ</span><span class="text-xs opacity-75">A</span>
-        </div>
+  <!-- ================= 1. STICKY TOP NAVBAR WITH SECTION PILLS ================= -->
+  <div class="navbar-wrap">
+    <header class="navbar">
+      <div class="brand">
+        <div class="brand-icon">ಹ</div>
         <div>
-          <div class="flex items-center gap-2">
-            <h1 class="text-lg font-heading font-black text-[#0F172A] tracking-tight">HAKKU <span class="text-xs font-semibold text-[#64748B] font-mono">(ಹಕ್ಕು / हक़)</span></h1>
-            <span class="text-[10px] font-heading font-bold px-2 py-0.5 rounded bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]">
-              Civic Rights & Welfare OS
-            </span>
-          </div>
-          <p class="text-xs text-[#64748B]">State & Central Schemes • Detailed Eligibility • Required Documents • Cyber-Café Instructions</p>
+          <div class="brand-title">Hakku 4.0 <span style="font-size: 0.8rem; color: var(--emerald-light); font-family: monospace;">(ಹಕ್ಕು · हक़)</span></div>
+          <div class="brand-sub">Famous &amp; Hidden Government Money OS • 100% In-Memory (Zero DB Storage)</div>
         </div>
       </div>
 
-      <!-- Zero-Storage Badge & Audio / Language Tools -->
-      <div class="flex items-center gap-2">
-        <div class="hidden sm:flex items-center gap-1.5 bg-[#ECFDF5] border border-[#A7F3D0] px-3 py-1.5 rounded-lg text-xs font-medium text-[#065F46]">
-          <span>🔒</span>
-          <span>100% In-Memory (Zero Storage)</span>
-        </div>
+      <!-- Section Jump Pills -->
+      <nav class="nav-pills">
+        <a href="#sec-vault" class="nav-pill active">01 · Money Vault</a>
+        <a href="#sec-schemes" class="nav-pill">02 · Hidden Gems</a>
+        <a href="#sec-inspector" class="nav-pill">03 · Deep-Dive</a>
+        <a href="#sec-shield" class="nav-pill">04 · Shield &amp; Docs</a>
+        <a href="#sec-kit" class="nav-pill">05 · Print Kit</a>
+      </nav>
 
-        <button onclick="speakSummary()" id="ttsBtn" class="bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#0F172A] border border-[#CBD5E1] text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center gap-1.5" title="Listen Aloud">
-          <span id="ttsIcon">🔊</span>
-          <span id="ttsBtnText" class="hidden sm:inline font-heading font-bold">Listen Aloud</span>
-        </button>
-
-        <select id="languageSelect" onchange="runHarness()" class="bg-white border border-[#CBD5E1] text-[#0F172A] text-xs font-semibold px-2.5 py-1.5 rounded-lg outline-none cursor-pointer hover:border-[#0A2540]">
+      <!-- Language & Controls -->
+      <div class="nav-actions">
+        <button onclick="speakSummary()" id="ttsBtn" class="chip-btn" title="Listen Aloud">🔊 Listen</button>
+        <select id="languageSelect" onchange="runHarness('')" class="chip-btn" style="outline: none;">
           <option value="English">🌐 English</option>
-          <option value="Kannada (ಕನ್ನಡ)">🌐 ಕನ್ನಡ (Kannada)</option>
+          <option value="Kannada (ಕನ್ನಡ)">🌐 ಕನ್ನಡ</option>
           <option value="Hinglish (Hindi + English)">🌐 हिंदी / Hinglish</option>
         </select>
+        <button onclick="toggleAgentDrawer()" class="chip-btn" style="border-color: rgba(139, 92, 246, 0.5); color: #C4B5FD;">🤖 5 Agents</button>
+      </div>
+    </header>
+  </div>
+
+  <!-- ================= MAIN SINGLE-PAGE MASTER CONTAINER ================= -->
+  <main class="container">
+
+    <!-- ================= SECTION 01: UNCLAIMED MONEY VAULT & AI HUNTER ================= -->
+    <section id="sec-vault" class="page-section">
+      <div class="section-eyebrow">
+        <span class="eyebrow-tag">SECTION 01 // UNCLAIMED GOVERNMENT MONEY VAULT &amp; REAL-TIME AI HUNTER</span>
+        <span class="eyebrow-sub">🔒 Evaluated in volatile RAM • DPDP Act 2023 Compliant</span>
       </div>
 
-    </div>
-  </header>
-
-  <!-- ========================================================= -->
-  <!-- 3. MAIN WORKSPACE -->
-  <!-- ========================================================= -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 flex-1 w-full">
-
-    <!-- HERO BENEFIT BANNER -->
-    <div class="bg-gradient-to-br from-[#0A2540] via-[#0E355E] to-[#124275] rounded-3xl p-6 sm:p-7 text-white shadow-sm">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-        
-        <!-- Left Banner Content -->
-        <div class="lg:col-span-7 space-y-3">
-          <div class="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-xs font-semibold text-emerald-300 border border-white/15">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span id="stateScopeBadge">Karnataka State + Central Government Entitlements</span>
-          </div>
-
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black tracking-tight text-white leading-tight">
-            Discover Every Government Benefit Owed To You & Your Family.
-          </h2>
-
-          <p id="aiSummaryBox" class="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-2xl">
-            Evaluate 20 verified State & Central schemes against your profile. Learn who can apply, who is excluded, exact rupee payouts, where to apply, and documents to carry.
-          </p>
-
-          <div class="flex flex-wrap items-center gap-2.5 pt-1">
-            <button onclick="openDocKitModal(null, 'application')" class="bg-[#10B981] hover:bg-[#059669] text-white font-heading font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-xs transition flex items-center gap-2">
-              <span>📥</span>
-              <span>Print Cyber-Café Handout</span>
-            </button>
-            <button onclick="openDocKitModal(null, 'npci')" class="bg-white/15 hover:bg-white/25 text-white font-heading font-bold text-xs sm:text-sm px-3.5 py-2.5 rounded-xl transition border border-white/20">
-              🏦 Bank NPCI Seeding Form
-            </button>
-            <button onclick="openDocKitModal(null, 'rti')" class="bg-rose-500/20 hover:bg-rose-500/30 text-rose-200 font-heading font-bold text-xs sm:text-sm px-3.5 py-2.5 rounded-xl transition border border-rose-400/30">
-              ⚖️ Delay Sakala RTI Notice
-            </button>
-          </div>
-        </div>
-
-        <!-- Right Cash Metrics Counter -->
-        <div class="lg:col-span-5 bg-white rounded-2xl p-5 text-[#0F172A] shadow-xs space-y-3.5">
+      <div class="hero-grid">
+        <!-- Vault Box -->
+        <div class="bento-card vault-card">
           <div>
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-heading font-bold uppercase tracking-wider text-[#64748B]">Total Annual Direct Cash DBT</span>
-              <span id="schemeCountBadge" class="text-xs font-heading font-bold font-mono px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#047857] border border-[#A7F3D0]">
-                0 Schemes
-              </span>
-            </div>
-            <div class="mt-1 flex items-baseline gap-2">
-              <span id="directBenefitMeter" class="text-4xl sm:text-5xl font-heading font-black text-[#0A2540] tracking-tight font-mono">₹0</span>
-              <span class="text-xs font-bold text-[#64748B]">/ year</span>
-            </div>
+            <div class="vault-badge" id="vaultModeBadge">✨ 4-Member Household Entitlement Unit</div>
+            <div class="vault-amount" id="directBenefitMeter">₹0 / yr</div>
+            <p id="aiSummaryBox" class="vault-sub">Evaluating 24 verified Central and Karnataka state welfare schemes against your parameters...</p>
           </div>
 
-          <div class="grid grid-cols-2 gap-3 pt-2.5 border-t border-[#E2E8F0]">
-            <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-2.5 rounded-xl">
-              <span class="text-[11px] font-heading font-semibold text-[#64748B] block">📈 5-Year Family Wealth</span>
-              <span id="fiveYearMeter" class="text-base font-black text-[#B45309] font-mono">₹0</span>
+          <div class="vault-stats">
+            <div class="stat-box">
+              <span class="stat-label">5-Year Wealth</span>
+              <div id="fiveYearMeter" class="stat-val" style="color: var(--gold);">₹0</div>
             </div>
-            <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-2.5 rounded-xl">
-              <span class="text-[11px] font-heading font-semibold text-[#64748B] block">🏥 Cashless Health Cover</span>
-              <span id="healthCoverMeter" class="text-base font-black text-[#047857] font-mono">₹5,00,000</span>
+            <div class="stat-box">
+              <span class="stat-label">Free Health</span>
+              <div id="healthCoverMeter" class="stat-val" style="color: var(--cyan);">₹5,00,000</div>
             </div>
-          </div>
-
-          <div class="flex items-center justify-between text-[11px] text-[#64748B] pt-0.5">
-            <span class="flex items-center gap-1">
-              <span class="text-emerald-600 font-bold">✓</span> Credited Directly To Bank Account
-            </span>
-            <span class="font-medium text-[#0A2540]">Zero Middlemen</span>
+            <div class="stat-box">
+              <span class="stat-label">💎 Hidden Gems</span>
+              <div id="hiddenGemsCount" class="stat-val" style="color: var(--purple);">0 Found</div>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">DBT Readiness</span>
+              <div id="readinessScoreVal" class="stat-val" style="color: var(--emerald-light);">100%</div>
+            </div>
           </div>
         </div>
 
+        <!-- Real-Time AI Citizen Hunter & Quick Fill Form -->
+        <div class="bento-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span class="eyebrow-tag" style="color: var(--gold);">🎙️ Real-Time BharatCode AI Deep Hunter</span>
+              <button onclick="startVoiceInput()" id="voiceBtn" class="chip-btn" style="border-color: rgba(239,68,68,0.5); color: #FCA5A5;">🎙️ Speak</button>
+            </div>
+
+            <!-- Preset Personas -->
+            <div class="persona-grid">
+              <button onclick="loadPersona('ananya')" class="persona-pill active">🎓 Girl Engg Student</button>
+              <button onclick="loadPersona('ramesh')" class="persona-pill">🌾 Farmer</button>
+              <button onclick="loadPersona('kiran')" class="persona-pill">🛠️ Labour Worker</button>
+              <button onclick="loadPersona('lakshmi')" class="persona-pill">👵 71+ Senior Widow</button>
+              <button onclick="loadWholeFamilyDemo()" class="persona-pill">👨‍👩‍👧‍👦 4-Member Family</button>
+            </div>
+
+            <!-- Natural Query Input -->
+            <textarea id="chatInput" class="ai-textarea" placeholder="Type or speak any specific work, situation or need (e.g. 'I am an auto driver with two school-going girls in Mysore' or 'Need rooftop solar subsidy and free laptop')..."></textarea>
+
+            <!-- Mini Parameter Inputs -->
+            <div class="form-mini-grid">
+              <div class="input-box">
+                <label>State</label>
+                <select id="pState" onchange="syncFromForm()">
+                  <option value="karnataka" selected>Karnataka</option>
+                  <option value="other">All India</option>
+                </select>
+              </div>
+              <div class="input-box">
+                <label>Age</label>
+                <input id="pAge" type="number" value="20" onchange="syncFromForm()" />
+              </div>
+              <div class="input-box">
+                <label>Gender</label>
+                <select id="pGender" onchange="syncFromForm()">
+                  <option value="female" selected>Female</option>
+                  <option value="male">Male</option>
+                </select>
+              </div>
+              <div class="input-box">
+                <label>Income (₹/yr)</label>
+                <input id="pIncome" type="number" step="10000" value="140000" onchange="syncFromForm()" />
+              </div>
+              <div class="input-box">
+                <label>Category</label>
+                <select id="pCategory" onchange="syncFromForm()">
+                  <option value="OBC" selected>OBC</option>
+                  <option value="SC">SC</option>
+                  <option value="ST">ST</option>
+                  <option value="General">General</option>
+                </select>
+              </div>
+              <div class="input-box">
+                <label>Ration Card</label>
+                <select id="pRation" onchange="syncFromForm()">
+                  <option value="bpl" selected>BPL Card</option>
+                  <option value="apl">APL Card</option>
+                  <option value="none">None</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button onclick="submitChatIntake()" class="btn-primary">
+            ⚡ Hunt Famous &amp; Hidden Government Money (8ms)
+          </button>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- MAIN TWO-COLUMN SPLIT -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-      
-      <!-- ========================================================= -->
-      <!-- LEFT COLUMN: CITIZEN PROFILE FORM & VERIFICATION (5 COLS) -->
-      <!-- ========================================================= -->
-      <div class="lg:col-span-5 space-y-5">
-        
-        <!-- CITIZEN PROFILE INPUT FORM -->
-        <div class="bg-white border border-[#CBD5E1] p-5 rounded-2xl shadow-xs space-y-4">
-          <div class="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
-            <div>
-              <h3 class="text-base font-heading font-black text-[#0F172A] flex items-center gap-1.5">
-                <span>📝</span> Citizen & Household Profile
-              </h3>
-              <p class="text-[11px] text-[#64748B]">Enter your parameters to calculate exact eligibility</p>
+    <!-- ================= SECTION 02: FAMOUS & HIDDEN MONEY GEMS BENTO GRID ================= -->
+    <section id="sec-schemes" class="page-section">
+      <div class="section-eyebrow">
+        <span class="eyebrow-tag">SECTION 02 // FAMOUS + HIDDEN GOVERNMENT MONEY GEMS</span>
+        <span class="eyebrow-sub" id="schemesResultCount">Showing 0 matching schemes</span>
+      </div>
+
+      <!-- Category Filter Pills & Search -->
+      <div class="filter-bar">
+        <div class="cat-pills">
+          <button onclick="setCategoryFilter('ALL')" class="cat-pill active">All Eligible</button>
+          <button onclick="setCategoryFilter('HIDDEN_GEMS')" class="cat-pill" style="border-color: rgba(139,92,246,0.45); color: #DDD6FE;">💎 Hidden Money Gems</button>
+          <button onclick="setCategoryFilter('ENDING_SOON')" class="cat-pill" style="border-color: rgba(245,158,11,0.45); color: #FDE68A;">⏳ Ending in 2 Days / Expired Today</button>
+          <button onclick="setCategoryFilter('Student Scholarships')" class="cat-pill">🎓 Scholarships &amp; Laptops</button>
+          <button onclick="setCategoryFilter('Farmer Grants')" class="cat-pill">🌾 Farmers &amp; Solar</button>
+          <button onclick="setCategoryFilter('Youth & Workers')" class="cat-pill">🛠️ Labour &amp; Youth</button>
+          <button onclick="setCategoryFilter('Household Freebies')" class="cat-pill">⚡ Free Power &amp; Gas</button>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <input id="schemeSearch" type="text" oninput="renderSchemesGrid()" placeholder="Filter schemes..." style="background: rgba(5,7,11,0.8); border: 1px solid var(--border); border-radius: 12px; padding: 7px 12px; font-size: 0.8rem; color: var(--text); outline: none;" />
+          <label style="font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 4px; cursor: pointer;">
+            <input id="showAllToggle" type="checkbox" onchange="renderSchemesGrid()" style="accent-color: var(--emerald);" />
+            <span>All 24</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Statutory Conflict Resolution Banner (if any) -->
+      <div id="conflictSection" style="display: none; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.35); border-radius: 16px; padding: 14px 18px; margin-bottom: 16px;">
+        <div style="font-size: 0.82rem; font-weight: 800; color: #FDE68A; margin-bottom: 6px;">⚖️ Statutory Anti-Double-Dipping Rules Enforced:</div>
+        <div id="conflictList" style="font-size: 0.78rem; color: #FEF3C7; line-height: 1.5;"></div>
+      </div>
+
+      <!-- Schemes Cards Grid -->
+      <div id="schemesContainer" class="schemes-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- ================= SECTION 03: FULL INLINE SCHEME INSPECTOR ================= -->
+    <section id="sec-inspector" class="page-section">
+      <div class="section-eyebrow">
+        <span class="eyebrow-tag" style="color: var(--purple);">SECTION 03 // FULL SCHEME DEEP-DIVE INSPECTOR</span>
+        <span class="eyebrow-sub">Click any scheme in Section 02 to inspect its criteria, documents, and instructions below</span>
+      </div>
+
+      <div class="bento-card inspector-card">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); pb-4;">
+          <div>
+            <div class="badge-row" id="inspBadges"></div>
+            <h2 id="inspTitle" style="font-size: 1.5rem; font-weight: 800; margin-top: 6px;">Select a Scheme to Inspect</h2>
+            <div id="inspMinistry" style="font-size: 0.82rem; color: var(--muted);">Authority</div>
+          </div>
+          <div style="text-align: right;">
+            <div id="inspValue" class="scheme-money" style="font-size: 2.2rem;">₹0 / yr</div>
+            <div id="inspPayoutTag" style="font-size: 0.76rem; color: var(--emerald-light);">Direct Transfer</div>
+          </div>
+        </div>
+
+        <p id="inspSummary" style="font-size: 0.88rem; color: #CBD5E1; margin-top: 14px; line-height: 1.6;"></p>
+
+        <!-- 3 Inspector Columns -->
+        <div class="inspector-grid">
+          <!-- Col 1: Criteria & Rule -->
+          <div class="inspector-col">
+            <h4>✅ 1. Who Can Apply &amp; Rules</h4>
+            <ul id="inspCriteriaList" class="detail-list"></ul>
+            <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 0.76rem; color: var(--gold);">
+              <b>⚖️ Statutory Rule:</b> <span id="inspStatutory"></span>
             </div>
-            <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0]">
-              Zero-Storage
-            </span>
           </div>
 
-          <!-- Quick Fill Sample Shortcuts -->
-          <div class="flex flex-wrap items-center gap-1.5 text-xs">
-            <span class="text-[11px] text-[#64748B] font-medium mr-1">Quick Sample:</span>
-            <button type="button" onclick="quickFill('student')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-heading font-bold text-[#334155] transition">🎓 Student</button>
-            <button type="button" onclick="quickFill('farmer')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-heading font-bold text-[#334155] transition">🌾 Farmer</button>
-            <button type="button" onclick="quickFill('homemaker')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-heading font-bold text-[#334155] transition">👩 Homemaker</button>
-            <button type="button" onclick="quickFill('senior')" class="px-2 py-1 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-md text-[11px] font-heading font-bold text-[#334155] transition">👵 Senior (70+)</button>
+          <!-- Col 2: Required Documents -->
+          <div class="inspector-col">
+            <h4 style="color: var(--gold);">📁 2. Required Documents</h4>
+            <ul id="inspDocsList" class="detail-list"></ul>
+            <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 0.76rem; color: #FCA5A5;">
+              <b>⚠️ Avoid Trap:</b> <span id="inspTrap"></span>
+            </div>
           </div>
 
-          <!-- Form Fields -->
-          <form id="citizenForm" onsubmit="event.preventDefault(); runHarness();" class="space-y-3.5">
-            
-            <!-- State of Residence (State vs Central Selector) -->
-            <div>
-              <label class="block text-xs font-heading font-bold text-[#334155] mb-1">State of Residence *</label>
-              <select id="inputState" class="form-input cursor-pointer font-medium" onchange="runHarness()">
-                <option value="karnataka" selected>🏛️ Karnataka (Eligible for all State & Central Schemes)</option>
-                <option value="other">🇮🇳 Other Indian State (Eligible for Pan-India Central Schemes)</option>
-              </select>
+          <!-- Col 3: How to Apply & Cyber-Café Instructions -->
+          <div class="inspector-col">
+            <h4 style="color: var(--cyan);">🖥️ 3. How to Apply</h4>
+            <div id="inspStepsList" style="display: flex; flex-direction: column; gap: 8px; font-size: 0.8rem; color: #E2E8F0; line-height: 1.5;"></div>
+            <div style="margin-top: 12px; padding: 10px; border-radius: 10px; background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3); font-size: 0.75rem; color: #CFFAFE;">
+              <b>🏪 Counter:</b> <span id="inspCounter"></span><br />
+              <b>⏱️ Sakala SLA:</b> <span id="inspSla"></span>
             </div>
+          </div>
+        </div>
 
-            <!-- Age & Gender -->
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block text-xs font-heading font-bold text-[#334155] mb-1">Age (Years) *</label>
-                <input id="inputAge" type="number" min="1" max="110" value="21" class="form-input font-mono font-medium" required onchange="runHarness()" />
-              </div>
-              <div>
-                <label class="block text-xs font-heading font-bold text-[#334155] mb-1">Gender *</label>
-                <select id="inputGender" class="form-input cursor-pointer" onchange="runHarness()">
-                  <option value="female">Female</option>
-                  <option value="male" selected>Male</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Occupation -->
-            <div>
-              <label class="block text-xs font-heading font-bold text-[#334155] mb-1">Occupation / Activity *</label>
-              <select id="inputOccupation" class="form-input cursor-pointer" onchange="handleOccupationChange()">
-                <option value="student" selected>🎓 Student (College / Higher Education / School)</option>
-                <option value="farmer">🌾 Farmer / Agriculture Cultivator</option>
-                <option value="homemaker">👩 Homemaker / Mother</option>
-                <option value="senior">👵 Senior Citizen / Retired</option>
-                <option value="worker">🔨 Artisan / Craftsman / Unorganized Worker</option>
-                <option value="unemployed">💼 Unemployed Graduate / Youth</option>
-                <option value="other">🏢 Private Employee / General</option>
-              </select>
-            </div>
-
-            <!-- Annual Income & Social Category -->
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block text-xs font-heading font-bold text-[#334155] mb-1">Annual Family Income (₹) *</label>
-                <input id="inputIncome" type="number" step="10000" min="0" value="120000" class="form-input font-mono font-medium" required onchange="runHarness()" />
-              </div>
-              <div>
-                <label class="block text-xs font-heading font-bold text-[#334155] mb-1">Social Category *</label>
-                <select id="inputCategory" class="form-input cursor-pointer" onchange="runHarness()">
-                  <option value="OBC" selected>OBC (Cat 1, 2A, 2B, 3A, 3B)</option>
-                  <option value="SC">SC (Scheduled Caste)</option>
-                  <option value="ST">ST (Scheduled Tribe)</option>
-                  <option value="General">General / EWS</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Ration Card -->
-            <div>
-              <label class="block text-xs font-heading font-bold text-[#334155] mb-1">Ration Card Status *</label>
-              <select id="inputRation" class="form-input cursor-pointer" onchange="runHarness()">
-                <option value="bpl" selected>BPL / Antyodaya Anna Yojana (Priority Household)</option>
-                <option value="apl">APL Card (Above Poverty Line)</option>
-                <option value="none">No Ration Card</option>
-              </select>
-            </div>
-
-            <!-- Key Status Checkboxes -->
-            <div class="bg-[#F8FAFC] border border-[#E2E8F0] p-3 rounded-xl space-y-2 text-xs">
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input id="chkStudent" type="checkbox" checked onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 rounded" />
-                <span class="text-[#334155]">Enrolled in School, College, Diploma or Degree course</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input id="chkWidow" type="checkbox" onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 rounded" />
-                <span class="text-[#334155]">Widow (Eligible for monthly widow pensions)</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input id="chkTaxPayer" type="checkbox" onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 rounded" />
-                <span class="text-[#334155]">Family member pays Income Tax (triggers exclusion clauses)</span>
-              </label>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="w-full bg-[#0A2540] hover:bg-[#12375C] text-white font-heading font-bold text-sm py-2.5 px-4 rounded-xl shadow-xs transition flex items-center justify-center gap-2">
-              <span>🔍</span>
-              <span>Find All Eligible Schemes</span>
+        <!-- Action Buttons Bar -->
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);">
+          <a id="inspPortalLink" href="#" target="_blank" style="color: var(--emerald-light); font-size: 0.82rem; font-weight: 700; text-decoration: none;">
+            🔗 Open Official Government Portal ↗
+          </a>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button onclick="loadDocInKit('application')" class="chip-btn" style="background: var(--emerald); color: #04120C; font-weight: 800;">
+              🖨️ Load Cyber-Café Slip in Sec 05 ↓
             </button>
-
-          </form>
-
-          <!-- Voice / Natural Query Intake -->
-          <div class="pt-2 border-t border-[#E2E8F0] space-y-2">
-            <span class="text-[11px] font-heading font-bold text-[#64748B] flex items-center gap-1">
-              <span>🎙️</span> Or speak/type in conversational language:
-            </span>
-            <div class="flex gap-2">
-              <button onclick="startVoiceInput()" id="voiceBtn" class="bg-[#EFF6FF] hover:bg-[#DBEAFE] border border-[#BFDBFE] text-base px-3 py-1.5 rounded-xl shrink-0 transition" title="Speak in Kannada, Hindi or English">
-                🎙️
-              </button>
-              <input id="chatInput" type="text" placeholder="e.g. 'I am an 19 year old girl in Mysore studying BTech...'" class="flex-1 bg-[#F8FAFC] border border-[#CBD5E1] rounded-xl px-3 py-1.5 text-xs text-[#0F172A] outline-none" />
-              <button onclick="submitChatIntake()" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0A2540] font-heading font-bold text-xs px-3.5 py-1.5 rounded-xl border border-[#CBD5E1] transition">
-                Find
-              </button>
-            </div>
+            <button onclick="loadDocInKit('npci')" class="chip-btn" style="border-color: rgba(139,92,246,0.5); color: #DDD6FE;">
+              🏦 Bank NPCI Form
+            </button>
+            <button onclick="loadDocInKit('rti')" class="chip-btn" style="border-color: rgba(239,68,68,0.5); color: #FCA5A5;">
+              ⚖️ Delay RTI Notice
+            </button>
+            <button onclick="openDeepModalFromSelected()" class="chip-btn" style="background: rgba(255,255,255,0.1);">
+              🔍 Pop-Out Modal
+            </button>
           </div>
-
         </div>
+      </div>
+    </section>
 
-        <!-- BANK & REJECTION SHIELD VERIFICATION -->
-        <div class="bg-white border border-[#E2E8F0] p-4 rounded-2xl shadow-xs space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-heading font-bold uppercase tracking-wider text-[#0A2540] flex items-center gap-1.5">
-              <span>🛡️</span> Pre-Application Rejection Shield
-            </span>
-            <span id="readinessBadge" class="text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0]">
-              100% Ready
-            </span>
-          </div>
-          <p class="text-xs text-[#64748B] leading-relaxed">
-            Ensure these 3 essential bank and identity items are active so your government DBT transfer doesn't bounce:
-          </p>
-
-          <div class="space-y-2 text-xs bg-[#F8FAFC] border border-[#E2E8F0] p-3 rounded-xl">
-            <label class="flex items-start gap-2.5 cursor-pointer">
-              <input id="chkNpci" type="checkbox" checked onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 mt-0.5" />
-              <span class="text-[#334155]">Bank Account has active <b>NPCI Aadhaar DBT Mapper</b> seeding</span>
-            </label>
-            <label class="flex items-start gap-2.5 cursor-pointer">
-              <input id="chkName" type="checkbox" checked onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 mt-0.5" />
-              <span class="text-[#334155]">Exact <b>Name Spelling Match</b> across Aadhaar & Bank Passbook</span>
-            </label>
-            <label class="flex items-start gap-2.5 cursor-pointer">
-              <input id="chkRd" type="checkbox" checked onchange="runHarness()" class="accent-[#0A2540] w-4 h-4 mt-0.5" />
-              <span class="text-[#334155]">Valid unexpired <b>Nadakacheri RD Number</b> on Income Certificate</span>
-            </label>
-          </div>
-
-          <div id="rejectionRisksBox" class="space-y-2"></div>
-        </div>
-
-        <!-- CONSOLIDATED SINGLE-WINDOW DOCUMENT CHECKLIST -->
-        <div class="bg-white border border-[#E2E8F0] p-4 rounded-2xl shadow-xs space-y-2.5">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-heading font-bold uppercase tracking-wider text-[#0A2540]">📋 What Documents to Carry (Consolidated)</span>
-            <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#EFF6FF] text-[#1D4ED8]">Carry Once</span>
-          </div>
-          <p class="text-xs text-[#64748B]">Pack these documents once to apply for all your matched schemes at the cyber-café / GramaOne:</p>
-          <div id="consolidatedDocs" class="flex flex-wrap gap-1.5 pt-1 text-xs"></div>
-        </div>
-
+    <!-- ================= SECTION 04: REJECTION SHIELD & MASTER DOC FOLDER ================= -->
+    <section id="sec-shield" class="page-section">
+      <div class="section-eyebrow">
+        <span class="eyebrow-tag">SECTION 04 // PRE-SUBMISSION REJECTION SHIELD &amp; MASTER FOLDER</span>
+        <span class="eyebrow-sub">Prevents 40% of government transfer failures before you apply</span>
       </div>
 
-      <!-- ========================================================= -->
-      <!-- RIGHT COLUMN: SCHEMES GALLERY & MULTI-ATTRIBUTE SEARCH (7 COLS) -->
-      <!-- ========================================================= -->
-      <div class="lg:col-span-7 space-y-4">
-        
-        <!-- ADVANCED SEARCH & DISCOVERY BAR -->
-        <div class="bg-white border border-[#E2E8F0] p-4 rounded-2xl shadow-xs space-y-3">
-          
-          <!-- Search Input & Quick Info -->
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-            <div class="relative flex-1">
-              <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">🔍</span>
-              <input id="schemeSearch" type="text" oninput="renderSchemesGrid()" placeholder="Search by scheme name, keyword (e.g. 'solar', 'scholarship', 'pension'), ministry, or document..." class="w-full bg-[#F8FAFC] border border-[#CBD5E1] focus:border-[#0A2540] rounded-xl pl-9 pr-3 py-2 text-xs text-[#0F172A] outline-none transition" />
+      <div class="two-col-grid">
+        <!-- Rejection Shield Checks -->
+        <div class="bento-card">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+            <h3 style="font-size: 1.15rem; font-weight: 800;">🛡️ Bureaucratic Rejection Shield</h3>
+            <span id="shieldReadinessBadge" style="font-family: monospace; font-weight: 800; font-size: 0.85rem; padding: 4px 10px; border-radius: 99px; background: rgba(16,185,129,0.2); color: var(--emerald-light);">100% READY</span>
+          </div>
+
+          <label class="check-row">
+            <input id="chkNpci" type="checkbox" checked onchange="runHarness('')" />
+            <div>
+              <div style="font-size: 0.84rem; font-weight: 700;">Bank Account has active NPCI Aadhaar DBT Mapper</div>
+              <div style="font-size: 0.74rem; color: var(--muted); margin-top: 2px;">Prevents direct benefit payments bouncing after approval.</div>
             </div>
+          </label>
 
-            <!-- Sort By Dropdown -->
-            <select id="sortBy" onchange="renderSchemesGrid()" class="bg-[#F8FAFC] border border-[#CBD5E1] text-[#0F172A] text-xs font-heading font-bold px-3 py-2 rounded-xl outline-none cursor-pointer hover:border-[#0A2540]">
-              <option value="amount_desc">💰 Highest Cash Payout (₹)</option>
-              <option value="sla_asc">⏱️ Fastest Approval (SLA)</option>
-              <option value="name_asc">🔤 Alphabetical (A–Z)</option>
-            </select>
-          </div>
-
-          <!-- Quick Topic Tags -->
-          <div class="flex flex-wrap items-center gap-1.5 text-xs pt-0.5">
-            <span class="text-[11px] font-heading font-bold text-[#64748B] mr-1">Quick Filters:</span>
-            <button onclick="setQuickSearch('Scholarship')" class="px-2 py-0.5 rounded-md bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[11px] font-semibold text-[#334155] transition">🎓 Scholarships</button>
-            <button onclick="setQuickSearch('Cash')" class="px-2 py-0.5 rounded-md bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[11px] font-semibold text-[#334155] transition">💵 Direct Cash</button>
-            <button onclick="setQuickSearch('Farmer')" class="px-2 py-0.5 rounded-md bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[11px] font-semibold text-[#334155] transition">🌾 Farmers</button>
-            <button onclick="setQuickSearch('Pension')" class="px-2 py-0.5 rounded-md bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[11px] font-semibold text-[#334155] transition">👵 Pensions</button>
-            <button onclick="setQuickSearch('Solar')" class="px-2 py-0.5 rounded-md bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[11px] font-semibold text-[#334155] transition">☀️ Solar Pump</button>
-            <button onclick="setQuickSearch('Ayushman')" class="px-2 py-0.5 rounded-md bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[11px] font-semibold text-[#334155] transition">🏥 ₹5L Hospital Cover</button>
-          </div>
-
-          <!-- Jurisdiction Filter Bar (State vs Central) -->
-          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#E2E8F0]">
-            <div class="flex flex-wrap items-center gap-1.5" id="levelFilterPills">
-              <button onclick="setLevelFilter('ALL')" class="level-pill bg-[#0A2540] text-white font-heading font-bold text-xs px-3 py-1.5 rounded-lg transition">All Jurisdictions</button>
-              <button onclick="setLevelFilter('State (Karnataka)')" class="level-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-heading font-bold text-xs px-2.5 py-1.5 rounded-lg transition">🏛️ Karnataka State</button>
-              <button onclick="setLevelFilter('Central')" class="level-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-heading font-bold text-xs px-2.5 py-1.5 rounded-lg transition">🇮🇳 Central Govt (Pan-India)</button>
-              <button onclick="setLevelFilter('Central + State')" class="level-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-heading font-bold text-xs px-2.5 py-1.5 rounded-lg transition">🏛️+🇮🇳 Joint Schemes</button>
+          <label class="check-row">
+            <input id="chkName" type="checkbox" checked onchange="runHarness('')" />
+            <div>
+              <div style="font-size: 0.84rem; font-weight: 700;">Exact Name Spelling Match Across Aadhaar &amp; Bank</div>
+              <div style="font-size: 0.74rem; color: var(--muted); margin-top: 2px;">Prevents automated e-KYC mismatch disqualification.</div>
             </div>
+          </label>
 
-            <!-- View All 20 Catalog Toggle -->
-            <label class="flex items-center gap-1.5 text-xs text-[#0F172A] font-heading font-bold cursor-pointer select-none bg-[#F8FAFC] border border-[#CBD5E1] px-2.5 py-1 rounded-lg">
-              <input id="showAllToggle" type="checkbox" onchange="renderSchemesGrid()" class="accent-[#0A2540] w-4 h-4 rounded" />
-              <span>Browse All 20 Schemes</span>
-            </label>
-          </div>
+          <label class="check-row">
+            <input id="chkRd" type="checkbox" checked onchange="runHarness('')" />
+            <div>
+              <div style="font-size: 0.84rem; font-weight: 700;">Valid Unexpired Nadakacheri RD Number</div>
+              <div style="font-size: 0.74rem; color: var(--muted); margin-top: 2px;">Income / Caste certificate valid within 12 months.</div>
+            </div>
+          </label>
 
-          <!-- Category Filter Bar -->
-          <div class="flex flex-wrap items-center gap-1.5 pt-1" id="categoryPills">
-            <button onclick="setCategoryFilter('ALL')" class="cat-pill bg-[#0A2540] text-white font-heading font-bold text-xs px-2.5 py-1 rounded-md transition">All Categories</button>
-            <button onclick="setCategoryFilter('Student Scholarships')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1 rounded-md transition">🎓 Scholarships</button>
-            <button onclick="setCategoryFilter('Women & Family Cash')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1 rounded-md transition">👩 Women/Family</button>
-            <button onclick="setCategoryFilter('Farmer Grants')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1 rounded-md transition">🌾 Farmers</button>
-            <button onclick="setCategoryFilter('Household Freebies')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1 rounded-md transition">⚡ Free Power/Gas</button>
-            <button onclick="setCategoryFilter('Youth & Workers')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1 rounded-md transition">💼 Youth/Workers</button>
-            <button onclick="setCategoryFilter('Health & Housing')" class="cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1 rounded-md transition">🏥 Health/Housing</button>
-          </div>
-
-          <!-- Results Summary Bar -->
-          <div class="flex items-center justify-between text-xs text-[#64748B] pt-1">
-            <span id="resultsCount">Showing 0 matching schemes</span>
-            <button onclick="resetAllFilters()" class="text-[#0A2540] hover:underline font-heading font-bold text-xs">Reset All Filters ✕</button>
-          </div>
-
+          <div id="rejectionRisksBox" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;"></div>
         </div>
 
-        <!-- STATUTORY ANTI-DOUBLE-DIPPING BANNER (When Triggered) -->
-        <div id="conflictSection" class="hidden bg-[#FFFBEB] border border-[#FDE68A] p-3.5 rounded-2xl shadow-xs space-y-1 text-xs text-[#92400E]">
-          <div class="font-heading font-bold flex items-center gap-1.5">
-            <span>⚖️</span> <span>Statutory Anti-Double-Dipping Rules Enforced:</span>
+        <!-- Master Document Checklist -->
+        <div class="bento-card">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+            <h3 style="font-size: 1.15rem; font-weight: 800;">📁 Single-Window Master Document Checklist</h3>
+            <span style="font-size: 0.75rem; color: var(--emerald-light); font-weight: 700;">Carry Once</span>
           </div>
-          <div id="conflictList" class="space-y-1 text-[11px] font-mono"></div>
+          <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">Pack these deduplicated documents once to apply for all your matched schemes in a single trip:</p>
+
+          <div id="consolidatedDocs" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <!-- Rendered dynamically -->
+          </div>
         </div>
+      </div>
+    </section>
 
-        <!-- DETAILED SCHEME CARDS CONTAINER -->
-        <div id="schemesContainer" class="space-y-4"></div>
-
+    <!-- ================= SECTION 05: A4 PRINTABLE CYBER-CAFE & RTI STUDIO ================= -->
+    <section id="sec-kit" class="page-section">
+      <div class="section-eyebrow">
+        <span class="eyebrow-tag" style="color: var(--emerald-light);">SECTION 05 // 1-CLICK PRINTABLE CYBER-CAFÉ SLIP &amp; RTI STUDIO</span>
+        <span class="eyebrow-sub">Ready to print and hand to the operator or submit to bank / PIO</span>
       </div>
 
-    </div>
+      <div class="bento-card">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px;">
+          <div>
+            <h3 id="kitTitle" style="font-size: 1.15rem; font-weight: 800;">3-in-1 Cyber-Café Operator Slip</h3>
+            <div style="font-size: 0.76rem; color: var(--muted);">Scheme-specific official guidance formatted for A4 printing</div>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button onclick="loadDocInKit('application')" class="chip-btn" style="background: var(--emerald); color: #04120C; font-weight: 800;">🏪 1. Cyber-Café Slip</button>
+            <button onclick="loadDocInKit('npci')" class="chip-btn" style="border-color: rgba(139,92,246,0.5); color: #DDD6FE;">🏦 2. Bank NPCI Form</button>
+            <button onclick="loadDocInKit('rti')" class="chip-btn" style="border-color: rgba(239,68,68,0.5); color: #FCA5A5;">⚖️ 3. Sakala Delay RTI</button>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px;">
+          <select id="kitSchemeSelect" onchange="selectKitSchemeById(this.value)" class="chip-btn" style="max-width: 480px; outline: none;"></select>
+          <div style="display: flex; gap: 8px;">
+            <button onclick="copyDocText()" class="chip-btn">📋 Copy Text</button>
+            <button onclick="printDocText()" class="chip-btn" style="background: var(--gold); color: #04120C; font-weight: 800;">🖨️ Print / Save PDF</button>
+          </div>
+        </div>
+
+        <pre id="kitContent" class="doc-sheet"></pre>
+      </div>
+    </section>
 
   </main>
 
-  <!-- ========================================================= -->
-  <!-- 4. CLEAN FOOTER -->
-  <!-- ========================================================= -->
-  <footer class="bg-white border-t border-[#E2E8F0] mt-10 py-5 px-4 text-center text-xs text-[#64748B]">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-      <div class="font-heading font-bold text-[#0A2540]">HAKKU Welfare Discovery Engine</div>
-      <div class="text-[11px] font-mono">100% In-Memory (Zero Storage) • DPDP Act 2023 Compliant • Official Central & State Government Welfare Schemes</div>
-    </div>
-  </footer>
-
-  <!-- ========================================================= -->
-  <!-- 5. PRINTABLE CYBER-CAFÉ SLIP / DOCUMENT MODAL -->
-  <!-- ========================================================= -->
-  <div id="docModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-    <div class="bg-white border border-[#CBD5E1] rounded-2xl max-w-3xl w-full p-5 sm:p-6 flex flex-col max-h-[92vh] shadow-2xl">
-      <div class="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
+  <!-- ================= FULL-SCREEN POP-OUT DEEP-DIVE MODAL ================= -->
+  <div id="deepModal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div style="padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between;">
         <div>
-          <span class="text-[10px] font-mono font-bold uppercase text-[#0A2540]">Official Citizen Handout Slip</span>
-          <h3 id="modalTitle" class="text-lg font-heading font-bold text-[#0F172A] mt-0.5">Application Packet</h3>
+          <div class="badge-row" id="modalBadges"></div>
+          <h2 id="modalTitle" style="font-size: 1.35rem; font-weight: 800; margin-top: 4px;">Scheme Deep Dive</h2>
         </div>
-        <button onclick="closeDocModal()" class="text-[#64748B] hover:text-[#0F172A] text-lg font-bold px-2.5 py-1 rounded-lg hover:bg-[#F1F5F9]">✕</button>
+        <button onclick="closeDeepModal()" class="chip-btn" style="font-weight: 800;">✕ Close</button>
       </div>
 
-      <pre id="modalContent" class="my-4 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-4 sm:p-5 text-xs text-[#0F172A] font-mono whitespace-pre-wrap overflow-y-auto flex-1 leading-relaxed selection:bg-[#0A2540] selection:text-white"></pre>
-
-      <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[#E2E8F0]">
-        <span class="text-xs text-[#059669] font-medium flex items-center gap-1.5">
-          <span>✓</span> <span>Print and hand this directly to the GramaOne / CSC / Cyber-Café operator.</span>
-        </span>
-        <div class="flex gap-2">
-          <button onclick="copyDocText()" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border border-[#CBD5E1] text-xs font-heading font-bold px-4 py-2 rounded-xl transition">
-            <span id="copyBtnText">📋 Copy Text</span>
-          </button>
-          <button onclick="printDocText()" class="bg-[#0A2540] hover:bg-[#12375C] text-white text-xs font-heading font-bold px-5 py-2 rounded-xl transition shadow">
-            🖨️ Print / Save PDF
-          </button>
+      <div style="padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; font-size: 0.85rem; line-height: 1.6;">
+        <div id="modalSummary" style="background: rgba(5,7,11,0.6); padding: 14px; border-radius: 12px; border: 1px solid var(--border);"></div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div style="background: rgba(5,7,11,0.6); padding: 14px; border-radius: 12px; border: 1px solid var(--border);">
+            <h4 style="color: var(--emerald-light); font-size: 0.78rem; text-transform: uppercase; margin-bottom: 8px;">Criteria</h4>
+            <ul id="modalCriteria" class="detail-list"></ul>
+          </div>
+          <div style="background: rgba(5,7,11,0.6); padding: 14px; border-radius: 12px; border: 1px solid var(--border);">
+            <h4 style="color: var(--gold); font-size: 0.78rem; text-transform: uppercase; margin-bottom: 8px;">Documents</h4>
+            <ul id="modalDocs" class="detail-list"></ul>
+          </div>
         </div>
+        <div style="background: rgba(5,7,11,0.6); padding: 14px; border-radius: 12px; border: 1px solid var(--border);">
+          <h4 style="color: var(--cyan); font-size: 0.78rem; text-transform: uppercase; margin-bottom: 8px;">How to Apply</h4>
+          <div id="modalSteps"></div>
+        </div>
+      </div>
+
+      <div style="padding: 16px 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+        <a id="modalLink" href="#" target="_blank" style="color: var(--emerald-light); text-decoration: none; font-weight: 700;">Open Portal ↗</a>
+        <button onclick="closeDeepModal(); location.hash = '#sec-kit';" class="chip-btn" style="background: var(--emerald); color: #03120C; font-weight: 800;">
+          🖨️ Go to Print Studio (Sec 05)
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- ========================================================= -->
-  <!-- 6. APPLICATION LOGIC -->
-  <!-- ========================================================= -->
+  <!-- SLIDE-OVER 5-AGENT DRAWER -->
+  <div id="agentDrawer" style="position: fixed; inset: 0 0 0 auto; width: 100%; max-width: 440px; background: rgba(5,7,11,0.96); border-left: 1px solid var(--border); z-index: 210; padding: 24px; transform: translateX(100%); transition: transform 0.3s var(--spring); display: flex; flex-direction: column; justify-content: space-between; backdrop-filter: blur(20px);">
+    <div>
+      <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 16px;">
+        <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--purple); font-weight: 800;">BharatCode API Harness</div>
+        <button onclick="toggleAgentDrawer()" class="chip-btn">✕</button>
+      </div>
+      <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 16px;">🤖 Live 5-Agent Execution Trace</h3>
+      <div id="agentTraceBox" style="display: flex; flex-direction: column; gap: 10px;"></div>
+    </div>
+    <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 12px;">
+      100% In-Memory RAM • Zero Disk PII • Model: qwen-3.8-27b
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT APPLICATION CORE -->
   <script>
+    let currentProfile = {};
+    let currentHousehold = [];
     let latestMatchedSchemes = [];
     let allCatalogSchemes = [];
     let activeCategory = 'ALL';
-    let activeLevel = 'ALL';
+    let selectedSchemeObj = null;
+    let currentDocMode = 'application';
 
-    function handleOccupationChange() {
-      const occ = document.getElementById('inputOccupation').value;
-      const chkStudent = document.getElementById('chkStudent');
-      if (occ === 'student') {
-        chkStudent.checked = true;
-      } else if (occ === 'senior') {
-        document.getElementById('inputAge').value = Math.max(65, Number(document.getElementById('inputAge').value));
-        chkStudent.checked = false;
-      } else {
-        chkStudent.checked = false;
-      }
-      runHarness();
+    const PERSONAS = {
+      ananya: { name: 'Ananya Rao', state: 'karnataka', age: 20, gender: 'female', occupation: 'student', income: 140000, category: 'OBC', isBPL: true, isStudent: true, isWidow: false, isTaxPayer: false },
+      kiran: { name: 'Kiran Shetty', state: 'karnataka', age: 24, gender: 'male', occupation: 'worker', income: 110000, category: 'OBC', isBPL: true, isStudent: false, isWidow: false, isTaxPayer: false },
+      ramesh: { name: 'Ramesh Gowda', state: 'karnataka', age: 41, gender: 'male', occupation: 'farmer', income: 95000, category: 'OBC', isBPL: true, isStudent: false, isWidow: false, isTaxPayer: false },
+      lakshmi: { name: 'Lakshmi Devi', state: 'karnataka', age: 71, gender: 'female', occupation: 'senior', income: 45000, category: 'SC', isBPL: true, isStudent: false, isWidow: true, isTaxPayer: false }
+    };
+
+    function toggleAgentDrawer() {
+      const el = document.getElementById('agentDrawer');
+      el.style.transform = el.style.transform === 'translateX(0px)' ? 'translateX(100%)' : 'translateX(0px)';
     }
 
-    function quickFill(preset) {
-      if (preset === 'student') {
-        document.getElementById('inputAge').value = 19;
-        document.getElementById('inputGender').value = 'female';
-        document.getElementById('inputOccupation').value = 'student';
-        document.getElementById('inputIncome').value = 140000;
-        document.getElementById('inputCategory').value = 'OBC';
-        document.getElementById('inputRation').value = 'bpl';
-        document.getElementById('chkStudent').checked = true;
-        document.getElementById('chkWidow').checked = false;
-        document.getElementById('chkTaxPayer').checked = false;
-        document.getElementById('inputState').value = 'karnataka';
-      } else if (preset === 'farmer') {
-        document.getElementById('inputAge').value = 42;
-        document.getElementById('inputGender').value = 'male';
-        document.getElementById('inputOccupation').value = 'farmer';
-        document.getElementById('inputIncome').value = 95000;
-        document.getElementById('inputCategory').value = 'OBC';
-        document.getElementById('inputRation').value = 'bpl';
-        document.getElementById('chkStudent').checked = false;
-        document.getElementById('chkWidow').checked = false;
-        document.getElementById('chkTaxPayer').checked = false;
-        document.getElementById('inputState').value = 'karnataka';
-      } else if (preset === 'homemaker') {
-        document.getElementById('inputAge').value = 35;
-        document.getElementById('inputGender').value = 'female';
-        document.getElementById('inputOccupation').value = 'homemaker';
-        document.getElementById('inputIncome').value = 110000;
-        document.getElementById('inputCategory').value = 'OBC';
-        document.getElementById('inputRation').value = 'bpl';
-        document.getElementById('chkStudent').checked = false;
-        document.getElementById('chkWidow').checked = false;
-        document.getElementById('chkTaxPayer').checked = false;
-        document.getElementById('inputState').value = 'karnataka';
-      } else if (preset === 'senior') {
-        document.getElementById('inputAge').value = 71;
-        document.getElementById('inputGender').value = 'female';
-        document.getElementById('inputOccupation').value = 'senior';
-        document.getElementById('inputIncome').value = 45000;
-        document.getElementById('inputCategory').value = 'SC';
-        document.getElementById('inputRation').value = 'bpl';
-        document.getElementById('chkStudent').checked = false;
-        document.getElementById('chkWidow').checked = true;
-        document.getElementById('chkTaxPayer').checked = false;
-        document.getElementById('inputState').value = 'karnataka';
-      }
-      runHarness();
+    function syncFormUI() {
+      document.getElementById('pState').value = currentProfile.state || 'karnataka';
+      document.getElementById('pAge').value = currentProfile.age || 20;
+      document.getElementById('pGender').value = currentProfile.gender || 'female';
+      document.getElementById('pIncome').value = currentProfile.income || 140000;
+      document.getElementById('pCategory').value = currentProfile.category || 'OBC';
+      document.getElementById('pRation').value = currentProfile.isBPL ? 'bpl' : 'apl';
     }
 
-    function getCitizenProfileFromForm() {
-      const state = document.getElementById('inputState').value;
-      const age = Number(document.getElementById('inputAge').value) || 21;
-      const gender = document.getElementById('inputGender').value;
-      const occupation = document.getElementById('inputOccupation').value;
-      const income = Number(document.getElementById('inputIncome').value) || 120000;
-      const category = document.getElementById('inputCategory').value;
-      const ration = document.getElementById('inputRation').value;
-      const isStudent = document.getElementById('chkStudent').checked || occupation === 'student';
-      const isWidow = document.getElementById('chkWidow').checked;
-      const isTaxPayer = document.getElementById('chkTaxPayer').checked;
-
-      return {
+    function syncFromForm() {
+      currentHousehold = [];
+      currentProfile = {
         name: 'Citizen',
-        state,
-        age,
-        gender,
-        occupation,
-        income,
-        category,
-        isBPL: ration === 'bpl',
-        isStudent,
-        isWidow,
-        isTaxPayer
+        state: document.getElementById('pState').value,
+        age: Number(document.getElementById('pAge').value) || 20,
+        gender: document.getElementById('pGender').value,
+        occupation: currentProfile.occupation || 'student',
+        income: Number(document.getElementById('pIncome').value) || 140000,
+        category: document.getElementById('pCategory').value,
+        isBPL: document.getElementById('pRation').value === 'bpl',
+        isStudent: currentProfile.isStudent !== false,
+        isWidow: Boolean(currentProfile.isWidow),
+        isTaxPayer: false
       };
+      document.getElementById('vaultModeBadge').innerText = `Individual Citizen Vault (${currentProfile.age}y ${currentProfile.gender})`;
+      runHarness('');
+    }
+
+    function loadPersona(key) {
+      currentProfile = { ...PERSONAS[key] };
+      currentHousehold = [];
+      syncFormUI();
+      document.querySelectorAll('.persona-pill').forEach(p => p.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('vaultModeBadge').innerText = `Individual Citizen Vault (${currentProfile.name})`;
+      runHarness('');
+    }
+
+    function loadWholeFamilyDemo() {
+      currentProfile = { ...PERSONAS.ramesh, name: 'Gowda Family (4 Members)' };
+      currentHousehold = [
+        { ...PERSONAS.ramesh, name: 'Ramesh (41, Father • Farmer)' },
+        { ...PERSONAS.kiran, name: 'Kiran (24, Brother • Labour Worker)' },
+        { ...PERSONAS.ananya, name: 'Ananya (20, Daughter • BTech Student)' },
+        { ...PERSONAS.lakshmi, name: 'Lakshmi (71, Grandmother • Senior Widow)' }
+      ];
+      syncFormUI();
+      document.querySelectorAll('.persona-pill').forEach(p => p.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('vaultModeBadge').innerText = '👨‍👩‍👧‍👦 4-Member Household Entitlement Unit';
+      runHarness('');
     }
 
     function submitChatIntake() {
       const msg = document.getElementById('chatInput').value.trim();
       if (!msg) return;
       document.getElementById('chatInput').value = '';
+      currentHousehold = [];
       runHarness(msg);
+      location.hash = '#sec-schemes';
     }
 
     function animateCounter(el, targetValue) {
-      const duration = 380;
+      const duration = 500;
       const startTime = performance.now();
       function tick(now) {
         const progress = Math.min((now - startTime) / duration, 1);
-        el.innerText = '₹' + Math.floor(progress * targetValue).toLocaleString('en-IN');
+        el.innerText = '₹' + Math.floor(progress * targetValue).toLocaleString('en-IN') + ' / yr';
         if (progress < 1) requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
@@ -704,41 +1195,12 @@
 
     function setCategoryFilter(cat) {
       activeCategory = cat;
-      document.querySelectorAll('.cat-pill').forEach(btn => {
-        const isMatch = (cat === 'ALL' && btn.innerText.includes('All')) || btn.innerText.includes(cat.split(' ')[0]);
-        btn.className = isMatch
-          ? 'cat-pill bg-[#0A2540] text-white font-heading font-bold text-xs px-2.5 py-1 rounded-md transition'
-          : 'cat-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-semibold text-xs px-2.5 py-1 rounded-md transition';
-      });
+      document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+      event.target.classList.add('active');
       renderSchemesGrid();
-    }
-
-    function setLevelFilter(lvl) {
-      activeLevel = lvl;
-      document.querySelectorAll('.level-pill').forEach(btn => {
-        const isMatch = (lvl === 'ALL' && btn.innerText.includes('All')) || btn.innerText.includes(lvl.includes('Karnataka') ? 'Karnataka' : lvl.includes('+') ? 'Joint' : 'Central');
-        btn.className = isMatch
-          ? 'level-pill bg-[#0A2540] text-white font-heading font-bold text-xs px-3 py-1.5 rounded-lg transition'
-          : 'level-pill bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-heading font-bold text-xs px-2.5 py-1.5 rounded-lg transition';
-      });
-      renderSchemesGrid();
-    }
-
-    function setQuickSearch(term) {
-      document.getElementById('schemeSearch').value = term;
-      renderSchemesGrid();
-    }
-
-    function resetAllFilters() {
-      document.getElementById('schemeSearch').value = '';
-      document.getElementById('showAllToggle').checked = false;
-      document.getElementById('sortBy').value = 'amount_desc';
-      setCategoryFilter('ALL');
-      setLevelFilter('ALL');
     }
 
     async function runHarness(userMessage = '') {
-      const profile = getCitizenProfileFromForm();
       const language = document.getElementById('languageSelect').value;
       const readinessChecks = {
         npciSeeded: document.getElementById('chkNpci').checked,
@@ -746,367 +1208,282 @@
         rdValid: document.getElementById('chkRd').checked
       };
 
-      document.getElementById('stateScopeBadge').innerText = profile.state === 'karnataka'
-        ? 'Karnataka State + Central Government Entitlements'
-        : 'Pan-India Central Government Entitlements';
-
       try {
         const res = await fetch('/api/harness/discover', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ userMessage, currentProfile: profile, householdMembers: [], readinessChecks, language })
+          body: JSON.stringify({ userMessage, currentProfile, householdMembers: currentHousehold, readinessChecks, language })
         });
         const data = await res.json();
 
-        // Update form if natural language parsed parameters
-        if (userMessage && data.profile) {
-          if (data.profile.age) document.getElementById('inputAge').value = data.profile.age;
-          if (data.profile.gender) document.getElementById('inputGender').value = data.profile.gender;
-          if (data.profile.occupation) document.getElementById('inputOccupation').value = data.profile.occupation;
-          if (data.profile.income) document.getElementById('inputIncome').value = data.profile.income;
-          if (data.profile.isStudent !== undefined) document.getElementById('chkStudent').checked = data.profile.isStudent;
-          if (data.profile.isWidow !== undefined) document.getElementById('chkWidow').checked = data.profile.isWidow;
-        }
-
+        currentProfile = data.profile || currentProfile;
         latestMatchedSchemes = data.matchedSchemes || [];
         allCatalogSchemes = data.allCatalogSchemes || latestMatchedSchemes;
+        selectedSchemeObj = latestMatchedSchemes[0] || allCatalogSchemes[0];
+        syncFormUI();
 
-        // Animate Benefits
+        // 1. Render Top Notification Alert Bar
+        const notifs = data.notifications || [];
+        document.getElementById('notifContainer').innerHTML = notifs.map(n => {
+          const cls = n.status === 'ENDING_2_DAYS' ? 'ending' : n.status === 'EXPIRED_TODAY' ? 'expired' : 'new';
+          return `
+            <div onclick="selectSchemeById('${n.id}'); location.hash='#sec-inspector';" class="notif-pill ${cls}">
+              <span>${n.label}:</span>
+              <b>${n.name.split('(')[0]}</b>
+            </div>
+          `;
+        }).join('');
+
+        // 2. Update Vault Meters
         animateCounter(document.getElementById('directBenefitMeter'), data.totalDirectAnnualINR || 0);
-        animateCounter(document.getElementById('fiveYearMeter'), data.fiveYearWealthINR || (data.totalDirectAnnualINR * 5) || 0);
+        document.getElementById('fiveYearMeter').innerText = '₹' + Number(data.fiveYearWealthINR || 0).toLocaleString('en-IN');
         document.getElementById('healthCoverMeter').innerText = '₹' + Number(data.totalHealthCoverINR || 500000).toLocaleString('en-IN');
-        document.getElementById('schemeCountBadge').innerText = `${data.schemeCount} Schemes`;
+        document.getElementById('hiddenGemsCount').innerText = `${data.hiddenGemsCount || 0} Found`;
         document.getElementById('aiSummaryBox').innerText = data.aiSummary;
 
-        // Rejection Shield Status
+        // 3. Update Rejection Shield
         const score = data.readinessAudit.readinessScore;
-        const rBadge = document.getElementById('readinessBadge');
-        rBadge.innerText = `${score}% Ready`;
-        rBadge.className = score === 100
-          ? 'text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0]'
-          : 'text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-[#FFF1F2] text-[#BE123C] border border-[#FECDD3] animate-pulse';
+        document.getElementById('readinessScoreVal').innerText = `${score}%`;
+        const sBadge = document.getElementById('shieldReadinessBadge');
+        sBadge.innerText = `${score}% READY`;
+        sBadge.style.color = score === 100 ? 'var(--emerald-light)' : '#FCA5A5';
 
         document.getElementById('rejectionRisksBox').innerHTML = (data.readinessAudit.rejectionRisks || []).map(r => `
-          <div class="bg-[#FFF1F2] border border-[#FECDD3] rounded-xl p-3 text-xs space-y-1">
-            <div class="font-heading font-bold text-[#9F1239] flex items-center justify-between">
-              <span>⚠️ ${r.severity}: ${r.title}</span>
-              <button onclick="openDocKitModal(null, 'npci')" class="text-[10px] bg-[#E11D48] text-white px-2 py-0.5 rounded font-heading font-bold font-mono">
-                Get Form →
-              </button>
-            </div>
-            <div class="text-[#881337] text-[11px] leading-relaxed">${r.fix}</div>
+          <div style="background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); border-radius: 12px; padding: 10px; font-size: 0.78rem;">
+            <div style="color: #FECACA; font-weight: 800;">⚠️ ${r.severity}: ${r.title}</div>
+            <div style="color: #F87171; margin-top: 2px;">${r.fix}</div>
           </div>
         `).join('');
 
-        // Single-Window Documents Checklist
+        // 4. Update Consolidated Documents
         document.getElementById('consolidatedDocs').innerHTML = (data.consolidatedDocuments || []).map(d => `
-          <span class="bg-[#F1F5F9] border border-[#CBD5E1] text-[#0F172A] px-2.5 py-1 rounded-md text-[11px] font-medium flex items-center gap-1">
-            <span class="text-[#059669] font-bold">✓</span> ${d}
-          </span>
+          <div style="background: rgba(5,7,11,0.6); border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; font-size: 0.78rem; display: flex; align-items: center; gap: 6px;">
+            <span style="color: var(--emerald-light); font-weight: 800;">✓</span>
+            <span>${d}</span>
+          </div>
         `).join('');
 
-        // Statutory Conflicts
+        // 5. Update Conflicts
         const conflictSec = document.getElementById('conflictSection');
         if (data.statutoryConflictsResolved && data.statutoryConflictsResolved.length > 0) {
-          conflictSec.classList.remove('hidden');
+          conflictSec.style.display = 'block';
           document.getElementById('conflictList').innerHTML = data.statutoryConflictsResolved.map(c => `
             <div>• Kept <b>${c.kept}</b> over <s>${c.dropped}</s> — ${c.rule}</div>
           `).join('');
         } else {
-          conflictSec.classList.add('hidden');
+          conflictSec.style.display = 'none';
         }
 
+        // 6. Update Agent Drawer
+        document.getElementById('agentTraceBox').innerHTML = (data.agentTrace || []).map(t => `
+          <div style="background: rgba(15,23,42,0.8); border: 1px solid var(--border); border-radius: 12px; padding: 10px;">
+            <div style="display: flex; justify-content: space-between; font-weight: 700; color: #C4B5FD; font-size: 0.8rem;">
+              <span>${t.agent}</span>
+              <span style="font-family: monospace; color: var(--emerald-light);">${t.ms}ms</span>
+            </div>
+            <div style="font-size: 0.74rem; color: var(--muted); margin-top: 3px;">${t.detail}</div>
+          </div>
+        `).join('');
+
+        // 7. Populate Kit Scheme Select
+        document.getElementById('kitSchemeSelect').innerHTML = allCatalogSchemes.map(s => `
+          <option value="${s.id}">${s.name} (+₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')}/yr)</option>
+        `).join('');
+
         renderSchemesGrid();
+        renderInspector(selectedSchemeObj);
+        loadDocInKit(currentDocMode);
       } catch (err) {
-        console.error('Scheme discovery error:', err);
+        console.error('Harness error:', err);
       }
     }
 
     function renderSchemesGrid() {
-      const search = (document.getElementById('schemeSearch').value || '').trim().toLowerCase();
+      const search = (document.getElementById('schemeSearch').value || '').toLowerCase();
       const showAll = document.getElementById('showAllToggle').checked;
-      const sortBy = document.getElementById('sortBy').value;
-      const sourceList = showAll ? allCatalogSchemes : latestMatchedSchemes;
-      const matchedIds = new Set(latestMatchedSchemes.map(m => m.id));
+      const baseList = (showAll || activeCategory === 'ENDING_SOON') ? allCatalogSchemes : latestMatchedSchemes;
 
-      let filtered = sourceList.filter(s => {
-        // Category Filter
-        if (activeCategory !== 'ALL' && s.categoryTag !== activeCategory) return false;
-        
-        // Jurisdiction / Level Filter
-        if (activeLevel !== 'ALL') {
-          if (activeLevel === 'State (Karnataka)' && !s.level.includes('Karnataka')) return false;
-          if (activeLevel === 'Central' && (!s.level.includes('Central') || s.level.includes('State'))) return false;
-          if (activeLevel === 'Central + State' && !s.level.includes('+')) return false;
-        }
-
-        // Broad Search across all fields
-        if (search) {
-          const docsStr = (s.documents || []).join(' ');
-          const eligStr = JSON.stringify(s.eligibility || {});
-          const searchableBlob = `${s.name} ${s.level} ${s.ministry} ${s.benefitSummary} ${s.categoryTag} ${s.payoutTag} ${s.physicalCounter} ${s.applyWhere} ${s.cscSteps} ${s.statutoryRule} ${docsStr} ${eligStr}`.toLowerCase();
-          
-          const terms = search.split(/\s+/);
-          const allTermsMatch = terms.every(term => searchableBlob.includes(term));
-          if (!allTermsMatch) return false;
-        }
-
+      const filtered = baseList.filter(s => {
+        if (activeCategory === 'HIDDEN_GEMS' && !s.isHiddenGem) return false;
+        if (activeCategory === 'ENDING_SOON' && !['ENDING_2_DAYS', 'EXPIRED_TODAY'].includes(s.deadlineStatus)) return false;
+        if (!['ALL', 'HIDDEN_GEMS', 'ENDING_SOON'].includes(activeCategory) && s.categoryTag !== activeCategory) return false;
+        if (search && !`${s.name} ${s.benefitSummary} ${s.categoryTag} ${s.physicalCounter}`.toLowerCase().includes(search)) return false;
         return true;
       });
 
-      // Sorting
-      filtered.sort((a, b) => {
-        if (sortBy === 'amount_desc') {
-          return (b.annualValueINR || 0) - (a.annualValueINR || 0);
-        } else if (sortBy === 'sla_asc') {
-          return (a.sakalaSlaDays || 999) - (b.sakalaSlaDays || 999);
-        } else if (sortBy === 'name_asc') {
-          return a.name.localeCompare(b.name);
+      document.getElementById('schemesResultCount').innerText = `Showing ${filtered.length} of ${baseList.length} schemes`;
+
+      document.getElementById('schemesContainer').innerHTML = filtered.map(s => {
+        const isSelected = selectedSchemeObj && selectedSchemeObj.id === s.id;
+        let badgeHtml = '';
+        if (s.isHiddenGem) badgeHtml += `<span class="gem-badge">💎 HIDDEN GEM</span>`;
+        if (s.deadlineStatus === 'ENDING_2_DAYS') {
+          badgeHtml += `<span class="deadline-badge ENDING_2_DAYS">⏳ ENDS IN 2 DAYS</span>`;
+        } else if (s.deadlineStatus === 'EXPIRED_TODAY') {
+          badgeHtml += `<span class="deadline-badge EXPIRED_TODAY">🔴 EXPIRED TODAY</span>`;
+        } else if (s.deadlineStatus === 'NEW') {
+          badgeHtml += `<span class="deadline-badge NEW">🟢 NEW 2026</span>`;
         }
-        return 0;
-      });
 
-      document.getElementById('resultsCount').innerText = `Showing ${filtered.length} of ${sourceList.length} schemes`;
+        return `
+          <div onclick="selectSchemeById('${s.id}')" class="scheme-card ${s.isHiddenGem ? 'hidden-gem' : ''} ${isSelected ? 'selected-card' : ''}">
+            <div>
+              <div class="badge-row">${badgeHtml}</div>
+              <div class="scheme-money" style="margin: 8px 0 4px;">₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')}<span style="font-size: 0.8rem; color: var(--muted);">/yr</span></div>
+              <h3 class="scheme-title">${s.name}</h3>
+              <p style="font-size: 0.78rem; color: var(--muted); margin-top: 6px; line-height: 1.5;">${s.benefitSummary}</p>
+            </div>
 
-      const container = document.getElementById('schemesContainer');
-      if (filtered.length === 0) {
-        container.innerHTML = `
-          <div class="bg-white border border-[#E2E8F0] rounded-2xl p-8 text-center text-slate-500 space-y-2">
-            <div class="text-3xl">🔍</div>
-            <div class="font-heading font-bold text-sm text-[#0F172A]">No schemes match your active search & filters</div>
-            <div class="text-xs">Try clearing the search term, changing jurisdiction pills, or checking "Browse All 20 Schemes".</div>
-            <div class="pt-2">
-              <button onclick="resetAllFilters()" class="bg-[#0A2540] text-white text-xs font-heading font-bold px-3 py-1.5 rounded-lg">Reset Filters</button>
+            <div>
+              <div style="font-size: 0.72rem; color: var(--muted); margin-bottom: 8px;">
+                📍 ${s.physicalCounter || s.applyWhere} • ⏱️ ${s.sakalaSlaDays || 21}d SLA
+              </div>
+              <div style="display: flex; gap: 6px;">
+                <button onclick="selectSchemeById('${s.id}'); location.hash='#sec-inspector';" class="action-btn primary" style="flex: 1;">
+                  🔍 Inspect Details
+                </button>
+                <button onclick="openDeepModal('${s.id}')" class="action-btn" style="flex: 1;">
+                  Pop-out ↗
+                </button>
+              </div>
             </div>
           </div>
         `;
-        return;
-      }
-
-      container.innerHTML = filtered.map((s, idx) => {
-        const isEligible = matchedIds.has(s.id);
-        const matchIdx = latestMatchedSchemes.findIndex(m => m.id === s.id);
-        
-        // Jurisdiction badge determination
-        let levelBadgeHtml = '';
-        if (s.level.includes('Karnataka')) {
-          levelBadgeHtml = `<span class="text-[10px] font-heading font-bold uppercase px-2.5 py-0.5 rounded-full badge-state">🏛️ Karnataka State Government</span>`;
-        } else if (s.level.includes('+')) {
-          levelBadgeHtml = `<span class="text-[10px] font-heading font-bold uppercase px-2.5 py-0.5 rounded-full badge-joint">🇮🇳+🏛️ Joint Central & State Scheme</span>`;
-        } else {
-          levelBadgeHtml = `<span class="text-[10px] font-heading font-bold uppercase px-2.5 py-0.5 rounded-full badge-central">🇮🇳 Central Govt (All-India)</span>`;
-        }
-
-        // Synthesis of Who Can Apply
-        const e = s.eligibility || {};
-        const eligibleList = [];
-        if (e.gender && e.gender.length === 1) eligibleList.push(`Gender: ${e.gender[0].toUpperCase()} only`);
-        if (e.ageMin && e.ageMax) eligibleList.push(`Age: ${e.ageMin} to ${e.ageMax} years`);
-        else if (e.ageMin) eligibleList.push(`Age: ${e.ageMin}+ years`);
-        if (e.occupations) eligibleList.push(`Role: ${e.occupations.map(o => o.charAt(0).toUpperCase() + o.slice(1)).join(' / ')}`);
-        if (e.isStudent) eligibleList.push('Enrolled College/School Student');
-        if (e.isWidow) eligibleList.push('Widows from Low-Income Families');
-        if (e.bplRequired) eligibleList.push('BPL / Antyodaya Card Holder');
-        if (e.maxIncome) eligibleList.push(`Family Income ≤ ₹${(e.maxIncome).toLocaleString('en-IN')}/year`);
-        else eligibleList.push('Universal / No Income Bar');
-
-        // Synthesis of Who Cannot Apply (Exclusions)
-        const exclusionsList = [];
-        if (e.excludeTaxPayer) exclusionsList.push('Income Tax Payers excluded');
-        if (s.statutoryRule && s.statutoryRule.includes('Govt employees')) exclusionsList.push('Government Employees excluded');
-        if (s.exclusivityGroup === 'CENTRAL_SCHOLARSHIP') exclusionsList.push('Cannot combine with other Central Scholarships');
-        if (s.exclusivityGroup === 'SOCIAL_PENSION') exclusionsList.push('Cannot draw multiple simultaneous pensions');
-        if (exclusionsList.length === 0) exclusionsList.push('None (subject to general criteria)');
-
-        const docsBadges = (s.documents || []).map(d => `<span class="bg-white border border-[#CBD5E1] px-2 py-0.5 rounded-md text-[11px] text-[#334155] font-medium flex items-center gap-1 shadow-2xs">📄 ${d}</span>`).join(' ');
-
-        return `
-        <div class="bg-white border ${isEligible ? 'border-[#94A3B8] ring-1 ring-[#94A3B8]/20' : 'border-[#E2E8F0] opacity-85'} rounded-2xl p-5 shadow-xs hover:border-[#0A2540] transition space-y-3.5">
-          
-          <!-- Top Row: Jurisdiction & Payout Value -->
-          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2.5">
-            <div class="space-y-1">
-              <div class="flex flex-wrap items-center gap-1.5">
-                ${levelBadgeHtml}
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F8FAFC] text-[#64748B] border border-[#E2E8F0]">SLA: ${s.sakalaSlaDays} Days</span>
-                <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-[#F1F5F9] text-[#334155]">${s.categoryTag}</span>
-              </div>
-              <h4 class="font-heading font-black text-base sm:text-lg text-[#0F172A] leading-snug">${s.name}</h4>
-              <div class="text-[11px] text-[#64748B] font-medium flex items-center gap-1">
-                <span>🏛️ Authority:</span> <span>${s.ministry}</span>
-              </div>
-            </div>
-            
-            <div class="sm:text-right shrink-0">
-              <span class="text-xs sm:text-sm font-heading font-black text-[#059669] bg-[#ECFDF5] border border-[#A7F3D0] px-3 py-1 rounded-full whitespace-nowrap inline-block">
-                + ₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')}/yr
-              </span>
-              <span class="text-[10px] text-[#64748B] font-semibold mt-0.5 block">${s.payoutTag || 'Direct Benefit'}</span>
-            </div>
-          </div>
-
-          <!-- Plain Language Summary -->
-          <p class="text-xs text-[#334155] leading-relaxed font-normal">${s.benefitSummary}</p>
-
-          <!-- 4 CORE CITIZEN CRITERIA BLOCKS -->
-          <div class="space-y-2.5 bg-[#F8FAFC] border border-[#E2E8F0] p-3.5 rounded-xl text-xs">
-            
-            <!-- Who All Can Apply -->
-            <div class="space-y-1">
-              <div class="font-heading font-bold text-[#0A2540] flex items-center gap-1.5">
-                <span class="text-emerald-600">✓</span> <span>WHO ALL CAN APPLY (ELIGIBILITY):</span>
-              </div>
-              <div class="flex flex-wrap gap-1.5 pl-4">
-                ${eligibleList.map(item => `<span class="bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] px-2 py-0.5 rounded font-medium">${item}</span>`).join('')}
-              </div>
-            </div>
-
-            <!-- Who CANNOT Apply (Exclusions) -->
-            <div class="space-y-1 border-t border-[#E2E8F0] pt-2">
-              <div class="font-heading font-bold text-[#991B1B] flex items-center gap-1.5">
-                <span>✕</span> <span>WHO CANNOT APPLY (EXCLUSIONS & STATUTORY RULES):</span>
-              </div>
-              <div class="flex flex-wrap gap-1.5 pl-4">
-                ${exclusionsList.map(item => `<span class="bg-rose-50 text-rose-800 border border-rose-200 text-[11px] px-2 py-0.5 rounded font-medium">${item}</span>`).join('')}
-              </div>
-            </div>
-
-            <!-- Where to Apply (Physical Cyber-Café / Centers) -->
-            <div class="border-t border-[#E2E8F0] pt-2">
-              <div class="flex items-start gap-1.5">
-                <span class="font-heading font-bold text-[#0A2540] shrink-0">🏪 Where to Visit:</span>
-                <span class="text-[#0F172A] font-semibold">${s.physicalCounter || s.applyWhere}</span>
-              </div>
-            </div>
-
-            <!-- Steps to Apply -->
-            <div class="border-t border-[#E2E8F0] pt-2 space-y-1">
-              <span class="font-heading font-bold text-[#0A2540] block">📝 Steps How to Apply:</span>
-              <div class="text-[#334155] pl-2 text-[11px] leading-relaxed font-mono bg-white border border-[#CBD5E1] p-2 rounded-lg">
-                ${s.cscSteps || 'Visit portal, upload required documents, verify Aadhaar OTP, and print acknowledgement slip.'}
-              </div>
-            </div>
-
-            <!-- Required Documents Checklist -->
-            <div class="border-t border-[#E2E8F0] pt-2 space-y-1">
-              <span class="font-heading font-bold text-[#0A2540] block">📑 Required Documents to Carry:</span>
-              <div class="flex flex-wrap gap-1.5 pt-0.5">${docsBadges}</div>
-            </div>
-
-            <!-- Common Bureaucratic Trap -->
-            <div class="border-t border-[#E2E8F0] pt-2 text-[#991B1B] space-y-0.5">
-              <span class="font-heading font-bold">⚠️ Avoid Common Bureaucratic Rejection Trap:</span>
-              <p class="text-[11px] text-[#881337] leading-relaxed pl-2">${s.commonRejectionTrap}</p>
-            </div>
-
-          </div>
-
-          <!-- Bottom Action Buttons -->
-          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#E2E8F0] text-xs">
-            <a href="${s.source}" target="_blank" rel="noopener" class="text-[#0A2540] hover:text-[#2563EB] font-heading font-bold text-xs flex items-center gap-1">
-              <span>Open Official Portal (${s.applyWhere})</span> ↗
-            </a>
-            
-            <div class="flex items-center gap-2">
-              <button onclick="openDocKitModal(${matchIdx >= 0 ? matchIdx : 0}, 'application')" class="bg-[#0A2540] hover:bg-[#12375C] text-white text-xs font-heading font-bold px-3 py-1.5 rounded-lg transition shadow-xs flex items-center gap-1.5">
-                <span>🖨️</span>
-                <span>Print Cyber-Café Slip</span>
-              </button>
-              <button onclick="openDocKitModal(${matchIdx >= 0 ? matchIdx : 0}, 'npci')" class="bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0A2540] border border-[#CBD5E1] text-xs font-heading font-bold px-2.5 py-1.5 rounded-lg transition">
-                NPCI Form
-              </button>
-            </div>
-          </div>
-
-        </div>
-        `}).join('');
+      }).join('');
     }
 
-    async function openDocKitModal(schemeIndex, mode) {
-      const modal = document.getElementById('docModal');
-      const content = document.getElementById('modalContent');
-      const title = document.getElementById('modalTitle');
-      const scheme = schemeIndex !== null ? latestMatchedSchemes[schemeIndex] : (latestMatchedSchemes[0] || allCatalogSchemes[0]);
-
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      content.innerText = 'Drafting official Cyber-Café operator slip & document instructions...';
-
-      try {
-        const profile = getCitizenProfileFromForm();
-        const res = await fetch('/api/harness/dockit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ profile, scheme, mode })
-        });
-        const data = await res.json();
-        title.innerText = data.documentTitle;
-        content.innerText = data.generatedText;
-      } catch (e) {
-        content.innerText = 'Error generating document. Please try again.';
-      }
+    function selectSchemeById(id) {
+      selectedSchemeObj = allCatalogSchemes.find(s => s.id === id) || latestMatchedSchemes.find(s => s.id === id);
+      renderInspector(selectedSchemeObj);
+      renderSchemesGrid();
+      document.getElementById('kitSchemeSelect').value = selectedSchemeObj.id;
+      loadDocInKit(currentDocMode);
     }
 
-    function closeDocModal() {
-      document.getElementById('docModal').classList.add('hidden');
-      document.getElementById('docModal').classList.remove('flex');
+    function renderInspector(s) {
+      if (!s) return;
+      document.getElementById('inspTitle').innerText = s.name;
+      document.getElementById('inspMinistry').innerText = `${s.level} • ${s.ministry}`;
+      document.getElementById('inspValue').innerText = `₹${Number(s.annualValueINR || 0).toLocaleString('en-IN')} / yr`;
+      document.getElementById('inspPayoutTag').innerText = s.payoutTag || s.benefitType;
+      document.getElementById('inspSummary').innerText = s.benefitSummary;
+      document.getElementById('inspStatutory').innerText = s.statutoryRule;
+      document.getElementById('inspTrap').innerText = s.commonRejectionTrap;
+      document.getElementById('inspCounter').innerText = s.physicalCounter || s.applyWhere;
+      document.getElementById('inspSla').innerText = `${s.sakalaSlaDays || 21} Working Days (Sakala Guarantee)`;
+      document.getElementById('inspPortalLink').href = s.source;
+
+      document.getElementById('inspBadges').innerHTML = `
+        ${s.isHiddenGem ? `<span class="gem-badge">💎 HIDDEN MONEY GEM</span>` : ''}
+        <span class="chip-btn" style="padding: 3px 8px; font-size: 0.68rem;">${s.deadlineLabel || '🟢 Open Window'}</span>
+      `;
+
+      document.getElementById('inspCriteriaList').innerHTML = (s.criteriaList || [s.statutoryRule]).map(c => `<li>${c}</li>`).join('');
+      document.getElementById('inspDocsList').innerHTML = (s.documents || []).map(d => `<li>${d}</li>`).join('');
+      document.getElementById('inspStepsList').innerHTML = (s.selfApplySteps || [s.cscSteps]).map(st => `<div>• ${st}</div>`).join('');
+    }
+
+    function openDeepModal(id) {
+      selectSchemeById(id);
+      openDeepModalFromSelected();
+    }
+
+    function openDeepModalFromSelected() {
+      const s = selectedSchemeObj;
+      if (!s) return;
+      document.getElementById('modalTitle').innerText = s.name;
+      document.getElementById('modalSummary').innerText = s.benefitSummary;
+      document.getElementById('modalLink').href = s.source;
+
+      document.getElementById('modalBadges').innerHTML = `
+        ${s.isHiddenGem ? `<span class="gem-badge">💎 HIDDEN GEM</span>` : ''}
+        <span class="chip-btn" style="padding: 3px 8px; font-size: 0.68rem;">+₹${Number(s.annualValueINR||0).toLocaleString('en-IN')}/yr</span>
+      `;
+      document.getElementById('modalCriteria').innerHTML = (s.criteriaList || [s.statutoryRule]).map(c => `<li>${c}</li>`).join('');
+      document.getElementById('modalDocs').innerHTML = (s.documents || []).map(d => `<li>${d}</li>`).join('');
+      document.getElementById('modalSteps').innerHTML = (s.selfApplySteps || [s.cscSteps]).map(st => `<div>• ${st}</div>`).join('');
+
+      document.getElementById('deepModal').classList.add('open');
+    }
+
+    function closeDeepModal() {
+      document.getElementById('deepModal').classList.remove('open');
+    }
+
+    function selectKitSchemeById(id) {
+      selectSchemeById(id);
+    }
+
+    async function loadDocInKit(mode) {
+      currentDocMode = mode;
+      const s = selectedSchemeObj;
+      if (!s) return;
+
+      document.getElementById('kitContent').innerText = 'Drafting official legal dossier...';
+      const res = await fetch('/api/harness/dockit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ profile: currentProfile, scheme: s, mode })
+      });
+      const data = await res.json();
+      document.getElementById('kitTitle').innerText = data.documentTitle;
+      document.getElementById('kitContent').innerText = data.generatedText;
     }
 
     function copyDocText() {
-      navigator.clipboard.writeText(document.getElementById('modalContent').innerText);
-      const btn = document.getElementById('copyBtnText');
-      btn.innerText = '✓ Copied!';
-      setTimeout(() => { btn.innerText = '📋 Copy Text'; }, 2000);
+      navigator.clipboard.writeText(document.getElementById('kitContent').innerText);
+      alert('✓ Copied to clipboard! Ready to paste or print.');
     }
 
     function printDocText() {
-      const text = document.getElementById('modalContent').innerText;
+      const text = document.getElementById('kitContent').innerText;
       const win = window.open('', '_blank');
-      win.document.write(`<pre style="font-family: 'JetBrains Mono', monospace; font-size: 12px; white-space: pre-wrap; padding: 28px; line-height: 1.6;">${text}</pre>`);
+      win.document.write(`<pre style="font-family: monospace; font-size: 12px; white-space: pre-wrap; padding: 28px;">${text}</pre>`);
       win.document.close();
       win.print();
     }
 
     function speakSummary() {
-      if (!('speechSynthesis' in window)) return alert('Speech synthesis not supported in this browser.');
-      const ttsBtnText = document.getElementById('ttsBtnText');
-      const ttsIcon = document.getElementById('ttsIcon');
-      if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.cancel();
-        ttsBtnText.innerText = 'Listen Aloud';
-        ttsIcon.innerText = '🔊';
-        return;
-      }
-      const text = document.getElementById('aiSummaryBox').innerText;
-      const utter = new SpeechSynthesisUtterance(text);
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(document.getElementById('aiSummaryBox').innerText);
       const lang = document.getElementById('languageSelect').value;
       utter.lang = lang.includes('Kannada') ? 'kn-IN' : lang.includes('Hindi') ? 'hi-IN' : 'en-IN';
-      utter.onstart = () => { ttsBtnText.innerText = 'Stop'; ttsIcon.innerText = '⏹️'; };
-      utter.onend = () => { ttsBtnText.innerText = 'Listen Aloud'; ttsIcon.innerText = '🔊'; };
-      utter.onerror = () => { ttsBtnText.innerText = 'Listen Aloud'; ttsIcon.innerText = '🔊'; };
       window.speechSynthesis.speak(utter);
     }
 
     function startVoiceInput() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) return alert('Speech recognition requires Chrome or Edge.');
+      if (!SpeechRecognition) return alert('Voice recognition requires Chrome or Edge.');
       const rec = new SpeechRecognition();
-      const lang = document.getElementById('languageSelect').value;
-      rec.lang = lang.includes('Kannada') ? 'kn-IN' : lang.includes('Hindi') ? 'hi-IN' : 'en-IN';
+      rec.lang = 'en-IN';
       const btn = document.getElementById('voiceBtn');
-      btn.innerText = '🔴';
+      btn.innerText = '🔴 Listening...';
       rec.onresult = (e) => {
         document.getElementById('chatInput').value = e.results[0][0].transcript;
-        btn.innerText = '🎙️';
+        btn.innerText = '🎙️ Speak';
         submitChatIntake();
       };
-      rec.onerror = () => { btn.innerText = '🎙️'; };
-      rec.onend = () => { btn.innerText = '🎙️'; };
+      rec.onerror = () => { btn.innerText = '🎙️ Speak'; };
       rec.start();
     }
 
-    // Auto-evaluate default profile on startup
-    window.addEventListener('DOMContentLoaded', () => runHarness());
+    // ScrollSpy for Nav Pills
+    window.addEventListener('scroll', () => {
+      const sections = ['sec-vault', 'sec-schemes', 'sec-inspector', 'sec-shield', 'sec-kit'];
+      const scrollPos = window.scrollY + 180;
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && scrollPos >= el.offsetTop && scrollPos < el.offsetTop + el.offsetHeight) {
+          document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+          const activePill = document.querySelector(`.nav-pill[href="#${id}"]`);
+          if (activePill) activePill.classList.add('active');
+          break;
+        }
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => loadWholeFamilyDemo());
   </script>
 </body>
 </html>
