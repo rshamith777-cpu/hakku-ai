@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hakku 5.0 (ಹಕ್ಕು / हक़) — Proactive Citizen Rights OS & National DPI</title>
+  <title>Hakku (ಹಕ್ಕು / हक़) — Citizen Welfare Discovery & Statutory Rights OS</title>
   
-  <!-- Premium Typography: Plus Jakarta Sans & Inter -->
+  <!-- Premium Editorial & Regional Typography: Outfit, Plus Jakarta Sans, Inter, Noto Sans Kannada & Devanagari -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -17,8 +17,8 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            display: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+            sans: ['"Outfit"', '"Noto Sans Kannada"', '"Noto Sans Devanagari"', '-apple-system', 'sans-serif'],
+            display: ['"Outfit"', '"Plus Jakarta Sans"', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
@@ -46,7 +46,7 @@
             'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 4px 14px -2px rgba(0, 0, 0, 0.03)',
             'card': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 10px 25px -5px rgba(0, 0, 0, 0.04)',
             'float': '0 12px 36px -8px rgba(15, 23, 42, 0.12), 0 2px 8px -2px rgba(15, 23, 42, 0.04)',
-            'slip': '0 20px 40px -10px rgba(11, 37, 69, 0.15), 0 2px 10px rgba(0, 0, 0, 0.06)'
+            'slip': '0 20px 45px -10px rgba(11, 37, 69, 0.12), 0 4px 16px -2px rgba(0, 0, 0, 0.04)'
           }
         }
       }
@@ -61,13 +61,13 @@
     body {
       background-color: #F8FAFC;
       color: #0F172A;
-      font-family: 'Inter', -apple-system, sans-serif;
+      font-family: 'Outfit', 'Noto Sans Kannada', 'Noto Sans Devanagari', -apple-system, sans-serif;
       -webkit-font-smoothing: antialiased;
-      letter-spacing: -0.011em;
+      letter-spacing: -0.012em;
     }
 
     .hero-glow {
-      background: radial-gradient(1100px 520px at 50% -50px, rgba(14, 165, 233, 0.08), rgba(99, 102, 241, 0.04), transparent 70%);
+      background: radial-gradient(1100px 520px at 50% -50px, rgba(14, 165, 233, 0.07), rgba(99, 102, 241, 0.03), transparent 70%);
     }
 
     /* Aceternity Marquee / Ticker Tape */
@@ -87,16 +87,16 @@
       -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
     }
 
-    /* Card Micro-interactions */
+    /* High-craft Cards */
     .framer-card {
       background: #FFFFFF;
-      border: 1px solid rgba(226, 232, 240, 0.85);
+      border: 1px solid rgba(226, 232, 240, 0.9);
       border-radius: 20px;
       transition: all 0.25s var(--spring-easing);
     }
     .framer-card:hover {
       border-color: rgba(203, 213, 225, 1);
-      box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.07);
+      box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.06);
       transform: translateY(-2px);
     }
 
@@ -123,11 +123,27 @@
       outline: none;
     }
 
-    /* Official Voucher Tear-Off Border */
-    .tear-off {
-      background-image: radial-gradient(circle at 10px 0, transparent 0, transparent 8px, #FFFFFF 8px);
-      background-size: 20px 20px;
-      background-repeat: repeat-x;
+    /* Print Formatting: Hide web UI and print only the official voucher */
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #printableSlip, #printableSlip * {
+        visibility: visible !important;
+      }
+      #printableSlip {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 20px !important;
+        box-shadow: none !important;
+        border: 2px solid #000 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
     }
 
     ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -141,13 +157,13 @@
   <!-- ========================================================= -->
   <!-- 1. LIVE NOTICES TICKER TAPE (Aceternity Marquee Style)     -->
   <!-- ========================================================= -->
-  <div class="bg-ashoka-navy text-white text-xs border-b border-ashoka-dark py-2 px-4 sticky top-0 z-50">
+  <div class="bg-ashoka-navy text-white text-xs border-b border-ashoka-dark py-2 px-4 sticky top-0 z-50 no-print">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
       
       <!-- Live Indicator Badge -->
       <div class="flex items-center gap-2 shrink-0 bg-white/10 px-2.5 py-0.5 rounded-full text-[11px] font-medium tracking-wide">
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="font-semibold text-white">LIVE NOTICES</span>
+        <span class="font-semibold text-white" data-i18n="topNoticesTitle">LIVE NOTICES</span>
       </div>
 
       <!-- Marquee Carousel -->
@@ -160,7 +176,7 @@
       <!-- Statutory Trust Tag -->
       <div class="hidden lg:flex items-center gap-2 shrink-0 text-[11px] text-slate-300">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-        <span>DPDP Act 2023 · 100% Volatile RAM · Zero PII Stored</span>
+        <span data-i18n="dpdpNotice">DPDP Act 2023 · 100% Volatile RAM · Zero PII Stored</span>
       </div>
 
     </div>
@@ -169,7 +185,7 @@
   <!-- ========================================================= -->
   <!-- 2. FLOATING HEADER (Framer Navbar Style)                  -->
   <!-- ========================================================= -->
-  <header class="sticky top-[37px] z-40 px-4 sm:px-6 pt-3">
+  <header class="sticky top-[37px] z-40 px-4 sm:px-6 pt-3 no-print">
     <div class="max-w-7xl mx-auto">
       <div class="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-2xl px-5 py-3 shadow-subtle flex items-center justify-between gap-4">
         
@@ -183,35 +199,35 @@
               <span class="font-display font-extrabold text-base tracking-tight text-slate-900">Hakku</span>
               <span class="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">v5.0</span>
             </div>
-            <p class="text-[11px] text-slate-500 font-medium hidden sm:block">Proactive Citizen Rights OS &amp; Anti-Tout Welfare Harness</p>
+            <p class="text-[11px] text-slate-500 font-medium hidden sm:block" data-i18n="brandSubtitle">Proactive Citizen Rights OS &amp; Anti-Tout Welfare Harness</p>
           </div>
         </div>
 
         <!-- Center Breadcrumb / Step Indicator -->
         <div id="stepNav" class="hidden md:flex items-center gap-2 text-xs font-semibold">
-          <span id="stepBadge1" class="px-3 py-1 rounded-xl bg-ashoka-navy text-white transition">1. Intake</span>
+          <span id="stepBadge1" class="px-3 py-1 rounded-xl bg-ashoka-navy text-white transition" data-i18n="step1Nav">1. Intake</span>
           <span class="text-slate-300">&rarr;</span>
-          <span id="stepBadge2" class="px-3 py-1 rounded-xl bg-slate-100 text-slate-500 transition">2. Eligible Offers</span>
+          <span id="stepBadge2" class="px-3 py-1 rounded-xl bg-slate-100 text-slate-500 transition" data-i18n="step2Nav">2. Eligible Offers</span>
           <span class="text-slate-300">&rarr;</span>
-          <span id="stepBadge3" class="px-3 py-1 rounded-xl bg-slate-100 text-slate-500 transition">3. Detail &amp; Cyber Slip</span>
+          <span id="stepBadge3" class="px-3 py-1 rounded-xl bg-slate-100 text-slate-500 transition" data-i18n="step3Nav">3. Detail &amp; Cyber Slip</span>
         </div>
 
         <!-- Right Controls -->
         <div class="flex items-center gap-2.5">
-          <!-- Voice Summary -->
-          <button onclick="speakSummary()" id="ttsBtn" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 border border-slate-200/60" title="Read summary aloud">
-            <svg class="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
-            <span id="ttsBtnText" class="hidden sm:inline">Listen</span>
+          <!-- Voice Audio Listen / Stop Toggle Button -->
+          <button onclick="toggleSpeech()" id="ttsBtn" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 border border-slate-200/60" title="Listen / Stop Readout">
+            <span id="ttsIcon">🔊</span>
+            <span id="ttsBtnText" data-i18n="btnListen">Listen</span>
           </button>
 
           <!-- Language Selector -->
-          <select id="languageSelect" onchange="runHarnessFromForm()" class="bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 text-xs font-medium px-3 py-1.5 rounded-xl outline-none cursor-pointer transition">
+          <select id="languageSelect" onchange="changeLanguage(this.value)" class="bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 text-xs font-semibold px-3 py-1.5 rounded-xl outline-none cursor-pointer transition">
             <option value="English">English</option>
-            <option value="Kannada (ಕನ್ನಡ)">ಕನ್ನಡ</option>
-            <option value="Hinglish (Hindi + English)">हिंदी / Hinglish</option>
+            <option value="Kannada">ಕನ್ನಡ (Kannada)</option>
+            <option value="Hindi">हिंदी (Hindi)</option>
           </select>
 
-          <!-- Telemetry Drawer -->
+          <!-- Telemetry Drawer Button -->
           <button onclick="toggleAgentDrawer()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 text-xs font-mono px-2.5 py-1.5 rounded-xl border border-slate-200/60 transition" title="Inspect verification telemetry">
             Trace
           </button>
@@ -235,36 +251,36 @@
       <div class="text-center max-w-3xl mx-auto space-y-3 pt-2">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-100 text-xs font-semibold text-brand-900 shadow-xs">
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span>Step 1: Enter Particulars to Discover Benefits</span>
+          <span data-i18n="intakeEyebrow">Step 1: Enter Particulars to Discover Benefits</span>
           <span class="text-slate-400">·</span>
-          <span class="text-slate-600 font-normal">Section 6 DPDP Act Safe-Harbor</span>
+          <span class="text-slate-600 font-normal" data-i18n="zeroStorage">Zero-Storage Guarantee</span>
         </div>
 
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-          Find every rupee the Government owes you.<br />
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-indigo-700">Protected against touts, delays &amp; rejections.</span>
+          <span data-i18n="heroTitle1">Find every rupee the Government owes you.</span><br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-indigo-700" data-i18n="heroTitle2">Protected against touts, delays &amp; rejections.</span>
         </h1>
-        <p class="text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        <p class="text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed" data-i18n="heroDescription">
           Enter your profile details below. Hakku calculates your legal entitlements, unlocks hidden grants, maps the exact physical counter, and prints an official cyber-café slip.
         </p>
 
         <!-- Quick 1-Click Presets -->
         <div class="flex flex-wrap items-center justify-center gap-2 pt-2 text-xs">
-          <span class="text-slate-400 font-medium uppercase tracking-wider text-[11px] mr-1">Quick Presets:</span>
+          <span class="text-slate-400 font-medium uppercase tracking-wider text-[11px] mr-1" data-i18n="quickPresetsLabel">Quick Presets:</span>
           <button onclick="fillPresetAndSearch('ananya')" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium transition shadow-xs">
-            🎓 Girl Student (B.Tech)
+            🎓 <span data-i18n="presetStudent">Girl Student (B.Tech)</span>
           </button>
           <button onclick="fillPresetAndSearch('ramesh')" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium transition shadow-xs">
-            🌾 Small Farmer (2.5 Acres)
+            🌾 <span data-i18n="presetFarmer">Small Farmer (2.5 Acres)</span>
           </button>
           <button onclick="fillPresetAndSearch('kiran')" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium transition shadow-xs">
-            🔨 Labour Worker / Youth
+            🔨 <span data-i18n="presetWorker">Labour Worker / Youth</span>
           </button>
           <button onclick="fillPresetAndSearch('lakshmi')" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-medium transition shadow-xs">
-            👵 Senior Citizen (71+)
+            👵 <span data-i18n="presetSenior">Senior Citizen (71+)</span>
           </button>
           <button onclick="fillFamilyAndSearch()" class="px-3.5 py-1.5 rounded-xl bg-ashoka-navy hover:bg-ashoka-dark text-white font-semibold transition shadow-xs">
-            👨‍👩‍👧‍👦 Whole 4-Member Household
+            👨‍👩‍👧‍👦 <span data-i18n="presetFamily">Whole 4-Member Household</span>
           </button>
         </div>
       </div>
@@ -272,8 +288,8 @@
       <!-- Life-Event & Crisis Trigger Bundles (Pillar 1) -->
       <div class="max-w-4xl mx-auto space-y-3">
         <div class="flex items-center justify-between text-xs">
-          <span class="font-bold text-slate-900 uppercase tracking-wider text-[11px]">Or Choose a Life-Event Trigger Bundle:</span>
-          <span class="text-slate-400 text-[11px]">Cross-departmental welfare packages</span>
+          <span class="font-bold text-slate-900 uppercase tracking-wider text-[11px]" data-i18n="bundlesHeader">Or Choose a Life-Event Trigger Bundle:</span>
+          <span class="text-slate-400 text-[11px]" data-i18n="bundlesSubtitle">Cross-departmental welfare packages</span>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3" id="intakeBundlesContainer">
           <!-- Bundles rendered dynamically -->
@@ -286,10 +302,10 @@
           
           <div class="flex items-center justify-between border-b border-slate-100 pb-4">
             <div>
-              <h2 class="text-lg font-display font-bold text-slate-900">Your Particulars &amp; Household Information</h2>
-              <p class="text-xs text-slate-500">100% Volatile RAM execution — zero data written to disk or database.</p>
+              <h2 class="text-lg font-display font-bold text-slate-900" data-i18n="formTitle">Your Particulars &amp; Household Information</h2>
+              <p class="text-xs text-slate-500" data-i18n="formSubtitle">100% Volatile RAM execution — zero data written to disk or database.</p>
             </div>
-            <span class="text-[11px] font-mono font-medium px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+            <span class="text-[11px] font-mono font-medium px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200" data-i18n="tagSecure">
               Ephemeral &amp; Safe
             </span>
           </div>
@@ -298,76 +314,76 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-xs">
             
             <div class="space-y-1.5">
-              <label class="block font-semibold text-slate-700">Full Name (As on Aadhaar)</label>
-              <input id="formName" type="text" value="Ananya Rao" required class="clean-input w-full px-3.5 py-2.5 text-xs font-medium" placeholder="e.g. Ramesh Gowda" />
+              <label class="block font-semibold text-slate-700" data-i18n="lblFullName">Full Name (As on Aadhaar)</label>
+              <input id="formName" type="text" value="Ananya Rao" required class="clean-input w-full px-3.5 py-2.5 text-xs font-medium" />
             </div>
 
             <div class="space-y-1.5">
-              <label class="block font-semibold text-slate-700">Age</label>
+              <label class="block font-semibold text-slate-700" data-i18n="lblAge">Age</label>
               <input id="formAge" type="number" min="1" max="115" value="20" required class="clean-input w-full px-3.5 py-2.5 text-xs font-medium" />
             </div>
 
             <div class="space-y-1.5">
-              <label class="block font-semibold text-slate-700">Gender</label>
+              <label class="block font-semibold text-slate-700" data-i18n="lblGender">Gender</label>
               <select id="formGender" class="clean-input w-full px-3.5 py-2.5 text-xs font-medium cursor-pointer">
-                <option value="female">Female</option>
-                <option value="male">Male</option>
-                <option value="other">Other</option>
+                <option value="female" data-i18n="optFemale">Female</option>
+                <option value="male" data-i18n="optMale">Male</option>
+                <option value="other" data-i18n="optOther">Other</option>
               </select>
             </div>
 
             <div class="space-y-1.5">
-              <label class="block font-semibold text-slate-700">State of Residence</label>
+              <label class="block font-semibold text-slate-700" data-i18n="lblState">State of Residence</label>
               <select id="formState" class="clean-input w-full px-3.5 py-2.5 text-xs font-medium cursor-pointer">
-                <option value="karnataka">Karnataka (Eligible for State &amp; Central)</option>
-                <option value="other">Other State in India (Central Schemes Only)</option>
+                <option value="karnataka" data-i18n="optKarnataka">Karnataka (State &amp; Central)</option>
+                <option value="other" data-i18n="optOtherState">Other State (Central Only)</option>
               </select>
             </div>
 
             <div class="space-y-1.5">
-              <label class="block font-semibold text-slate-700">Primary Occupation / Status</label>
+              <label class="block font-semibold text-slate-700" data-i18n="lblOccupation">Primary Occupation / Status</label>
               <select id="formOccupation" class="clean-input w-full px-3.5 py-2.5 text-xs font-medium cursor-pointer">
-                <option value="student">Student (School / College / Engineering / Diploma)</option>
-                <option value="farmer">Farmer / Agriculture Landowner</option>
-                <option value="worker">Construction / Labour / Daily Wage Worker</option>
-                <option value="unemployed">Unemployed Graduate / Diploma Holder (Yuva Nidhi)</option>
-                <option value="artisan">Artisan / Carpenter / Tailor / Street Vendor (Vishwakarma)</option>
-                <option value="senior">Senior Citizen (60+ yrs)</option>
-                <option value="homemaker">Homemaker / Woman Head of Family (Gruha Lakshmi)</option>
+                <option value="student" data-i18n="optStudent">Student (School / College / Engineering)</option>
+                <option value="farmer" data-i18n="optFarmer">Farmer / Agriculture Landowner</option>
+                <option value="worker" data-i18n="optWorker">Construction / Daily Wage Worker</option>
+                <option value="unemployed" data-i18n="optUnemployed">Unemployed Graduate (Yuva Nidhi)</option>
+                <option value="artisan" data-i18n="optArtisan">Artisan / Tailor / Vendor (Vishwakarma)</option>
+                <option value="senior" data-i18n="optSenior">Senior Citizen (60+ yrs)</option>
+                <option value="homemaker" data-i18n="optHomemaker">Homemaker / Woman Head of Family</option>
               </select>
             </div>
 
             <div class="space-y-1.5">
-              <label class="block font-semibold text-slate-700">Annual Family Income (₹)</label>
+              <label class="block font-semibold text-slate-700" data-i18n="lblIncome">Annual Family Income (₹)</label>
               <input id="formIncome" type="number" step="5000" value="140000" class="clean-input w-full px-3.5 py-2.5 text-xs font-medium" />
             </div>
 
             <div class="space-y-1.5">
-              <label class="block font-semibold text-slate-700">Ration Card Type</label>
+              <label class="block font-semibold text-slate-700" data-i18n="lblRation">Ration Card Type</label>
               <select id="formRationCard" class="clean-input w-full px-3.5 py-2.5 text-xs font-medium cursor-pointer">
-                <option value="BPL">BPL / Priority Household (PHH)</option>
-                <option value="AAY">Antyodaya Anna Yojana (AAY - Poorest of Poor)</option>
-                <option value="APL">APL / Non-Priority (NPHH)</option>
-                <option value="NONE">No Ration Card</option>
+                <option value="BPL" data-i18n="optBpl">BPL / Priority Household (PHH)</option>
+                <option value="AAY" data-i18n="optAay">Antyodaya Anna Yojana (AAY)</option>
+                <option value="APL" data-i18n="optApl">APL / Non-Priority (NPHH)</option>
+                <option value="NONE" data-i18n="optNoRation">No Ration Card</option>
               </select>
             </div>
 
             <div class="space-y-1.5">
-              <label class="block font-semibold text-slate-700">Social Category</label>
+              <label class="block font-semibold text-slate-700" data-i18n="lblCategory">Social Category</label>
               <select id="formCategory" class="clean-input w-full px-3.5 py-2.5 text-xs font-medium cursor-pointer">
-                <option value="OBC">OBC (Other Backward Classes / 2A / 3A / 3B)</option>
+                <option value="OBC">OBC (2A / 3A / 3B)</option>
                 <option value="SC">SC (Scheduled Caste)</option>
                 <option value="ST">ST (Scheduled Tribe)</option>
                 <option value="General">General / EWS</option>
-                <option value="Minority">Minority (Muslim, Christian, Jain, Buddhist)</option>
+                <option value="Minority">Minority</option>
               </select>
             </div>
 
             <div class="space-y-1.5">
-              <label class="block font-semibold text-slate-700">Bank Account Type (Forensic Audit)</label>
+              <label class="block font-semibold text-slate-700" data-i18n="lblBankType">Bank Account Type (Forensic Audit)</label>
               <select id="formBankType" class="clean-input w-full px-3.5 py-2.5 text-xs font-medium cursor-pointer">
-                <option value="regular">Regular Savings Account (No Balance Cap)</option>
-                <option value="pmjdy">PMJDY / Jan Dhan (₹50k Balance Cap Freeze)</option>
+                <option value="regular" data-i18n="optRegularBank">Regular Savings (No Balance Cap)</option>
+                <option value="pmjdy" data-i18n="optPmjdyBank">PMJDY / Jan Dhan (₹50k Balance Cap)</option>
               </select>
             </div>
 
@@ -377,32 +393,32 @@
           <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
             <label class="flex items-center gap-2 cursor-pointer select-none">
               <input id="formIsStudent" type="checkbox" checked class="accent-brand-600 rounded w-4 h-4" />
-              <span class="text-slate-700 font-medium">Currently enrolled student</span>
+              <span class="text-slate-700 font-medium" data-i18n="chkStudent">Currently enrolled student</span>
             </label>
             <label class="flex items-center gap-2 cursor-pointer select-none">
               <input id="formIsWidow" type="checkbox" class="accent-brand-600 rounded w-4 h-4" />
-              <span class="text-slate-700 font-medium">Widow / Destitute</span>
+              <span class="text-slate-700 font-medium" data-i18n="chkWidow">Widow / Destitute</span>
             </label>
             <label class="flex items-center gap-2 cursor-pointer select-none">
               <input id="formHasMergedBank" type="checkbox" class="accent-brand-600 rounded w-4 h-4" />
-              <span class="text-slate-700 font-medium">Old Merged PSU Bank Passbook</span>
+              <span class="text-slate-700 font-medium" data-i18n="chkMergedBank">Old Merged PSU Passbook (Syndicate/Vijaya)</span>
             </label>
             <label class="flex items-center gap-2 cursor-pointer select-none">
               <input id="formIsTaxPayer" type="checkbox" class="accent-brand-600 rounded w-4 h-4" />
-              <span class="text-slate-700 font-medium">Income Tax / GST Payer</span>
+              <span class="text-slate-700 font-medium" data-i18n="chkTax">Income Tax / GST Payer</span>
             </label>
           </div>
 
           <!-- Natural Language Intake -->
           <div class="space-y-1.5">
-            <label class="block font-semibold text-slate-700 text-xs">
+            <label class="block font-semibold text-slate-700 text-xs" data-i18n="lblNaturalIntake">
               Natural Language Intake or Custom Profession (Optional)
             </label>
             <div class="relative flex items-center">
               <input id="chatInput" type="text" placeholder="Or describe in plain words (e.g. 'Single mother in Hubli running tailoring shop, two school children, BPL card')..." class="clean-input w-full pl-4 pr-24 py-2.5 text-xs text-slate-900 placeholder-slate-400" />
               <button type="button" onclick="startVoiceInput()" id="voiceBtn" class="absolute right-2 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 transition flex items-center gap-1 border border-slate-200" title="Click to speak">
                 <svg class="w-3.5 h-3.5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z" /></svg>
-                <span class="hidden sm:inline">Voice</span>
+                <span data-i18n="btnVoice">Voice</span>
               </button>
             </div>
           </div>
@@ -411,11 +427,11 @@
           <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="text-xs text-slate-500 flex items-center gap-2">
               <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-              <span>Deterministic Statutory Engine: Anti-double-dipping applied with zero hallucination.</span>
+              <span data-i18n="txtStatutoryAudit">Deterministic Statutory Engine: Anti-double-dipping applied with zero hallucination.</span>
             </div>
 
             <button type="submit" class="w-full sm:w-auto bg-ashoka-navy hover:bg-ashoka-dark text-white font-display font-bold text-sm px-8 py-3.5 rounded-xl transition shadow-card flex items-center justify-center gap-2">
-              <span>Search Eligible Schemes &amp; Calculate Benefits</span>
+              <span data-i18n="btnSearch">Search Eligible Schemes &amp; Calculate Benefits</span>
               <span>&rarr;</span>
             </button>
           </div>
@@ -434,7 +450,7 @@
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-subtle">
         <div class="space-y-1">
           <div class="flex items-center gap-2">
-            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">
+            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold" data-i18n="tagMatchedRegistry">
               Step 2 // Matched Welfare Registry
             </span>
             <span id="resultsCountBadge" class="text-xs font-mono font-bold text-slate-700">0 Schemes</span>
@@ -446,11 +462,11 @@
         </div>
 
         <div class="flex items-center gap-3 shrink-0">
-          <button onclick="showView('intake')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-4 py-2 rounded-xl transition border border-slate-200">
+          <button onclick="showView('intake')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-4 py-2 rounded-xl transition border border-slate-200" data-i18n="btnEditParticulars">
             &larr; Edit My Particulars
           </button>
           <div class="text-right">
-            <span class="text-[10px] text-slate-400 block font-semibold uppercase tracking-wider">Total Annual DBT</span>
+            <span class="text-[10px] text-slate-400 block font-semibold uppercase tracking-wider" data-i18n="lblTotalAnnual">Total Annual DBT</span>
             <span id="resultsTopMeter" class="text-2xl font-display font-extrabold text-emerald-600">₹0</span>
           </div>
         </div>
@@ -460,32 +476,32 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         
         <div class="framer-card p-5 border-l-4 border-l-emerald-500 shadow-subtle space-y-2">
-          <div class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Direct Bank Cash (DBT)</div>
+          <div class="text-xs text-slate-500 font-semibold uppercase tracking-wider" data-i18n="lblDirectCash">Direct Bank Cash (DBT)</div>
           <div id="directBenefitMeter" class="text-3xl font-display font-extrabold text-slate-900">₹0</div>
           <div class="text-[11px] text-slate-500 flex items-center justify-between pt-1">
-            <span>5-Year Cumulative:</span>
+            <span data-i18n="lblFiveYear">5-Year Cumulative:</span>
             <span id="fiveYearMeter" class="font-bold text-slate-700 font-mono">₹0</span>
           </div>
         </div>
 
         <div class="gem-card rounded-2xl p-5 border-l-4 border-l-amber-500 shadow-subtle space-y-2">
           <div class="flex items-center justify-between text-xs">
-            <span class="text-amber-800 font-semibold uppercase tracking-wider">Rare High-Value Grants</span>
+            <span class="text-amber-800 font-semibold uppercase tracking-wider" data-i18n="lblHiddenGems">Rare High-Value Grants</span>
             <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 font-mono text-[10px] font-bold">💎 Hidden Gems</span>
           </div>
           <div id="hiddenGemsCount" class="text-3xl font-display font-extrabold text-amber-700">0</div>
-          <div class="text-[11px] text-slate-600 leading-tight">High-value grants 90% of citizens miss (Solar, Marriage, PMEGP).</div>
+          <div class="text-[11px] text-slate-600 leading-tight" data-i18n="txtHiddenGemsSub">High-value grants 90% of citizens miss (Solar, Marriage, PMEGP).</div>
         </div>
 
         <div class="framer-card p-5 border-l-4 border-l-blue-500 shadow-subtle space-y-2">
           <div class="flex items-center justify-between text-xs">
-            <span class="text-slate-500 font-semibold uppercase tracking-wider">Pre-Submission Audit</span>
+            <span class="text-slate-500 font-semibold uppercase tracking-wider" data-i18n="lblPreAudit">Pre-Submission Audit</span>
             <span id="readinessScoreVal" class="font-mono text-xs font-bold text-emerald-600">100%</span>
           </div>
           <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden mt-1">
             <div id="readinessBar" class="bg-emerald-500 h-2 rounded-full transition-all duration-500" style="width: 100%;"></div>
           </div>
-          <div class="text-[11px] text-slate-500">Audited against NPCI Aadhaar mapper, merged bank IFSC &amp; RD expiry.</div>
+          <div class="text-[11px] text-slate-500" data-i18n="txtPreAuditSub">Audited against NPCI Aadhaar mapper, merged bank IFSC &amp; RD expiry.</div>
         </div>
 
       </div>
@@ -493,20 +509,20 @@
       <!-- Category Filter Pills & Search -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-3">
         <div class="flex flex-wrap gap-2 text-xs" id="categoryPillContainer">
-          <button onclick="setCategoryFilter('ALL')" class="cat-pill active px-3.5 py-1.5 rounded-xl bg-slate-900 text-white font-semibold transition shadow-xs">All Eligible</button>
-          <button onclick="setCategoryFilter('HIDDEN_GEMS')" class="cat-pill px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium transition shadow-xs">💎 High-Value Gems</button>
-          <button onclick="setCategoryFilter('ENDING_SOON')" class="cat-pill px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium transition shadow-xs">⏳ Ending Soon / Today</button>
-          <button onclick="setCategoryFilter('Student Scholarships')" class="cat-pill px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium transition shadow-xs">Scholarships</button>
-          <button onclick="setCategoryFilter('Farmer Grants')" class="cat-pill px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium transition shadow-xs">Farmers &amp; Solar</button>
-          <button onclick="setCategoryFilter('Youth & Workers')" class="cat-pill px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium transition shadow-xs">Labour &amp; Business</button>
-          <button onclick="setCategoryFilter('Women & Family Cash')" class="cat-pill px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium transition shadow-xs">Women Cash</button>
+          <button onclick="setCategoryFilter('ALL')" class="cat-pill active px-3.5 py-1.5 rounded-xl bg-slate-900 text-white font-semibold transition shadow-xs" data-i18n="filterAll">All Eligible</button>
+          <button onclick="setCategoryFilter('HIDDEN_GEMS')" class="cat-pill px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium transition shadow-xs" data-i18n="filterGems">💎 High-Value Gems</button>
+          <button onclick="setCategoryFilter('ENDING_SOON')" class="cat-pill px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium transition shadow-xs" data-i18n="filterEnding">⏳ Ending Soon / Today</button>
+          <button onclick="setCategoryFilter('Student Scholarships')" class="cat-pill px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium transition shadow-xs" data-i18n="filterScholarships">Scholarships</button>
+          <button onclick="setCategoryFilter('Farmer Grants')" class="cat-pill px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium transition shadow-xs" data-i18n="filterFarmers">Farmers &amp; Solar</button>
+          <button onclick="setCategoryFilter('Youth & Workers')" class="cat-pill px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium transition shadow-xs" data-i18n="filterWorkers">Labour &amp; Business</button>
+          <button onclick="setCategoryFilter('Women & Family Cash')" class="cat-pill px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium transition shadow-xs" data-i18n="filterWomen">Women Cash</button>
         </div>
 
         <div class="flex items-center gap-2 shrink-0">
           <input id="schemeSearch" type="text" oninput="renderSchemesGrid()" placeholder="Filter schemes..." class="clean-input px-3.5 py-1.5 text-xs w-44 sm:w-56" />
           <label class="flex items-center gap-1.5 text-xs text-slate-700 select-none cursor-pointer bg-white border border-slate-200 px-3 py-1.5 rounded-xl shadow-xs">
             <input id="showAllToggle" type="checkbox" onchange="renderSchemesGrid()" class="accent-brand-600 rounded" />
-            <span class="font-medium">All 24</span>
+            <span class="font-medium" data-i18n="lblShowAll">All 24</span>
           </label>
         </div>
       </div>
@@ -535,12 +551,12 @@
       <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-subtle space-y-4">
         
         <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
-          <button onclick="showView('schemes')" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-800 transition">
+          <button onclick="showView('schemes')" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-800 transition" data-i18n="btnBackSchemes">
             <span>&larr; Back to Matched Schemes</span>
           </button>
           <div class="flex items-center gap-2">
-            <span class="text-xs text-slate-400">Step 3 // Detail &amp; Application Guide</span>
-            <button onclick="showView('intake')" class="text-xs text-slate-600 hover:underline">Edit Profile</button>
+            <span class="text-xs text-slate-400" data-i18n="tagStep3">Step 3 // Detail &amp; Application Guide</span>
+            <button onclick="showView('intake')" class="text-xs text-slate-600 hover:underline" data-i18n="btnEditProfile">Edit Profile</button>
           </div>
         </div>
 
@@ -553,7 +569,7 @@
 
           <div class="lg:text-right shrink-0 bg-slate-50 lg:bg-transparent p-4 lg:p-0 rounded-xl">
             <div id="detailValue" class="text-3xl sm:text-4xl font-display font-extrabold text-emerald-600">₹0 / yr</div>
-            <div id="detailPayoutTag" class="text-xs text-slate-500 font-medium">Direct Treasury Benefit</div>
+            <div id="detailPayoutTag" class="text-xs text-slate-500 font-medium" data-i18n="lblTreasuryBenefit">Direct Treasury Benefit</div>
           </div>
         </div>
 
@@ -564,11 +580,11 @@
       <div class="framer-card p-6 space-y-3 shadow-subtle">
         <h3 class="font-display font-bold text-sm text-slate-900 flex items-center gap-2">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-          <span>Statutory Qualification Checklist (Why You Qualify)</span>
+          <span data-i18n="whyQualifyTitle">Statutory Qualification Checklist (Why You Qualify)</span>
         </h3>
         <ul id="detailCriteriaList" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs text-slate-700"></ul>
         <div class="pt-3 border-t border-slate-100 text-xs text-slate-500">
-          <span class="font-semibold uppercase tracking-wider text-[10px] text-slate-400 block">Governing Statutory Order:</span>
+          <span class="font-semibold uppercase tracking-wider text-[10px] text-slate-400 block" data-i18n="lblStatutoryOrder">Governing Statutory Order:</span>
           <span id="detailStatutory" class="text-slate-800"></span>
         </div>
       </div>
@@ -577,8 +593,8 @@
       <div class="space-y-4">
         
         <div class="flex items-center justify-between border-b border-slate-200 pb-2">
-          <h2 class="text-lg font-display font-extrabold text-slate-900">Choose How You Want to Apply</h2>
-          <span class="text-xs text-slate-500">Both paths fully supported with legal checklists</span>
+          <h2 class="text-lg font-display font-extrabold text-slate-900" data-i18n="chooseApplyPath">Choose How You Want to Apply</h2>
+          <span class="text-xs text-slate-500" data-i18n="bothPathsSupported">Both paths fully supported with legal checklists</span>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -589,25 +605,25 @@
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                   <span class="w-6 h-6 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-xs">A</span>
-                  <h3 class="font-display font-bold text-base text-slate-900">Apply by Yourself (Online)</h3>
+                  <h3 class="font-display font-bold text-base text-slate-900" data-i18n="pathATitle">Apply by Yourself (Online)</h3>
                 </div>
-                <span class="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-bold">100% Free · ₹0 Fee</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-bold" data-i18n="tagFree">100% Free · ₹0 Fee</span>
               </div>
-              <p class="text-xs text-slate-500">Follow these neat step-by-step instructions to file directly on the official government portal.</p>
+              <p class="text-xs text-slate-500" data-i18n="pathASubtitle">Follow these neat step-by-step instructions to file directly on the official government portal.</p>
 
               <!-- Step-by-Step Instructions -->
               <div class="space-y-2.5 text-xs" id="detailSelfSteps"></div>
 
               <!-- Rejection Trap Alert -->
               <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs space-y-1">
-                <span class="font-bold text-rose-800 block">⚠️ Common Rejection Pitfall to Avoid:</span>
+                <span class="font-bold text-rose-800 block" data-i18n="lblTrapTitle">⚠️ Common Rejection Pitfall to Avoid:</span>
                 <span id="detailTrap" class="text-rose-700 leading-relaxed block"></span>
               </div>
             </div>
 
             <div class="pt-4 border-t border-slate-100 mt-4">
               <a id="detailPortalLink" href="#" target="_blank" rel="noopener" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs py-3 px-4 rounded-xl transition flex items-center justify-center gap-2 shadow-xs">
-                <span>Open Official Government Portal</span>
+                <span data-i18n="btnOpenPortal">Open Official Government Portal</span>
                 <span>&nearr;</span>
               </a>
             </div>
@@ -619,29 +635,29 @@
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                   <span class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs">B</span>
-                  <h3 class="font-display font-bold text-base text-slate-900">Apply via Cyber-Café / GramaOne</h3>
+                  <h3 class="font-display font-bold text-base text-slate-900" data-i18n="pathBTitle">Apply via Cyber-Café / GramaOne</h3>
                 </div>
-                <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold">Slip with QR Code</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold" data-i18n="tagSlipQr">Slip with QR Code</span>
               </div>
-              <p class="text-xs text-slate-500">Take this official slip and your document bag to the counter. The operator scans the QR code to apply.</p>
+              <p class="text-xs text-slate-500" data-i18n="pathBSubtitle">Take this official slip and your document bag to the counter. The operator scans the QR code to apply.</p>
 
               <!-- Required Document Bag -->
               <div class="space-y-2">
-                <span class="font-bold text-slate-900 text-xs block">🎒 Exactly What Documents to Put in Your Bag:</span>
+                <span class="font-bold text-slate-900 text-xs block" data-i18n="docsBagTitle">🎒 Exactly What Documents to Put in Your Bag:</span>
                 <ul id="detailDocsList" class="space-y-1.5 text-xs text-slate-700"></ul>
               </div>
 
               <!-- Counter Routing & Fee -->
               <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs space-y-1">
-                <div><span class="text-slate-400 uppercase font-semibold text-[10px]">AUTHORIZED COUNTER:</span> <span id="detailCounterName" class="font-semibold text-slate-800"></span></div>
-                <div><span class="text-slate-400 uppercase font-semibold text-[10px]">STATUTORY SERVICE FEE:</span> <span id="detailFee" class="font-bold text-emerald-700">₹25 - ₹30 ONLY</span></div>
-                <div><span class="text-slate-400 uppercase font-semibold text-[10px]">SAKALA SLA GUARANTEE:</span> <span id="detailSla" class="font-mono text-slate-700">21 Working Days</span></div>
+                <div><span class="text-slate-400 uppercase font-semibold text-[10px]" data-i18n="lblCounter">AUTHORIZED COUNTER:</span> <span id="detailCounterName" class="font-semibold text-slate-800"></span></div>
+                <div><span class="text-slate-400 uppercase font-semibold text-[10px]" data-i18n="lblServiceFee">STATUTORY SERVICE FEE:</span> <span id="detailFee" class="font-bold text-emerald-700">₹25 - ₹30 ONLY</span></div>
+                <div><span class="text-slate-400 uppercase font-semibold text-[10px]" data-i18n="lblSakalaSla">SAKALA SLA GUARANTEE:</span> <span id="detailSla" class="font-mono text-slate-700">21 Working Days</span></div>
               </div>
             </div>
 
             <div class="pt-4 border-t border-slate-100 mt-4 flex gap-2">
               <button onclick="scrollToSlipCard()" class="w-full bg-ashoka-navy hover:bg-ashoka-dark text-white font-semibold text-xs py-3 px-4 rounded-xl transition flex items-center justify-center gap-2 shadow-xs">
-                <span>View &amp; Print Official QR Slip ↓</span>
+                <span data-i18n="btnViewPrintSlip">View &amp; Print Official QR Slip ↓</span>
               </button>
             </div>
           </div>
@@ -650,21 +666,21 @@
 
       </div>
 
-      <!-- Visual Official Cyber-Café Voucher Slip (With QR Code) -->
+      <!-- Visual Official Cyber-Café Voucher Slip (With Scannable QR Code) -->
       <div id="cyberSlipSection" class="pt-6 space-y-4">
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between no-print">
           <div>
-            <h3 class="text-lg font-display font-bold text-slate-900">Official Cyber-Café Operator Slip</h3>
-            <p class="text-xs text-slate-500">Hand this printed slip to the operator at GramaOne, Seva Sindhu, or Cyber-Café.</p>
+            <h3 class="text-lg font-display font-bold text-slate-900" data-i18n="slipCardHeading">Official Cyber-Café Operator Slip</h3>
+            <p class="text-xs text-slate-500" data-i18n="slipCardSubtitle">Hand this printed slip to the operator at GramaOne, Seva Sindhu, or Cyber-Café.</p>
           </div>
           <div class="flex gap-2">
-            <button onclick="copyDocText()" class="bg-white hover:bg-slate-100 border border-slate-200 text-xs font-semibold px-3.5 py-1.5 rounded-xl text-slate-700 transition shadow-xs">Copy</button>
-            <button onclick="printDocText()" class="bg-ashoka-navy hover:bg-ashoka-dark text-white font-semibold text-xs px-4 py-1.5 rounded-xl transition shadow-xs">Print Slip / PDF</button>
+            <button onclick="copyDocText()" class="bg-white hover:bg-slate-100 border border-slate-200 text-xs font-semibold px-3.5 py-1.5 rounded-xl text-slate-700 transition shadow-xs" data-i18n="btnCopy">Copy</button>
+            <button onclick="printVoucherSlip()" class="bg-ashoka-navy hover:bg-ashoka-dark text-white font-semibold text-xs px-4 py-1.5 rounded-xl transition shadow-xs" data-i18n="btnPrintSlip">Print Slip / PDF</button>
           </div>
         </div>
 
-        <!-- The Physical Voucher Card -->
-        <div class="bg-white rounded-3xl border-2 border-slate-300 shadow-slip overflow-hidden p-6 sm:p-8 space-y-6">
+        <!-- The Physical Voucher Card (Prints via browser print preview seamlessly) -->
+        <div id="printableSlip" class="bg-white rounded-3xl border-2 border-slate-300 shadow-slip overflow-hidden p-6 sm:p-8 space-y-6">
           
           <!-- Top Slip Header -->
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-dashed border-slate-200 pb-5">
@@ -673,54 +689,54 @@
                 <span>ಹ</span>
               </div>
               <div>
-                <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">Government Service Delivery Voucher</span>
-                <h4 class="font-display font-bold text-base text-slate-900">HAKKU 5.0 CITIZEN SLIP &amp; OPERATOR MANDATE</h4>
+                <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-semibold" data-i18n="slipBadge">Government Service Delivery Voucher</span>
+                <h4 class="font-display font-bold text-base text-slate-900" data-i18n="slipMandateTitle">HAKKU CITIZEN SLIP &amp; OPERATOR MANDATE</h4>
                 <span class="text-xs text-slate-500 font-mono" id="slipDateStamp"></span>
               </div>
             </div>
 
-            <!-- Real Scannable QR Code -->
-            <div class="flex flex-col items-center shrink-0 bg-slate-50 p-2.5 rounded-2xl border border-slate-200">
+            <!-- Scannable High-Definition QR Code -->
+            <div class="flex flex-col items-center shrink-0 bg-slate-50 p-3 rounded-2xl border border-slate-200">
               <img id="slipQrImage" src="" alt="Government Portal QR Code" class="w-28 h-28 object-contain rounded-lg shadow-xs" />
-              <span class="text-[10px] font-mono text-slate-500 mt-1 font-semibold">SCAN FOR PORTAL</span>
+              <span class="text-[10px] font-mono text-slate-600 mt-1 font-bold" data-i18n="scanQrText">SCAN FOR PORTAL</span>
             </div>
           </div>
 
           <!-- Anti-Tout Legal Notice Box -->
           <div class="bg-amber-50 border border-amber-300 rounded-xl p-3.5 text-[11px] text-amber-900 leading-relaxed space-y-1">
-            <div class="font-bold uppercase tracking-wider text-amber-800">🛡️ Anti-Tout &amp; Zero-Bribe Statutory Notice:</div>
-            <div>[EN] Official Counter Fee: <b>₹25–₹30 ONLY</b>. Direct benefit transfers credit automatically via NPCI. Report touts to <b>1902 (Sakala)</b>.</div>
-            <div class="text-amber-800">[KN] ಅಧಿಕೃತ ಗ್ರಾಮ ಒನ್ ಶುಲ್ಕ ಕೇವಲ ₹25-₹30. ಮಧ್ಯವರ್ತಿಗಳಿಗೆ ಹಣ ನೀಡಬೇಡಿ. ದೂರುಗಳಿಗೆ 1902 ಗೆ ಕರೆ ಮಾಡಿ.</div>
+            <div class="font-bold uppercase tracking-wider text-amber-800" data-i18n="antiToutTitle">🛡️ Anti-Tout &amp; Zero-Bribe Statutory Notice:</div>
+            <div data-i18n="antiToutEn">[EN] Official Counter Fee: <b>₹25–₹30 ONLY</b>. Direct benefit transfers credit automatically via NPCI. Report touts to <b>1902 (Sakala)</b>.</div>
+            <div class="text-amber-800" data-i18n="antiToutKn">[KN] ಅಧಿಕೃತ ಗ್ರಾಮ ಒನ್ ಶುಲ್ಕ ಕೇವಲ ₹25-₹30. ಮಧ್ಯವರ್ತಿಗಳಿಗೆ ಹಣ ನೀಡಬೇಡಿ. ದೂರುಗಳಿಗೆ 1902 ಗೆ ಕರೆ ಮಾಡಿ.</div>
           </div>
 
           <!-- Beneficiary & Scheme Snapshot -->
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs bg-slate-50 p-4 rounded-2xl border border-slate-200">
             <div>
-              <span class="text-slate-400 uppercase text-[10px] font-semibold block">Applicant:</span>
+              <span class="text-slate-400 uppercase text-[10px] font-semibold block" data-i18n="lblApplicant">Applicant:</span>
               <span id="slipBeneficiaryName" class="font-bold text-slate-900 text-sm"></span>
             </div>
             <div>
-              <span class="text-slate-400 uppercase text-[10px] font-semibold block">Scheme:</span>
+              <span class="text-slate-400 uppercase text-[10px] font-semibold block" data-i18n="lblScheme">Scheme:</span>
               <span id="slipSchemeName" class="font-bold text-slate-900 text-sm"></span>
             </div>
             <div>
-              <span class="text-slate-400 uppercase text-[10px] font-semibold block">Annual Benefit:</span>
+              <span class="text-slate-400 uppercase text-[10px] font-semibold block" data-i18n="lblAnnualBenefit">Annual Benefit:</span>
               <span id="slipBenefitVal" class="font-bold text-emerald-600 text-sm font-mono"></span>
             </div>
             <div>
-              <span class="text-slate-400 uppercase text-[10px] font-semibold block">Counter &amp; SLA:</span>
+              <span class="text-slate-400 uppercase text-[10px] font-semibold block" data-i18n="lblCounterSla">Counter &amp; SLA:</span>
               <span id="slipCounterSla" class="font-bold text-slate-900 text-sm"></span>
             </div>
           </div>
 
           <!-- Raw Legal Plaintext (Copyable / Printable) -->
-          <div class="space-y-2">
+          <div class="space-y-2 no-print">
             <div class="flex items-center justify-between text-xs">
-              <span class="font-bold text-slate-700">Official Dossier Text (Pre-Formatted):</span>
+              <span class="font-bold text-slate-700" data-i18n="lblOfficialDossier">Official Dossier Text (Pre-Formatted):</span>
               <div class="flex gap-2">
-                <button onclick="loadDocInKit('application')" class="text-brand-600 hover:underline font-semibold">Cyber Slip</button>
-                <button onclick="loadDocInKit('npci')" class="text-slate-600 hover:underline">Bank NPCI Form</button>
-                <button onclick="loadDocInKit('rti')" class="text-rose-600 hover:underline">Sakala Delay RTI</button>
+                <button onclick="loadDocInKit('application')" class="text-brand-600 hover:underline font-semibold" data-i18n="tabCyberSlip">Cyber Slip</button>
+                <button onclick="loadDocInKit('npci')" class="text-slate-600 hover:underline" data-i18n="tabNpci">Bank NPCI Form</button>
+                <button onclick="loadDocInKit('rti')" class="text-rose-600 hover:underline" data-i18n="tabRti">Sakala Delay RTI</button>
               </div>
             </div>
             <pre id="kitContent" class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs font-mono text-slate-800 leading-relaxed whitespace-pre-wrap max-h-72 overflow-y-auto selection:bg-brand-100"></pre>
@@ -736,7 +752,7 @@
   <!-- ========================================================= -->
   <!-- 4. SLIDE-OVER TELEMETRY TRACE                             -->
   <!-- ========================================================= -->
-  <div id="agentDrawer" class="fixed inset-y-0 right-0 w-full max-w-sm bg-white border-l border-slate-200 z-50 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 shadow-float">
+  <div id="agentDrawer" class="fixed inset-y-0 right-0 w-full max-w-sm bg-white border-l border-slate-200 z-50 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 shadow-float no-print">
     <div>
       <div class="flex items-center justify-between border-b border-slate-200 pb-3 mb-4">
         <div>
@@ -757,10 +773,10 @@
   <!-- ========================================================= -->
   <!-- 5. CLEAN FOOTER                                           -->
   <!-- ========================================================= -->
-  <footer class="border-t border-slate-200 bg-white py-8 px-4 mt-16 text-xs text-slate-500">
+  <footer class="border-t border-slate-200 bg-white py-8 px-4 mt-16 text-xs text-slate-500 no-print">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
       <div>
-        <span class="font-bold text-slate-800">Hakku 5.0 (ಹಕ್ಕು / हक़)</span> · Proactive Citizen Welfare Rights OS &amp; Anti-Tout Harness
+        <span class="font-bold text-slate-800">Hakku (ಹಕ್ಕು / हक़)</span> · Proactive Citizen Welfare Rights OS &amp; Anti-Tout Harness
       </div>
       <div class="font-mono text-[11px] text-slate-500">
         DPDP Act 2023 Compliant · 100% Volatile RAM Execution · Zero PII Stored
@@ -769,7 +785,7 @@
   </footer>
 
   <!-- ========================================================= -->
-  <!-- 6. APPLICATION CONTROLLER SCRIPT                          -->
+  <!-- 6. APPLICATION CONTROLLER & TRILINGUAL ENGINE             -->
   <!-- ========================================================= -->
   <script>
     let currentProfile = {};
@@ -779,6 +795,363 @@
     let activeCategory = 'ALL';
     let selectedSchemeObj = null;
     let currentDocMode = 'application';
+    let currentLanguage = 'English';
+    let isSpeaking = false;
+
+    // Full Trilingual Translation Dictionary
+    const I18N = {
+      English: {
+        topNoticesTitle: "LIVE NOTICES",
+        dpdpNotice: "DPDP Act 2023 · 100% Volatile RAM · Zero PII Stored",
+        brandSubtitle: "Proactive Citizen Rights OS & Anti-Tout Welfare Harness",
+        step1Nav: "1. Intake",
+        step2Nav: "2. Eligible Offers",
+        step3Nav: "3. Detail & Cyber Slip",
+        btnListen: "Listen",
+        btnStop: "Stop",
+        intakeEyebrow: "Step 1: Enter Particulars to Discover Benefits",
+        zeroStorage: "Zero-Storage Guarantee",
+        heroTitle1: "Find every rupee the Government owes you.",
+        heroTitle2: "Protected against touts, delays & rejections.",
+        heroDescription: "Enter your profile details below. Hakku calculates your legal entitlements, unlocks hidden grants, maps the exact physical counter, and prints an official cyber-café slip.",
+        quickPresetsLabel: "Quick Presets:",
+        presetStudent: "Girl Student (B.Tech)",
+        presetFarmer: "Small Farmer (2.5 Acres)",
+        presetWorker: "Labour Worker / Youth",
+        presetSenior: "Senior Citizen (71+)",
+        presetFamily: "Whole 4-Member Household",
+        bundlesHeader: "Or Choose a Life-Event Trigger Bundle:",
+        bundlesSubtitle: "Cross-departmental welfare packages",
+        formTitle: "Your Particulars & Household Information",
+        formSubtitle: "100% Volatile RAM execution — zero data written to disk or database.",
+        tagSecure: "Ephemeral & Safe",
+        lblFullName: "Full Name (As on Aadhaar)",
+        lblAge: "Age",
+        lblGender: "Gender",
+        optFemale: "Female",
+        optMale: "Male",
+        optOther: "Other",
+        lblState: "State of Residence",
+        optKarnataka: "Karnataka (State & Central)",
+        optOtherState: "Other State (Central Only)",
+        lblOccupation: "Primary Occupation / Status",
+        optStudent: "Student (School / College / Engineering)",
+        optFarmer: "Farmer / Agriculture Landowner",
+        optWorker: "Construction / Daily Wage Worker",
+        optUnemployed: "Unemployed Graduate (Yuva Nidhi)",
+        optArtisan: "Artisan / Tailor / Vendor (Vishwakarma)",
+        optSenior: "Senior Citizen (60+ yrs)",
+        optHomemaker: "Homemaker / Woman Head of Family",
+        lblIncome: "Annual Family Income (₹)",
+        lblRation: "Ration Card Type",
+        optBpl: "BPL / Priority Household (PHH)",
+        optAay: "Antyodaya Anna Yojana (AAY)",
+        optApl: "APL / Non-Priority (NPHH)",
+        optNoRation: "No Ration Card",
+        lblCategory: "Social Category",
+        lblBankType: "Bank Account Type (Forensic Audit)",
+        optRegularBank: "Regular Savings (No Balance Cap)",
+        optPmjdyBank: "PMJDY / Jan Dhan (₹50k Balance Cap)",
+        chkStudent: "Currently enrolled student",
+        chkWidow: "Widow / Destitute",
+        chkMergedBank: "Old Merged PSU Passbook (Syndicate/Vijaya)",
+        chkTax: "Income Tax / GST Payer",
+        lblNaturalIntake: "Natural Language Intake or Custom Profession (Optional)",
+        btnVoice: "Voice",
+        txtStatutoryAudit: "Deterministic Statutory Engine: Anti-double-dipping applied with zero hallucination.",
+        btnSearch: "Search Eligible Schemes & Calculate Benefits",
+        tagMatchedRegistry: "Step 2 // Matched Welfare Registry",
+        btnEditParticulars: "← Edit My Particulars",
+        lblTotalAnnual: "Total Annual DBT",
+        lblDirectCash: "Direct Bank Cash (DBT)",
+        lblFiveYear: "5-Year Cumulative:",
+        lblHiddenGems: "Rare High-Value Grants",
+        txtHiddenGemsSub: "High-value grants 90% of citizens miss (Solar, Marriage, PMEGP).",
+        lblPreAudit: "Pre-Submission Audit",
+        txtPreAuditSub: "Audited against NPCI Aadhaar mapper, merged bank IFSC & RD expiry.",
+        filterAll: "All Eligible",
+        filterGems: "💎 High-Value Gems",
+        filterEnding: "⏳ Ending Soon / Today",
+        filterScholarships: "Scholarships",
+        filterFarmers: "Farmers & Solar",
+        filterWorkers: "Labour & Business",
+        filterWomen: "Women Cash",
+        lblShowAll: "All 24",
+        btnBackSchemes: "← Back to Matched Schemes",
+        tagStep3: "Step 3 // Detail & Application Guide",
+        btnEditProfile: "Edit Profile",
+        lblTreasuryBenefit: "Direct Treasury Benefit",
+        whyQualifyTitle: "Statutory Qualification Checklist (Why You Qualify)",
+        lblStatutoryOrder: "Governing Statutory Order:",
+        chooseApplyPath: "Choose How You Want to Apply",
+        bothPathsSupported: "Both paths fully supported with legal checklists",
+        pathATitle: "Apply by Yourself (Online)",
+        tagFree: "100% Free · ₹0 Fee",
+        pathASubtitle: "Follow these neat step-by-step instructions to file directly on the official government portal.",
+        lblTrapTitle: "⚠️ Common Rejection Pitfall to Avoid:",
+        btnOpenPortal: "Open Official Government Portal",
+        pathBTitle: "Apply via Cyber-Café / GramaOne",
+        tagSlipQr: "Slip with QR Code",
+        pathBSubtitle: "Take this official slip and your document bag to the counter. The operator scans the QR code to apply.",
+        docsBagTitle: "🎒 Exactly What Documents to Put in Your Bag:",
+        lblCounter: "AUTHORIZED COUNTER:",
+        lblServiceFee: "STATUTORY SERVICE FEE:",
+        lblSakalaSla: "SAKALA SLA GUARANTEE:",
+        btnViewPrintSlip: "View & Print Official QR Slip ↓",
+        slipCardHeading: "Official Cyber-Café Operator Slip",
+        slipCardSubtitle: "Hand this printed slip to the operator at GramaOne, Seva Sindhu, or Cyber-Café.",
+        btnCopy: "Copy",
+        btnPrintSlip: "Print Slip / PDF",
+        slipBadge: "Government Service Delivery Voucher",
+        slipMandateTitle: "HAKKU CITIZEN SLIP & OPERATOR MANDATE",
+        scanQrText: "SCAN FOR PORTAL",
+        antiToutTitle: "🛡️ Anti-Tout & Zero-Bribe Statutory Notice:",
+        antiToutEn: "[EN] Official Counter Fee: ₹25–₹30 ONLY. Direct benefit transfers credit automatically via NPCI. Report touts to 1902 (Sakala).",
+        antiToutKn: "[KN] ಅಧಿಕೃತ ಗ್ರಾಮ ಒನ್ ಶುಲ್ಕ ಕೇವಲ ₹25-₹30. ಮಧ್ಯವರ್ತಿಗಳಿಗೆ ಹಣ ನೀಡಬೇಡಿ. ದೂರುಗಳಿಗೆ 1902 ಗೆ ಕರೆ ಮಾಡಿ.",
+        lblApplicant: "Applicant:",
+        lblScheme: "Scheme:",
+        lblAnnualBenefit: "Annual Benefit:",
+        lblCounterSla: "Counter & SLA:",
+        lblOfficialDossier: "Official Dossier Text (Pre-Formatted):",
+        tabCyberSlip: "Cyber Slip",
+        tabNpci: "Bank NPCI Form",
+        tabRti: "Sakala Delay RTI"
+      },
+      Kannada: {
+        topNoticesTitle: "ಲೈವ್ ಅಧಿಸೂಚನೆಗಳು",
+        dpdpNotice: "DPDP ಕಾಯ್ದೆ 2023 · 100% ತಾತ್ಕಾಲಿಕ RAM · ಯಾವುದೇ ಡೇಟಾ ಸಂಗ್ರಹಿಸುವುದಿಲ್ಲ",
+        brandSubtitle: "ಪೌರರ ಹಕ್ಕುಗಳ ವೇದಿಕೆ ಮತ್ತು ಮಧ್ಯವರ್ತಿ ರಹಿತ ಕಲ್ಯಾಣ ಸೇವೆ",
+        step1Nav: "1. ವಿವರಗಳ ನಮೂದು",
+        step2Nav: "2. ಅರ್ಹ ಯೋಜನೆಗಳು",
+        step3Nav: "3. ವಿವರ & ಸೈಬರ್ ಸ್ಲಿಪ್",
+        btnListen: "ಆಲಿಸಿ",
+        btnStop: "ನಿಲ್ಲಿಸಿ",
+        intakeEyebrow: "ಹಂತ 1: ಸರ್ಕಾರಿ ಸವಲತ್ತುಗಳನ್ನು ತಿಳಿಯಲು ವಿವರ ನಮೂದಿಸಿ",
+        zeroStorage: "ಶೂನ್ಯ ಡೇಟಾ ಸಂಗ್ರಹಣೆ ಭರವಸೆ",
+        heroTitle1: "ಸರ್ಕಾರದಿಂದ ನಿಮಗೆ ಸಿಗಬೇಕಾದ ಪ್ರತಿಯೊಂದು ಸವಲತ್ತು.",
+        heroTitle2: "ಮಧ್ಯವರ್ತಿಗಳು, ವಿಳಂಬ ಮತ್ತು ತಿರಸ್ಕಾರದಿಂದ ಮುಕ್ತ.",
+        heroDescription: "ಕೆಳಗೆ ನಿಮ್ಮ ವಿವರಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ. ಹಕ್ಕು ನಿಮ್ಮ ಶಾಸನಬದ್ಧ ಹಕ್ಕುಗಳನ್ನು ಲೆಕ್ಕಹಾಕುತ್ತದೆ, ಗುಪ್ತ ಅನುದಾನಗಳನ್ನು ಪತ್ತೆಹಚ್ಚುತ್ತದೆ ಮತ್ತು ಅಧಿಕೃತ ಸೈಬರ್-ಕೆಫೆ ಸ್ಲಿಪ್ ನೀಡುತ್ತದೆ.",
+        quickPresetsLabel: "ತ್ವರಿತ ಪ್ರೊಫೈಲ್‌ಗಳು:",
+        presetStudent: "ವಿದ್ಯಾರ್ಥಿನಿ (ಬಿ.ಟೆಕ್)",
+        presetFarmer: "ಸಣ್ಣ ರೈತ (2.5 ಎಕರೆ)",
+        presetWorker: "ಕಟ್ಟಡ ಕಾರ್ಮಿಕ / ಯುವಕ",
+        presetSenior: "ಹಿರಿಯ ನಾಗರಿಕ (71+)",
+        presetFamily: "ಸಂಪೂರ್ಣ 4 ಜನರ ಕುಟುಂಬ",
+        bundlesHeader: "ಅಥವಾ ಜೀವನ ಮೈಲಿಗಲ್ಲು ಬಂಡಲ್ ಆಯ್ಕೆಮಾಡಿ:",
+        bundlesSubtitle: "ವಿವಿಧ ಇಲಾಖೆಗಳ ಸಮಗ್ರ ಕಲ್ಯಾಣ ಪ್ಯಾಕೇಜುಗಳು",
+        formTitle: "ನಿಮ್ಮ ವಿವರಗಳು ಮತ್ತು ಕುಟುಂಬದ ಮಾಹಿತಿ",
+        formSubtitle: "100% RAM ನಲ್ಲಿ ಚಾಲನೆ — ಯಾವುದೇ ಡೇಟಾವನ್ನು ಶಾಶ್ವತವಾಗಿ ಸಂಗ್ರಹಿಸುವುದಿಲ್ಲ.",
+        tagSecure: "ಸುರಕ್ಷಿತ & ಗೌಪ್ಯ",
+        lblFullName: "ಪೂರ್ಣ ಹೆಸರು (ಆಧಾರ್ ಪ್ರಕಾರ)",
+        lblAge: "ವಯಸ್ಸು",
+        lblGender: "ಲಿಂಗ",
+        optFemale: "ಮಹಿಳೆ",
+        optMale: "ಪುರುಷ",
+        optOther: "ಇತರೆ",
+        lblState: "ವಾಸಿಸುವ ರಾಜ್ಯ",
+        optKarnataka: "ಕರ್ನಾಟಕ (ರಾಜ್ಯ & ಕೇಂದ್ರ)",
+        optOtherState: "ಇತರ ರಾಜ್ಯ (ಕೇಂದ್ರ ಮಾತ್ರ)",
+        lblOccupation: "ಮುಖ್ಯ ಉದ್ಯೋಗ / ಸ್ಥಾನಮಾನ",
+        optStudent: "ವಿದ್ಯಾರ್ಥಿ (ಶಾಲೆ / ಕಾಲೇಜು / ಇಂಜಿನಿಯರಿಂಗ್)",
+        optFarmer: "ರೈತ / ಕೃಷಿ ಭೂಮಾಲೀಕ",
+        optWorker: "ಕಟ್ಟಡ / ದಿನಗೂಲಿ ಕಾರ್ಮಿಕ",
+        optUnemployed: "ನಿರುದ್ಯೋಗಿ ಪದವೀಧರ (ಯುವ ನಿಧಿ)",
+        optArtisan: "ಕುಶಲಕರ್ಮಿ / ಟೈಲರ್ / ವ್ಯಾಪಾರಿ (ವಿಶ್ವಕರ್ಮ)",
+        optSenior: "ಹಿರಿಯ ನಾಗರಿಕ (60+ ವರ್ಷ)",
+        optHomemaker: "ಗೃಹಿಣಿ / ಕುಟುಂಬದ ಯಜಮಾನಿ (ಗೃಹಲಕ್ಷ್ಮಿ)",
+        lblIncome: "ವಾರ್ಷಿಕ ಕುಟುಂಬ ಆದಾಯ (₹)",
+        lblRation: "ರೇಷನ್ ಕಾರ್ಡ್ ವಿಧ",
+        optBpl: "ಬಿಪಿಎಲ್ / ಅಂತ್ಯೋದಯ (PHH)",
+        optAay: "ಅಂತ್ಯೋದಯ ಅನ್ನ ಯೋಜನೆ (AAY)",
+        optApl: "ಎಪಿಎಲ್ / ಆದ್ಯತೇತರ (NPHH)",
+        optNoRation: "ರೇಷನ್ ಕಾರ್ಡ್ ಇಲ್ಲ",
+        lblCategory: "ಸಾಮಾಜಿಕ ವರ್ಗ",
+        lblBankType: "ಬ್ಯಾಂಕ್ ಖಾತೆಯ ವಿಧ (ಫೋರೆನ್ಸಿಕ್ ತನಿಖೆ)",
+        optRegularBank: "ಸಾಮಾನ್ಯ ಉಳಿತಾಯ ಖಾತೆ (ಮಿತಿ ಇಲ್ಲ)",
+        optPmjdyBank: "ಜನ್ ಧನ್ ಖಾತೆ (₹50k ಮಿತಿ)",
+        chkStudent: "ಪ್ರಸ್ತುತ ದಾಖಲಾದ ವಿದ್ಯಾರ್ಥಿ",
+        chkWidow: "ವಿಧವೆ / ನಿರಾಶ್ರಿತೆ",
+        chkMergedBank: "ಹಳೆಯ ವಿಲೀನಗೊಂಡ ಬ್ಯಾಂಕ್ ಪಾಸ್‌ಬುಕ್ (ಸಿಂಡಿಕೇಟ್/ವಿಜಯಾ)",
+        chkTax: "ಆದಾಯ ತೆರಿಗೆ / ಜಿಎಸ್‌ಟಿ ಪಾವತಿದಾರ",
+        lblNaturalIntake: "ನಿಮ್ಮ ಪರಿಸ್ಥಿತಿಯನ್ನು ನಿಮ್ಮದೇ ಮಾತುಗಳಲ್ಲಿ ವಿವರಿಸಿ (ಐಚ್ಛಿಕ)",
+        btnVoice: "ಧ್ವನಿ",
+        txtStatutoryAudit: "ಶಾಸನಬದ್ಧ ಎಂಜಿನ್: ಡಬಲ್-ಡಿಪ್ಪಿಂಗ್ ನಿಯಮಗಳನ್ನು ಕರಾರುವಾಕ್ಕಾಗಿ ಅನ್ವಯಿಸುತ್ತದೆ.",
+        btnSearch: "ಅರ್ಹ ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಿ & ಲಾಭ ಲೆಕ್ಕಹಾಕಿ",
+        tagMatchedRegistry: "ಹಂತ 2 // ನಿಮ್ಮ ಅರ್ಹ ಯೋಜನೆಗಳ ಪಟ್ಟಿ",
+        btnEditParticulars: "← ವಿವರಗಳನ್ನು ತಿದ್ದುಪಡಿ ಮಾಡಿ",
+        lblTotalAnnual: "ಒಟ್ಟು ವಾರ್ಷಿಕ ಡಿಬಿಟಿ ನಗದು",
+        lblDirectCash: "ನೇರ ಬ್ಯಾಂಕ್ ನಗದು (DBT)",
+        lblFiveYear: "5-ವರ್ಷಗಳ ಸಂಚಿತ ಲಾಭ:",
+        lblHiddenGems: "ಅಪರೂಪದ ಹೆಚ್ಚಿನ ಮೌಲ್ಯದ ಅನುದಾನಗಳು",
+        txtHiddenGemsSub: "ಶೇ.90 ರಷ್ಟು ಜನರಿಗೆ ತಿಳಿಯದ ಯೋಜನೆಗಳು (ಸೌರ, ಮದುವೆ, ಪಿಎಂಇಜಿಪಿ).",
+        lblPreAudit: "ಪೂರ್ವ-ಸಲ್ಲಿಕೆ ಪರಿಶೀಲನೆ",
+        txtPreAuditSub: "NPCI ಆಧಾರ್ ಮ್ಯಾಪರ್, ವಿಲೀನಗೊಂಡ ಬ್ಯಾಂಕ್ IFSC ಮತ್ತು RD ಮಾನ್ಯತೆ ತಪಾಸಣೆ.",
+        filterAll: "ಎಲ್ಲಾ ಅರ್ಹ",
+        filterGems: "💎 ಹಿಡನ್ ಜೆಮ್ಸ್",
+        filterEnding: "⏳ ಮುಕ್ತಾಯಗೊಳ್ಳುವವು",
+        filterScholarships: "ವಿದ್ಯಾರ್ಥಿವೇತನಗಳು",
+        filterFarmers: "ರೈತರು & ಸೌರ",
+        filterWorkers: "ಕಾರ್ಮಿಕರು & ವ್ಯಾಪಾರ",
+        filterWomen: "ಮಹಿಳಾ ನಗದು",
+        lblShowAll: "ಎಲ್ಲಾ 24",
+        btnBackSchemes: "← ಅರ್ಹ ಯೋಜನೆಗಳ ಪಟ್ಟಿಗೆ ಹಿಂತಿರುಗಿ",
+        tagStep3: "ಹಂತ 3 // ಸಂಪೂರ್ಣ ವಿವರ & ಅರ್ಜಿ ಮಾರ್ಗದರ್ಶಿ",
+        btnEditProfile: "ಪ್ರೊಫೈಲ್ ತಿದ್ದುಪಡಿ",
+        lblTreasuryBenefit: "ನೇರ ಸರ್ಕಾರದ ಖಜಾನೆ ಲಾಭ",
+        whyQualifyTitle: "ನೀವು ಏಕೆ ಅರ್ಹರು? (ಶಾಸನಬದ್ಧ ಪರಿಶೀಲನಾ ಪಟ್ಟಿ)",
+        lblStatutoryOrder: "ಸರ್ಕಾರಿ ಆದೇಶ / ನಿಯಮ:",
+        chooseApplyPath: "ನೀವು ಹೇಗೆ ಅರ್ಜಿ ಸಲ್ಲಿಸಲು ಬಯಸುತ್ತೀರಿ?",
+        bothPathsSupported: "ಎರಡೂ ವಿಧಾನಗಳಿಗೆ ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ ನೀಡಲಾಗಿದೆ",
+        pathATitle: "ಸ್ವತಃ ನೀವೇ ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+        tagFree: "100% ಉಚಿತ · ₹0 ಶುಲ್ಕ",
+        pathASubtitle: "ಅಧಿಕೃತ ಸರ್ಕಾರಿ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ಸ್ವತಃ ಅರ್ಜಿ ಸಲ್ಲಿಸಲು ಹಂತ-ಹಂತದ ಕ್ರಮಗಳನ್ನು ಅನುಸರಿಸಿ.",
+        lblTrapTitle: "⚠️ ತಪ್ಪಿಸಬೇಕಾದ ಸಾಮಾನ್ಯ ತಿರಸ್ಕಾರ ತಪ್ಪು:",
+        btnOpenPortal: "ಅಧಿಕೃತ ಸರ್ಕಾರಿ ಪೋರ್ಟಲ್ ತೆರೆಯಿರಿ",
+        pathBTitle: "ಗ್ರಾಮ ಒನ್ / ಸೈಬರ್-ಕೆಫೆ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+        tagSlipQr: "QR ಕೋಡ್ ಇರುವ ಅಧಿಕೃತ ಸ್ಲಿಪ್",
+        pathBSubtitle: "ಈ ಮುದ್ರಿತ ಸ್ಲಿಪ್ ಮತ್ತು ನಿಮ್ಮ ದಾಖಲೆಗಳ ಬ್ಯಾಗ್ ಅನ್ನು ಕೌಂಟರ್‌ಗೆ ತೆಗೆದುಕೊಂಡು ಹೋಗಿ.",
+        docsBagTitle: "🎒 ನಿಮ್ಮ ಬ್ಯಾಗ್‌ನಲ್ಲಿ ಇಟ್ಟುಕೊಳ್ಳಬೇಕಾದ ಅಗತ್ಯ ದಾಖಲೆಗಳು:",
+        lblCounter: "ಅಧಿಕೃತ ಕೌಂಟರ್:",
+        lblServiceFee: "ಶಾಸನಬದ್ಧ ಸೇವಾ ಶುಲ್ಕ:",
+        lblSakalaSla: "ಸಕಾಲ ಖಾತರಿ ದಿನಗಳು:",
+        btnViewPrintSlip: "ಅಧಿಕೃತ QR ಸ್ಲಿಪ್ ವೀಕ್ಷಿಸಿ & ಪ್ರಿಂಟ್ ಮಾಡಿ ↓",
+        slipCardHeading: "ಅಧಿಕೃತ ಸೈಬರ್-ಕೆಫೆ ಆಪರೇಟರ್ ಸ್ಲಿಪ್",
+        slipCardSubtitle: "ಗ್ರಾಮ ಒನ್, ಸೇವಾ ಸಿಂಧು ಅಥವಾ ಸೈಬರ್-ಕೆಫೆಯಲ್ಲಿ ಆಪರೇಟರ್‌ಗೆ ಈ ಸ್ಲಿಪ್ ನೀಡಿ.",
+        btnCopy: "ಕಾಪಿ ಮಾಡಿ",
+        btnPrintSlip: "ಸ್ಲಿಪ್ ಪ್ರಿಂಟ್ ಮಾಡಿ / PDF",
+        slipBadge: "ಸರ್ಕಾರಿ ಸೇವಾ ವಿತರಣಾ ರಸೀದಿ",
+        slipMandateTitle: "ಹಕ್ಕು ನಾಗರಿಕ ಸ್ಲಿಪ್ ಮತ್ತು ಆಪರೇಟರ್ ಆದೇಶ",
+        scanQrText: "ಪೋರ್ಟಲ್‌ಗಾಗಿ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ",
+        antiToutTitle: "🛡️ ಮಧ್ಯವರ್ತಿಗಳ ನಿಷೇಧ ಶಾಸನಬದ್ಧ ಎಚ್ಚರಿಕೆ:",
+        antiToutEn: "[EN] Official Counter Fee: ₹25–₹30 ONLY. Direct benefit transfers credit automatically via NPCI. Report touts to 1902 (Sakala).",
+        antiToutKn: "[KN] ಅಧಿಕೃತ ಗ್ರಾಮ ಒನ್ ಶುಲ್ಕ ಕೇವಲ ₹25-₹30. ಮಧ್ಯವರ್ತಿಗಳಿಗೆ ಹಣ ನೀಡಬೇಡಿ. ದೂರುಗಳಿಗೆ 1902 ಗೆ ಕರೆ ಮಾಡಿ.",
+        lblApplicant: "ಅರ್ಜಿದಾರರು:",
+        lblScheme: "ಯೋಜನೆ:",
+        lblAnnualBenefit: "ವಾರ್ಷಿಕ ಲಾಭ:",
+        lblCounterSla: "ಕೌಂಟರ್ & ಸಕಾಲ:",
+        lblOfficialDossier: "ಅಧಿಕೃತ ಕಾನೂನುಬದ್ಧ ದಾಖಲೆ ಪಠ್ಯ:",
+        tabCyberSlip: "ಸೈಬರ್ ಸ್ಲಿಪ್",
+        tabNpci: "ಬ್ಯಾಂಕ್ NPCI ಫಾರ್ಮ್",
+        tabRti: "ಸಕಾಲ ವಿಳಂಬ RTI"
+      },
+      Hindi: {
+        topNoticesTitle: "लाइव सूचनाएं",
+        dpdpNotice: "DPDP अधिनियम 2023 · 100% सुरक्षित RAM · कोई डेटा स्टोर नहीं",
+        brandSubtitle: "नागरिक अधिकार प्रणाली और दलाल-मुक्त कल्याणकारी मंच",
+        step1Nav: "1. विवरण",
+        step2Nav: "2. योग्य योजनाएं",
+        step3Nav: "3. विवरण & स्लिप",
+        btnListen: "सुनें",
+        btnStop: "रोकें",
+        intakeEyebrow: "चरण 1: सरकारी लाभ जानने के लिए विवरण भरें",
+        zeroStorage: "जीरो-स्टोरेज गारंटी",
+        heroTitle1: "सरकार से मिलने वाला आपका हर एक हक।",
+        heroTitle2: "दलालों, देरी और रिजेक्शन से पूरी सुरक्षा।",
+        heroDescription: "नीचे अपना विवरण भरें। हक़ आपके कानूनी लाभों की गणना करता है, छिपी हुई अनुदान योजनाओं को खोजता है, और साइबर-कैफे के लिए प्रिंट स्लिप देता है।",
+        quickPresetsLabel: "त्वरित प्रोफाइल:",
+        presetStudent: "छात्रा (बी.टेक)",
+        presetFarmer: "छोटा किसान (2.5 एकड़)",
+        presetWorker: "श्रमिक / युवा",
+        presetSenior: "वरिष्ठ नागरिक (71+)",
+        presetFamily: "पूरा 4-सदस्यीय परिवार",
+        bundlesHeader: "या जीवन घटना बंडल चुनें:",
+        bundlesSubtitle: "विभिन्न मंत्रालयों के समन्वित कल्याणकारी पैकेज",
+        formTitle: "आपका विवरण और पारिवारिक जानकारी",
+        formSubtitle: "100% केवल RAM में निष्पादन — डिस्क पर कोई डेटा नहीं रहता।",
+        tagSecure: "सुरक्षित और गोपनीय",
+        lblFullName: "पूरा नाम (आधार कार्ड अनुसार)",
+        lblAge: "आयु",
+        lblGender: "लिंग",
+        optFemale: "महिला",
+        optMale: "पुरुष",
+        optOther: "अन्य",
+        lblState: "राज्य",
+        optKarnataka: "कर्नाटक (राज्य एवं केंद्र)",
+        optOtherState: "अन्य राज्य (केवल केंद्र)",
+        lblOccupation: "मुख्य पेशा / स्थिति",
+        optStudent: "विद्यार्थी (स्कूल / कॉलेज / इंजीनियरिंग)",
+        optFarmer: "किसान / भूमिधारक",
+        optWorker: "निर्माण श्रमिक / मजदूर",
+        optUnemployed: "बेरोजगार स्नातक (युवा निधि)",
+        optArtisan: "कारीगर / दर्जी / विक्रेता (विश्वकर्मा)",
+        optSenior: "वरिष्ठ नागरिक (60+ वर्ष)",
+        optHomemaker: "गृहिणी / परिवार की मुखिया",
+        lblIncome: "वार्षिक पारिवारिक आय (₹)",
+        lblRation: "राशन कार्ड का प्रकार",
+        optBpl: "बीपीएल / प्राथमिकता (PHH)",
+        optAay: "अंत्योदय अन्न योजना (AAY)",
+        optApl: "एपीएल / गैर-प्राथमिकता",
+        optNoRation: "राशन कार्ड नहीं है",
+        lblCategory: "सामाजिक श्रेणी",
+        lblBankType: "बैंक खाता प्रकार (ऑडिट)",
+        optRegularBank: "नियमित बचत खाता (कोई सीमा नहीं)",
+        optPmjdyBank: "पीएमजेडीवाई / जन धन (₹50k सीमा)",
+        chkStudent: "वर्तमान में नामांकित छात्र",
+        chkWidow: "विधवा / निराश्रित",
+        chkMergedBank: "पुराना विलय हुआ बैंक पासबुक (सिंडिकेट/विजया)",
+        chkTax: "आयकर / जीएसटी दाता",
+        lblNaturalIntake: "अपनी स्थिति अपने शब्दों में बताएं (वैकल्पिक)",
+        btnVoice: "आवाज",
+        txtStatutoryAudit: "सटीक वैधानिक इंजन: दोहरे लाभ के नियमों की सही जांच।",
+        btnSearch: "योग्य योजनाएं खोजें और लाभ गणना करें",
+        tagMatchedRegistry: "चरण 2 // आपकी योग्य योजनाओं की सूची",
+        btnEditParticulars: "← विवरण में बदलाव करें",
+        lblTotalAnnual: "कुल वार्षिक डीबीटी नकद",
+        lblDirectCash: "सीधा बैंक ट्रांसफर (DBT)",
+        lblFiveYear: "5-वर्षीय संचित लाभ:",
+        lblHiddenGems: "दुर्लभ उच्च-मूल्य अनुदान",
+        txtHiddenGemsSub: "90% नागरिकों को पता न चलने वाली योजनाएं (सोलर, शादी, पीएमईजीपी)।",
+        lblPreAudit: "आवेदन पूर्व जांच",
+        txtPreAuditSub: "एनपीसीआई आधार मैपर, विलय बैंक आईएफएससी और आरडी प्रमाण पत्र जांच।",
+        filterAll: "सभी योग्य",
+        filterGems: "💎 हिडन जेम्स",
+        filterEnding: "⏳ जल्द समाप्त होने वाली",
+        filterScholarships: "छात्रवृत्तियां",
+        filterFarmers: "किसान और सोलर",
+        filterWorkers: "श्रमिक और व्यवसाय",
+        filterWomen: "महिला नकद",
+        lblShowAll: "सभी 24",
+        btnBackSchemes: "← योग्य योजनाओं की सूची पर लौटें",
+        tagStep3: "चरण 3 // विवरण और आवेदन मार्गदर्शिका",
+        btnEditProfile: "प्रोफाइल बदलें",
+        lblTreasuryBenefit: "सीधा सरकारी खजाना लाभ",
+        whyQualifyTitle: "आप क्यों पात्र हैं? (वैधानिक चेकलिस्ट)",
+        lblStatutoryOrder: "सरकारी आदेश / नियम:",
+        chooseApplyPath: "आप कैसे आवेदन करना चाहते हैं?",
+        bothPathsSupported: "दोनों तरीकों के लिए कानूनी चेकलिस्ट उपलब्ध है",
+        pathATitle: "स्वयं ऑनलाइन आवेदन करें",
+        tagFree: "100% निशुल्क · ₹0 फीस",
+        pathASubtitle: "आधिकारिक सरकारी पोर्टल पर स्वयं आवेदन करने के लिए इन चरणों का पालन करें।",
+        lblTrapTitle: "⚠️ रिजेक्शन से बचने के लिए महत्वपूर्ण नियम:",
+        btnOpenPortal: "आधिकारिक सरकारी पोर्टल खोलें",
+        pathBTitle: "साइबर कैफे / ग्राम वन के माध्यम से आवेदन करें",
+        tagSlipQr: "QR कोड वाली आधिकारिक स्लिप",
+        pathBSubtitle: "यह मुद्रित स्लिप और अपने दस्तावेजों का बैग लेकर काउंटर पर जाएं।",
+        docsBagTitle: "🎒 अपने बैग में रखने हेतु आवश्यक दस्तावेज:",
+        lblCounter: "अधिकृत काउंटर:",
+        lblServiceFee: "सरकारी सेवा शुल्क:",
+        lblSakalaSla: "सकाला गारंटी समय:",
+        btnViewPrintSlip: "आधिकारिक QR स्लिप देखें और प्रिंट करें ↓",
+        slipCardHeading: "आधिकारिक साइबर-कैफे ऑपरेटर स्लिप",
+        slipCardSubtitle: "ग्राम वन, सेवा सिंधु या साइबर कैफे ऑपरेटर को यह स्लिप दें।",
+        btnCopy: "कॉपी करें",
+        btnPrintSlip: "स्लिप प्रिंट करें / PDF",
+        slipBadge: "सरकारी सेवा वितरण वाउचर",
+        slipMandateTitle: "हक़ नागरिक स्लिप एवं ऑपरेटर जनादेश",
+        scanQrText: "पोर्टल हेतु स्कैन करें",
+        antiToutTitle: "🛡️ दलाल-विरोधी कानूनी चेतावनी:",
+        antiToutEn: "[EN] Official Counter Fee: ₹25–₹30 ONLY. Direct benefit transfers credit automatically via NPCI. Report touts to 1902 (Sakala).",
+        antiToutKn: "[KN] ಅಧಿಕೃತ ಗ್ರಾಮ ಒನ್ ಶುಲ್ಕ ಕೇವಲ ₹25-₹30. ಮಧ್ಯವರ್ತಿಗಳಿಗೆ ಹಣ ನೀಡಬೇಡಿ. ದೂರುಗಳಿಗೆ 1902 ಗೆ ಕರೆ ಮಾಡಿ.",
+        lblApplicant: "आवेदक:",
+        lblScheme: "योजना:",
+        lblAnnualBenefit: "वार्षिक लाभ:",
+        lblCounterSla: "काउंटर & सकाला:",
+        lblOfficialDossier: "आधिकारिक कानूनी प्रारूप पाठ:",
+        tabCyberSlip: "साइबर स्लिप",
+        tabNpci: "बैंक NPCI फॉर्म",
+        tabRti: "सकाला देरी RTI"
+      }
+    };
 
     const PERSONAS = {
       ananya: { name: 'Ananya Rao', state: 'karnataka', age: 20, gender: 'female', occupation: 'student', income: 140000, category: 'OBC', rationCard: 'BPL', isBPL: true, isStudent: true, isWidow: false, isTaxPayer: false, bankType: 'regular', hasMergedBank: false },
@@ -786,6 +1159,37 @@
       kiran: { name: 'Kiran Shetty', state: 'karnataka', age: 24, gender: 'male', occupation: 'worker', income: 110000, category: 'OBC', rationCard: 'BPL', isBPL: true, isStudent: false, isWidow: false, isTaxPayer: false, bankType: 'regular', hasMergedBank: false },
       lakshmi: { name: 'Lakshmi Devi', state: 'karnataka', age: 71, gender: 'female', occupation: 'senior', income: 45000, category: 'SC', rationCard: 'BPL', isBPL: true, isStudent: false, isWidow: true, isTaxPayer: false, bankType: 'pmjdy', hasMergedBank: false }
     };
+
+    function changeLanguage(lang) {
+      currentLanguage = lang;
+      const dict = I18N[lang] || I18N.English;
+      document.getElementById('languageSelect').value = lang;
+
+      // Translate all DOM elements tagged with data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.innerText = dict[key];
+        }
+      });
+
+      // Update placeholders
+      if (lang === 'Kannada') {
+        document.getElementById('chatInput').placeholder = "ನಿಮ್ಮ ಪರಿಸ್ಥಿತಿಯನ್ನು ತಿಳಿಸಿ (ಉದಾ: 'ಹುಬ್ಬಳ್ಳಿಯಲ್ಲಿ ಟೈಲರಿಂಗ್ ಅಂಗಡಿ ನಡೆಸುತ್ತಿರುವ ಇಬ್ಬರು ಮಕ್ಕಳ ತಾಯಿ, ಬಿಪಿಎಲ್ ಕಾರ್ಡ್')...";
+      } else if (lang === 'Hindi') {
+        document.getElementById('chatInput').placeholder = "अपनी स्थिति बताएं (उदा: 'हुबली में सिलाई दुकान चलाने वाली दो बच्चों की मां, बीपीएल कार्ड')...";
+      } else {
+        document.getElementById('chatInput').placeholder = "Or describe in plain words (e.g. 'Single mother in Hubli running tailoring shop, two school children, BPL card')...";
+      }
+
+      // Re-render UI with new language
+      if (latestMatchedSchemes.length > 0) {
+        renderSchemesGrid();
+        if (selectedSchemeObj) {
+          openSchemeDetailById(selectedSchemeObj.id);
+        }
+      }
+    }
 
     function showView(viewName) {
       document.getElementById('view-intake').classList.add('hidden');
@@ -931,7 +1335,6 @@
     }
 
     async function runHarness(userMessage = '', shouldSwitchToSchemes = false) {
-      const language = document.getElementById('languageSelect').value;
       const readinessChecks = {
         npciSeeded: true,
         nameMatched: true,
@@ -944,7 +1347,7 @@
         const res = await fetch('/api/harness/discover', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ userMessage, currentProfile, householdMembers: currentHousehold, readinessChecks, language })
+          body: JSON.stringify({ userMessage, currentProfile, householdMembers: currentHousehold, readinessChecks, language: currentLanguage })
         });
         const data = await res.json();
 
@@ -974,8 +1377,9 @@
         `).join('');
 
         // 3. Populate Results Overview
-        document.getElementById('resultsCitizenTitle').innerText = `Eligible Benefits for ${currentProfile.name}`;
-        document.getElementById('resultsSummaryText').innerText = `${currentProfile.age}y, ${currentProfile.occupation} · ${currentProfile.state.toUpperCase()} · ${data.aiSummary.slice(0, 140)}...`;
+        const dict = I18N[currentLanguage] || I18N.English;
+        document.getElementById('resultsCitizenTitle').innerText = `${dict.tagMatchedRegistry.split('//')[1] || 'Eligible Benefits'}: ${currentProfile.name}`;
+        document.getElementById('resultsSummaryText').innerText = `${currentProfile.age}y, ${currentProfile.occupation} · ${currentProfile.state.toUpperCase()}`;
         document.getElementById('resultsCountBadge').innerText = `${data.schemeCount} Matched`;
         document.getElementById('resultsTopMeter').innerText = '₹' + Number(data.totalDirectAnnualINR || 0).toLocaleString('en-IN') + '/yr';
 
@@ -1153,9 +1557,9 @@
       document.getElementById('slipCounterSla').innerText = `${ch.channelName?.split('/')[0]} (${s.sakalaSlaDays || 21}d)`;
       document.getElementById('slipDateStamp').innerText = `Issued on: ${new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}`;
 
-      // Dynamic QR Code for Government Portal
+      // Dynamic High-Res QR Code for Government Portal
       const qrTargetUrl = s.source || 'https://india.gov.in';
-      document.getElementById('slipQrImage').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(qrTargetUrl)}`;
+      document.getElementById('slipQrImage').src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(qrTargetUrl)}`;
 
       loadDocInKit('application');
       showView('detail');
@@ -1186,49 +1590,83 @@
       alert('Copied to clipboard');
     }
 
-    function printDocText() {
-      const text = document.getElementById('kitContent').innerText;
-      const s = selectedSchemeObj;
-      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(s?.source || 'https://india.gov.in')}`;
-      
-      const win = window.open('', '_blank');
-      win.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Hakku 5.0 — ${s?.name || 'Voucher'}</title>
-          <style>
-            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace; padding: 28px; color: #111; }
-            .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #999; padding-bottom: 16px; margin-bottom: 16px; }
-            .qr { width: 120px; height: 120px; }
-            pre { font-family: monospace; font-size: 11px; white-space: pre-wrap; line-height: 1.5; }
-            @media print { button { display: none; } }
-          </style>
-        </head>
-        <body>
-          <div class="header">
-            <div>
-              <h2 style="margin: 0;">HAKKU 5.0 CITIZEN SLIP &amp; OPERATOR MANDATE</h2>
-              <div style="font-size: 12px; color: #666; margin-top: 4px;">Beneficiary: ${currentProfile.name} | Scheme: ${s?.name}</div>
-              <div style="font-size: 12px; color: #059669; font-weight: bold; margin-top: 2px;">Official Value: ₹${Number(s?.annualValueINR || 0).toLocaleString('en-IN')}/year</div>
-            </div>
-            <img src="${qrUrl}" class="qr" alt="QR Code" />
-          </div>
-          <pre>${text}</pre>
-        </body>
-        </html>
-      `);
-      win.document.close();
-      setTimeout(() => { win.print(); }, 400);
+    // High-Resolution Direct Print Function
+    function printVoucherSlip() {
+      window.print();
     }
 
-    function speakSummary() {
-      if (!('speechSynthesis' in window)) return;
+    // Robust Listen / Stop Audio Controller with Structured Trilingual Speech
+    function toggleSpeech() {
+      if (!('speechSynthesis' in window)) {
+        return alert('Text-to-speech is not supported on this browser.');
+      }
+
+      const btn = document.getElementById('ttsBtn');
+      const icon = document.getElementById('ttsIcon');
+      const label = document.getElementById('ttsBtnText');
+
+      if (isSpeaking) {
+        window.speechSynthesis.cancel();
+        isSpeaking = false;
+        icon.innerText = '🔊';
+        label.innerText = I18N[currentLanguage]?.btnListen || 'Listen';
+        btn.className = 'bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 border border-slate-200/60';
+        return;
+      }
+
       window.speechSynthesis.cancel();
-      const text = selectedSchemeObj ? selectedSchemeObj.benefitSummary : (currentProfile.name ? `Hakku found benefits for ${currentProfile.name}.` : 'Hakku Citizen Rights OS.');
-      const utter = new SpeechSynthesisUtterance(text);
-      const lang = document.getElementById('languageSelect').value;
-      utter.lang = lang.includes('Kannada') ? 'kn-IN' : lang.includes('Hindi') ? 'hi-IN' : 'en-IN';
+
+      // Formulate coherent, structured speech in the active language
+      let speechText = '';
+      const name = currentProfile.name || 'Citizen';
+      const totalAmount = latestMatchedSchemes.reduce((sum, s) => sum + (s.annualValueINR || 0), 0);
+      const schemeCount = latestMatchedSchemes.length;
+
+      if (currentLanguage === 'Kannada') {
+        if (selectedSchemeObj) {
+          speechText = `ನಮಸ್ಕಾರ ${name}. ನೀವು ಆಯ್ಕೆ ಮಾಡಿದ ಯೋಜನೆ: ${selectedSchemeObj.name}. ಇದರ ವಾರ್ಷಿಕ ಅನುದಾನ ${selectedSchemeObj.annualValueINR} ರೂಪಾಯಿಗಳು. ಅರ್ಜಿಗೆ ಆಧಾರ್ ಕಾರ್ಡ್, ರೇಷನ್ ಕಾರ್ಡ್ ಮತ್ತು ಬ್ಯಾಂಕ್ ಪಾಸ್‌ಬುಕ್ ಅಗತ್ಯವಿದೆ. ಸೈಬರ್ ಸ್ಲಿಪ್ ಮುದ್ರಿಸಿ ಗ್ರಾಮ ಒನ್ ಕೇಂದ್ರಕ್ಕೆ ಭೇಟಿ ನೀಡಿ.`;
+        } else {
+          speechText = `ಹಕ್ಕು ಪೋರ್ಟಲ್‌ಗೆ ಸುಸ್ವಾಗತ ${name}. ನಿಮಗಾಗಿ ಒಟ್ಟು ${schemeCount} ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು ದೊರೆತಿವೆ. ಒಟ್ಟು ವಾರ್ಷಿಕ ನಗದು ಲಾಭ ${totalAmount} ರೂಪಾಯಿಗಳು. ವಿವರಗಳನ್ನು ನೋಡಲು ಯಾವುದೇ ಯೋಜನೆಯ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ.`;
+        }
+      } else if (currentLanguage === 'Hindi') {
+        if (selectedSchemeObj) {
+          speechText = `नमस्ते ${name}. चुनी गई योजना: ${selectedSchemeObj.name}. इसका वार्षिक लाभ ${selectedSchemeObj.annualValueINR} रुपये है. आवेदन के लिए आधार, राशन कार्ड और बैंक पासबुक आवश्यक है. साइबर स्लिप प्रिंट करके काउंटर पर जाएं.`;
+        } else {
+          speechText = `हक़ पोर्टल में आपका स्वागत है ${name}. आपके लिए कुल ${schemeCount} सरकारी योजनाएं मिली हैं, जिनका कुल वार्षिक लाभ ${totalAmount} रुपये है. विवरण देखने के लिए किसी भी योजना पर क्लिक करें.`;
+        }
+      } else {
+        if (selectedSchemeObj) {
+          speechText = `Hello ${name}. For ${selectedSchemeObj.name}, your annual direct benefit is ${selectedSchemeObj.annualValueINR} rupees per year. Please take your Aadhaar card, ration card, and bank passbook to the counter or apply online.`;
+        } else {
+          speechText = `Welcome to Hakku, ${name}. We matched ${schemeCount} welfare schemes for your profile, delivering a total annual benefit of ${totalAmount} rupees. Click any scheme card to view the step-by-step guide and print your cyber-café slip.`;
+        }
+      }
+
+      const utter = new SpeechSynthesisUtterance(speechText);
+      utter.lang = currentLanguage === 'Kannada' ? 'kn-IN' : currentLanguage === 'Hindi' ? 'hi-IN' : 'en-IN';
+      utter.rate = 0.95;
+
+      utter.onstart = () => {
+        isSpeaking = true;
+        icon.innerText = '⏹️';
+        label.innerText = I18N[currentLanguage]?.btnStop || 'Stop';
+        btn.className = 'bg-rose-50 text-rose-700 border-rose-300 text-xs font-semibold px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 border ring-2 ring-rose-300 animate-pulse';
+      };
+
+      utter.onend = () => {
+        isSpeaking = false;
+        icon.innerText = '🔊';
+        label.innerText = I18N[currentLanguage]?.btnListen || 'Listen';
+        btn.className = 'bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 border border-slate-200/60';
+      };
+
+      utter.onerror = () => {
+        isSpeaking = false;
+        icon.innerText = '🔊';
+        label.innerText = I18N[currentLanguage]?.btnListen || 'Listen';
+        btn.className = 'bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 border border-slate-200/60';
+      };
+
       window.speechSynthesis.speak(utter);
     }
 
@@ -1236,23 +1674,22 @@
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (!SpeechRecognition) return alert('Voice recognition requires Chrome or Edge.');
       const rec = new SpeechRecognition();
-      rec.lang = 'en-IN';
+      rec.lang = currentLanguage === 'Kannada' ? 'kn-IN' : currentLanguage === 'Hindi' ? 'hi-IN' : 'en-IN';
       const btn = document.getElementById('voiceBtn');
       btn.innerText = 'Listening...';
       rec.onresult = (e) => {
         document.getElementById('chatInput').value = e.results[0][0].transcript;
-        btn.innerText = 'Voice';
+        btn.innerText = I18N[currentLanguage]?.btnVoice || 'Voice';
         submitIntakeAndSearch();
       };
-      rec.onerror = () => { btn.innerText = 'Voice'; };
+      rec.onerror = () => { btn.innerText = I18N[currentLanguage]?.btnVoice || 'Voice'; };
       rec.start();
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      // Initially, load intake view with default prefilled values, but stay in view-intake!
       currentProfile = { ...PERSONAS.ananya };
       syncProfileToForm(currentProfile);
-      runHarness('', false); // Populates background data without leaving intake view!
+      runHarness('', false);
       showView('intake');
     });
   </script>
