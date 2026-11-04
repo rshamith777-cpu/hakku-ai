@@ -330,3 +330,12 @@ Hindi: {
   };
   Object.keys(V2).forEach(k => { window.HAKKU_I18N[k] = Object.assign(window.HAKKU_I18N[k] || {}, V2[k]); });
 })();
+/* ---- v2 demo strings (merged) ---- */
+(function () {
+  const V2 = {
+    English: { presets_title:'Demo citizen — one click runs the full harness', presets_hint:'1 DEMO · ONE CLICK', demo_name:'Demo · Ananya, 19', demo_sub:'Girl Engg Student · Tumkur · OBC · APL', demo_run:'RUN DEMO' },
+    Kannada: { presets_title:'ಡೆಮೊ ನಾಗರಿಕ — ಒಂದು ಕ್ಲಿಕ್‌ನಲ್ಲಿ ಪೂರ್ಣ ಹಾರ್ನೆಸ್', presets_hint:'1 DEMO · ONE CLICK', demo_name:'ಡೆಮೊ · ಅನನ್ಯ, 19', demo_sub:'ಬಾಲಕಿ ಎಂಜಿನಿಯರಿಂಗ್ ವಿದ್ಯಾರ್ಥಿನಿ · ತುಮಕೂರು · OBC · APL', demo_run:'ಡೆಮೊ ರನ್' },
+    Hindi: { presets_title:'डेमो नागरिक — एक क्लिक में पूरा हार्नेस', presets_hint:'1 DEMO · ONE CLICK', demo_name:'डेमो · अनन्या, 19', demo_sub:'गर्ल इंजीनियरिंग छात्रा · तुमकूर · OBC · APL', demo_run:'डेमो चलाएँ' }
+  };
+  Object.keys(V2).forEach(k => { window.HAKKU_I18N[k] = Object.assign(window.HAKKU_I18N[k] || {}, V2[k]); });
+})();

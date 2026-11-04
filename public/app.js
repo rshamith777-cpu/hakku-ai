@@ -62,12 +62,17 @@ function goStep(n) {
 }
 function rebuildPresets() {
   const row = $('presetRow'); if (!row) return;
-  row.innerHTML = Object.entries(PERSONAS).map(([k, p]) =>
-    `<button class="persona-pill" onclick='fillPreset("${k}")'>
-      <span class="persona-av">${esc((p.name || 'C').charAt(0))}</span>
-      <span class="min-w-0"><span class="block font-bold text-[14.5px] text-[#111111] leading-tight">${esc(p.name)}, ${esc(String(p.profile.age || ''))}</span>
-      <span class="block mono text-[11.5px] text-[#565A5B]">${esc(p.sub || '')}</span></span>
-    </button>`).join('');
+  const p = PERSONAS.ananya;
+  row.innerHTML = `<button class="persona-pill" onclick="runDemo()">
+    <span class="persona-av">A</span>
+    <span class="min-w-0"><span class="block font-bold text-[14.5px] text-[#111111] leading-tight">${esc(T('demo_name'))}</span>
+    <span class="block mono text-[11.5px] text-[#565A5B]">${esc(T('demo_sub'))}</span></span>
+    <span class="mono text-[10px] font-bold text-[#FF3B30] ml-auto whitespace-nowrap">${esc(T('demo_run'))} →</span>
+  </button>`;
+}
+function runDemo() {
+  fillPreset('ananya');
+  runHarness('', PERSONAS.ananya.profile);
 }
 
 /* ---------------- session lifecycle / DPDP volatile RAM ---------------- */
@@ -206,6 +211,51 @@ function initRevealObserver() {
     entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-in'); REVEAL_OBS.unobserve(en.target); } });
   }, { threshold: 0.14, rootMargin: '0px 0px -6% 0px' });
   document.querySelectorAll('.reveal:not(.is-in)').forEach(el => REVEAL_OBS.observe(el));
+  initFramer();
+}
+
+/* ---------------- Framer-style interaction layer (tilt · magnetic · progress) ---------------- */
+const FRAMER_BOUND = new WeakSet();
+function initFramer() {
+  let bar = $('framerProgress');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'framerProgress';
+    bar.style.cssText = 'position:fixed;top:0;left:0;height:3px;width:0;background:#FF3B30;z-index:80;pointer-events:none';
+    document.body.appendChild(bar);
+  }
+  if (!window.__framerScroll) {
+    window.__framerScroll = true;
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    }, { passive: true });
+  }
+  if (!window.matchMedia('(hover: hover)').matches) return;
+  document.querySelectorAll('.scheme-card, .bundle-card, .persona-pill, .bento-white, .seq-card').forEach(el => {
+    if (FRAMER_BOUND.has(el)) return;
+    FRAMER_BOUND.add(el);
+    el.style.willChange = 'transform';
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transform = 'perspective(800px) rotateX(' + (-py * 3).toFixed(2) + 'deg) rotateY(' + (px * 3).toFixed(2) + 'deg)';
+    });
+    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+  });
+  document.querySelectorAll('.btn-primary').forEach(el => {
+    if (FRAMER_BOUND.has(el)) return;
+    FRAMER_BOUND.add(el);
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      const dx = (e.clientX - r.left) / r.width - 0.5;
+      const dy = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transform = 'translate(' + (dx * 4).toFixed(1) + 'px,' + (dy * 4).toFixed(1) + 'px)';
+    });
+    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+  });
 }
 
 /* ---------------- client-side PII redaction check (DPDP) ---------------- */

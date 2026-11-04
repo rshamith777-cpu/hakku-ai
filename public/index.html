@@ -162,7 +162,10 @@ tailwind.config = {
   .cat-pill.active { background:var(--ink); color:var(--paper); box-shadow:2px 2px 0 var(--verm); }
 
   /* ---- vault / view 2 ---- */
+  .bento-main { background:var(--ink); color:var(--paper); border:2px solid var(--ink); box-shadow:6px 6px 0 var(--verm); }
   .bento-white { background:var(--glass); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:2px solid var(--ink); box-shadow:5px 5px 0 var(--ink); }
+  .seq-node { position:relative; }
+  .seq-node:not(:last-child)::after { content:''; position:absolute; top:20px; left:40px; right:-6px; border-top:2px dashed rgba(17,17,17,.35); }
   .conflict-banner { background:var(--paper-3); border:2px solid var(--ink); box-shadow:5px 5px 0 var(--amber); }
   .seq-card { background:rgba(255,255,255,.72); border:2px solid var(--ink); }
   .excl-row { display:flex; align-items:center; gap:.8rem; padding:.65rem .2rem; border-bottom:1px dashed rgba(17,17,17,.35); font-size:14px; }

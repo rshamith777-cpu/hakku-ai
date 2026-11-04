@@ -203,3 +203,11 @@ window.HAKKU_I18N.Telugu = {
   };
   Object.keys(V2).forEach(k => { window.HAKKU_I18N[k] = Object.assign(window.HAKKU_I18N[k] || {}, V2[k]); });
 })();
+/* ---- v2 demo strings (TA + TE, merged) ---- */
+(function () {
+  const V2 = {
+    Tamil: { presets_title:'டெமோ குடிமகன் — ஒரே கிளிக்கில் முழு ஹார்னெஸ்', presets_hint:'1 DEMO · ONE CLICK', demo_name:'டெமோ · அனன்யா, 19', demo_sub:'பெண் பொறியியல் மாணவி · தும்கூர் · OBC · APL', demo_run:'டெமோ இயக்கு' },
+    Telugu: { presets_title:'డెమో పౌరుడు — ఒక్క క్లిక్‌తో పూర్తి హార్నెస్', presets_hint:'1 DEMO · ONE CLICK', demo_name:'డెమో · అనన్య, 19', demo_sub:'గర్ల్ ఇంజనీరింగ్ స్టూడెంట్ · తుమకూరు · OBC · APL', demo_run:'డెమో రన్' }
+  };
+  Object.keys(V2).forEach(k => { window.HAKKU_I18N[k] = Object.assign(window.HAKKU_I18N[k] || {}, V2[k]); });
+})();
