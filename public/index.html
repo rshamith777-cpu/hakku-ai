@@ -11,10 +11,10 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111111'/%3E%3Crect x='6' y='6' width='52' height='52' fill='%23F4EFE6'/%3E%3Cpath d='M32 14 18 20v10c0 10 7 17 14 21 7-4 14-11 14-21V20L32 14z' fill='%23111111'/%3E%3Ccircle cx='32' cy='30' r='5' fill='%23FF3B30'/%3E%3C/svg%3E" />
 
-<!-- Broadsheet triad: Bodoni Moda (display) · Newsreader (body) · JetBrains Mono (telemetry) + Noto Sans for the 4 Indic scripts -->
+<!-- Marko One (overall identity) · JetBrains Mono (telemetry) + Noto Sans for the 4 Indic scripts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Marko+One&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -23,8 +23,8 @@ tailwind.config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Newsreader"', '"Noto Sans Kannada"', '"Noto Sans Devanagari"', '"Noto Sans Tamil"', '"Noto Sans Telugu"', 'Georgia', 'serif'],
-        display: ['"Bodoni Moda"', '"Noto Sans Kannada"', '"Noto Sans Devanagari"', '"Noto Sans Tamil"', '"Noto Sans Telugu"', 'Georgia', 'serif'],
+        sans: ['"Marko One"', '"Noto Sans Kannada"', '"Noto Sans Devanagari"', '"Noto Sans Tamil"', '"Noto Sans Telugu"', 'Georgia', 'serif'],
+        display: ['"Marko One"', '"Noto Sans Kannada"', '"Noto Sans Devanagari"', '"Noto Sans Tamil"', '"Noto Sans Telugu"', 'Georgia', 'serif'],
         mono: ['"JetBrains Mono"', '"Noto Sans Kannada"', '"Noto Sans Devanagari"', 'ui-monospace', 'monospace'],
       }
     }
@@ -155,7 +155,7 @@ tailwind.config = {
   .bundle-emo { width:42px; height:42px; background:var(--paper); border:2px solid var(--ink); display:flex; align-items:center; justify-content:center; font-size:20px; }
   .persona-pill { display:flex; align-items:center; gap:.75rem; padding:.65rem .85rem; background:var(--glass); border:2px solid var(--ink); cursor:pointer; text-align:left; transition:all .25s var(--spring-snappy); }
   .persona-pill:hover { transform:translate(-2px,-2px); box-shadow:4px 4px 0 var(--verm); }
-  .persona-av { width:34px; height:34px; background:var(--ink); color:var(--paper); display:flex; align-items:center; justify-content:center; font-family:'Bodoni Moda',serif; font-weight:900; font-size:16px; flex:none; }
+  .persona-av { width:34px; height:34px; background:var(--ink); color:var(--paper); display:flex; align-items:center; justify-content:center; font-family:'Marko One',serif; font-weight:900; font-size:16px; flex:none; }
 
   .cat-pill { white-space:nowrap; padding:.45rem .8rem; font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; border:1px solid var(--ink); background:var(--paper-3); color:var(--ink); box-shadow:2px 2px 0 var(--ink); transition:all .22s var(--spring-snappy); cursor:pointer; }
   .cat-pill:hover { transform:translate(-1px,-1px); box-shadow:3px 3px 0 var(--ink); }

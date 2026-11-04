@@ -362,10 +362,10 @@ function printBundleManifest() {
     </div>`).join('');
   const tmp = document.createElement('div');
   tmp.id = 'printableSlip';
-  tmp.style.cssText = 'background:#fff;color:#111;padding:14mm 12mm;font-family:Newsreader,Georgia,serif';
+  tmp.style.cssText = 'background:#fff;color:#111;padding:14mm 12mm;font-family:Marko One,Georgia,serif';
   tmp.innerHTML = `
     <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#111;border-bottom:3px solid #111;padding-bottom:6px">HAKKU 5.0 · DIGITAL PUBLIC INFRASTRUCTURE · STATUTORY DISPATCH</p>
-    <h1 style="font-family:'Bodoni Moda',Georgia,serif;font-size:24px;font-weight:900;color:#111;margin:10px 0 2px;letter-spacing:-0.02em">${esc(T('manifest_title'))}</h1>
+    <h1 style="font-family:'Marko One',Georgia,serif;font-size:24px;font-weight:900;color:#111;margin:10px 0 2px;letter-spacing:-0.02em">${esc(T('manifest_title'))}</h1>
     <p style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#444748;margin-bottom:10px;border-bottom:1px solid #111;padding-bottom:8px">${esc(S.profile && S.profile.name ? S.profile.name : 'Citizen')} · ${esc(buildFingerprint(S.profile))} · ${new Date().toLocaleString('en-GB')} · SES-${esc(String(S.sessionId).toUpperCase().slice(0, 4))}</p>
     ${rows}
     <p style="font-size:11px;color:#111;border:2px solid #FF3B30;background:#FFE3E0;padding:8px 10px;margin-top:12px;line-height:1.55"><b>ZERO-BRIBE NOTICE:</b> All DBT transfers are 100% automated via NPCI straight to your bank account. Any bribe demand above ₹30 is reportable to the Toll-Free <b>1902</b> Sakala / Janaspandana Helpline. ಎಲ್ಲಾ DBT ಹಣ ನೇರವಾಗಿ NPCI ಮೂಲಕ ಬರುತ್ತದೆ. सारा DBT भुगतान सीधे NPCI द्वारा आता है।</p>`;
