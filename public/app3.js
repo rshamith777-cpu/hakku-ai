@@ -214,7 +214,7 @@ function renderSchemes() {
   const readiness = meta.readinessAudit.readinessScore;
   const risks = meta.readinessAudit.rejectionRisks || [];
   const conflicts = meta.statutoryConflictsResolved || [];
-  const gemsList = S.matched.filter(s => s.isHiddenGem).slice(0, 3);
+  const gemsList = S.matched.filter(s => s.isHiddenGem);
   const ot = oneTimeCapital();
   const runDate = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
   const runTime = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
@@ -273,7 +273,7 @@ function renderSchemes() {
           <span class="text-[13.5px] text-[#8A4B00]/80 mb-1">${esc(T('gems_unlocked'))}</span>
         </div>
         <p class="mono text-[10.5px] tracking-[0.14em] text-[#8A4B00] uppercase mt-4">${esc(T('gems_why'))}</p>
-        <ul class="mt-2 space-y-2 text-[13.5px] text-[#333637]" style="line-height:1.5">
+        <ul class="mt-2 space-y-2 text-[13.5px] text-[#333637] max-h-56 overflow-auto pr-1" style="line-height:1.5">
           ${gemsList.map((g, i) => `<li class="flex gap-2.5"><span class="mono text-[11px] text-[#8A4B00] font-bold pt-0.5">${String(i + 1).padStart(2, '0')}</span><span><b>${esc(shortName(g))}</b> — ${esc(g.channel ? g.channel.channelName : T('gems_counter_only'))}</span></li>`).join('') || `<li class="text-[#565A5B]">—</li>`}
         </ul>
         <p class="mono text-[11.5px] text-[#8A4B00]/70 mt-3">${esc(T('gems_foot'))}</p>
