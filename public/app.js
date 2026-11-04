@@ -162,7 +162,7 @@ async function securePost(path, payload) {
 }
 
 /* ---------------- Web Speech (listen / stop) ---------------- */
-const SPEECH = { on: false, queueEmpty: true };
+const SPEECH = { on: false, chunks: [], idx: 0 };
 function toggleGlobalSpeech() {
   if (SPEECH.on) { stopSpeech(); return; }
   let text = '';
@@ -173,23 +173,36 @@ function toggleGlobalSpeech() {
 }
 function speakText(text) {
   if (!('speechSynthesis' in window)) { toast('🔊 Not supported', true); return; }
-  window.speechSynthesis.cancel();
-  const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = S.lang === 'Kannada' ? 'kn-IN' : S.lang === 'Hindi' ? 'hi-IN' : S.lang === 'Tamil' ? 'ta-IN' : S.lang === 'Telugu' ? 'te-IN' : 'en-IN';
-  utter.rate = 0.95; utter.pitch = 1;
-  const words = text.split(/(?<=[.!?।])\s+/).reduce((acc, w, i) => {
+  const clean = String(text || '').replace(/\s+/g, ' ').trim();
+  if (!clean) { toast(T('toast_err'), true); return; }
+  stopSpeech(true);
+  const synth = window.speechSynthesis;
+  const lang = S.lang === 'Kannada' ? 'kn-IN' : S.lang === 'Hindi' ? 'hi-IN' : S.lang === 'Tamil' ? 'ta-IN' : S.lang === 'Telugu' ? 'te-IN' : 'en-IN';
+  const voices = synth.getVoices() || [];
+  const voice = voices.find(v => v.lang && v.lang.toLowerCase().replace('_', '-').startsWith(lang.slice(0, 2))) || null;
+  SPEECH.chunks = clean.split(/(?<=[.!?।])\s+/).reduce((acc, w, i) => {
     const k = Math.floor(i / 45);
     (acc[k] = acc[k] || []).push(w); return acc;
-  }, []).map(chunk => chunk.join(' '));
-  const btn = $('listenBtn');
+  }, []).map(c => c.join(' '));
+  SPEECH.idx = 0;
   SPEECH.on = true;
-  if (btn) { btn.classList.add('speaking-pulse'); const lb = $('listenLabel'); if (lb) lb.textContent = T('stop'); $('listenIcon').textContent = '⏹️'; }
-  utter.onend = () => { stopSpeech(true); };
-  utter.onerror = () => { stopSpeech(true); };
-  window.speechSynthesis.speak(utter);
+  const btn = $('listenBtn');
+  if (btn) { btn.classList.add('speaking-pulse'); const lb = $('listenLabel'); if (lb) lb.textContent = T('stop'); const ic = $('listenIcon'); if (ic) ic.textContent = '⏹️'; }
+  const speakNext = () => {
+    if (!SPEECH.on || SPEECH.idx >= SPEECH.chunks.length) { stopSpeech(true); return; }
+    const u = new SpeechSynthesisUtterance(SPEECH.chunks[SPEECH.idx++]);
+    u.lang = voice ? voice.lang : lang;
+    if (voice) u.voice = voice;
+    u.rate = 0.95; u.pitch = 1;
+    u.onend = () => speakNext();
+    u.onerror = ev => { const err = ev && ev.error; if (err && err !== 'interrupted' && err !== 'canceled') toast('🔊 ' + err, true); stopSpeech(true); };
+    synth.speak(u);
+  };
+  setTimeout(speakNext, 60);
 }
 function stopSpeech(silent) {
   SPEECH.on = false;
+  SPEECH.chunks = []; SPEECH.idx = 0;
   try { window.speechSynthesis.cancel(); } catch (e) { /* ok */ }
   const btn = $('listenBtn');
   if (btn) { btn.classList.remove('speaking-pulse'); const lb = $('listenLabel'); if (lb) lb.textContent = T('listen'); const ic = $('listenIcon'); if (ic) ic.textContent = '🔊'; }

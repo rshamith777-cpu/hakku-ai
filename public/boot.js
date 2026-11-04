@@ -25,6 +25,7 @@ function boot() {
   updateStepTabs();
   renderIntake();
   secureHandshake();
+  if ('speechSynthesis' in window) { window.speechSynthesis.getVoices(); window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices(); }
   window.addEventListener('keydown', e => { if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); const si = $('schemeSearch'); if (si && S.view === 'schemes') si.focus(); } });
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') stopSpeech(true); });
 }
