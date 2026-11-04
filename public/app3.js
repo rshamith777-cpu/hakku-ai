@@ -485,7 +485,7 @@ function printBundleManifest() {
       '</tr>';
   }).join('');
   const conflicts = meta.statutoryConflictsResolved || [];
-  const excl = conflicts.length ? '<div class="sec">Excluded by anti-double-dipping engine</div>' +
+  const excl = conflicts.length ? '<div class="sec">Excluded · anti-double-dipping engine</div>' +
     conflicts.slice(0, 5).map(c => '<div class="excl"><span class="x">✕</span> <b>' + esc(shortName({ name: c.dropped })) + '</b> — ' + esc(String(c.rule).split(':').slice(1).join(':').trim() || c.rule) + '</div>').join('') +
     (conflicts.length > 5 ? '<div class="excl">+ ' + (conflicts.length - 5) + ' more resolved automatically</div>' : '') : '';
   const docs = (meta.consolidatedDocuments || []);
@@ -493,24 +493,26 @@ function printBundleManifest() {
   const citName = S.profile && S.profile.name ? S.profile.name : 'Citizen';
   const now = new Date().toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
   const html =
-    printMasthead('ENTITLEMENT MANIFEST · DIGITAL PUBLIC INFRASTRUCTURE') +
-    '<div class="citizen"><span>' + esc(citName) + ' · ' + esc(buildFingerprint(S.profile)) + '</span><span>' + esc(now) + ' IST · SES-' + esc(String(S.sessionId || '').toUpperCase().slice(0, 4)) + '</span></div>' +
-    '<div class="totals">' +
-      '<div><div class="k">DBT / Year</div><div class="v red">' + inr(meta.totalDirectAnnualINR) + '</div></div>' +
-      '<div><div class="k">5-Year Wealth</div><div class="v">' + inr(meta.fiveYearWealthINR) + '</div></div>' +
-      '<div><div class="k">Health Shield</div><div class="v">' + inr(meta.totalHealthCoverINR) + '</div></div>' +
-      '<div><div class="k">Readiness</div><div class="v">' + (readiness || 0) + '%</div></div>' +
-      '<div><div class="k">Unlocked</div><div class="v">' + meta.schemeCount + '/' + meta.totalCatalogCount + '</div></div>' +
+    printMasthead('SOVEREIGN CITIZEN WELFARE DISCOVERY<br>ENTITLEMENT MANIFEST · STATUTORY DISPATCH') +
+    printDateline(
+      esc(citName).toUpperCase() + ' · FP ' + esc(buildFingerprint(S.profile)),
+      esc(now) + ' IST · SES-' + esc(String(S.sessionId || '').toUpperCase().slice(0, 4)) + ' · PAGE 1 / 1'
+    ) +
+    '<div class="hero">' +
+      '<div class="lead"><div class="k">Direct Benefit Transfer / Year</div><div class="big accent">' + inr(meta.totalDirectAnnualINR) + '</div><div class="k" style="margin-top:3px">AT 0% LEAKAGE · NPCI DBT</div></div>' +
+      '<div class="cell"><div class="k">5-Year Wealth</div><div class="v">' + inr(meta.fiveYearWealthINR) + '</div></div>' +
+      '<div class="cell"><div class="k">Health Shield</div><div class="v">' + inr(meta.totalHealthCoverINR) + '</div></div>' +
+      '<div class="cell"><div class="k">Readiness</div><div class="v">' + (readiness || 0) + '%</div></div>' +
+      '<div class="cell"><div class="k">Unlocked</div><div class="v">' + meta.schemeCount + ' / ' + meta.totalCatalogCount + '</div></div>' +
     '</div>' +
-    '<div class="sec">Matched schemes · ' + list.length + ' of ' + meta.totalCatalogCount + ' scanned</div>' +
-    '<table class="st">' + rows + '</table>' +
+    '<div class="sec">Matched schemes · ' + list.length + ' of ' + meta.totalCatalogCount + ' statutes scanned</div>' +
+    '<table class="st"><thead><tr><th>#</th><th style="width:46%">Scheme</th><th style="width:24%">Channel · Fee</th><th style="width:14%">Deadline</th><th class="num">+₹ / Year</th></tr></thead><tbody>' + rows + '</tbody></table>' +
     excl +
-    (docs.length ? '<div class="sec">Consolidated document folder</div><div class="docs">' + docs.map(d => '<span>' + esc(d) + '</span>').join('') + '</div>' : '') +
+    (docs.length ? '<div class="sec">Consolidated document folder · carry all</div><div class="docs pb">' + docs.map(d => '<span>' + esc(d) + '</span>').join('') + '</div>' : '') +
     printZeroBribe() +
-    printFoot('PHASE A→C · DAY 0–10 · GRAMAONE / RSK / INO / BOCW', 'HELPLINE 1902 · PII NEVER STORED · RAM-ONLY');
+    printFoot('PHASE A→C · DAY 0–10 · GRAMAONE / RSK / INO / BOCW COUNTERS', 'HELPLINE 1902 · PII NEVER STORED · RAM-ONLY');
   printCompact(html, 'HAKKU Entitlement Manifest — ' + citName);
 }
-
 function backToIntake() { S.view = 'intake'; renderIntake(true); showPills('intake'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function animateCounter(el, target) {
   if (!el) return;
