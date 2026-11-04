@@ -10,6 +10,14 @@ window.addEventListener('hashchange', () => {
   if (location.hash === '#/schemes' && S.resultMeta) { renderSchemes(); return; }
 });
 
+/* visible error trap: any runtime exception surfaces as a red toast */
+window.addEventListener('error', e => {
+  try { toast('⚠ SCRIPT: ' + (e.message || 'unknown error') + (e.lineno ? ' · line ' + e.lineno : ''), true); } catch (_) { }
+});
+window.addEventListener('unhandledrejection', e => {
+  try { toast('⚠ ' + ((e.reason && e.reason.message) || 'network failure'), true); } catch (_) { }
+});
+
 function boot() {
   if (!window.HAKKU_I18N) { setTimeout(boot, 60); return; }
   sessionStamp();
