@@ -211,3 +211,11 @@ window.HAKKU_I18N.Telugu = {
   };
   Object.keys(V2).forEach(k => { window.HAKKU_I18N[k] = Object.assign(window.HAKKU_I18N[k] || {}, V2[k]); });
 })();
+/* HAKKU i18n merge block — step-gating strings (TA/TE) */
+(function () {
+  const V2 = {
+    Tamil: { toast_locked: 'முதலில் முந்தைய படியை முடிக்கவும்' },
+    Telugu: { toast_locked: 'ముందుగా మునుపటి దశను పూర్తి చేయండి' }
+  };
+  Object.keys(V2).forEach(k => { window.HAKKU_I18N[k] = Object.assign(window.HAKKU_I18N[k] || {}, V2[k]); });
+})();

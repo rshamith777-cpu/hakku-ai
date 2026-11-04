@@ -339,3 +339,12 @@ Hindi: {
   };
   Object.keys(V2).forEach(k => { window.HAKKU_I18N[k] = Object.assign(window.HAKKU_I18N[k] || {}, V2[k]); });
 })();
+/* HAKKU i18n merge block — step-gating strings (EN/KN/HI) */
+(function () {
+  const V2 = {
+    English: { toast_locked: 'Complete the previous step first' },
+    Kannada: { toast_locked: 'ಮೊದಲು ಹಿಂದಿನ ಹಂತ ಪೂರ್ಣಗೊಳಿಸಿ' },
+    Hindi: { toast_locked: 'पहले पिछला चरण पूरा करें' }
+  };
+  Object.keys(V2).forEach(k => { window.HAKKU_I18N[k] = Object.assign(window.HAKKU_I18N[k] || {}, V2[k]); });
+})();

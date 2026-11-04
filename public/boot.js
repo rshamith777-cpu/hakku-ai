@@ -6,7 +6,7 @@
 /* deep-link hash routing: #/scheme/<id> opens detail 3 directly */
 window.addEventListener('hashchange', () => {
   const m = location.hash.match(/^#\/scheme\/([a-z0-9-]+)/i);
-  if (m && S.catalog.length) { openSchemeDetail(m[1]); return; }
+  if (m && S.resultMeta && S.catalog.length) { openSchemeDetail(m[1]); return; }
   if (location.hash === '#/schemes' && S.resultMeta) { renderSchemes(); return; }
 });
 
@@ -14,6 +14,7 @@ function boot() {
   if (!window.HAKKU_I18N) { setTimeout(boot, 60); return; }
   sessionStamp();
   applyI18nStatic();
+  updateStepTabs();
   renderIntake();
   secureHandshake();
   window.addEventListener('keydown', e => { if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); const si = $('schemeSearch'); if (si && S.view === 'schemes') si.focus(); } });

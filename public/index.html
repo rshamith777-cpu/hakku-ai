@@ -125,6 +125,8 @@ tailwind.config = {
   .step-pill:last-child { border-right:none; }
   .step-pill:hover { background:rgba(255,255,255,.8); color:var(--ink); }
   .step-pill.active { background:var(--ink); color:var(--paper); }
+  .step-pill.locked { opacity:.4; cursor:not-allowed; }
+  .step-pill.locked:hover { background:transparent; color:var(--mut); }
   .lang-btn { padding:.28rem .55rem; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; color:var(--mut); border:1px solid transparent; transition:all .2s var(--spring-snappy); }
   .lang-btn:hover { color:var(--ink); border-color:var(--ink); }
   .lang-btn.active { background:var(--ink); color:var(--paper); border-color:var(--ink); }

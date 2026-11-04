@@ -319,8 +319,19 @@ function updateFlagCount() {
 }
 document.addEventListener('click', e => {
   const pill = e.target && e.target.closest ? e.target.closest('.toggle-pill') : null;
-  if (pill && e.target.tagName !== 'INPUT') { pill.classList.toggle('on'); updateFlagCount(); }
+  if (pill && e.target.tagName !== 'INPUT') {
+    pill.classList.toggle('on'); updateFlagCount();
+    const fkMap = { fkStudent: 'isStudent', fkWidow: 'isWidow', fkTax: 'isTaxPayer' };
+    const fkId = pill.getAttribute('data-fk');
+    if (fkMap[fkId] && !S.formTouched.includes(fkMap[fkId])) S.formTouched.push(fkMap[fkId]);
+  }
 });
+/* track which form fields the citizen explicitly edited — those win over AI extraction */
+const FORM_TOUCH_MAP = { formName: 'name', formAge: 'age', formGender: 'gender', formState: 'state', formOccupation: 'occupation', formIncome: 'income', formCategory: 'category', formRation: 'rationCard', formLand: 'land' };
+['input', 'change'].forEach(ev => document.addEventListener(ev, e => {
+  const key = e.target && e.target.id && FORM_TOUCH_MAP[e.target.id];
+  if (key && !S.formTouched.includes(key)) S.formTouched.push(key);
+}));
 
 /* ---------------- life-event bundle cards (always available, pre-harness) ---------------- */
 const BUNDLE_CARDS = [
@@ -349,6 +360,7 @@ function renderBundleCards() {
 
 function fillPreset(key) {
   const person = PERSONAS[key]; if (!person) return;
+  S.formTouched = [];
   if (key === 'family') S.household = FAMILY_MEMBERS.map(m => ({ ...m.profile, name: m.name }));
   else S.household = [{ ...person.profile }];
   S.profile = { ...person.profile };

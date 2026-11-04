@@ -13,7 +13,7 @@ async function runHarness(userMessage, profile) {
   const t0 = performance.now();
   try {
     const prechecks = readForensicChecks();
-    const data = await securePost('/api/harness/discover', { userMessage, currentProfile: profile, householdMembers: S.household || [], readinessChecks: prechecks, language: S.lang });
+    const data = await securePost('/api/harness/discover', { userMessage, currentProfile: profile, householdMembers: S.household || [], readinessChecks: prechecks, ignoreKeys: S.formTouched || [], language: S.lang });
     S.netLatency = Math.round(performance.now() - t0);
 
     S.profile = data.profile || profile;
@@ -37,6 +37,8 @@ async function runHarness(userMessage, profile) {
       agentTrace: data.agentTrace || null
     };
     S.filter = 'ALL'; S.searchQ = ''; S.sortBy = 'value_desc';
+    S.stepUnlocked = Math.max(S.stepUnlocked || 1, 2);
+    updateStepTabs();
     renderSchemes();
   } catch (err) {
     toast(T('toast_err'), true);

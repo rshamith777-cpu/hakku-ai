@@ -13,7 +13,8 @@ const S = {
   resultMeta: null, activeSchemeId: null, activeSchemeObj: null,
   filter: 'ALL', searchQ: '', lang: 'English',
   dossierMode: 'operator', dossierCache: {}, bagChecked: {}, sessionId: null,
-  busy: false, serving: null, fontScale: 1, netLatency: 0
+  busy: false, serving: null, fontScale: 1, netLatency: 0,
+  stepUnlocked: 1, formTouched: []
 };
 
 /* ---------------- toasts ---------------- */
@@ -56,9 +57,16 @@ function rescaleFont(dir) {
 }
 /* header step pills → navigate the 3-step workflow */
 function goStep(n) {
+  if (n > (S.stepUnlocked || 1)) { toast(T('toast_locked'), true); return; }
   if (n === 1) { backToIntake(); return; }
   if (n === 2) { if (S.resultMeta) { renderSchemes(); } else { toast(T('toast_busy'), true); } return; }
   if (n === 3) { if (S.activeSchemeId && S.catalog.length) { openSchemeDetail(S.activeSchemeId); } else if (S.resultMeta) { renderSchemes(); toast(T('toast_busy'), true); } else { toast(T('toast_busy'), true); } }
+}
+function updateStepTabs() {
+  [1, 2, 3].forEach(n => {
+    const el = $('stepPill' + n); if (!el) return;
+    el.classList.toggle('locked', n > (S.stepUnlocked || 1));
+  });
 }
 function rebuildPresets() {
   const row = $('presetRow'); if (!row) return;
@@ -89,6 +97,7 @@ function eraseSessionNow(manual) {
   S.profile = null; S.household = []; S.matched = []; S.catalog = [];
   S.resultMeta = null; S.activeSchemeId = null; S.activeSchemeObj = null;
   S.dossierCache = {}; S.serving = null;
+  S.stepUnlocked = 1; S.formTouched = []; updateStepTabs();
   SECURE.key = null; SECURE.sessionId = null; SECURE.ready = false; SECURE.failed = false;
   fetch('/api/session/wipe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sessionId: S.sessionId }) }).catch(() => {});
   if (manual) { toast(T('toast_wiped')); renderIntake(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }

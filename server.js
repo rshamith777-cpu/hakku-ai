@@ -239,6 +239,10 @@ app.post('/api/harness/discover', (req, res) => {
     if (readinessChecks.nameMatchAadhaar !== undefined) readinessChecks.nameMatched = readinessChecks.nameMatchAadhaar;
     if (readinessChecks.validRdCert !== undefined) readinessChecks.rdValid = readinessChecks.validRdCert;
     if (readinessChecks.mergedHousehold !== undefined) readinessChecks.hasMergedBankPassbook = readinessChecks.mergedHousehold;
+    /* fields the citizen explicitly edited in the form always win over AI extraction */
+    const ignoreKeys = Array.isArray(body && body.ignoreKeys)
+      ? body.ignoreKeys.filter(k => typeof k === 'string').slice(0, 24)
+      : [];
     const language = clampStr(body && body.language, 16) || 'English';
 
     const t0 = Date.now();
@@ -251,19 +255,24 @@ app.post('/api/harness/discover', (req, res) => {
           `Citizen situation: "${userMessage}"`
         );
         const parsed = JSON.parse(String(raw).replace(/```json|```/g, '').trim());
-        if (parsed && parsed.profile) updatedProfile = { ...updatedProfile, ...sanitizeProfile({ ...updatedProfile, ...parsed.profile }) };
+        if (parsed && parsed.profile) {
+          for (const k of ignoreKeys) delete parsed.profile[k];
+          if (Object.keys(parsed.profile).length) updatedProfile = { ...updatedProfile, ...sanitizeProfile({ ...updatedProfile, ...parsed.profile }) };
+        }
       } catch (e) {
         /* deterministic fallback parser — zero hallucination mandate */
         const msg = userMessage.toLowerCase();
         const ageMatch = msg.match(/\b(\d{2})\b/);
-        if (ageMatch) updatedProfile.age = clampNum(ageMatch[1], 1, 110, updatedProfile.age);
-        if (/(farmer|acre|kisan|crop|monsoon)/.test(msg)) { updatedProfile.occupation = 'farmer'; updatedProfile.isStudent = false; }
-        else if (/(student|college|b\.?tech|degree|phd|admission)/.test(msg)) { updatedProfile.occupation = 'student'; updatedProfile.isStudent = true; }
-        else if (/(unemployed|jobless|graduate)/.test(msg)) { updatedProfile.occupation = 'unemployed'; updatedProfile.isStudent = false; }
-        else if (/(driver|tailor|worker|vendor|shop|artisan|labour)/.test(msg)) { updatedProfile.occupation = 'worker'; updatedProfile.isStudent = false; }
-        if (/(girl|woman|female|widow|mother|she)/.test(msg)) updatedProfile.gender = 'female';
-        if (/(widow|vidhwa|ವಿಧವೆ)/.test(msg)) updatedProfile.isWidow = true;
-        if (/(bpl|below poverty|ಬಿಪಿಎಲ್)/.test(msg)) updatedProfile.rationCard = 'BPL';
+        if (ageMatch && !ignoreKeys.includes('age')) updatedProfile.age = clampNum(ageMatch[1], 1, 110, updatedProfile.age);
+        if (!ignoreKeys.includes('occupation')) {
+          if (/(farmer|acre|kisan|crop|monsoon)/.test(msg)) { updatedProfile.occupation = 'farmer'; updatedProfile.isStudent = false; }
+          else if (/(student|college|b\.?tech|degree|phd|admission)/.test(msg)) { updatedProfile.occupation = 'student'; updatedProfile.isStudent = true; }
+          else if (/(unemployed|jobless|graduate)/.test(msg)) { updatedProfile.occupation = 'unemployed'; updatedProfile.isStudent = false; }
+          else if (/(driver|tailor|worker|vendor|shop|artisan|labour)/.test(msg)) { updatedProfile.occupation = 'worker'; updatedProfile.isStudent = false; }
+        }
+        if (/(girl|woman|female|widow|mother|she)/.test(msg) && !ignoreKeys.includes('gender')) updatedProfile.gender = 'female';
+        if (/(widow|vidhwa|ವಿಧವೆ)/.test(msg) && !ignoreKeys.includes('isWidow')) updatedProfile.isWidow = true;
+        if (/(bpl|below poverty|ಬಿಪಿಎಲ್)/.test(msg) && !ignoreKeys.includes('rationCard')) updatedProfile.rationCard = 'BPL';
       }
     }
 

@@ -23,6 +23,8 @@ function openSchemeDetail(id, keepScroll) {
   S.activeSchemeId = id;
   S.activeSchemeObj = s;
   S.dossierMode = 'operator';
+  S.stepUnlocked = Math.max(S.stepUnlocked || 1, 3);
+  updateStepTabs();
   renderSchemeDetail();
   if (!keepScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
 }
