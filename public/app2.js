@@ -158,7 +158,7 @@ function renderIntake(preserveAlerts) {
           <label class="field-label" for="formCategory">${esc(T('f_cat'))}</label>
           <select id="formCategory" class="field-input mt-1.5">
             <option value="OBC">OBC</option><option value="SC">SC</option><option value="ST">ST</option>
-            <option value="GENERAL">General</option><option value="MINORITY">Minority</option>
+            <option value="GENERAL">${esc(T("cat_general"))}</option><option value="MINORITY">${esc(T("cat_minority"))}</option>
           </select>
         </div>
         <div>

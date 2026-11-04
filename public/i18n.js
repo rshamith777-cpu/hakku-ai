@@ -348,3 +348,63 @@ Hindi: {
   };
   Object.keys(V2).forEach(k => { window.HAKKU_I18N[k] = Object.assign(window.HAKKU_I18N[k] || {}, V2[k]); });
 })();
+/* HAKKU i18n merge block — full-language coverage + smart speech (EN/KN/HI) */
+(function () {
+  const V2 = {
+    English: {
+      cat_general: 'General', cat_minority: 'Minority',
+      lvl_central: 'CENTRAL', lvl_ka: 'KARNATAKA',
+      dl_ending: 'ENDING IN 41H', dl_new: 'NEW · 12 DAYS', dl_expired: 'EXPIRED TODAY', dl_active: 'ACTIVE',
+      p_dbt_year: 'Direct Benefit Transfer / Year', p_health: 'Health Shield', p_readiness: 'Readiness', p_unlocked: 'Unlocked',
+      p_matched: 'Matched schemes', p_scheme_col: 'Scheme', p_deadline: 'Deadline', p_docs_folder: 'Consolidated document folder', p_carry_all: 'CARRY ALL',
+      p_entitlement: 'Your Entitlement', p_counter_fee: 'Counter Fee', p_stat_ceiling: 'STATUTORY CEILING', p_filing_channel: 'Filing Channel', p_sla_timeline: 'SLA Timeline',
+      p_proof_checklist: 'Eligibility proof checklist', p_counter: 'Counter', p_authority: 'Authority', p_note: 'Note',
+      p_scan_open: 'Scan · official portal only',
+      p_scan_body: 'Scan the QR to open {HOST} — the only official application window for this scheme. Never pay a middleman, agent or facilitator.',
+      p_ack_line: 'The acknowledgement number must appear on your printed receipt.',
+      p_leakage: 'AT 0% LEAKAGE · NPCI DBT',
+      sp_vault_intro: 'Your direct benefit transfer is', sp_top: 'Top schemes', sp_readiness: 'Application readiness',
+      sp_risks_pending: 'risks need fixing before you file', sp_next: 'Next step',
+      sp_next_vault: 'open any scheme card for its full dossier and print slip.',
+      sp_scheme_gives: 'This scheme gives you', sp_apply_via: 'Apply through', sp_fee_is: 'Official fee is',
+      sp_sla_days: 'Decision within', sp_first_step: 'First step', sp_trap_warn: 'Beware'
+    },
+    Kannada: {
+      cat_general: 'ಸಾಮಾನ್ಯ', cat_minority: 'ಅಲ್ಪಸಂಖ್ಯಾತ',
+      lvl_central: 'ಕೇಂದ್ರ', lvl_ka: 'ಕರ್ನಾಟಕ',
+      dl_ending: '41 ಗಂ.ಯಲ್ಲಿ ಮುಕ್ತಾಯ', dl_new: 'ಹೊಸ · 12 ದಿನ', dl_expired: 'ಇಂದು ಮುಕ್ತಾಯ', dl_active: 'ಸಕ್ರಿಯ',
+      p_dbt_year: 'ವಾರ್ಷಿಕ ನೇರ ಲಾಭ ವರ್ಗಾವಣೆ', p_health: 'ಆರೋಗ್ಯ ಕವಚ', p_readiness: 'ಸಿದ್ಧತೆ', p_unlocked: 'ತೆರೆದಿದೆ',
+      p_matched: 'ಹೊಂದಿಕೆಯಾದ ಯೋಜನೆಗಳು', p_scheme_col: 'ಯೋಜನೆ', p_deadline: 'ಗಡುವು', p_docs_folder: 'ಸಂಯೋಜಿತ ದಸ್ತಾವೇಜು ಸಂಚಯ', p_carry_all: 'ಎಲ್ಲವನ್ನೂ ತನ್ನಿ',
+      p_entitlement: 'ನಿಮ್ಮ ಹಕ್ಕು', p_counter_fee: 'ಕೌಂಟರ್ ಶುಲ್ಕ', p_stat_ceiling: 'ಶಾಸನಬದ್ಧ ಗರಿಷ್ಠ', p_filing_channel: 'ಅರ್ಜಿ ಮಾರ್ಗ', p_sla_timeline: 'SLA ಕಾಲರೇಖೆ',
+      p_proof_checklist: 'ಅರ್ಹತಾ ಸಾಕ್ಷಿ ಪಟ್ಟಿ', p_counter: 'ಕೌಂಟರ್', p_authority: 'ಅಧಿಕಾರಿ', p_note: 'ಟಿಪ್ಪಣಿ',
+      p_scan_open: 'ಸ್ಕ್ಯಾನ್ · ಅಧಿಕೃತ ಪೋರ್ಟಲ್ ಮಾತ್ರ',
+      p_scan_body: 'ಕ್ಯೂಆರ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ {HOST} ತೆರೆಯಿರಿ — ಈ ಯೋಜನೆಗೆ ಇದು ಏಕೈಕ ಅಧಿಕೃತ ಅರ್ಜಿ ಪುಟ. ದಳ್ಳಾಳಿಗಳಿಗೆ ಹಣ ಕೊಡಬೇಡಿ.',
+      p_ack_line: 'ಅಂಗೀಕೃತಿ ಸಂಖ್ಯೆ ನಿಮ್ಮ ಮುದ್ರಿತ ರಶೀದಿಯಲ್ಲಿ ಇರಬೇಕು.',
+      p_leakage: '0% ದುರ್ಬಳಕೆ · NPCI DBT',
+      sp_vault_intro: 'ನಿಮ್ಮ ವಾರ್ಷಿಕ ನೇರ ಲಾಭ ವರ್ಗಾವಣೆ', sp_top: 'ಪ್ರಮುಖ ಯೋಜನೆಗಳು', sp_readiness: 'ಅರ್ಜಿ ಸಿದ್ಧತೆ',
+      sp_risks_pending: 'ಅಪಾಯಗಳನ್ನು ಮೊದಲು ಬಗೆಹರಿಸಿ', sp_next: 'ಮುಂದಿನ ಹಂತ',
+      sp_next_vault: 'ಯಾವುದೇ ಯೋಜನೆ ತೆರೆದು ಪೂರ್ಣ ಡಾಸಿಯರ್ ಮತ್ತು ಪ್ರಿಂಟ್ ಸ್ಲಿಪ್ ನೋಡಿ.',
+      sp_scheme_gives: 'ಈ ಯೋಜನೆ ನೀಡುತ್ತದೆ', sp_apply_via: 'ಮೂಲಕ ಅರ್ಜಿಸಿ', sp_fee_is: 'ಅಧಿಕೃತ ಶುಲ್ಕ',
+      sp_sla_days: 'ನಿರ್ಧಾರ ಒಳಗೆ', sp_first_step: 'ಮೊದಲ ಹಂತ', sp_trap_warn: 'ಎಚ್ಚರಿಕೆ'
+    },
+    Hindi: {
+      cat_general: 'सामान्य', cat_minority: 'अल्पसंख्यक',
+      lvl_central: 'केंद्र', lvl_ka: 'कर्नाटक',
+      dl_ending: '41 घं. में समाप्त', dl_new: 'नई · 12 दिन', dl_expired: 'आज समाप्त', dl_active: 'सक्रिय',
+      p_dbt_year: 'वार्षिक प्रत्यक्ष लाभ अंतरण', p_health: 'स्वास्थ्य कवच', p_readiness: 'तैयारी', p_unlocked: 'अनलॉक्ड',
+      p_matched: 'मिली योजनाएँ', p_scheme_col: 'योजना', p_deadline: 'अंतिम तिथि', p_docs_folder: 'समेकित दस्तावेज़ सेट', p_carry_all: 'सबी लाएँ',
+      p_entitlement: 'आपका अधिकार', p_counter_fee: 'काउंटर शुल्क', p_stat_ceiling: 'सांविधिक सीमा', p_filing_channel: 'आवेदन मार्ग', p_sla_timeline: 'SLA समयरेखा',
+      p_proof_checklist: 'पात्रता प्रमाण सूची', p_counter: 'काउंटर', p_authority: 'अधिकारी', p_note: 'टिप्पणी',
+      p_scan_open: 'स्कैन · केवल आधिकारिक पोर्टल',
+      p_scan_body: 'QR स्कैन करके {HOST} खोलें — इस योजना का एकमात्र आधिकारिक आवेदन पोर्टल। बिचौलिए को पैसे न दें।',
+      p_ack_line: 'पावती संख्या आपकी छपी रसीद पर अवश्य हो।',
+      p_leakage: '0% लीकेज · NPCI DBT',
+      sp_vault_intro: 'आपका वार्षिक प्रत्यक्ष लाभ अंतरण', sp_top: 'प्रमुख योजनाएँ', sp_readiness: 'आवेदन तैयारी',
+      sp_risks_pending: 'जोखिम पहले ठीक करें', sp_next: 'अगला कदम',
+      sp_next_vault: 'कोई भी योजना खोलें — पूरा डॉसियर और प्रिंट स्लिप मिलेगी।',
+      sp_scheme_gives: 'यह योजना देती है', sp_apply_via: 'के माध्यम से आवेदन', sp_fee_is: 'आधिकारिक शुल्क',
+      sp_sla_days: 'निर्णय भीतर', sp_first_step: 'पहला कदम', sp_trap_warn: 'सावधान'
+    }
+  };
+  Object.keys(V2).forEach(k => { window.HAKKU_I18N[k] = Object.assign(window.HAKKU_I18N[k] || {}, V2[k]); });
+})();

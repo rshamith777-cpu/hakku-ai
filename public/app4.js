@@ -61,7 +61,7 @@ function renderSchemeDetail() {
     <div class="grid lg:grid-cols-3 gap-4 items-stretch">
       <div class="sv-card p-5 lg:col-span-2 rise-in">
         <div class="flex flex-wrap gap-1.5 mb-2">
-          <span class="lvl-chip ${isCentral ? 'lvl-central' : 'lvl-ka'}">${esc(isCentral ? 'CENTRAL' : 'KARNATAKA')}</span>
+          <span class="lvl-chip ${isCentral ? 'lvl-central' : 'lvl-ka'}">${esc(T(isCentral ? 'lvl_central' : 'lvl_ka'))}</span>
           <span class="stamp ${dlCls} !py-0 text-[11.5px]">${esc(deadlineShort(s))}${expired ? ' · 23:59' : ''}</span>
           ${s.isHiddenGem ? '<span class="stamp stamp-ochre !py-0 text-[11.5px]">💎 GEM</span>' : ''}
           <span class="stamp stamp-sky !py-0 text-[11.5px]">${esc(T('sla_word'))} ${s.sakalaSlaDays || 21} ${esc(T('days_word'))}</span>
@@ -340,7 +340,7 @@ function printSlip() {
   const now = new Date().toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
   const citName = S.profile && S.profile.name ? S.profile.name : 'Citizen';
   const bagRows = BAG_BASE_KEYS.map(k => T(k)).concat((s.documents || []).slice(5));
-  const dl = s.deadlineStatus === 'ENDING_2_DAYS' ? '<span class="pill amb">ENDING IN 41H</span>' : s.deadlineStatus === 'EXPIRED_TODAY' ? '<span class="pill red">EXPIRED TODAY</span>' : s.deadlineStatus === 'NEW' ? '<span class="pill grn">NEW · 12 DAYS</span>' : '';
+  const dl = s.deadlineStatus === 'ENDING_2_DAYS' ? '<span class="pill amb">' + esc(T('dl_ending')) + '</span>' : s.deadlineStatus === 'EXPIRED_TODAY' ? '<span class="pill red">' + esc(T('dl_expired')) + '</span>' : s.deadlineStatus === 'NEW' ? '<span class="pill grn">' + esc(T('dl_new')) + '</span>' : '';
   const html =
     printMasthead('SOVEREIGN CITIZEN WELFARE DISCOVERY<br>SCHEME SLIP · ' + schemeCode(s) + ' · ACK ' + ack) +
     printDateline(
@@ -348,7 +348,7 @@ function printSlip() {
       esc(now) + ' IST · SES-' + esc(String(S.sessionId || '').toUpperCase().slice(0, 4)) + ' · PAGE 1 / 1'
     ) +
     '<div class="slip-head"><div>' +
-      '<div style="margin-bottom:6px"><span class="pill">' + esc(isCentral ? 'CENTRAL' : 'KARNATAKA') + '</span>' +
+      '<div style="margin-bottom:6px"><span class="pill">' + esc(T(isCentral ? 'lvl_central' : 'lvl_ka')) + '</span>' +
       '<span class="pill grn">SLA ' + (s.sakalaSlaDays || 21) + ' DAYS</span>' + dl +
       (s.isHiddenGem ? '<span class="pill amb">💎 GEM</span>' : '') + '</div>' +
       '<h2>' + esc(shortName(s)) + '</h2>' +
@@ -356,32 +356,32 @@ function printSlip() {
     '</div>' +
     '<div class="qrbox"><img src="' + esc(qr) + '" alt="QR · official portal"><div class="qrfb">OFFLINE — TYPE URL:<br>' + esc(portalHost) + '</div></div></div>' +
     '<div class="stat">' +
-      '<div class="lead"><div class="k">Your Entitlement</div><div class="big">+' + inr(s.annualValueINR) + '</div><div class="k" style="margin-top:4px">' + esc(isOneTime ? 'ONE-TIME CAPITAL GRANT' : 'PER YEAR · RECURRING DBT') + '</div></div>' +
-      '<div class="cell"><div class="k">Counter Fee</div><div class="v">' + esc(ch.statutoryFee || '₹0') + '</div><div class="k" style="margin-top:3px">STATUTORY CEILING</div></div>' +
-      '<div class="cell"><div class="k">Filing Channel</div><div class="v" style="font-size:11px;line-height:1.35">CH ' + (ch.channelNumber || 1) + '<br>' + esc(String(ch.channelName || 'GramaOne / CSC').split('/')[0].trim()) + '</div></div>' +
-      '<div class="cell"><div class="k">SLA Timeline</div><div class="v" style="font-size:11.5px">D' + days.join(' → D') + '</div></div>' +
+      '<div class="lead"><div class="k">' + esc(T('p_entitlement')) + '</div><div class="big">+' + inr(s.annualValueINR) + '</div><div class="k" style="margin-top:4px">' + esc(isOneTime ? 'ONE-TIME CAPITAL GRANT' : 'PER YEAR · RECURRING DBT') + '</div></div>' +
+      '<div class="cell"><div class="k">' + esc(T('p_counter_fee')) + '</div><div class="v">' + esc(ch.statutoryFee || '₹0') + '</div><div class="k" style="margin-top:3px">' + esc(T('p_stat_ceiling')) + '</div></div>' +
+      '<div class="cell"><div class="k">' + esc(T('p_filing_channel')) + '</div><div class="v" style="font-size:11px;line-height:1.35">CH ' + (ch.channelNumber || 1) + '<br>' + esc(String(ch.channelName || 'GramaOne / CSC').split('/')[0].trim()) + '</div></div>' +
+      '<div class="cell"><div class="k">' + esc(T('p_sla_timeline')) + '</div><div class="v" style="font-size:11.5px">D' + days.join(' → D') + '</div></div>' +
     '</div>' +
     '<div class="two">' +
       '<div class="col55">' +
-        '<div class="sec"><span>Eligibility proof checklist</span></div>' +
+        '<div class="sec"><span>' + esc(T('p_proof_checklist')) + '</span></div>' +
         '<div class="card pb">' + ((s.criteriaList || []).slice(0, 5).map(c => '<div class="tick"><span class="b">✓</span><span>' + esc(c) + '</span></div>').join('') || '<div class="tick"><span class="b">✓</span><span>Aadhaar + bank NPCI seeding active</span></div>') + '</div>' +
         '<div class="trap pb"><b>⚠ REJECTION TRAP:</b> ' + esc(s.commonRejectionTrap || 'Ensure NPCI DBT seeding is active before filing.') + '</div>' +
-        '<div class="sec"><span>Path A · file online yourself</span></div>' +
+        '<div class="sec"><span>' + esc(T('pathA')) + '</span></div>' +
         '<div class="card pb steps">' + ((s.selfApplySteps || ['Open the official portal', 'Complete Aadhaar OTP e-KYC', 'Upload documents and submit']).slice(0, 5).map((st, i) => '<div><i>' + String(i + 1).padStart(2, '0') + '</i><span>' + esc(st) + '</span></div>').join('')) + '<div><i>→</i><span class="mono" style="font-size:8.5px;font-weight:700">' + esc(portalHost) + '</span></div></div>' +
       '</div>' +
       '<div class="col45">' +
-        '<div class="sec"><span>Document bag · tick before visit</span></div>' +
+        '<div class="sec"><span>' + esc(T('bag_label')) + '</span></div>' +
         '<div class="card pb">' + bagRows.slice(0, 8).map(d => '<div class="tick"><span class="b">□</span><span>' + esc(d) + '</span></div>').join('') + '</div>' +
-        '<div class="sec"><span>Counter visit · Path B</span></div>' +
+        '<div class="sec"><span>' + esc(T('pathB')) + '</span></div>' +
         '<div class="card pb">' +
-          '<div class="kv"><span class="k">Counter</span><span>' + esc(ch.channelName || 'GramaOne / CSC') + '</span></div>' +
-          '<div class="kv"><span class="k">Authority</span><span>' + esc(ch.channelAuthority || 'Designated PSK Operator') + '</span></div>' +
-          '<div class="kv"><span class="k">Fee</span><span>' + esc(ch.statutoryFee || '₹0') + '</span></div>' +
-          '<div class="kv"><span class="k">Note</span><span style="font-size:9px;line-height:1.55;text-align:right">' + esc(ch.specialNote || 'Demand a printed government receipt.') + '</span></div>' +
+          '<div class="kv"><span class="k">' + esc(T('p_counter')) + '</span><span>' + esc(ch.channelName || 'GramaOne / CSC') + '</span></div>' +
+          '<div class="kv"><span class="k">' + esc(T('p_authority')) + '</span><span>' + esc(ch.channelAuthority || 'Designated PSK Operator') + '</span></div>' +
+          '<div class="kv"><span class="k">' + esc(T('counter_fee')) + '</span><span>' + esc(ch.statutoryFee || '₹0') + '</span></div>' +
+          '<div class="kv"><span class="k">' + esc(T('p_note')) + '</span><span style="font-size:9px;line-height:1.55;text-align:right">' + esc(ch.specialNote || 'Demand a printed government receipt.') + '</span></div>' +
         '</div>' +
       '</div>' +
     '</div>' +
-    '<div class="qrrow pb"><div style="flex:1"><div class="sec" style="margin-top:0"><span>Scan · official portal only</span><span class="mono">' + esc(ack) + '</span></div><div style="font-size:10px;line-height:1.65">Scan the QR to open <b>' + esc(portalHost) + '</b> — the only official application window for this scheme. Never pay a middleman, agent or "facilitator". The acknowledgement number must appear on your printed receipt.</div></div></div>' +
+    '<div class="qrrow pb"><div style="flex:1"><div class="sec" style="margin-top:0"><span>' + esc(T('p_scan_open')) + '</span><span class="mono">' + esc(ack) + '</span></div><div style="font-size:10px;line-height:1.65">' + esc(T('p_scan_body').replace('{HOST}', portalHost)) + '<br>' + esc(T('p_ack_line')) + '</div></div></div>' +
     printZeroBribe() +
     printFoot('HAKKU 5.0 · DIGITAL PUBLIC INFRASTRUCTURE · STATUTORY DISPATCH', 'HELPLINE 1902 · PII NEVER STORED · RAM-ONLY');
   printCompact(html, 'HAKKU Scheme Slip — ' + shortName(s));

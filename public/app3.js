@@ -369,7 +369,7 @@ function renderSchemes() {
         ${conflicts.map(c => {
           const cat = findCatalogByName(c.dropped);
           return `<div class="excl-row">
-            <span class="lvl-chip" style="background:#FEF2F2;color:#991B1B;border:1px solid #DC2626">EXCLUDED</span>
+            <span class="lvl-chip" style="background:#FEF2F2;color:#991B1B;border:1px solid #DC2626">${esc(T('excluded_chip'))}</span>
             <b class="text-[#111111]">${esc(shortName({ name: c.dropped }))}</b>
             <span class="text-[#565A5B] flex-1 min-w-0 truncate">${esc(String(c.rule).split(':').slice(1).join(':').trim() || c.rule)}</span>
             <span class="mono text-[13px] text-[#565A5B] whitespace-nowrap">${cat ? '+' + inr(cat.annualValueINR) : '—'}</span>
@@ -439,7 +439,7 @@ function renderSchemesGridOnly() {
     const isOneTime = /one[- ]time/i.test(s.payoutTag || '') || /laptop|solar|subsidy|grant/i.test(s.benefitType || '');
     return `<button class="scheme-card hover-spring" onclick="openSchemeDetail('${esc(s.id)}')">
       <div class="flex flex-wrap items-center gap-1.5">
-        <span class="lvl-chip ${isCentral ? 'lvl-central' : 'lvl-ka'}">${esc(isCentral ? 'CENTRAL' : 'KARNATAKA')}</span>
+        <span class="lvl-chip ${isCentral ? 'lvl-central' : 'lvl-ka'}">${esc(T(isCentral ? 'lvl_central' : 'lvl_ka'))}</span>
         <span class="stamp ${dlCls} !py-0 text-[11.5px]">${esc(deadlineShort(s))}</span>
         ${s.isHiddenGem ? '<span class="stamp stamp-ochre !py-0 text-[11.5px] ml-auto">💎 GEM</span>' : ''}
       </div>
@@ -463,10 +463,10 @@ function renderSchemesGridOnly() {
   }).join('');
 }
 function deadlineShort(s) {
-  if (s.deadlineStatus === 'ENDING_2_DAYS') return 'ENDING IN 41 H';
-  if (s.deadlineStatus === 'NEW') return 'NEW · 12 DAYS';
-  if (s.deadlineStatus === 'EXPIRED_TODAY') return 'EXPIRED TODAY';
-  return 'ACTIVE';
+  if (s.deadlineStatus === 'ENDING_2_DAYS') return T('dl_ending');
+  if (s.deadlineStatus === 'NEW') return T('dl_new');
+  if (s.deadlineStatus === 'EXPIRED_TODAY') return T('dl_expired');
+  return T('dl_active');
 }
 
 /* ---------------- bundle slips manifest (printable) ---------------- */
@@ -499,16 +499,16 @@ function printBundleManifest() {
       esc(now) + ' IST · SES-' + esc(String(S.sessionId || '').toUpperCase().slice(0, 4)) + ' · PAGE 1 / 1'
     ) +
     '<div class="stat">' +
-      '<div class="lead"><div class="k">Direct Benefit Transfer / Year</div><div class="big">' + inr(meta.totalDirectAnnualINR) + '</div><div class="k" style="margin-top:4px">AT 0% LEAKAGE · NPCI DBT</div></div>' +
+      '<div class="lead"><div class="k">' + esc(T('p_dbt_year')) + '</div><div class="big">' + inr(meta.totalDirectAnnualINR) + '</div><div class="k" style="margin-top:4px">' + esc(T('p_leakage')) + '</div></div>' +
       '<div class="cell"><div class="k">5-Year Wealth</div><div class="v">' + inr(meta.fiveYearWealthINR) + '</div></div>' +
-      '<div class="cell"><div class="k">Health Shield</div><div class="v">' + inr(meta.totalHealthCoverINR) + '</div></div>' +
-      '<div class="cell"><div class="k">Readiness</div><div class="v">' + (readiness || 0) + '%</div></div>' +
-      '<div class="cell"><div class="k">Unlocked</div><div class="v">' + meta.schemeCount + ' / ' + meta.totalCatalogCount + '</div></div>' +
+      '<div class="cell"><div class="k">' + esc(T('p_health')) + '</div><div class="v">' + inr(meta.totalHealthCoverINR) + '</div></div>' +
+      '<div class="cell"><div class="k">' + esc(T('p_readiness')) + '</div><div class="v">' + (readiness || 0) + '%</div></div>' +
+      '<div class="cell"><div class="k">' + esc(T('p_unlocked')) + '</div><div class="v">' + meta.schemeCount + ' / ' + meta.totalCatalogCount + '</div></div>' +
     '</div>' +
-    '<div class="sec"><span>Matched schemes</span><span>' + list.length + ' OF ' + meta.totalCatalogCount + ' SCANNED</span></div>' +
-    '<table class="st"><thead><tr><th>#</th><th style="width:46%">Scheme</th><th style="width:24%">Channel · Fee</th><th style="width:14%">Deadline</th><th class="num">+₹ / Year</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+    '<div class="sec"><span>' + esc(T('p_matched')) + '</span><span>' + list.length + ' OF ' + meta.totalCatalogCount + ' SCANNED</span></div>' +
+    '<table class="st"><thead><tr><th>#</th><th style="width:46%">' + esc(T('p_scheme_col')) + '</th><th style="width:24%">Channel · Fee</th><th style="width:14%">' + esc(T('p_deadline')) + '</th><th class="num">+₹ / Year</th></tr></thead><tbody>' + rows + '</tbody></table>' +
     excl +
-    (docs.length ? '<div class="sec"><span>Consolidated document folder</span><span>CARRY ALL</span></div><div class="docs pb">' + docs.map(d => '<span>' + esc(d) + '</span>').join('') + '</div>' : '') +
+    (docs.length ? '<div class="sec"><span>' + esc(T('p_docs_folder')) + '</span><span>' + esc(T('p_carry_all')) + '</span></div><div class="docs pb">' + docs.map(d => '<span>' + esc(d) + '</span>').join('') + '</div>' : '') +
     printZeroBribe() +
     printFoot('PHASE A→C · DAY 0–10 · GRAMAONE / RSK / INO / BOCW COUNTERS', 'HELPLINE 1902 · PII NEVER STORED · RAM-ONLY');
   printCompact(html, 'HAKKU Entitlement Manifest — ' + citName);

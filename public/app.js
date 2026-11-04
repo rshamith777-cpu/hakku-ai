@@ -208,19 +208,32 @@ function stopSpeech(silent) {
   if (btn) { btn.classList.remove('speaking-pulse'); const lb = $('listenLabel'); if (lb) lb.textContent = T('listen'); const ic = $('listenIcon'); if (ic) ic.textContent = '🔊'; }
 }
 function buildSpeechForScheme(s) {
-  const parts = [
-    (T('slip')).replace(/[🖨️]/g, ''),
-    s.name || '',
-    (s.ministry ? (s.level === 'Central' ? T('jur_central') : T('jur_ka')) + ': ' + s.ministry : ''),
-    T('fee_official') + ((s.channel && s.channel.statutoryFee) || '₹0–₹30'),
-    (s.benefitSummary || '')
-  ];
-  return parts.filter(Boolean).join('. ');
+  const ch = s.channel || {};
+  const isOneTime = /one[- ]time/i.test(s.payoutTag || '') || /laptop|solar|subsidy|grant/i.test(s.benefitType || '');
+  const parts = [];
+  parts.push(shortName(s) + '.');
+  parts.push(T('sp_scheme_gives') + ' ' + inr(s.annualValueINR) + ' ' + (isOneTime ? T('one_time_word') : T('per_year_word')) + '.');
+  parts.push(T('sp_apply_via') + ' ' + String(ch.channelName || 'GramaOne').split('/')[0].trim() + '. ' + T('sp_fee_is') + ' ' + (ch.statutoryFee || '₹0') + '.');
+  parts.push(T('sp_sla_days') + ' ' + (s.sakalaSlaDays || 21) + ' ' + T('days_word') + '.');
+  if (s.deadlineStatus === 'ENDING_2_DAYS' || s.deadlineStatus === 'EXPIRED_TODAY') parts.push(T('sp_trap_warn') + ': ' + deadlineShort(s) + '.');
+  const step = (s.selfApplySteps || [])[0];
+  if (step) parts.push(T('sp_first_step') + ': ' + step + '.');
+  return parts.join(' ');
 }
 function buildSpeechForVault() {
   if (!S.resultMeta) return T('speech_done');
-  return T('v2_hi') + ' ' + (S.profile && S.profile.name ? S.profile.name : '') + '. ' + inr(S.resultMeta.totalDirectAnnualINR) + ' ' + T('dbt_year') + '. ' +
-    (S.matched.length || 0) + ' ' + T('schemes_word') + '. ' + T('speech_done');
+  const meta = S.resultMeta;
+  const parts = [];
+  parts.push(T('v2_hi') + ' ' + (S.profile && S.profile.name ? S.profile.name : '') + '.');
+  parts.push(T('sp_vault_intro') + ' ' + inr(meta.totalDirectAnnualINR) + ' ' + T('per_year_word') + '.');
+  parts.push((S.matched.length || 0) + ' ' + T('schemes_word') + '.');
+  const top = (S.matched || []).slice(0, 3);
+  if (top.length) parts.push(T('sp_top') + ': ' + top.map(s => shortName(s) + ' ' + inr(s.annualValueINR)).join(', ') + '.');
+  parts.push(T('sp_readiness') + ' ' + ((meta.readinessAudit || {}).readinessScore || 0) + '%.');
+  const risks = ((meta.readinessAudit || {}).rejectionRisks || []).filter(r => r.severity === 'CRITICAL' || r.severity === 'HIGH');
+  if (risks.length) parts.push(risks.length + ' ' + T('sp_risks_pending') + '.');
+  parts.push(T('sp_next') + ': ' + T('sp_next_vault'));
+  return parts.join(' ');
 }
 
 /* ---------------- voice dictation (mic) ---------------- */

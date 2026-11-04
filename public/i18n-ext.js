@@ -219,3 +219,45 @@ window.HAKKU_I18N.Telugu = {
   };
   Object.keys(V2).forEach(k => { window.HAKKU_I18N[k] = Object.assign(window.HAKKU_I18N[k] || {}, V2[k]); });
 })();
+/* HAKKU i18n merge block — full-language coverage + smart speech (TA/TE) */
+(function () {
+  const V2 = {
+    Tamil: {
+      cat_general: 'பொது', cat_minority: 'சிறுபான்மை',
+      lvl_central: 'மத்திய', lvl_ka: 'கர்நாடகா',
+      dl_ending: '41 மணி நேரத்தில் முடிவு', dl_new: 'புதியது · 12 நாட்கள்', dl_expired: 'இன்று முடிவு', dl_active: 'செயலில்',
+      p_dbt_year: 'வருடாந்திர நேரடி நலப்பண பரிமாற்றம்', p_health: 'சுகாதாரக் கவசம்', p_readiness: 'தயார்நிலை', p_unlocked: 'திறக்கப்பட்டது',
+      p_matched: 'பொருந்திய திட்டங்கள்', p_scheme_col: 'திட்டம்', p_deadline: 'காலவரம்பு', p_docs_folder: 'ஒருங்கிணைந்த ஆவணத் தொகுப்பு', p_carry_all: 'அனைத்தையும் எடுத்து வாருங்கள்',
+      p_entitlement: 'உங்கள் உரிமை', p_counter_fee: 'கவுண்டர் கட்டணம்', p_stat_ceiling: 'சட்டப்படி வரம்பு', p_filing_channel: 'விண்ணப்ப வழி', p_sla_timeline: 'SLA காலவரிசை',
+      p_proof_checklist: 'தகுதி ஆதாரப் பட்டியல்', p_counter: 'கவுண்டர்', p_authority: 'அதிகாரி', p_note: 'குறிப்பு',
+      p_scan_open: 'ஸ்கேன் · அதிகாரப்பூர்வ தளம் மட்டும்',
+      p_scan_body: 'QR-ஐ ஸ்கேன் செய்து {HOST} திறக்கவும் — இத்திட்டத்திற்கான ஒரே அதிகாரப்பூர்வ விண்ணப்ப தளம். தரகர்களுக்கு பணம் கொடுக்க வேண்டாம்.',
+      p_ack_line: 'அறிவிப்பு எண் உங்கள் அச்சு ரசீதில் இருக்க வேண்டும்.',
+      p_leakage: '0% கசிவு · NPCI DBT',
+      sp_vault_intro: 'உங்கள் வருடாந்திர நேரடி நலப்பண பரிமாற்றம்', sp_top: 'முக்கிய திட்டங்கள்', sp_readiness: 'விண்ணப்ப தயார்நிலை',
+      sp_risks_pending: 'அபாயங்களை முதலில் சரிசெய்யவும்', sp_next: 'அடுத்த படி',
+      sp_next_vault: 'எந்தத் திட்ட அட்டையையும் திறந்து முழு டாசியர் மற்றும் அச்சு ஸ்லிப்பைப் பாருங்கள்.',
+      sp_scheme_gives: 'இந்தத் திட்டம் தருகிறது', sp_apply_via: 'வழியாக விண்ணப்பிக்கவும்', sp_fee_is: 'அதிகாரப்பூர்வ கட்டணம்',
+      sp_sla_days: 'தீர்மானம் உள்ளே', sp_first_step: 'முதல் படி', sp_trap_warn: 'எச்சரிக்கை'
+    },
+    Telugu: {
+      cat_general: 'సాధారణ', cat_minority: 'మైనారిటీ',
+      lvl_central: 'కేంద్ర', lvl_ka: 'కర్ణాటక',
+      dl_ending: '41 గం.లో ముగింపు', dl_new: 'కొత్తది · 12 రోజులు', dl_expired: 'ఈరోజు ముగింపు', dl_active: 'క్రియాశీలక',
+      p_dbt_year: 'వార్షిక ప్రత్యక్ష ప్రయోజన బదిలీ', p_health: 'ఆరోగ్య కవచం', p_readiness: 'సిద్ధత', p_unlocked: 'అన్‌లాక్',
+      p_matched: 'సరిపోయిన పథకాలు', p_scheme_col: 'పథకం', p_deadline: 'గడువు', p_docs_folder: 'సంయుక్త పత్రాల సముదాయం', p_carry_all: 'అన్నీ తీసుకరండి',
+      p_entitlement: 'మీ హక్కు', p_counter_fee: 'కౌంటర్ రుసుము', p_stat_ceiling: 'చట్టపరిమితి', p_filing_channel: 'దాఖలు మార్గం', p_sla_timeline: 'SLA కాలక్రమం',
+      p_proof_checklist: 'అర్హత రుజువు జాబితా', p_counter: 'కౌంటర్', p_authority: 'అధికారి', p_note: 'గమనిక',
+      p_scan_open: 'స్కాన్ · అధికారిక పోర్టల్ మాత్రమే',
+      p_scan_body: 'QR స్కాన్ చేసి {HOST} తెరవండి — ఈ పథకానికి ఇదే ఏకైక అధికారిక దరఖాస్తు పోర్టల్. దళారీలకు డబ్బులు ఇవ్వకండి.',
+      p_ack_line: 'అంగీకార సంఖ్య మీ ముద్రిత రశీదులో తప్పనిసరిగా ఉండాలి.',
+      p_leakage: '0% లీకేజీ · NPCI DBT',
+      sp_vault_intro: 'మీ వార్షిక ప్రత్యక్ష ప్రయోజన బదిలీ', sp_top: 'ముఖ్య పథకాలు', sp_readiness: 'దాఖలు సిద్ధత',
+      sp_risks_pending: 'రిస్క్‌లు ముందుగా సరిచేయాలి', sp_next: 'తదుపరి దశ',
+      sp_next_vault: 'ఏదైనా పథక కార్డు తెరిచి పూర్తి డాసియర్ మరియు ప్రింట్ స్లిప్ చూడండి.',
+      sp_scheme_gives: 'ఈ పథకం ఇస్తుంది', sp_apply_via: 'ద్వారా దరఖాస్తు', sp_fee_is: 'అధికారిక రుసుము',
+      sp_sla_days: 'నిర్ణయం లోపల', sp_first_step: 'మొదటి దశ', sp_trap_warn: 'జాగ్రత్త'
+    }
+  };
+  Object.keys(V2).forEach(k => { window.HAKKU_I18N[k] = Object.assign(window.HAKKU_I18N[k] || {}, V2[k]); });
+})();
