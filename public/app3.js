@@ -164,11 +164,6 @@ async function runHarness(userMessage, profile) {
     if (status) status.classList.add('hidden');
   }
 }
-    S.busy = false;
-    if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
-    if (status) status.classList.add('hidden');
-  }
-}
 const BUNDLE_MAP = { BUNDLE_COLLEGE: 'ananya', BUNDLE_FARM_UPGRADE: 'ramesh', BUNDLE_WIDOW_EMERGENCY: 'lakshmi', BUNDLE_WORKER_UPGRADE: 'kiran' };
 function selectBundleAndSearch(bundleId) {
   if (bundleId === 'BUNDLE_MATERNITY_BIRTH') {

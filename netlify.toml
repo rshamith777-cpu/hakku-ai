@@ -25,7 +25,12 @@
   to = "/index.html"
   status = 200
 
-# Security Headers
+# Security and Cache Headers
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
 [[headers]]
   for = "/*"
   [headers.values]
