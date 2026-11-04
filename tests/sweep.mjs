@@ -39,7 +39,13 @@ function oracleGates(p, s) {
   return true;
 }
 
-function expectedMatch(members) {
+function expectedMatch(membersInput) {
+  const members = [membersInput[0]];
+  for (const m of membersInput.slice(1)) {
+    if (!m || typeof m !== 'object') continue;
+    if ((m.name || 'Citizen') === (membersInput[0].name || 'Citizen') && Number(m.age || 25) === Number(membersInput[0].age || 25)) continue;
+    members.push(m);
+  }
   const kept = new Map();
   const hhGroups = new Set();
   for (const m of members) {
@@ -154,7 +160,7 @@ const failures = [];
 const stats = { schemes: [], annual: [], engineMs: [], kaOnly: 0, otherState: 0 };
 let deterministic = true;
 
-function failCase(label, why) { fail++; failures.push(`[${label}] ${why}`); }
+function failCase(label, why) { failures.push(`[${label}] ${why}`); }
 
 async function discover(payload) {
   const r = await fetch(BASE + '/api/harness/discover', {
@@ -165,6 +171,7 @@ async function discover(payload) {
 }
 
 for (const t of profiles) {
+  const before = failures.length;
   const members = [t.p, ...(t.hh || [])];
   const payload = { userMessage: t.msg, currentProfile: t.p, householdMembers: t.hh || [], readinessChecks: t.checks, language: 'English' };
   let res;
@@ -243,17 +250,17 @@ for (const t of profiles) {
   stats.engineMs.push(d.engineMs);
 
   /* determinism probe on first 6 */
-  if (pass + fail < 6) {
+  if (before === 0 && pass < 6) {
     const d2 = (await discover(payload)).data;
     const a = m.map(s => s.id).sort().join(','), b = (d2.matchedSchemes || []).map(s => s.id).sort().join(',');
     if (a !== b || d2.totalDirectAnnualINR !== d.totalDirectAnnualINR) { deterministic = false; failCase(t.label, 'NON-DETERMINISTIC'); }
   }
 
-  if (!failures.length || failures[failures.length - 1] && !failures[failures.length - 1].startsWith(`[${t.label}]`)) pass++;
+  if (failures.length === before) pass++; else fail++;
 }
 
 /* bundle integrity */
-const bundles = JSON.stringify(catalog) && (await discover({ userMessage: '', currentProfile: handpicked[2].p, readinessChecks: { npciSeeded: true, bankAccountType: 'regular' } })).data;
+const bundles = (await discover({ userMessage: '', currentProfile: handpicked[2].p, readinessChecks: { npciSeeded: true, bankAccountType: 'regular' } })).data;
 for (const b of (bundles.lifeEventBundles || [])) {
   for (const id of b.schemeIds) if (!byId[id]) failCase('bundle-integrity', `bundle ${b.id} references unknown scheme ${id}`);
 }

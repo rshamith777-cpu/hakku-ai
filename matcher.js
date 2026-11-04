@@ -222,9 +222,14 @@ function evaluateMember(profile, schemes) {
 
 function matchCitizenProfile(profile, householdMembers = [], readinessChecks = {}) {
   const schemes = loadSchemes();
-  const membersToScan = householdMembers && householdMembers.length > 0
-    ? householdMembers
-    : [profile];
+  /* Primary citizen is ALWAYS scanned; household members are scanned in addition,
+     deduped against the primary so the head is never double-counted or dropped. */
+  const membersToScan = [profile];
+  for (const m of (householdMembers || [])) {
+    if (!m || typeof m !== 'object') continue;
+    if ((m.name || 'Citizen') === (profile.name || 'Citizen') && Number(m.age || 25) === Number(profile.age || 25)) continue;
+    membersToScan.push(m);
+  }
 
   let allMatched = [];
   let allConflicts = [];
