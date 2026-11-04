@@ -9,19 +9,26 @@ function loadSchemes() {
     if (Array.isArray(cachedSchemes) && cachedSchemes.length) return cachedSchemes;
   } catch (e1) {}
   try {
+    cachedSchemes = require('../data/schemes.json');
+    if (Array.isArray(cachedSchemes) && cachedSchemes.length) return cachedSchemes;
+  } catch (e2) {}
+  try {
     const candidates = [
       path.join(__dirname, 'data', 'schemes.json'),
       path.join(__dirname, '..', 'data', 'schemes.json'),
       path.join(__dirname, '..', '..', 'data', 'schemes.json'),
-      path.join(process.cwd(), 'data', 'schemes.json')
+      path.join(process.cwd(), 'data', 'schemes.json'),
+      path.join(process.cwd(), 'netlify', 'functions', 'data', 'schemes.json'),
+      '/var/task/data/schemes.json',
+      '/var/task/netlify/functions/data/schemes.json'
     ];
     for (const p of candidates) {
       if (fs.existsSync(p)) {
         cachedSchemes = JSON.parse(fs.readFileSync(p, 'utf-8'));
-        return cachedSchemes;
+        if (Array.isArray(cachedSchemes) && cachedSchemes.length) return cachedSchemes;
       }
     }
-  } catch (e2) {}
+  } catch (e3) {}
   return cachedSchemes || [];
 }
 

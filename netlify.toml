@@ -6,7 +6,7 @@
 
 [functions]
   node_bundler = "esbuild"
-  included_files = ["data/**", "matcher.js", "server.js"]
+  included_files = ["data/**", "netlify/functions/data/**", "matcher.js", "server.js"]
 
 # API and Healthcheck rewrites to Serverless Function
 [[redirects]]
