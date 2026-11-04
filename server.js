@@ -446,4 +446,9 @@ function startServer(port) {
   process.on('SIGINT', shutdown);
   process.on('SIGTERM', shutdown);
 }
-startServer(PORT);
+
+module.exports = app;
+
+if (require.main === module) {
+  startServer(PORT);
+}
