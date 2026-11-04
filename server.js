@@ -5,6 +5,77 @@ const crypto = require('crypto');
 const path = require('path');
 const { matchCitizenProfile, LIFE_EVENT_BUNDLES } = require('./matcher');
 
+/* ---- server-side data localization (scheme catalog + dynamic strings) ---- */
+const LANG_PACKS = {};
+for (const [name, code] of [['Kannada', 'kn'], ['Hindi', 'hi'], ['Tamil', 'ta'], ['Telugu', 'te']]) {
+  const pack = {};
+  for (let n = 1; n <= 6; n++) {
+    try { Object.assign(pack, require('./data/i18n-' + code + '-' + n)); } catch (e) { /* part optional */ }
+  }
+  if (Object.keys(pack).length) LANG_PACKS[name] = pack;
+}
+function tr(str, lang) {
+  if (!str || !lang || lang === 'English') return str;
+  const pack = LANG_PACKS[lang];
+  if (!pack) return str;
+  if (pack[str]) return pack[str];
+  let m = /^Age (\d+)$/.exec(str);
+  if (m) return String(pack.__age || str).replace('{AGE}', m[1]);
+  m = /^Income ≤ ₹([\d,]+)$/.exec(str);
+  if (m) return String(pack.__income || str).replace('{AMT}', '₹' + m[1]);
+  m = /^High-Value Grant \((.+)\) Exceeds Jan Dhan ₹50k Cap$/.exec(str);
+  if (m) return String(pack.__pmjdy || str).replace('{NAME}', m[1]);
+  return str;
+}
+function trArr(arr, lang) { return (arr || []).map(x => tr(x, lang)); }
+function trConflict(rule, lang) {
+  const pack = LANG_PACKS[lang];
+  if (!pack || !rule) return rule;
+  let m = /Statutory Anti-Double-Dipping \((.+)\): Auto-selected higher payout \(\+₹([\d,]+)\/yr\)\./.exec(rule);
+  if (m) return String(pack.__conflict_up || rule).replace('{GROUP}', m[1]).replace('{AMT}', '₹' + m[2]);
+  m = /Statutory Anti-Double-Dipping \((.+)\): Retained higher\/primary benefit \((.+)\)\./.exec(rule);
+  if (m) return String(pack.__conflict_keep || rule).replace('{GROUP}', m[1]).replace('{NAME}', m[2]);
+  return rule;
+}
+function localizeScheme(s, lang) {
+  if (!lang || lang === 'English' || !LANG_PACKS[lang]) return s;
+  const ch = s.channel || {};
+  return {
+    ...s,
+    name: tr(s.name, lang),
+    benefitSummary: tr(s.benefitSummary, lang),
+    payoutTag: tr(s.payoutTag, lang),
+    commonRejectionTrap: tr(s.commonRejectionTrap, lang),
+    statutoryRule: tr(s.statutoryRule, lang),
+    deadlineLabel: tr(s.deadlineLabel, lang),
+    matchReasons: trArr(s.matchReasons, lang),
+    criteriaList: trArr(s.criteriaList, lang),
+    selfApplySteps: trArr(s.selfApplySteps, lang),
+    documents: trArr(s.documents, lang),
+    channel: { ...ch, channelName: tr(ch.channelName, lang), channelAuthority: tr(ch.channelAuthority, lang), specialNote: tr(ch.specialNote, lang) }
+  };
+}
+function localizePayload(data, lang) {
+  if (!lang || lang === 'English' || !LANG_PACKS[lang]) return data;
+  return {
+    ...data,
+    matchedSchemes: (data.matchedSchemes || []).map(s => localizeScheme(s, lang)),
+    allCatalogSchemes: (data.allCatalogSchemes || []).map(s => localizeScheme(s, lang)),
+    notifications: (data.notifications || []).map(n => {
+      const ch = n.channel || {};
+      return { ...n, name: tr(n.name, lang), payoutTag: tr(n.payoutTag, lang), label: tr(n.label, lang), channel: { ...ch, channelName: tr(ch.channelName, lang), channelAuthority: tr(ch.channelAuthority, lang), specialNote: tr(ch.specialNote, lang) } };
+    }),
+    statutoryConflictsResolved: (data.statutoryConflictsResolved || []).map(c => ({ ...c, kept: tr(c.kept, lang), dropped: tr(c.dropped, lang), rule: trConflict(c.rule, lang) })),
+    consolidatedDocuments: trArr(data.consolidatedDocuments, lang),
+    prerequisiteSequence: (data.prerequisiteSequence || []).map(p => ({ ...p, phase: tr(p.phase, lang), timing: tr(p.timing, lang), action: tr(p.action, lang), details: tr(p.details, lang) })),
+    readinessAudit: {
+      ...data.readinessAudit,
+      rejectionRisks: ((data.readinessAudit || {}).rejectionRisks || []).map(r => ({ ...r, title: tr(r.title, lang), fix: tr(r.fix, lang) }))
+    },
+    lifeEventBundles: (data.lifeEventBundles || []).map(b => ({ ...b, name: tr(b.name, lang), tagline: tr(b.tagline, lang), description: tr(b.description, lang), badge: tr(b.badge, lang) }))
+  };
+}
+
 const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', 1);
@@ -244,10 +315,12 @@ function buildSummary(lang, m) {
 app.get('/api/harness/notices', (req, res) => {
   try {
     const { loadSchemes, getChannelForScheme } = require('./matcher');
+    const lang = String(req.query.lang || 'English');
     const schemes = loadSchemes();
     const notifications = schemes
       .filter(s => ['NEW', 'ENDING_2_DAYS', 'EXPIRED_TODAY'].includes(s.deadlineStatus))
-      .map(s => ({ id: s.id, name: s.name, status: s.deadlineStatus, label: s.deadlineLabel, annualValueINR: s.annualValueINR, payoutTag: s.payoutTag, channel: getChannelForScheme(s) }));
+      .map(s => ({ id: s.id, name: s.name, status: s.deadlineStatus, label: s.deadlineLabel, annualValueINR: s.annualValueINR, payoutTag: s.payoutTag, channel: getChannelForScheme(s) }))
+      .map(n => ({ ...n, name: tr(n.name, lang), label: tr(n.label, lang), payoutTag: tr(n.payoutTag, lang) }));
     res.json({ notifications, count: notifications.length });
   } catch (e) { res.json({ notifications: [], count: 0 }); }
 });
@@ -316,7 +389,8 @@ app.post('/api/harness/discover', (req, res) => {
     }
 
     const t1 = Date.now();
-    const matchResult = matchCitizenProfile(updatedProfile, household, readinessChecks);
+    const rawMatch = matchCitizenProfile(updatedProfile, household, readinessChecks);
+    const matchResult = localizePayload(rawMatch, language);
     const engineMs = Date.now() - t1;
 
     return {

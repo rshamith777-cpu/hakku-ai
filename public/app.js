@@ -181,7 +181,7 @@ function speakText(text) {
   const voices = synth.getVoices() || [];
   const voice = voices.find(v => v.lang && v.lang.toLowerCase().replace('_', '-').startsWith(lang.slice(0, 2))) || null;
   SPEECH.chunks = clean.split(/(?<=[.!?।])\s+/).reduce((acc, w, i) => {
-    const k = Math.floor(i / 45);
+    const k = Math.floor(i / 28);
     (acc[k] = acc[k] || []).push(w); return acc;
   }, []).map(c => c.join(' '));
   SPEECH.idx = 0;
@@ -190,19 +190,28 @@ function speakText(text) {
   if (btn) { btn.classList.add('speaking-pulse'); const lb = $('listenLabel'); if (lb) lb.textContent = T('stop'); const ic = $('listenIcon'); if (ic) ic.textContent = '⏹️'; }
   const speakNext = () => {
     if (!SPEECH.on || SPEECH.idx >= SPEECH.chunks.length) { stopSpeech(true); return; }
-    const u = new SpeechSynthesisUtterance(SPEECH.chunks[SPEECH.idx++]);
+    const txt = SPEECH.chunks[SPEECH.idx++];
+    const u = new SpeechSynthesisUtterance(txt);
+    SPEECH.u = u; /* keep reference — Chrome GC kills utterance and onend never fires */
     u.lang = voice ? voice.lang : lang;
     if (voice) u.voice = voice;
     u.rate = 0.95; u.pitch = 1;
-    u.onend = () => speakNext();
-    u.onerror = ev => { const err = ev && ev.error; if (err && err !== 'interrupted' && err !== 'canceled') toast('🔊 ' + err, true); stopSpeech(true); };
+    let watchdog = null, done = false;
+    const finish = () => { if (done) return; done = true; if (watchdog) { clearTimeout(watchdog); watchdog = null; } speakNext(); };
+    u.onend = finish;
+    u.onerror = ev => {
+      const err = ev && ev.error;
+      if (err === 'canceled' || err === 'interrupted') { done = true; return; }
+      finish();
+    };
+    watchdog = setTimeout(() => { try { synth.cancel(); } catch (e) { } finish(); }, Math.max(6000, txt.length * 120));
     synth.speak(u);
   };
   setTimeout(speakNext, 60);
 }
 function stopSpeech(silent) {
   SPEECH.on = false;
-  SPEECH.chunks = []; SPEECH.idx = 0;
+  SPEECH.chunks = []; SPEECH.idx = 0; SPEECH.u = null;
   try { window.speechSynthesis.cancel(); } catch (e) { /* ok */ }
   const btn = $('listenBtn');
   if (btn) { btn.classList.remove('speaking-pulse'); const lb = $('listenLabel'); if (lb) lb.textContent = T('listen'); const ic = $('listenIcon'); if (ic) ic.textContent = '🔊'; }
