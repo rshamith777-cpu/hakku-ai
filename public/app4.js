@@ -348,40 +348,40 @@ function printSlip() {
       esc(now) + ' IST · SES-' + esc(String(S.sessionId || '').toUpperCase().slice(0, 4)) + ' · PAGE 1 / 1'
     ) +
     '<div class="slip-head"><div>' +
-      '<div style="margin-bottom:5px"><span class="pill">' + esc(isCentral ? 'CENTRAL' : 'KARNATAKA') + '</span>' +
+      '<div style="margin-bottom:6px"><span class="pill">' + esc(isCentral ? 'CENTRAL' : 'KARNATAKA') + '</span>' +
       '<span class="pill grn">SLA ' + (s.sakalaSlaDays || 21) + ' DAYS</span>' + dl +
       (s.isHiddenGem ? '<span class="pill amb">💎 GEM</span>' : '') + '</div>' +
       '<h2>' + esc(shortName(s)) + '</h2>' +
-      '<div class="sub" style="margin-top:3px">' + esc(s.ministry || '') + ' · ' + esc(s.statutoryRule || '') + '</div>' +
+      '<div class="sub" style="margin-top:4px">' + esc(s.ministry || '') + ' · ' + esc(s.statutoryRule || '') + '</div>' +
     '</div>' +
-    '<div class="qrbox"><img src="' + esc(qr) + '" alt="QR · official portal"></div></div>' +
-    '<div class="hero">' +
-      '<div class="lead"><div class="k">Your Entitlement</div><div class="big accent">+' + inr(s.annualValueINR) + '</div><div class="k" style="margin-top:3px">' + esc(isOneTime ? 'ONE-TIME CAPITAL GRANT' : 'PER YEAR · RECURRING DBT') + '</div></div>' +
-      '<div class="cell"><div class="k">Counter Fee</div><div class="v">' + esc(ch.statutoryFee || '₹0') + '</div><div class="k" style="margin-top:2px">STATUTORY CEILING</div></div>' +
-      '<div class="cell"><div class="k">Filing Channel</div><div class="v" style="font-size:10.5px;line-height:1.35">CH ' + (ch.channelNumber || 1) + '<br>' + esc(String(ch.channelName || 'GramaOne / CSC').split('/')[0].trim()) + '</div></div>' +
-      '<div class="cell"><div class="k">SLA Timeline</div><div class="v" style="font-size:11px">D' + days.join(' → D') + '</div></div>' +
+    '<div class="qrbox"><img src="' + esc(qr) + '" alt="QR · official portal"><div class="qrfb">OFFLINE — TYPE URL:<br>' + esc(portalHost) + '</div></div></div>' +
+    '<div class="stat">' +
+      '<div class="lead"><div class="k">Your Entitlement</div><div class="big">+' + inr(s.annualValueINR) + '</div><div class="k" style="margin-top:4px">' + esc(isOneTime ? 'ONE-TIME CAPITAL GRANT' : 'PER YEAR · RECURRING DBT') + '</div></div>' +
+      '<div class="cell"><div class="k">Counter Fee</div><div class="v">' + esc(ch.statutoryFee || '₹0') + '</div><div class="k" style="margin-top:3px">STATUTORY CEILING</div></div>' +
+      '<div class="cell"><div class="k">Filing Channel</div><div class="v" style="font-size:11px;line-height:1.35">CH ' + (ch.channelNumber || 1) + '<br>' + esc(String(ch.channelName || 'GramaOne / CSC').split('/')[0].trim()) + '</div></div>' +
+      '<div class="cell"><div class="k">SLA Timeline</div><div class="v" style="font-size:11.5px">D' + days.join(' → D') + '</div></div>' +
     '</div>' +
     '<div class="two">' +
       '<div class="col55">' +
-        '<div class="sec">Eligibility proof checklist</div>' +
-        '<div class="card pb">' + ((s.criteriaList || []).map(c => '<div class="tick"><span class="b">✓</span><span>' + esc(c) + '</span></div>').join('') || '<div class="tick"><span class="b">✓</span><span>Aadhaar + bank NPCI seeding active</span></div>') + '</div>' +
+        '<div class="sec"><span>Eligibility proof checklist</span></div>' +
+        '<div class="card pb">' + ((s.criteriaList || []).slice(0, 5).map(c => '<div class="tick"><span class="b">✓</span><span>' + esc(c) + '</span></div>').join('') || '<div class="tick"><span class="b">✓</span><span>Aadhaar + bank NPCI seeding active</span></div>') + '</div>' +
         '<div class="trap pb"><b>⚠ REJECTION TRAP:</b> ' + esc(s.commonRejectionTrap || 'Ensure NPCI DBT seeding is active before filing.') + '</div>' +
-        '<div class="sec">Path A · file online yourself</div>' +
-        '<div class="card pb steps">' + ((s.selfApplySteps || ['Open the official portal', 'Complete Aadhaar OTP e-KYC', 'Upload documents and submit']).slice(0, 6).map((st, i) => '<div><i>' + String(i + 1).padStart(2, '0') + '</i><span>' + esc(st) + '</span></div>').join('')) + '<div><i>→</i><span class="mono" style="font-size:8.5px;font-weight:700">' + esc(portalHost) + '</span></div></div>' +
+        '<div class="sec"><span>Path A · file online yourself</span></div>' +
+        '<div class="card pb steps">' + ((s.selfApplySteps || ['Open the official portal', 'Complete Aadhaar OTP e-KYC', 'Upload documents and submit']).slice(0, 5).map((st, i) => '<div><i>' + String(i + 1).padStart(2, '0') + '</i><span>' + esc(st) + '</span></div>').join('')) + '<div><i>→</i><span class="mono" style="font-size:8.5px;font-weight:700">' + esc(portalHost) + '</span></div></div>' +
       '</div>' +
       '<div class="col45">' +
-        '<div class="sec">Document bag · tick before visit</div>' +
-        '<div class="card pb">' + bagRows.slice(0, 10).map(d => '<div class="tick"><span class="b">□</span><span>' + esc(d) + '</span></div>').join('') + '</div>' +
-        '<div class="sec">Counter visit (Path B)</div>' +
+        '<div class="sec"><span>Document bag · tick before visit</span></div>' +
+        '<div class="card pb">' + bagRows.slice(0, 8).map(d => '<div class="tick"><span class="b">□</span><span>' + esc(d) + '</span></div>').join('') + '</div>' +
+        '<div class="sec"><span>Counter visit · Path B</span></div>' +
         '<div class="card pb">' +
           '<div class="kv"><span class="k">Counter</span><span>' + esc(ch.channelName || 'GramaOne / CSC') + '</span></div>' +
           '<div class="kv"><span class="k">Authority</span><span>' + esc(ch.channelAuthority || 'Designated PSK Operator') + '</span></div>' +
           '<div class="kv"><span class="k">Fee</span><span>' + esc(ch.statutoryFee || '₹0') + '</span></div>' +
-          '<div class="kv" style="border-bottom:none"><span class="k">Note</span><span style="font-size:8.5px;line-height:1.5">' + esc(ch.specialNote || 'Demand a printed government receipt.') + '</span></div>' +
+          '<div class="kv"><span class="k">Note</span><span style="font-size:9px;line-height:1.55;text-align:right">' + esc(ch.specialNote || 'Demand a printed government receipt.') + '</span></div>' +
         '</div>' +
       '</div>' +
     '</div>' +
-    '<div class="qrrow pb"><div style="flex:1"><div class="sec" style="margin-top:0">Scan · official portal only</div><div style="font-size:9.5px;line-height:1.6">Scan the QR to open <b>' + esc(portalHost) + '</b> — the only official application window for this scheme. Never pay a middleman, agent or "facilitator". Acknowledgement number <span class="mono" style="font-weight:700">' + esc(ack) + '</span> must appear on your printed receipt.</div></div></div>' +
+    '<div class="qrrow pb"><div style="flex:1"><div class="sec" style="margin-top:0"><span>Scan · official portal only</span><span class="mono">' + esc(ack) + '</span></div><div style="font-size:10px;line-height:1.65">Scan the QR to open <b>' + esc(portalHost) + '</b> — the only official application window for this scheme. Never pay a middleman, agent or "facilitator". The acknowledgement number must appear on your printed receipt.</div></div></div>' +
     printZeroBribe() +
     printFoot('HAKKU 5.0 · DIGITAL PUBLIC INFRASTRUCTURE · STATUTORY DISPATCH', 'HELPLINE 1902 · PII NEVER STORED · RAM-ONLY');
   printCompact(html, 'HAKKU Scheme Slip — ' + shortName(s));
