@@ -1,10 +1,12 @@
 {
   "name": "hakku-ai",
-  "version": "1.0.0",
-  "description": "Hakku — Zero-Hallucination Government Scheme Discovery, Unclaimed Benefits Meter & RTI Harness powered by BharatCode API",
+  "version": "5.0.0",
+  "description": "Hakku 5.0 — Sovereign Citizen Welfare Discovery & Statutory Rights OS. Deterministic zero-hallucination eligibility engine, DPDP volatile-RAM architecture, AES-256-GCM envelope transport, zero-bribe printable vouchers.",
   "main": "server.js",
+  "engines": { "node": ">=18" },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "check": "node -e \"new Function(require('fs').readFileSync('server.js','utf8')); console.log('server.js syntax OK')\""
   },
   "dependencies": {
     "cors": "^2.8.5",

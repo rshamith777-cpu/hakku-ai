@@ -1,130 +1,282 @@
-# 🇮🇳 Hakku 2.0 (ಹಕ್ಕು / हक़) — Autonomous 5-Agent Civic Rights & Statutory Compliance OS
-### *"Find every rupee the government already owes your entire family — guaranteed zero hallucinations."*
+<div align="center">
 
-> **BharatCode Build League 2026 Submission** • **Author:** SHAMITH R (`@rshamith-cpu`) • **Track:** Everyday Assistance • **Powered by:** BharatCode Model API (`qwen-3.8-27b`)
+# 🇮🇳 Hakku (ಹಕ್ಕು / हक़)
+### Sovereign Citizen Rights Operating System & Zero-Hallucination Welfare Harness
 
-India operates **3,000+ central and state welfare schemes**—scholarships, pensions, crop insurance, solar pump subsidies, and women empowerment grants. Yet over **₹1,00,000+ per household** goes unclaimed every year, and **over 40% of approved applications fail at the bank disbursement stage** due to bureaucratic rejection traps.
+**Empowering 1.4 Billion Indian Citizens to Claim Every Rupee the State Owes Them — With Zero Hallucinations, Zero Rejection Traps, and Zero Bribes.**
 
-**Hakku 2.0** upgrades welfare discovery into a **production-grade Autonomous 5-Agent Civic-Rights & Statutory Compliance OS** engineered with **Institutional Trust, High Accessibility (WCAG compliant + Text-to-Speech), Whole-Household Automation, and Strict Indian Government Statutory Rules**.
+[![BharatCode Build League 2026](https://img.shields.io/badge/BharatCode-Build_League_2026-FF9933?style=for-the-badge&logo=india&logoColor=white)](https://github.com/rshamith777-cpu/hakku-ai)
+[![Track: Everyday Assistance](https://img.shields.io/badge/Track-Everyday_Assistance-138808?style=for-the-badge)](https://github.com/rshamith777-cpu/hakku-ai)
+[![Author: SHAMITH R](https://img.shields.io/badge/Architect-SHAMITH_R_(@rshamith777--cpu)-000080?style=for-the-badge)](https://github.com/rshamith777-cpu)
+[![DPDP Act 2023](https://img.shields.io/badge/Privacy-DPDP_Act_2023_Compliant-blueviolet?style=for-the-badge)](https://github.com/rshamith777-cpu/hakku-ai)
+[![Security: AES-256-GCM](https://img.shields.io/badge/Security-100%25_Volatile_RAM_%2B_AES--256--GCM-success?style=for-the-badge)](https://github.com/rshamith777-cpu/hakku-ai)
 
----
-
-## 🏛️ Institutional Trust & High-Accessibility Bento Design
-Hakku 2.0 is designed for real Indian citizens, elderly users, and rural CSC/GramaOne operators:
-* **👨‍👩‍👧‍👦 Whole-Household Automation (Ration Card Unit):** In 1 click, scans Father (*Farmer*), Mother (*Homemaker*), Son (*Student*), and Grandmother (*Senior Widow*) simultaneously.
-* **⚖️ Statutory Anti-Double-Dipping Engine:** Automatically enforces Ministry rules (e.g. *NSP vs PM-USP Central Scholarship exclusivity*, *Old-Age vs Widow Pension exclusivity*, and *Income Tax Payer disqualifiers*).
-* **🛡️ Pre-Submission Rejection Shield:** Detects the #1 real-world failure point—inactive **NPCI Aadhaar DBT Mapper** seeding—and generates a **Bank Annexure-I Mandate Form** before the citizen visits the cyber-café.
-* **🔊 High-Accessibility Text-to-Speech:** 1-click audio read-aloud in **Kannada, Hindi, or English** for elderly or low-literacy citizens.
-* **⏱️ Sakala / Right to Public Services SLA Deadlines:** Displays legally mandated service timelines (*e.g., 21 days under Karnataka Sakala Services Act*).
-* **🔒 DPDP Act 2023 Compliance:** Strict zero-PII architecture with client-side redaction.
+</div>
 
 ---
 
-## 🤖 The Autonomous 5-Agent Pipeline Trace
+## 📌 Executive Summary
 
-```mermaid
-flowchart TD
-    User["👨‍👩‍👧 Family / Citizen (Voice, Text or 1-Click Ration Card)"] --> Agent1["Agent 1 • Intake & DPDP Redaction Agent\n(BharatCode API / qwen-3.8-27b)"]
-    
-    Agent1 --> Agent2["Agent 2 • Statutory Eligibility & Conflict Auditor\n(Deterministic JS Rule Engine + Anti-Double-Dipping)"]
-    
-    subgraph StatutoryRulesDB ["🏛️ Curated .gov.in Database (data/schemes.json)"]
-        Agent2 <--> Rules["10+ Statutory Rules • Income Limits • Tax Payer Clauses • Exclusivity Groups"]
-    end
-    
-    Agent2 --> Agent3["Agent 3 • Pre-Submission Rejection Shield\n(NPCI DBT Mapper, Name Match & RD Validity Audit)"]
-    
-    Agent3 --> Agent4["Agent 4 • Sakala SLA & Multilingual Explainer\n(English, Kannada, Hinglish + Voice Synthesis)"]
-    
-    Agent4 --> BentoUI["🍱 Institutional Bento Grid Dashboard (public/index.html)\n(Live Agent Trace • Unclaimed Meter • Conflict Log)"]
-    
-    BentoUI --> Agent5["Agent 5 • Legal Draftsman & Document Harness\n(server.js /api/harness/dockit)"]
-    
-    Agent5 --> Doc1["📋 3-in-1 CSC & GramaOne Operator Packet"]
-    Agent5 --> Doc2["🏦 Bank NPCI Aadhaar DBT Seeding Mandate"]
-    Agent5 --> Doc3["⚖️ Section 6(1) & 7(5) BPL Fee-Exempt RTI + Sakala Notice"]
+India operates over **3,000+ Central and State welfare schemes**, with an annual budgetary commitment exceeding **₹4 Lakh Crore**. Despite this, over **₹1.8 Lakh Crore remains unclaimed every single year**, and **over 42% of approved applications suffer silent bank disbursement failure** due to post-filing bureaucratic traps.
+
+The root cause is not citizen apathy; it is systemic friction:
+1. **Life-Shock Blindness:** Citizens experience life events (crop loss, childbirth, college admission, disability) rather than departmental scheme names.
+2. **The Prerequisite Trap:** Citizens visit cyber-cafés only to be sent back because a prerequisite document (RD-numbered income certificate, Aadhaar e-KYC) is missing or expired.
+3. **Silent Bank Mergers & Dormancy:** Inactive PMJDY accounts (capped at ₹50,000 balance) or outdated IFSC codes from merged PSU banks (Syndicate $\rightarrow$ Canara, Vijaya $\rightarrow$ BoB) silently bounce Direct Benefit Transfers (DBT).
+4. **Middlemen & Extortion:** Unofficial brokers charge ₹500–₹2,000 for applications that are legally free or capped at ₹25–₹30 by state SLA mandates.
+5. **Indefinite Processing Limbo:** Government departments breach citizen charter timelines (Sakala SLAs) without accountability.
+
+**Hakku (Edition 5.2)** solves this end-to-end. Built on a hybrid architecture combining a **100% Deterministic Statutory Rule Engine** (zero hallucinations) with **LLM Cognitive Assistance**, Hakku acts as a proactive digital defense counsel for the citizen.
+
+---
+
+## 🏛️ System Architecture: The 5-Agent Civic Pipeline
+
+```
+                                      ┌────────────────────────────────────────────────────────┐
+                                      │              CITIZEN / CSC OPERATOR                    │
+                                      │  (Kannada | Hindi | English | Tamil | Telugu | Voice)  │
+                                      └─────────────────────────┬──────────────────────────────┘
+                                                                │  ECDH P-256 / AES-256-GCM
+                                                                ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                 HAKKU CORE HARNESS (RAM-ONLY)                                                │
+│                                                                                                                              │
+│  ┌──────────────────────────┐    ┌──────────────────────────┐    ┌──────────────────────────┐    ┌─────────────────────────┐ │
+│  │         AGENT 1          │    │         AGENT 2          │    │         AGENT 3          │    │         AGENT 4         │ │
+│  │   Context Ingestion &    │───▶│  Deterministic Statutory │───▶│  Real-Time Deep-Hunter   │───▶│   Rejection Shield 3.0  │ │
+│  │   Trilingual Synthesizer │    │   Matcher & Arbitrator   │    │  (Hidden Money Gems AI)  │    │ (Forensic Bank Pre-Audit│ │
+│  └──────────────────────────┘    └──────────────────────────┘    └──────────────────────────┘    └────────────┬────────────┘ │
+│                                                                                                               │              │
+│                                                                  ┌──────────────────────────┐                 │              │
+│                                                                  │         AGENT 5          │◀────────────────┘              │
+│                                                                  │  Legal Escalation Engine │                                │
+│                                                                  │  (Sakala / RTI Generator)│                                │
+│                                                                  └──────────────────────────┘                                │
+└───────────────────────────────────────────────────────────────┬──────────────────────────────────────────────────────────────┘
+                                                                │
+                                        ┌───────────────────────┴───────────────────────┐
+                                        ▼                                               ▼
+                         ┌─────────────────────────────┐                 ┌─────────────────────────────┐
+                         │      PATH A: SELF-APPLY     │                 │     PATH B: CYBER-CAFÉ      │
+                         │  • Portal Direct Deep-Link  │                 │  • Printable A4 Voucher     │
+                         │  • Official Step-by-Step    │                 │  • Scannable Portal QR Code │
+                         │  • Document Checklist       │                 │  • Anti-Tout Fee Shield     │
+                         │  • SLA Timeline Tracker     │                 │  • Bank NPCI Annexure Form  │
+                         └─────────────────────────────┘                 └─────────────────────────────┘
 ```
 
+### The 5 Specialized Autonomous Agents
+
+| Agent | Codename | Role & Implementation |
+|---|---|---|
+| **Agent 1** | `CITIZEN_INGEST` | **Profile & Speech Synthesizer:** Ingests demographic parameters via structured form or Web Speech API voice dictation. Supports Kannada (`ಕನ್ನಡ`), Hindi (`हिंदी`), English, Tamil (`தமிழ்`), and Telugu (`తెలుగు`). Sanitizes and redacts raw identifiers on the fly. |
+| **Agent 2** | `STATUTORY_RULES` | **Deterministic Rule Matcher:** Evaluates eligibility against 24 codified Central & State statutes. Applies hard-coded income limits, age thresholds, landholding caps, and caste criteria. **Zero hallucination guaranteed** — rule evaluation is 100% deterministic code. |
+| **Agent 3** | `DEEP_HUNTER` | **Hidden Money Gems AI:** Discovers non-obvious, high-value schemes that 90% of citizens miss (e.g., ₹78,000 PM Surya Ghar Solar Subsidy, ₹60,000 Labour Card Education Grants, 35% PMEGP Capital Subsidies, ₹50,000 AICTE Pragati Girl Grants). Uses BharatCode API when available with deterministic fallback. |
+| **Agent 4** | `REJECTION_SHIELD` | **Forensic Pre-Audit Engine:** Audits IFSC codes against PSU bank merger lists (Syndicate, Vijaya, Allahabad, Corporation, Andhra, Oriental Bank). Checks Jan Dhan ₹50k balance ceiling traps, Aadhaar-to-Ration e-KYC status, and Student INO college verification windows before application submission. |
+| **Agent 5** | `LEGAL_ESCALATOR` | **Statutory Escalation & RTI Docket Generator:** Computes statutory processing deadlines under the Karnataka Sakala Services Act 2011 / Citizen Charters. Generates instant RTI Section 6(1) petitions, Sakala First Appeals, and NPCI DBT Bank Seeding Annexure-I dockets. |
+
 ---
 
-## 🧠 Why Hakku 2.0 Beats Standard Chatbots & Portals (Judge FAQ)
+## 🔒 Security & DPDP Act 2023 Architecture
 
-| Feature | Generic LLM (ChatGPT) | Govt Portals (`myScheme`) | **Hakku 2.0 (BharatCode OS)** |
+Hakku is engineered from the ground up to comply with **Section 6 of India's Digital Personal Data Protection (DPDP) Act 2023**:
+
+```
+ ┌────────────────────────────────────────────────────────────────────────────────────────┐
+ │                                 DPDP ACT 2023 SAFE HARBOR                              │
+ │                                                                                        │
+ │  [X] ZERO DATABASE              [X] ZERO DISK STORAGE          [X] ZERO TRACKING       │
+ │  No PostgreSQL, MongoDB,       No cookies, no local-          No analytics scripts,   │
+ │  Redis, or SQLite instances.    Storage, no session storage.   no Google tags, no logs │
+ │                                                                                        │
+ │  [X] VOLATILE RAM PURGE        [X] CLIENT-SIDE REDACTION      [X] AES-256-GCM ENVELOPE │
+ │  Sessions stored in TTL-bound   Aadhaar, PAN, and IFSC         All harness API traffic  │
+ │  in-memory buffers. Discarded   masked before leaving the      encrypted via ECDH P-256 │
+ │  on tab close or idle.          browser view.                  ephemeral handshakes.    │
+ └────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+1. **Strict Zero-Storage Policy:** No database engine exists in the codebase. User profiles reside solely in client memory and an ephemeral server-side RAM Map with automatic 10-minute TTL expiry.
+2. **Ephemeral Cryptographic Envelope:** Handshake uses **ECDH P-256** and **HKDF-SHA256** to derive ephemeral **AES-256-GCM** session keys. Server restarts render all historical network traffic permanently un-decryptable.
+3. **Hardened Transport Security:** Production configuration enforces `Content-Security-Policy`, `Strict-Transport-Security`, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Cross-Origin-Opener-Policy: same-origin`, and `Permissions-Policy`.
+4. **Immediate Data Erasure:** The citizen can click **"🛑 Erase Session Data Now"** at any moment to trigger an immediate zero-fill purge of all client and server RAM allocations.
+
+---
+
+## 🌟 The 3-Step Citizen Workflow
+
+Hakku organizes the citizen journey into three clear, frictionless views:
+
+```
+  ┌──────────────────────┐      ┌──────────────────────┐      ┌──────────────────────┐
+  │   VIEW 1: INTAKE     │ ───▶ │   VIEW 2: VAULT      │ ───▶ │   VIEW 3: DOSSIER    │
+  │ • Urgent Deadlines   │      │ • DBT Wealth Meter   │      │ • Step-by-Step Guide │
+  │ • Life-Event Bundles │      │ • 💎 Hidden Gems     │      │ • Printable Voucher  │
+  │ • Structured Profile │      │ • Rejection Warnings │      │ • Scannable QR Code  │
+  │ • Bank Pre-Audit     │      │ • Prereq Sequencer   │      │ • Anti-Tout Notice   │
+  └──────────────────────┘      └──────────────────────┘      └──────────────────────┘
+```
+
+### 1. View 1 — Citizen Particulars & Life-Event Bundles
+- **Live Urgent Notification Marquee:** Real-time alert bar highlighting schemes closing in 48 hours, newly opened windows, and today's expired deadlines with late-submission appeal guides.
+- **5 One-Click Life-Event Bundles:**
+  - 🌾 *Small & Marginal Farmer Protection Pack* (PM-Kisan, Raitha Siri, PMFBY, Kusum Solar)
+  - 🎓 *First-Generation Higher Education Pack* (SSP Post-Matric, AICTE Pragati, Free Laptop)
+  - 🩺 *Senior Citizen & Health Security Pack* (Ayushman Bharat 70+ Universal, Sandhya Suraksha)
+  - 💼 *Micro-Enterprise & Self-Employment Pack* (PMEGP 35% Grant, PM Mudra, Labour Card)
+  - 👶 *Women Empowerment & Maternal Care Pack* (Gruha Lakshmi, PMMVY Matru Vandana, Mathrushree)
+- **Voice-Enabled Particulars Form:** Age, gender, caste, income, occupation, student status, disability, land ownership, and ration card type (AAY / BPL / APL).
+- **Forensic Pre-Audit Checkboxes:** Identifies unmapped NPCI bank accounts, merged PSU banks, and expired certificates before discovery starts.
+
+### 2. View 2 — The Entitlement Vault
+- **Cumulative DBT Cash Meter:** Dynamic tally calculating total non-repayable annual cash benefits plus 5-year household wealth forecasts.
+- **💎 Hidden Government Money Gems:** Dedicated highlights for high-value schemes routinely missed by 90% of applicants.
+- **Readiness Score & Forensic Warnings:** Calculated percentage with proactive notifications (e.g., *"Merged PSU Bank IFSC detected: update to Canara Bank IFSC before applying"*).
+- **Critical-Path Prerequisite Sequencer:**
+  - **Phase A (Day 0–3):** Base identification & NPCI seeding.
+  - **Phase B (Day 4–10):** Departmental certificates (Income RD, Caste, Bonafide).
+  - **Phase C (Day 11–15):** Final portal application submission.
+- **Statutory Anti-Double-Dipping Shield:** Detects legal conflicts (e.g., Central NSP vs PM-USP scholarship rules) and auto-selects the highest payout package.
+
+### 3. View 3 — Scheme Deep-Dive & Cyber-Café Voucher
+- **Path A (Self-Apply):** Direct government portal URLs (`.gov.in`), step-by-step instructions, and exact SLA resolution windows.
+- **Path B (Cyber-Café / CSC Operator):**
+  - **Printable A4 Voucher Layout:** Formatted for high-contrast B&W thermal and inkjet printing (`@media print`).
+  - **High-Resolution Scannable QR Code:** Instantly directs CSC operators to the official portal submission page.
+  - **Mandatory Document Checklist:** Physical bag checklist so citizens never make multiple trips.
+  - **Statutory Anti-Tout Bribe Shield:** Printed legal notice stating maximum government processing fees (₹0 to ₹30) and the State Anti-Corruption Bureau helpline (1064).
+  - **3 Legal Dossier Modes:**
+    1. *Operator Handover Slip* (instructions for GramaOne / CSC operators)
+    2. *Bank NPCI Annexure-I Form* (mandate to link Aadhaar DBT to bank account)
+    3. *3-Tier Statutory Escalation Notice* (Karnataka Sakala SLA & Section 6(1) RTI appeal notice)
+
+---
+
+## 💎 Verified Schemes Catalog (Sample)
+
+| Scheme Name | Annual Value | Target Group | Key Benefit |
 |---|---|---|---|
-| **Whole-Household Scan** | ❌ 1 person at a time | ❌ Individual queries only | ✅ **1-Click 4-Member Ration Card Scan** |
-| **Statutory Conflict Resolution** | ❌ Recommends conflicting schemes | ❌ User must manually check PDFs | ✅ **Anti-Double-Dipping Rule Engine** auto-picks highest payout |
-| **Pre-Submission Rejection Shield** | ❌ Unaware of banking traps | ❌ Discovered only after rejection | ✅ **Flags NPCI Aadhaar DBT inactivity & generates Bank Mandate** |
-| **Sakala SLA / RTI Automation** | ❌ Generic advice | ❌ Dead end | ✅ **Automates Section 6(1) RTI & Section 7(5) BPL fee waiver** |
-| **Elderly & Rural Accessibility** | ❌ Text-only screen barrier | ❌ Complex English/Hindi forms | ✅ **🔊 Voice Read-Aloud in Kannada, Hindi & English** |
-| **Zero-PII Scam Protection** | ⚠️ Unstructured | ⚠️ Requires OTP / Aadhaar login | ✅ **100% DPDP Act 2023 Compliant (Zero PII stored)** |
+| **AICTE Pragati Scholarship for Girls** | **₹50,000 / yr** | Girl Technical Students | Non-repayable grant for laptop, books, tuition |
+| **PMEGP Business Grant** | **Up to 35% Grant** | Micro-Entrepreneurs | Non-repayable capital subsidy up to ₹17.5 Lakhs |
+| **PM Surya Ghar: Muft Bijli Yojana** | **₹78,000 Grant** | Homeowners / Rural Families | Direct rooftop solar installation subsidy |
+| **Karnataka Labour Welfare Card** | **₹60,000 / event** | Construction / Unorganized Workers | Cash grants for marriage, maternity, child education |
+| **Ayushman Bharat (Vayoshreshtha 70+)**| **₹5,00,000 / yr** | All Seniors Aged 70+ | Free universal hospital treatment regardless of income |
+| **Gruha Lakshmi Scheme** | **₹24,000 / yr** | Female Heads of Household | Direct monthly cash transfer of ₹2,000 via DBT |
+| **Karnataka Yuva Nidhi Scheme** | **₹36,000 / yr** | Unemployed Graduates/Diploma | ₹3,000/mo cash support for up to 24 months |
+| **National Means-cum-Merit (NMMSS)** | **₹12,000 / yr** | Class 9–12 School Students | Monthly cash allowance to prevent dropouts |
 
 ---
 
-## 📁 Repository Structure
-```text
-hakku-ai/
-├── BharatCode.txt          # Mandatory Hackathon Verification Metadata
-├── package.json            # Express, CORS, Dotenv
-├── .env.example            # BharatCode API endpoint and model config
-├── .env                    # Local runtime environment
-├── matcher.js              # Agent 2 & Agent 3: Statutory Conflict & Rejection Shield Engine
-├── server.js               # Autonomous 5-Agent Orchestrator & Legal Draftsman
-├── data/
-│   └── schemes.json        # Curated Central + State Schemes with statutory rules & Sakala SLAs
-├── public/
-│   └── index.html          # Institutional Bento Grid UI + Voice Read-Aloud + Live Agent Trace
-└── README.md               # Complete Hackathon Documentation & Architecture Trace
-```
+## ⚡ Quick Start & Installation
 
----
+### Prerequisites
+- **Node.js:** v18.0.0 or higher
+- **npm:** v9.0.0 or higher
 
-## 🚀 Quick Start (Run in 30 Seconds)
+### Local Development Setup
 
-### 1. Prerequisites
-- **Node.js** v18+ (tested on v26+)
-- **npm** v9+
-
-### 2. Installation
 ```bash
-git clone https://github.com/rshamith-cpu/hakku-ai.git
+# 1. Clone the repository
+git clone https://github.com/rshamith777-cpu/hakku-ai.git
 cd hakku-ai
+
+# 2. Install production dependencies (Express, CORS, Dotenv)
 npm install
-```
 
-### 3. Environment Setup
-```bash
+# 3. Configure environment variables (optional)
 cp .env.example .env
-```
-*(Includes intelligent offline fallback so hackathon judges can test all 5 agents immediately without configuring an API key.)*
 
-### 4. Start Server
-```bash
+# 4. Start the Hakku server
 npm start
 ```
-Open **[http://localhost:3000](http://localhost:3000)** (or `http://localhost:3001` if port 3000 is occupied).
+
+Visit **`http://localhost:3000`** in any modern web browser.
+
+### Docker Deployment
+
+```bash
+# Build the production container (runs as unprivileged 'hakku' user)
+docker build -t hakku-ai:latest .
+
+# Run with container healthchecks enabled
+docker run -d -p 3000:3000 --name hakku-production hakku-ai:latest
+
+# Verify deploy management probe
+curl http://localhost:3000/healthz
+```
 
 ---
 
-## 🧪 30-Second Judge Evaluation Steps
+## 🧪 30-Second Evaluation Guide for Hackathon Judges
 
-1. **Step 1:** Click **"👨‍👩‍👧‍👦 Scan Full 4-Member Family"**:
-   - Evaluates Ramesh (Farmer), Savitha (Homemaker), Aarav (Student), and Lakshmi (Senior Widow).
-   - Resolves statutory double-dipping conflicts (*NSP Post-Matric chosen over PM-USP; Old-Age Pension chosen over Widow Pension*).
-   - Unclaimed Benefits Meter displays **₹1,69,400/year direct cash DBT + ₹5,00,000 Ayushman cover**.
-2. **Step 2:** In **Agent 3 Rejection Shield**, uncheck **"Bank account has active NPCI Aadhaar DBT Mapper seeding"**:
-   - Readiness drops to **55/100 (CRITICAL)**.
-   - Click **"Get Mandate Form"** to generate the **Bank Annexure-I Aadhaar Seeding Form**.
-3. **Step 3:** Click **"🔊 Listen Aloud"**:
-   - Hear the citizen's rights synthesized aloud in Kannada, Hindi, or English.
-4. **Step 4:** Click **"⚖️ Sakala SLA RTI Draft"** on any scheme:
-   - Generates a statutory **Section 6(1) RTI application with Section 7(5) BPL fee waiver**.
+To evaluate Hakku's capabilities in under 60 seconds:
+
+1. **Step 1: Test Persona Ingestion**
+   - Click the **"Girl Engg Student"** persona pill in View 1.
+   - Notice the instant population of age (19), female gender, student status, and family income (< ₹8L).
+2. **Step 2: Rejection Shield & Double-Dipping Conflict Audit**
+   - Click **"Find All Schemes"** to enter View 2.
+   - Observe the **Statutory Anti-Double-Dipping Shield**: the engine automatically flags the conflict between Central NSP and state scholarships and prioritizes the highest benefit (AICTE Pragati @ ₹50,000/yr).
+   - Check the **Prerequisite Sequencer**: verify the step-by-step Phase A $\rightarrow$ Phase B $\rightarrow$ Phase C roadmaps.
+3. **Step 3: Dedicated Scheme Page & Printable Cyber Slip**
+   - Click **"View Complete Guide"** on the AICTE Pragati card to enter View 3.
+   - Toggle **"Path B: Cyber-Café / GramaOne"**.
+   - Notice the **Scannable QR Code**, the **Anti-Tout Legal Bribe Shield**, and toggle through the 3 dossier modes (*Operator Slip*, *NPCI Annexure-I*, and *RTI Appeal Notice*).
+   - Click **"Print Citizen Slip"** to see the clean, high-contrast `@media print` A4 voucher layout.
+4. **Step 4: DPDP Compliance & Total Session Wipe**
+   - Click **"🛑 Erase Session Data Now"** in the top navigation.
+   - Notice that all memory buffers are wiped clean, returning the interface to a fresh, uninitialized state.
+5. **Step 5: Inspect Deploy Health**
+   - Run `curl http://localhost:3000/healthz` in your terminal.
+   - Output verifies: `{"ok":true,"sessions":0,"piiStored":false}`.
 
 ---
 
-## 📜 BharatCode Hackathon Step 03 Submission Details
+## 📂 Repository Layout
 
-* **Track:** Everyday Assistance
-* **Project Name:** `Hakku 2.0 (ಹಕ್ಕು / हक़) — Autonomous 5-Agent Civic Rights & Statutory Compliance OS`
-* **GitHub Repo URL:** `https://github.com/rshamith-cpu/hakku-ai`
-* **Short Summary:**
-  > Over ₹1,00,000/year in welfare goes unclaimed per Indian family, and over 40% of approved applications fail at the bank disbursement stage due to bureaucratic traps. Hakku 2.0 is an Autonomous 5-Agent Civic Rights & Statutory Compliance OS powered by BharatCode API (qwen-3.8-27b): (1) Whole-Household Automation scanning all 4 ration card members simultaneously, (2) A 100% deterministic Statutory Conflict Engine enforcing anti-double-dipping rules and picking highest legal payouts, (3) A Pre-Submission Rejection Shield detecting inactive NPCI DBT mapper seeding before CSC visits, (4) Sakala Right to Public Services SLA deadline tracking, (5) Institutional Bento Grid UI with Voice Read-Aloud in Kannada/Hindi/English, and (6) Automated generation of 3-in-1 CSC Packets, Bank NPCI Mandates, and Section 6(1)/7(5) BPL-exempt RTI appeals.
+```text
+hakku-ai/
+├── BharatCode.txt             # Hackathon Verification & Attribution Metadata
+├── Dockerfile                 # Hardened, non-root Alpine production container
+├── .dockerignore              # Clean container build exclusions
+├── .env.example               # Environment configuration template
+├── package.json               # Node.js dependencies and scripts
+├── server.js                  # Production Express orchestrator, rate limiter, CSP/HSTS
+├── matcher.js                 # 100% Deterministic Statutory Rule Engine (24 Acts)
+├── data/
+│   └── schemes.json           # Ground-truth statutory scheme definitions & SLAs
+└── public/
+    ├── index.html             # Sovereign design system shell & A4 print engine
+    ├── i18n.js                # English, Kannada (ಕನ್ನಡ), Hindi (हिंदी) dictionary
+    ├── i18n-ext.js            # Tamil (தமிழ்) & Telugu (తెలుగు) language dictionary
+    ├── app.js                 # State controller, DPDP RAM purge, speech synthesizer
+    ├── app2.js                # View 1 controller: personas, bundles, forensic audit
+    ├── app3.js                # View 2 controller: bento vault, conflict engine, sequencer
+    ├── app4.js                # View 3 controller: dossier views, QR voucher, RTI generator
+    └── boot.js                # Micro-router and view state initialization
+```
+
+---
+
+## 📜 Regulatory Standards & Statutory Adherence
+
+Hakku is designed to respect and enforce the following statutory frameworks:
+- **Digital Personal Data Protection (DPDP) Act 2023:** Full adherence to Section 6 (Consent-driven, purpose-limited, volatile RAM execution, zero persistent retention).
+- **Karnataka Sakala Services Act 2011:** Citizen charter time limits mapped for every state delivery channel.
+- **Right to Information (RTI) Act 2005 (Section 6(1)):** Automatic statutory escalation petitions for applications pending past legal limits.
+- **Direct Benefit Transfer (DBT) & NPCI National Aadhaar Mapper Guidelines:** Automated detection and mitigation of Aadhaar-to-Bank account de-linking and merger traps.
+
+---
+
+## 👨‍💻 Project Metadata & Team
+
+- **Project:** Hakku (ಹಕ್ಕು / हक़) — Sovereign Citizen Rights OS
+- **Author / Lead Architect:** SHAMITH R ([@rshamith777-cpu](https://github.com/rshamith777-cpu))
+- **Event:** BharatCode Build League 2026
+- **Track:** Everyday Assistance
+- **License:** MIT Open Source License
+
+<div align="center">
+  <b>Built with pride for the citizens of India. 🇮🇳</b>
+</div>
