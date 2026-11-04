@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/hakku-banner.jpg" alt="Hakku AI — Sovereign Citizen Rights OS Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
+
 # 🇮🇳 Hakku (ಹಕ್ಕು / हक़)
 ### Sovereign Citizen Rights Operating System & Zero-Hallucination Welfare Harness
 
@@ -31,6 +33,10 @@ The root cause is not citizen apathy; it is systemic friction:
 ---
 
 ## 🏛️ System Architecture: The 5-Agent Civic Pipeline
+
+<div align="center">
+  <img src="assets/hakku-architecture.jpg" alt="Hakku 5-Agent Architecture & DPDP Sovereign Vault" width="100%" style="border-radius: 12px; margin: 15px 0 25px 0;" />
+</div>
 
 ```
                                       ┌────────────────────────────────────────────────────────┐
@@ -107,6 +113,10 @@ Hakku is engineered from the ground up to comply with **Section 6 of India's Dig
 ## 🌟 The 3-Step Citizen Workflow
 
 Hakku organizes the citizen journey into three clear, frictionless views:
+
+<div align="center">
+  <img src="public/hakku-all-pages-preview.svg" alt="Hakku 3-Step Citizen Workflow All Pages Preview" width="100%" style="border-radius: 12px; margin: 15px 0 25px 0;" />
+</div>
 
 ```
   ┌──────────────────────┐      ┌──────────────────────┐      ┌──────────────────────┐
