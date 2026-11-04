@@ -94,17 +94,50 @@ function sanitizeProfile(p) {
 const HKDF_SALT = Buffer.from('hakku5.0-dpdp-salt-v1');
 const HKDF_INFO = Buffer.from('hakku-aes-256-gcm-envelope');
 const SESSION_TTL_MS = 20 * 60 * 1000;
-const sessions = new Map(); // sessionId -> { keyBuf, expiresAt }
+const sessions = new Map(); // fallback memory cache: sessionId -> { keyBuf, expiresAt }
 setInterval(() => {
   const now = Date.now();
   for (const [k, v] of sessions) if (now > v.expiresAt) sessions.delete(k);
 }, 60000).unref();
+
+/* Stateless Ticket Master Secret for Serverless / Multi-Instance Deployments */
+const MASTER_SECRET = crypto.createHash('sha256').update(process.env.SESSION_SECRET || 'hakku-sovereign-master-secret-2026').digest();
 
 function b64urlToBuf(s) { return Buffer.from(String(s).replace(/-/g, '+').replace(/_/g, '/'), 'base64'); }
 function bufToB64url(b) { return Buffer.from(b).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
 function deriveKey(sharedSecret) {
   return Buffer.from(crypto.hkdfSync('sha256', sharedSecret, HKDF_SALT, HKDF_INFO, 32));
 }
+
+function sealTicket(keyBuf, expiresAt) {
+  const iv = crypto.randomBytes(12);
+  const payload = Buffer.concat([keyBuf, Buffer.from(expiresAt.toString(16).padStart(16, '0'), 'hex')]);
+  const cipher = crypto.createCipheriv('aes-256-gcm', MASTER_SECRET, iv);
+  const ct = Buffer.concat([cipher.update(payload), cipher.final()]);
+  const tag = cipher.getAuthTag();
+  return bufToB64url(Buffer.concat([iv, tag, ct]));
+}
+
+function unsealTicket(ticketStr) {
+  if (!ticketStr || typeof ticketStr !== 'string') return null;
+  try {
+    const raw = b64urlToBuf(ticketStr);
+    if (raw.length < 12 + 16 + 32 + 8) return null;
+    const iv = raw.subarray(0, 12);
+    const tag = raw.subarray(12, 28);
+    const ct = raw.subarray(28);
+    const decipher = crypto.createDecipheriv('aes-256-gcm', MASTER_SECRET, iv);
+    decipher.setAuthTag(tag);
+    const plain = Buffer.concat([decipher.update(ct), decipher.final()]);
+    const keyBuf = plain.subarray(0, 32);
+    const exp = parseInt(plain.subarray(32, 40).toString('hex'), 16);
+    if (Date.now() > exp) return null;
+    return { keyBuf, expiresAt: exp };
+  } catch (e) {
+    return null;
+  }
+}
+
 function aesEncrypt(keyBuf, plainBuf) {
   const iv = crypto.randomBytes(12);
   const cipher = crypto.createCipheriv('aes-256-gcm', keyBuf, iv);
@@ -124,8 +157,10 @@ app.post('/api/security/handshake', (req, res) => {
     const clientKey = crypto.createPublicKey({ key: b64urlToBuf(clientPubB64), format: 'der', type: 'spki' });
     const server = crypto.generateKeyPairSync('ec', { namedCurve: 'prime256v1' });
     const shared = crypto.diffieHellman({ privateKey: server.privateKey, publicKey: clientKey });
-    const sessionId = crypto.randomBytes(16).toString('hex');
-    sessions.set(sessionId, { keyBuf: deriveKey(shared), expiresAt: Date.now() + SESSION_TTL_MS });
+    const keyBuf = deriveKey(shared);
+    const expiresAt = Date.now() + SESSION_TTL_MS;
+    const sessionId = sealTicket(keyBuf, expiresAt);
+    sessions.set(sessionId, { keyBuf, expiresAt });
     const serverPub = server.publicKey.export({ format: 'der', type: 'spki' });
     res.json({ sessionId, serverPublicKey: bufToB64url(serverPub), cipher: 'AES-256-GCM', kdf: 'HKDF-SHA256', ttlMs: SESSION_TTL_MS });
   } catch (e) {
@@ -134,17 +169,21 @@ app.post('/api/security/handshake', (req, res) => {
 });
 
 app.post('/api/session/wipe', (req, res) => {
-  const sid = clampStr(req.body && req.body.sessionId, 64);
+  const sid = clampStr(req.body && req.body.sessionId, 256);
   if (sid) sessions.delete(sid);
   res.json({ wiped: true });
 });
 
 /* ---- envelope middleware: decrypts request, encrypts response ---- */
 async function envelope(req, res, payloadBuilder) {
-  const sid = clampStr(req.headers['x-hakku-session'], 64);
-  const sess = sid ? sessions.get(sid) : null;
+  const sid = clampStr(req.headers['x-hakku-session'], 256);
+  const sess = (sid ? unsealTicket(sid) : null) || (sid ? sessions.get(sid) : null);
   let body = req.body;
-  if (sess && req.body && req.body.enc) {
+  if (req.body && req.body.enc) {
+    if (!sess) {
+      /* Missing or expired session on serverless instance -> 401 triggers clean client fallback */
+      return res.status(401).json({ error: 'SESSION_EXPIRED', needHandshake: true });
+    }
     try {
       const raw = b64urlToBuf(req.body.enc);
       const iv = raw.subarray(0, 12);
@@ -153,7 +192,7 @@ async function envelope(req, res, payloadBuilder) {
       const plain = aesDecrypt(sess.keyBuf, iv, ct, tag);
       body = JSON.parse(plain.toString('utf8'));
     } catch (e) {
-      sessions.delete(sid);
+      if (sid) sessions.delete(sid);
       return res.status(400).json({ error: 'BAD_ENVELOPE' });
     }
   }

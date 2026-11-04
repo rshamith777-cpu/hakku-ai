@@ -1,9 +1,28 @@
 const fs = require('fs');
 const path = require('path');
 
+let cachedSchemes = null;
 function loadSchemes() {
-  const filePath = path.join(__dirname, 'data', 'schemes.json');
-  return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  if (cachedSchemes && cachedSchemes.length) return cachedSchemes;
+  try {
+    cachedSchemes = require('./data/schemes.json');
+    if (Array.isArray(cachedSchemes) && cachedSchemes.length) return cachedSchemes;
+  } catch (e1) {}
+  try {
+    const candidates = [
+      path.join(__dirname, 'data', 'schemes.json'),
+      path.join(__dirname, '..', 'data', 'schemes.json'),
+      path.join(__dirname, '..', '..', 'data', 'schemes.json'),
+      path.join(process.cwd(), 'data', 'schemes.json')
+    ];
+    for (const p of candidates) {
+      if (fs.existsSync(p)) {
+        cachedSchemes = JSON.parse(fs.readFileSync(p, 'utf-8'));
+        return cachedSchemes;
+      }
+    }
+  } catch (e2) {}
+  return cachedSchemes || [];
 }
 
 // =====================================================================

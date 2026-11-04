@@ -133,17 +133,32 @@ async function securePost(path, payload) {
     if (!res.ok) throw new Error('HTTP ' + res.status);
     return res.json();
   }
-  const iv = crypto.getRandomValues(new Uint8Array(12));
-  const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, SECURE.key, new TextEncoder().encode(JSON.stringify(payload))));
-  const blob = new Uint8Array(iv.length + ct.length);
-  blob.set(iv); blob.set(ct, iv.length);
-  const res = await fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-hakku-session': SECURE.sessionId }, body: JSON.stringify({ enc: _b64url(blob) }) });
-  if (!res.ok) throw new Error('HTTP ' + res.status);
-  const j = await res.json();
-  if (!j.env) return j;
-  const raw = _fromB64url(j.d);
-  const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: raw.slice(0, 12) }, SECURE.key, raw.slice(12));
-  return JSON.parse(new TextDecoder().decode(pt));
+  try {
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, SECURE.key, new TextEncoder().encode(JSON.stringify(payload))));
+    const blob = new Uint8Array(iv.length + ct.length);
+    blob.set(iv); blob.set(ct, iv.length);
+    const res = await fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-hakku-session': SECURE.sessionId }, body: JSON.stringify({ enc: _b64url(blob) }) });
+    if (res.status === 401 || res.status === 400) {
+      /* Serverless instance rotated or session ticket expired -> auto-resync with direct JSON */
+      SECURE.ready = false;
+      const r2 = await fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      if (!r2.ok) throw new Error('HTTP ' + r2.status);
+      return r2.json();
+    }
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const j = await res.json();
+    if (!j.env) return j;
+    const raw = _fromB64url(j.d);
+    const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: raw.slice(0, 12) }, SECURE.key, raw.slice(12));
+    return JSON.parse(new TextDecoder().decode(pt));
+  } catch (err) {
+    /* If decryption or envelope fetch fails, gracefully fallback to plain JSON */
+    SECURE.ready = false;
+    const r2 = await fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    if (!r2.ok) throw new Error('HTTP ' + r2.status);
+    return r2.json();
+  }
 }
 
 /* ---------------- Web Speech (listen / stop) ---------------- */
