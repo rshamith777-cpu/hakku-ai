@@ -143,7 +143,7 @@ Hindi: {
 (function () {
   const V2 = {
     English: {
-      sec1:"CSP HARDENED", sec2:"AES-256-GCM", sec3:"ZERO DB", sec4:"RATE-LIMIT 8/MIN", sec5:"10m TTL AUTO-WIPE",
+      sec1:"CSP HARDENED", sec2:"AES-256-GCM", sec3:"ZERO DB", sec4:"RATE-LIMIT 30/MIN", sec5:"RAM-ONLY · NO DISK",
       heroKick:"SOVEREIGN ELIGIBILITY HARNESS • V5.0",
       heroH:"Every welfare rupee the Republic owes you — computed in 90 seconds, without a bribe.",
       heroSub:"Nine questions. Hakku cross-checks 34 central and Karnataka statutes, resolves anti-double-dipping conflicts, then hands you a printable A4 voucher a GramaOne operator cannot refuse.",
@@ -222,7 +222,7 @@ Hindi: {
       dpdp_title:"DPDP ACT §6 — VOLATILE ONLY", dpdp_note:"This dossier exists in RAM for 10 minutes. Closing the tab purges it — nothing is written to disk, cookies or any server."
     },
     Kannada: {
-      sec1:"CSP HARDENED", sec2:"AES-256-GCM", sec3:"ZERO DB", sec4:"RATE-LIMIT 8/MIN", sec5:"10m TTL AUTO-WIPE",
+      sec1:"CSP HARDENED", sec2:"AES-256-GCM", sec3:"ZERO DB", sec4:"RATE-LIMIT 30/MIN", sec5:"RAM-ONLY · NO DISK",
       heroKick:"ಸಾರ್ವಭೌಮ ಅರ್ಹತಾ ಹಾರ್ನೆಸ್ • V5.0",
       heroH:"ಗಣರಾಜ್ಯವು ನಿಮಗೆ ಸಲ್ಲಬೇಕಾದ ಪ್ರತಿಯೊಂದು ಕಲ್ಯಾಣ ರೂಪಾಯಿ — 90 ಸೆಕೆಂಡುಗಳಲ್ಲಿ, ಲಂಚವಿಲ್ಲದೆ.",
       heroSub:"ಒಂಬತ್ತು ಪ್ರಶ್ನೆಗಳು. ಹಕ್ಕು 34 ಕೇಂದ್ರ ಮತ್ತು ಕರ್ನಾಟಕ ಶಾಸನಗಳನ್ನು ಪರಿಶೀಲಿಸಿ, ಡೇಟಾ ದ್ವಿಪದ ಸಂಘರ್ಷಗಳನ್ನು ಬಗೆಹರಿಸಿ, ಗ್ರಾಮಒನ್ ಆಪರೇಟರ್ ನಿರಾಕರಿಸಲಾಗದ ಮುದ್ರಿತ A4 ವೌಚರ್ ನೀಡುತ್ತದೆ.",
@@ -275,7 +275,7 @@ Hindi: {
       dpdp_title:"DPDP ಕಾಯ್ದೆ §6 — ಕ್ಷಣಿಕ ಮಾತ್ರ", dpdp_note:"ಈ ಡಾಸಿಯರ್ 10 ನಿಮಿಷ RAM ನಲ್ಲಿ ಮಾತ್ರ. ಟ್ಯಾಬ್ ಮುಚ್ಚಿದರೆ ಅಳಿಸಿಹೋಗುತ್ತದೆ — ಡಿಸ್ಕ್, ಕುಕೀ ಅಥವಾ ಸರ್ವರ್‌ಗೆ ಏನೂ ಬರೆಯಲಾಗುವುದಿಲ್ಲ."
     },
     Hindi: {
-      sec1:"CSP HARDENED", sec2:"AES-256-GCM", sec3:"ZERO DB", sec4:"RATE-LIMIT 8/MIN", sec5:"10m TTL AUTO-WIPE",
+      sec1:"CSP HARDENED", sec2:"AES-256-GCM", sec3:"ZERO DB", sec4:"RATE-LIMIT 30/MIN", sec5:"RAM-ONLY · NO DISK",
       heroKick:"सार्वभौम पात्रता हार्नेस • V5.0",
       heroH:"गणराज्य का हर कल्याणकारी रुपया — 90 सेकंड में, बिना रिश्वत।",
       heroSub:"नौ सवाल। हक़ 34 केंद्रीय और कर्नाटक कानूनों की जाँच करता है, डबल-डिपिंग टकराव सुलझाता है, और आपको एक प्रिंटेड A4 वाउचर देता है जिसे ग्रामवन ऑपरेटर अस्वीकार नहीं कर सकता।",

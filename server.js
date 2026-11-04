@@ -52,8 +52,8 @@ app.use(cors({ origin: (origin, cb) => cb(null, !origin || ALLOWED_ORIGINS.lengt
 app.use(express.json({ limit: '24kb' }));
 app.use(express.static(path.join(__dirname, 'public'), { index: 'index.html', maxAge: '1h', setHeaders: (res, filePath) => { if (filePath.endsWith('.html')) res.setHeader('Cache-Control', 'no-cache'); } }));
 
-/* ---- in-memory rate limiter: 8 POST req / 60s / IP (GETs exempt) ---- */
-const RATE = { windowMs: 60000, max: 8 };
+/* ---- in-memory rate limiter: 30 POST req / 60s / IP (GETs exempt) ---- */
+const RATE = { windowMs: 60000, max: 30 };
 const rateBuckets = new Map();
 setInterval(() => { const now = Date.now(); for (const [k, v] of rateBuckets) if (now - v.start > RATE.windowMs * 2) rateBuckets.delete(k); }, 120000).unref();
 app.use('/api/', (req, res, next) => {

@@ -61,43 +61,27 @@ function renderIntake(preserveAlerts) {
   const main = $('mainStage');
   showPills('intake');
   S.view = 'intake';
-  const ses = 'SES-' + (S.sessionId || '————').toUpperCase().slice(0, 4);
-  const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
   const bankPick = S.bankPick || (S.profile && S.profile.bankType) || 'regular';
   main.innerHTML = `
   <section id="view-intake" class="space-y-8 view-enter">
 
-    <!-- HERO + SESSION ENVELOPE -->
-    <div class="grid lg:grid-cols-3 gap-5 items-stretch rise-in">
-      <div class="lg:col-span-2">
-        <p class="stamp stamp-sky mono text-[12px] px-3 py-1 mb-3 inline-flex">🛡 ${esc(T('heroKick'))}</p>
-        <h2 class="font-display font-black text-[#0A2540] text-[30px] md:text-[38px] tracking-tight" style="line-height:1.18">${esc(T('heroH'))}</h2>
-        <p class="text-slate-600 mt-3 text-[16px] max-w-3xl" style="line-height:1.65">${esc(T('heroSub'))}</p>
-        <div class="flex flex-wrap gap-2 mt-4">
-          <span class="sec-chip">✓ ${esc(T('sec1'))}</span>
-          <span class="sec-chip">✓ ${esc(T('sec2'))}</span>
-          <span class="sec-chip">✓ ${esc(T('sec3'))}</span>
-          <span class="sec-chip">✓ ${esc(T('sec4'))}</span>
-          <span class="sec-chip">✓ ${esc(T('sec5'))}</span>
-        </div>
-      </div>
-      <div class="env-card p-5 pop-stagger">
-        <p class="mono text-[11px] tracking-[0.16em] text-[#93C5FD] font-bold">${esc(T('env_title'))}</p>
-        <p class="mono text-[12.5px] text-white/80 mt-1.5">${ses} · ${today}</p>
-        <div class="mt-3">
-          <div class="env-row"><span class="env-k">${esc(T('env_cipher'))}</span><span class="env-v">AES-256-GCM</span></div>
-          <div class="env-row"><span class="env-k">${esc(T('env_ttl'))}</span><span class="env-v">600 s</span></div>
-          <div class="env-row"><span class="env-k">${esc(T('env_persist'))}</span><span class="env-v">NONE</span></div>
-          <div class="env-row"><span class="env-k">${esc(T('env_out'))}</span><span class="env-v">0 req</span></div>
-          <div class="env-row"><span class="env-k">${esc(T('env_records'))}</span><span class="env-v">0</span></div>
-        </div>
-        <p class="mono text-[11px] tracking-[0.12em] text-emerald-300 font-bold mt-3">● ${esc(T('env_ram'))}</p>
+    <!-- BROADSHEET HERO -->
+    <div class="rise-in border-b-2 border-[#111] pb-7 mb-2">
+      <p class="stamp stamp-crimson mb-4">🛡 ${esc(T('heroKick'))}</p>
+      <h2 class="font-display font-black text-[#111] text-[38px] md:text-[56px] tracking-[-0.02em]" style="line-height:1.04">${esc(T('heroH'))}</h2>
+      <p class="text-[#444748] mt-4 text-[17px] max-w-3xl" style="line-height:1.6">${esc(T('heroSub'))}</p>
+      <div class="flex flex-wrap gap-2 mt-5">
+        <span class="sec-chip">✓ ${esc(T('sec1'))}</span>
+        <span class="sec-chip">✓ ${esc(T('sec2'))}</span>
+        <span class="sec-chip">✓ ${esc(T('sec3'))}</span>
+        <span class="sec-chip">✓ ${esc(T('sec4'))}</span>
+        <span class="sec-chip">✓ ${esc(T('sec5'))}</span>
       </div>
     </div>
 
     <!-- ① LIFE-EVENT BUNDLES -->
     ${secHead('1', 'bundles_title', `<span class="mono-label dim">${esc(T('tap_vault'))}</span>`)}
-    <p class="text-[14px] text-slate-500 -mt-4 reveal" style="line-height:1.65">${esc(T('bundles_hint'))}</p>
+    <p class="text-[14px] text-[#565A5B] -mt-4 reveal" style="line-height:1.65">${esc(T('bundles_hint'))}</p>
     <div class="pop-stagger grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-3.5" id="bundleGrid"></div>
 
     <!-- ② PERSONA PRESETS -->
@@ -111,7 +95,7 @@ function renderIntake(preserveAlerts) {
           <span class="num-chip">3</span>
           <div>
             <p class="mono-label">${esc(T('form_title'))}</p>
-            <p class="text-[13.5px] text-slate-500 mt-0.5">${esc(T('form_hint'))}</p>
+            <p class="text-[13.5px] text-[#565A5B] mt-0.5">${esc(T('form_hint'))}</p>
           </div>
         </div>
         <div class="flex gap-2">
@@ -189,17 +173,17 @@ function renderIntake(preserveAlerts) {
       </div>
 
       <div class="px-6 pb-5">
-        <label class="field-label">${esc(T('f_bank'))} · <span class="normal-case tracking-normal text-slate-500">${esc(T('f_bank_sub'))}</span></label>
+        <label class="field-label">${esc(T('f_bank'))} · <span class="normal-case tracking-normal text-[#565A5B]">${esc(T('f_bank_sub'))}</span></label>
         <div class="grid md:grid-cols-2 gap-3 mt-1.5">
           <div class="bank-card ${bankPick === 'regular' ? 'active' : ''}" data-bank="regular" onclick="selectBank('regular')" role="radio" aria-checked="${bankPick === 'regular'}">
             <span class="bank-dot"></span>
-            <span><span class="block font-bold text-[15px] text-[#0A2540]">${esc(T('b_regular'))}</span>
-            <span class="block text-[12.5px] text-slate-500 mt-0.5">${esc(T('b_regular_sub'))}</span></span>
+            <span><span class="block font-bold text-[15px] text-[#111111]">${esc(T('b_regular'))}</span>
+            <span class="block text-[12.5px] text-[#565A5B] mt-0.5">${esc(T('b_regular_sub'))}</span></span>
           </div>
           <div class="bank-card ${bankPick === 'pmjdy' ? 'active' : ''}" data-bank="pmjdy" onclick="selectBank('pmjdy')" role="radio" aria-checked="${bankPick === 'pmjdy'}">
             <span class="bank-dot"></span>
-            <span><span class="block font-bold text-[15px] text-[#0A2540]">${esc(T('b_pmjdy'))}</span>
-            <span class="block text-[12.5px] text-slate-500 mt-0.5">${esc(T('b_pmjdy_sub'))}</span></span>
+            <span><span class="block font-bold text-[15px] text-[#111111]">${esc(T('b_pmjdy'))}</span>
+            <span class="block text-[12.5px] text-[#565A5B] mt-0.5">${esc(T('b_pmjdy_sub'))}</span></span>
           </div>
         </div>
       </div>
@@ -212,7 +196,7 @@ function renderIntake(preserveAlerts) {
           <span class="num-chip">4</span>
           <div>
             <p class="mono-label">${esc(T('forensics'))}</p>
-            <p class="text-[13.5px] text-slate-500 mt-0.5">${esc(T('forensics_hint'))}</p>
+            <p class="text-[13.5px] text-[#565A5B] mt-0.5">${esc(T('forensics_hint'))}</p>
           </div>
         </div>
         <div class="flex gap-2">
@@ -239,7 +223,7 @@ function renderIntake(preserveAlerts) {
           <span class="num-chip">5</span>
           <div>
             <p class="mono-label">${esc(T('voice_title'))}</p>
-            <p class="text-[13.5px] text-slate-500 mt-0.5">${esc(T('voice_hint'))}</p>
+            <p class="text-[13.5px] text-[#565A5B] mt-0.5">${esc(T('voice_hint'))}</p>
           </div>
         </div>
         <div class="flex gap-2">
@@ -248,22 +232,22 @@ function renderIntake(preserveAlerts) {
         </div>
       </div>
       <textarea id="situationBox" rows="3" maxlength="400" class="field-input mt-3 resize-y" style="line-height:1.6" placeholder="${esc(T('voice_hint'))}" oninput="updateDetectedFlags()"></textarea>
-      <p class="mono text-[12px] text-[#B45309] mt-1.5 min-h-[18px]" id="detectedFlags"></p>
+      <p class="mono text-[12px] text-[#8A4B00] mt-1.5 min-h-[18px]" id="detectedFlags"></p>
       <div class="flex flex-wrap items-center justify-between gap-2 mt-1">
-        <button id="micBtn" onclick="toggleDictation()" class="btn-ghost px-3.5 py-2 text-[13.5px] flex items-center gap-1.5 mono">🎙 ${esc(T('dictate_btn'))} <span class="text-slate-400">webkitSpeechRecognition</span></button>
-        <p class="mono text-[11.5px] text-slate-400">${esc(T('pii_scan'))}</p>
+        <button id="micBtn" onclick="toggleDictation()" class="btn-ghost px-3.5 py-2 text-[13.5px] flex items-center gap-1.5 mono">🎙 ${esc(T('dictate_btn'))} <span class="text-[#8A8D8D]">webkitSpeechRecognition</span></button>
+        <p class="mono text-[11.5px] text-[#8A8D8D]">${esc(T('pii_scan'))}</p>
       </div>
     </div>
 
     <!-- CTA -->
     <div class="reveal" id="submitZone">
       <button id="submitBtn" onclick="submitIntake()" class="btn-primary w-full py-4 text-[16px] tracking-wide">⚡ ${esc(T('cta'))} →</button>
-      <div id="calcStatus" class="hidden mt-3 flex items-center gap-2 justify-center text-[14px] font-semibold text-[#1E3A5F]">
+      <div id="calcStatus" class="hidden mt-3 flex items-center gap-2 justify-center text-[14px] font-semibold text-[#111111]">
         <span class="live-dot" style="background:#D97706"></span><span>${esc(T('computing'))}</span>
       </div>
     </div>
 
-    <p class="text-center text-[13.5px] text-slate-500 pb-2" style="line-height:1.65">${esc(T('intakeFoot'))}</p>
+    <p class="text-center text-[13.5px] text-[#565A5B] pb-2" style="line-height:1.65">${esc(T('intakeFoot'))}</p>
   </section>`;
 
   renderBundleCards();
@@ -356,10 +340,10 @@ function renderBundleCards() {
   grid.innerHTML = BUNDLE_CARDS.map(b => `
     <button class="bundle-card hover-spring" onclick="selectBundleAndSearch('${b.id}')">
       <span class="bundle-emo">${b.emo}</span>
-      <span class="font-display font-bold text-[16.5px] text-[#0A2540] leading-tight">${esc(b.title)}</span>
-      <span class="mono font-bold text-[14.5px] text-[#B45309]">~${inrShort(b.val)}/yr</span>
-      <span class="text-[12.5px] text-slate-500">${esc(b.sub)}</span>
-      <span class="mono text-[11px] tracking-[0.1em] text-[#1E3A5F] font-bold mt-auto pt-1">${esc(T('prefill_1click'))} →</span>
+      <span class="font-display font-bold text-[16.5px] text-[#111111] leading-tight">${esc(b.title)}</span>
+      <span class="mono font-bold text-[14.5px] text-[#8A4B00]">~${inrShort(b.val)}/yr</span>
+      <span class="text-[12.5px] text-[#565A5B]">${esc(b.sub)}</span>
+      <span class="mono text-[11px] tracking-[0.1em] text-[#111111] font-bold mt-auto pt-1">${esc(T('prefill_1click'))} →</span>
     </button>`).join('');
 }
 

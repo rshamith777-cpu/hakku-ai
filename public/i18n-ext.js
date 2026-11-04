@@ -95,7 +95,7 @@ window.HAKKU_I18N.Telugu = {
 (function () {
   const V2 = {
     Tamil: {
-      sec1:"CSP HARDENED", sec2:"AES-256-GCM", sec3:"ZERO DB", sec4:"RATE-LIMIT 8/MIN", sec5:"10m TTL AUTO-WIPE",
+      sec1:"CSP HARDENED", sec2:"AES-256-GCM", sec3:"ZERO DB", sec4:"RATE-LIMIT 30/MIN", sec5:"RAM-ONLY · NO DISK",
       heroKick:"இறையாண்மை தகுதி-சான்று அமைப்பு • V5.0",
       heroH:"குடியரசு உங்களுக்குத் தரவேண்டிய ஒவ்வொரு நலவாழ்வு ரூபாயும் — 90 வினாடிகளில், லஞ்சமின்றி.",
       heroSub:"ஒன்பது கேள்விகள். ஹக்கு 34 மத்திய மற்றும் கர்நாடக சட்டங்களைச் சரிபார்த்து, இரட்டை-பலன் மோதல்களைத் தீர்த்து, கிராமஒன் ஆபரேட்டர் மறுக்க முடியாத அச்சிடக்கூடிய A4 வவுசரைத் தருகிறது.",
@@ -148,7 +148,7 @@ window.HAKKU_I18N.Telugu = {
       dpdp_title:"DPDP சட்டம் §6 — தற்காலிகமே", dpdp_note:"இந்த டாசியர் 10 நிமிடம் RAM-ல் மட்டுமே. டேப் மூடினால் அழிந்துவிடும் — டிஸ்க், குக்கீ அல்லது சர்வரில் எதுவும் எழுதப்படாது."
     },
     Telugu: {
-      sec1:"CSP HARDENED", sec2:"AES-256-GCM", sec3:"ZERO DB", sec4:"RATE-LIMIT 8/MIN", sec5:"10m TTL AUTO-WIPE",
+      sec1:"CSP HARDENED", sec2:"AES-256-GCM", sec3:"ZERO DB", sec4:"RATE-LIMIT 30/MIN", sec5:"RAM-ONLY · NO DISK",
       heroKick:"సార్వభౌమ అర్హతా హార్నెస్ • V5.0",
       heroH:"గణరాజ్యం మీకు ఇవ్వాల్సిన ప్రతి సంక్షేమ రూపాయి — 90 సెకన్లలో, లంచం లేకుండా.",
       heroSub:"తొమ్మిది ప్రశ్నలు. హక్కు 34 కేంద్ర, కర్ణాటక చట్టాలను తనిఖీచేసి, డబుల్-డిప్పింగ్ విభేదాలను పరిష్కరించి, గ్రామవన్ ఆపరేటర్ తిరస్కరించలేని ప్రింటబుల్ A4 వోచర్ ఇస్తుంది.",

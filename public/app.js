@@ -65,33 +65,19 @@ function rebuildPresets() {
   row.innerHTML = Object.entries(PERSONAS).map(([k, p]) =>
     `<button class="persona-pill" onclick='fillPreset("${k}")'>
       <span class="persona-av">${esc((p.name || 'C').charAt(0))}</span>
-      <span class="min-w-0"><span class="block font-bold text-[14.5px] text-[#0A2540] leading-tight">${esc(p.name)}, ${esc(String(p.profile.age || ''))}</span>
-      <span class="block mono text-[11.5px] text-slate-500">${esc(p.sub || '')}</span></span>
+      <span class="min-w-0"><span class="block font-bold text-[14.5px] text-[#111111] leading-tight">${esc(p.name)}, ${esc(String(p.profile.age || ''))}</span>
+      <span class="block mono text-[11.5px] text-[#565A5B]">${esc(p.sub || '')}</span></span>
     </button>`).join('');
 }
 
-/* ---------------- session lifecycle / DPDP auto-wipe ---------------- */
-let wipeTimer = null, wipeLeft = 600;
+/* ---------------- session lifecycle / DPDP volatile RAM ---------------- */
+/* No visible timers: state lives only in this tab's RAM and dies when the tab closes. */
 function sessionStamp(tag) {
   S.sessionId = tag || (crypto.randomUUID ? crypto.randomUUID().slice(0, 8) : Math.random().toString(36).slice(2, 10).toUpperCase());
   const ses = 'SES-' + S.sessionId.toUpperCase().slice(0, 4);
   const el = $('vaultSessionTag'); if (el) el.textContent = ses;
   const f = $('footSession'); if (f) f.textContent = 'SESSION ' + ses;
-}
-function resetWipeCountdown() {
-  wipeLeft = 600;
-  const paint = () => {
-    const m = Math.floor(wipeLeft / 60), s = Math.floor(wipeLeft % 60);
-    const txt = m + ':' + String(s).padStart(2, '0');
-    const el = $('wipeCountdown'); if (el) el.textContent = txt;
-    const f = $('footCountdown'); if (f) f.textContent = txt + ' LEFT';
-  };
-  paint();
-  if (!wipeTimer) wipeTimer = setInterval(() => {
-    wipeLeft--;
-    paint();
-    if (wipeLeft <= 0) { eraseSessionNow(false); toast(T('toast_auto'), true); }
-  }, 1000);
+  const d = $('mastDate'); if (d) d.textContent = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
 }
 function eraseSessionNow(manual) {
   stopSpeech(true);
@@ -100,9 +86,8 @@ function eraseSessionNow(manual) {
   S.dossierCache = {}; S.serving = null;
   SECURE.key = null; SECURE.sessionId = null; SECURE.ready = false; SECURE.failed = false;
   fetch('/api/session/wipe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sessionId: S.sessionId }) }).catch(() => {});
-  if (manual) { toast(T('toast_wiped')); resetWipeCountdown(); }
+  if (manual) { toast(T('toast_wiped')); renderIntake(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 }
-['click', 'keydown', 'scroll', 'input'].forEach(evt => document.addEventListener(evt, () => { if (!S.busy && wipeTimer && wipeLeft < 60) resetWipeCountdown(); }, { passive: true }));
 
 /* ---------------- SECURE: ECDH P-256 → HKDF → AES-256-GCM envelope ---------------- */
 const SECURE = { sessionId: null, key: null, ready: false, failed: false };
