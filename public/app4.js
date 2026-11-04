@@ -268,7 +268,7 @@ function renderSchemeDetail() {
           <button onclick="printSlip()" class="btn-primary px-4 py-2.5 text-[14px]">🖨 ${esc(T('print_slip'))}</button>
           <button onclick="copyDossier()" class="btn-ghost px-4 py-2.5 text-[14px]">${esc(T('copy'))}</button>
           <button onclick="readSlipAloud()" class="btn-ghost px-4 py-2.5 text-[14px]">🔊 ${esc(T('read_slip'))}</button>
-          <span class="mono text-[10.5px] text-[#8A8D8D] ml-auto hidden md:inline">window.print() · @media print hides .no-print and prints #printableSlip only</span>
+          <span class="mono text-[10.5px] text-[#8A8D8D] ml-auto hidden md:inline">compact A4 slip · 1 page · isolated print</span>
         </div>
       </div>
 
@@ -326,9 +326,59 @@ async function copyDossier() {
   const box = $('dossierText'); if (!box) return;
   try { await navigator.clipboard.writeText(box.textContent); toast(T('copied')); } catch (e) { toast('Clipboard blocked', true); }
 }
-function printSlip() { try { window.print(); } catch (e) { toast('Print blocked', true); } }
+function printSlip() {
+  const s = S.activeSchemeObj;
+  if (!s) { toast(T('toast_err'), true); return; }
+  const ch = s.channel || {};
+  const isCentral = String(s.level || '').toLowerCase().includes('central');
+  const isOneTime = /one[- ]time/i.test(s.payoutTag || '') || /laptop|solar|subsidy|grant/i.test(s.benefitType || '');
+  const portal = s.applyWhere || s.source || 'https://india.gov.in';
+  const portalHost = String(portal).replace(/^https?:\/\//, '').split('/')[0];
+  const qr = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=10&data=' + encodeURIComponent(portal);
+  const ack = ackNumber(s);
+  const days = slaTimeline(s.sakalaSlaDays);
+  const now = new Date().toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  const citName = S.profile && S.profile.name ? S.profile.name : 'Citizen';
+  const bagRows = BAG_BASE_KEYS.map(k => T(k))
+    .concat((s.documents || []).slice(5));
+  const html =
+    printMasthead('SCHEME SLIP · ' + schemeCode(s) + ' · ACK ' + ack) +
+    '<div class="citizen"><span>' + esc(citName) + ' · ' + esc(buildFingerprint(S.profile)) + '</span><span>' + esc(now) + ' IST · SES-' + esc(String(S.sessionId || '').toUpperCase().slice(0, 4)) + '</span></div>' +
+    '<div class="slip-head"><div><span class="pill">' + esc(isCentral ? 'CENTRAL' : 'KARNATAKA') + '</span>' +
+      '<span class="pill grn">SLA ' + (s.sakalaSlaDays || 21) + ' DAYS</span>' +
+      (s.isHiddenGem ? '<span class="pill red">💎 GEM</span>' : '') +
+      '<h2 style="margin-top:4px">' + esc(shortName(s)) + '</h2>' +
+      '<div class="sub" style="font-family:JetBrains Mono,monospace;font-size:7.5px;color:#565A5B;letter-spacing:.06em;margin-top:2px">' + esc(s.ministry || '') + ' · ' + esc(s.statutoryRule || '') + '</div></div>' +
+      '<div class="qrbox"><img src="' + esc(qr) + '" alt="QR"></div></div>' +
+    '<div class="totals">' +
+      '<div><div class="k">Entitlement</div><div class="v red">+' + inr(s.annualValueINR) + '</div><div class="k" style="margin-top:1px">' + esc(isOneTime ? 'ONE-TIME' : 'PER YEAR') + '</div></div>' +
+      '<div><div class="k">Counter Fee</div><div class="v">' + esc(ch.statutoryFee || '₹0') + '</div></div>' +
+      '<div><div class="k">Channel</div><div class="v" style="font-size:10.5px;line-height:1.3">CH ' + (ch.channelNumber || 1) + ' · ' + esc(String(ch.channelName || 'GramaOne / CSC').split('/')[0].trim()) + '</div></div>' +
+      '<div><div class="k">SLA Path</div><div class="v" style="font-size:10.5px">D' + days.join(' → D') + '</div></div>' +
+    '</div>' +
+    '<div class="two">' +
+      '<div><div class="sec">Eligibility proof checklist</div>' +
+        ((s.criteriaList || []).map(c => '<div class="tick"><span class="b">✓</span><span>' + esc(c) + '</span></div>').join('') || '<div class="tick"><span class="b">✓</span><span>Aadhaar + bank NPCI seeding</span></div>') +
+        '<div class="trap"><b>⚠ REJECTION TRAP:</b> ' + esc(s.commonRejectionTrap || 'Ensure NPCI DBT seeding is active before filing.') + '</div>' +
+      '</div>' +
+      '<div><div class="sec">Online path (Path A)</div><div class="steps">' +
+        ((s.selfApplySteps || ['Open the official portal', 'Complete Aadhaar OTP e-KYC', 'Upload documents and submit']).slice(0, 6).map((st, i) => '<div><i>' + String(i + 1).padStart(2, '0') + '</i><span>' + esc(st) + '</span></div>').join('')) +
+        '<div><i>→</i><span class="mono" style="font-size:8.5px">' + esc(portalHost) + '</span></div></div>' +
+        '<div class="sec" style="margin-top:6px">Document bag</div>' +
+        bagRows.slice(0, 9).map(d => '<div class="tick"><span class="b">□</span><span>' + esc(d) + '</span></div>').join('') +
+      '</div>' +
+    '</div>' +
+    printZeroBribe() +
+    printFoot('SCAN QR → OFFICIAL PORTAL ONLY · NEVER PAY A MIDDLEMAN', 'HELPLINE 1902 · PII NEVER STORED · RAM-ONLY');
+  printCompact(html, 'HAKKU Scheme Slip — ' + shortName(s));
+}
 function readSlipAloud() {
-  const box = $('dossierText'); if (!box) return;
-  const txt = (box.textContent || '').slice(0, 2500);
-  speakText(txt);
+  const s = S.activeSchemeObj;
+  const box = $('dossierText');
+  const txt = box ? (box.textContent || '').trim() : '';
+  const usable = txt && !/^Loading dossier/i.test(txt) && !/Dossier unavailable/i.test(txt);
+  if (usable) { speakText(txt.slice(0, 2500)); return; }
+  if (!s) { toast(T('toast_err'), true); return; }
+  const spoken = T('entitlement') + ' ' + inr(s.annualValueINR) + '. ' + buildSpeechForScheme(s);
+  speakText(spoken.slice(0, 2500));
 }

@@ -472,24 +472,43 @@ function deadlineShort(s) {
 /* ---------------- bundle slips manifest (printable) ---------------- */
 function printBundleManifest() {
   if (!S.matched.length) { toast(T('toast_busy'), true); return; }
-  const rows = filteredMatches().map((s, i) => `
-    <div style="display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed #C4C7C7;font-size:11.5px">
-      <div><b>${String(i + 1).padStart(2, '0')} · ${esc(shortName(s))}</b><br/>
-      <span style="color:#565A5B">${esc(s.ministry || '')} · ${esc(T('channel_word'))} ${(s.channel && s.channel.channelNumber) || 1} · ${esc((s.channel && s.channel.statutoryFee) || '₹0')}</span></div>
-      <div style="text-align:right;white-space:nowrap"><b style="color:#111">+${inr(s.annualValueINR)}</b><br/><span style="color:#565A5B">${esc(deadlineShort(s))}</span></div>
-    </div>`).join('');
-  const tmp = document.createElement('div');
-  tmp.id = 'printableSlip';
-  tmp.style.cssText = 'background:#fff;color:#111;padding:14mm 12mm;font-family:Marko One,Georgia,serif';
-  tmp.innerHTML = `
-    <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#111;border-bottom:3px solid #111;padding-bottom:6px">HAKKU 5.0 · DIGITAL PUBLIC INFRASTRUCTURE · STATUTORY DISPATCH</p>
-    <h1 style="font-family:'Marko One',Georgia,serif;font-size:24px;font-weight:900;color:#111;margin:10px 0 2px;letter-spacing:-0.02em">${esc(T('manifest_title'))}</h1>
-    <p style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#444748;margin-bottom:10px;border-bottom:1px solid #111;padding-bottom:8px">${esc(S.profile && S.profile.name ? S.profile.name : 'Citizen')} · ${esc(buildFingerprint(S.profile))} · ${new Date().toLocaleString('en-GB')} · SES-${esc(String(S.sessionId).toUpperCase().slice(0, 4))}</p>
-    ${rows}
-    <p style="font-size:11px;color:#111;border:2px solid #FF3B30;background:#FFE3E0;padding:8px 10px;margin-top:12px;line-height:1.55"><b>ZERO-BRIBE NOTICE:</b> All DBT transfers are 100% automated via NPCI straight to your bank account. Any bribe demand above ₹30 is reportable to the Toll-Free <b>1902</b> Sakala / Janaspandana Helpline. ಎಲ್ಲಾ DBT ಹಣ ನೇರವಾಗಿ NPCI ಮೂಲಕ ಬರುತ್ತದೆ. सारा DBT भुगतान सीधे NPCI द्वारा आता है।</p>`;
-  document.body.appendChild(tmp);
-  try { window.print(); } catch (e) { toast('Print blocked', true); }
-  setTimeout(() => tmp.remove(), 400);
+  const list = filteredMatches();
+  const meta = S.resultMeta;
+  const rows = list.map((s, i) => {
+    const ch = s.channel || {};
+    return '<tr>' +
+      '<td class="idx">' + String(i + 1).padStart(2, '0') + '</td>' +
+      '<td><b>' + esc(shortName(s)) + '</b><div class="sub">' + esc(s.ministry || '') + '</div></td>' +
+      '<td><div class="sub">CH ' + (ch.channelNumber || 1) + ' · ' + esc(String(ch.channelName || 'GramaOne / CSC').split('/')[0].trim()) + '</div><div class="sub">' + esc(ch.statutoryFee || '₹0') + '</div></td>' +
+      '<td><div class="sub">' + esc(deadlineShort(s)) + '</div></td>' +
+      '<td class="num">+' + inr(s.annualValueINR) + '</td>' +
+      '</tr>';
+  }).join('');
+  const conflicts = meta.statutoryConflictsResolved || [];
+  const excl = conflicts.length ? '<div class="sec">Excluded by anti-double-dipping engine</div>' +
+    conflicts.slice(0, 5).map(c => '<div class="excl"><span class="x">✕</span> <b>' + esc(shortName({ name: c.dropped })) + '</b> — ' + esc(String(c.rule).split(':').slice(1).join(':').trim() || c.rule) + '</div>').join('') +
+    (conflicts.length > 5 ? '<div class="excl">+ ' + (conflicts.length - 5) + ' more resolved automatically</div>' : '') : '';
+  const docs = (meta.consolidatedDocuments || []);
+  const readiness = (meta.readinessAudit || {}).readinessScore;
+  const citName = S.profile && S.profile.name ? S.profile.name : 'Citizen';
+  const now = new Date().toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  const html =
+    printMasthead('ENTITLEMENT MANIFEST · DIGITAL PUBLIC INFRASTRUCTURE') +
+    '<div class="citizen"><span>' + esc(citName) + ' · ' + esc(buildFingerprint(S.profile)) + '</span><span>' + esc(now) + ' IST · SES-' + esc(String(S.sessionId || '').toUpperCase().slice(0, 4)) + '</span></div>' +
+    '<div class="totals">' +
+      '<div><div class="k">DBT / Year</div><div class="v red">' + inr(meta.totalDirectAnnualINR) + '</div></div>' +
+      '<div><div class="k">5-Year Wealth</div><div class="v">' + inr(meta.fiveYearWealthINR) + '</div></div>' +
+      '<div><div class="k">Health Shield</div><div class="v">' + inr(meta.totalHealthCoverINR) + '</div></div>' +
+      '<div><div class="k">Readiness</div><div class="v">' + (readiness || 0) + '%</div></div>' +
+      '<div><div class="k">Unlocked</div><div class="v">' + meta.schemeCount + '/' + meta.totalCatalogCount + '</div></div>' +
+    '</div>' +
+    '<div class="sec">Matched schemes · ' + list.length + ' of ' + meta.totalCatalogCount + ' scanned</div>' +
+    '<table class="st">' + rows + '</table>' +
+    excl +
+    (docs.length ? '<div class="sec">Consolidated document folder</div><div class="docs">' + docs.map(d => '<span>' + esc(d) + '</span>').join('') + '</div>' : '') +
+    printZeroBribe() +
+    printFoot('PHASE A→C · DAY 0–10 · GRAMAONE / RSK / INO / BOCW', 'HELPLINE 1902 · PII NEVER STORED · RAM-ONLY');
+  printCompact(html, 'HAKKU Entitlement Manifest — ' + citName);
 }
 
 function backToIntake() { S.view = 'intake'; renderIntake(true); showPills('intake'); window.scrollTo({ top: 0, behavior: 'smooth' }); }

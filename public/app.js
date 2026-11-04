@@ -301,3 +301,76 @@ async function revealCard(elSel, delay) {
   const el = typeof elSel === 'string' ? $(elSel) : elSel;
   if (el) { el.classList.add('is-in'); }
 }
+
+/* ---------------- compact A4 print engine (isolated iframe, 1 page) ---------------- */
+const PRINT_CSS = `@page { size: A4; margin: 9mm 10mm; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Marko One', Georgia, serif; color:#111; background:#fff; font-size:10.5px; line-height:1.45; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.mono { font-family:'JetBrains Mono', monospace; }
+.mast { border-bottom:3px double #111; padding-bottom:5px; display:flex; justify-content:space-between; align-items:flex-end; gap:8px; }
+.mast h1 { font-size:21px; font-weight:900; letter-spacing:-0.02em; line-height:1; }
+.mast h1 span { color:#FF3B30; }
+.mast .tag { font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:.16em; text-transform:uppercase; color:#444748; text-align:right; }
+.citizen { font-family:'JetBrains Mono',monospace; font-size:8.5px; color:#444748; border-bottom:1px solid #111; padding:4px 0 5px; display:flex; justify-content:space-between; gap:8px; }
+.totals { display:flex; border:2px solid #111; margin:7px 0; }
+.totals > div { flex:1; padding:5px 7px; border-right:1px solid #C4C7C7; }
+.totals > div:last-child { border-right:none; }
+.totals .k { font-family:'JetBrains Mono',monospace; font-size:7px; letter-spacing:.12em; text-transform:uppercase; color:#565A5B; }
+.totals .v { font-size:13.5px; font-weight:900; margin-top:1px; }
+.totals .v.red { color:#FF3B30; }
+.sec { font-family:'JetBrains Mono',monospace; font-size:8px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#111; border-bottom:2px solid #111; padding-bottom:2px; margin:8px 0 4px; }
+table.st { width:100%; border-collapse:collapse; }
+table.st td { padding:3.5px 4px; border-bottom:1px dashed #C4C7C7; vertical-align:top; font-size:10px; }
+table.st td.num { font-family:'JetBrains Mono',monospace; font-weight:700; white-space:nowrap; text-align:right; font-size:10.5px; }
+table.st td.idx { font-family:'JetBrains Mono',monospace; font-size:8.5px; color:#8A8D8D; white-space:nowrap; }
+table.st .sub { font-family:'JetBrains Mono',monospace; font-size:7.5px; color:#565A5B; letter-spacing:.04em; }
+.excl { font-size:9px; color:#565A5B; padding:1.5px 0; }
+.excl b { color:#111; }
+.excl .x { font-family:'JetBrains Mono',monospace; color:#93000A; font-weight:700; }
+.docs { font-size:9.5px; line-height:1.6; }
+.docs span { border:1px solid #C4C7C7; padding:1px 5px; margin:0 3px 3px 0; display:inline-block; }
+.zb { border:2px solid #FF3B30; background:#FFE3E0; color:#93000A; padding:5px 8px; margin-top:7px; font-size:9px; line-height:1.5; }
+.foot { border-top:3px double #111; margin-top:8px; padding-top:4px; display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:7.5px; letter-spacing:.1em; text-transform:uppercase; color:#565A5B; }
+.two { display:flex; gap:10px; }
+.two > div { flex:1; }
+.qrbox { border:2px solid #111; padding:4px; width:112px; flex:none; }
+.qrbox img { display:block; width:104px; height:104px; }
+.slip-head { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; margin:7px 0 2px; }
+.slip-head h2 { font-size:16.5px; font-weight:900; line-height:1.2; }
+.kv { display:flex; justify-content:space-between; gap:8px; border-bottom:1px dashed #C4C7C7; padding:2.5px 0; font-size:9.5px; }
+.kv .k { font-family:'JetBrains Mono',monospace; font-size:7.5px; letter-spacing:.1em; text-transform:uppercase; color:#565A5B; padding-top:1px; }
+.tick { display:flex; gap:5px; font-size:9.5px; padding:1.5px 0; }
+.tick .b { font-family:'JetBrains Mono',monospace; font-weight:700; flex:none; }
+.trap { border:1.5px solid #FF3B30; background:#FFE3E0; color:#93000A; padding:4px 7px; font-size:9px; margin-top:4px; line-height:1.5; }
+.steps div { display:flex; gap:6px; font-size:9.5px; padding:1.5px 0; }
+.steps div i { font-family:'JetBrains Mono',monospace; font-style:normal; font-weight:700; font-size:8px; color:#8A8D8D; flex:none; padding-top:1px; }
+.pill { font-family:'JetBrains Mono',monospace; font-size:7.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; border:1px solid #111; padding:1px 5px; display:inline-block; margin-right:4px; }
+.pill.red { border-color:#FF3B30; color:#FF3B30; }
+.pill.grn { border-color:#10B981; color:#047857; }`;
+function printCompact(bodyHtml, title) {
+  const f = document.createElement('iframe');
+  f.setAttribute('aria-hidden', 'true');
+  f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden;';
+  document.body.appendChild(f);
+  const doc = f.contentWindow.document;
+  doc.open();
+  doc.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>' + esc(title || 'HAKKU Statutory Slip') + '</title>' +
+    '<link href="https://fonts.googleapis.com/css2?family=Marko+One&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">' +
+    '<style>' + PRINT_CSS + '</style></head><body>' + bodyHtml + '</body></html>');
+  doc.close();
+  const cleanup = () => setTimeout(() => { if (f.parentNode) f.remove(); }, 400);
+  f.contentWindow.addEventListener('afterprint', cleanup);
+  setTimeout(() => {
+    try { f.contentWindow.focus(); f.contentWindow.print(); } catch (e) { toast('Print blocked', true); f.remove(); }
+  }, 400);
+  setTimeout(() => { if (f.parentNode) f.remove(); }, 90000);
+}
+function printMasthead(subline) {
+  return '<div class="mast"><h1>HAKKU<span>.</span></h1><div class="tag">' + subline + '</div></div>';
+}
+function printZeroBribe() {
+  return '<div class="zb"><b>ZERO-BRIBE NOTICE:</b> All DBT transfers are 100% automated via NPCI straight to your bank account. Any bribe demand above &#8377;30 is reportable to the Toll-Free <b>1902</b> Sakala / Janaspandana Helpline. &#3282;&#3270;&#3232;&#3262; DBT &#3233;&#3239; &#3233;&#3263;&#3240;&#3263;&#3240;&#3262;&#3233;&#3262;&#3236;&#3262; &#3237;&#3263; &#3231;&#3263;&#3240;&#3262;&#3233;&#3236;&#3262;&#3237;&#3262; &#3237;&#3240;&#3263;. &#2360;&#2366;&#2352;&#2366; DBT &#2349;&#2369;&#2327;&#2340;&#2366;&#2344; &#2360;&#2368;&#2343;&#2375; NPCI &#2342;&#2381;&#2357;&#2366;&#2352;&#2366; &#2310;&#2340;&#2366; &#2361;&#2376;&#2403;</div>';
+}
+function printFoot(left, right) {
+  return '<div class="foot"><span>' + left + '</span><span>' + right + '</span></div>';
+}
