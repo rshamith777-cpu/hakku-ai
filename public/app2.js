@@ -335,11 +335,11 @@ const FORM_TOUCH_MAP = { formName: 'name', formAge: 'age', formGender: 'gender',
 
 /* ---------------- life-event bundle cards (always available, pre-harness) ---------------- */
 const BUNDLE_CARDS = [
-  { id: 'BUNDLE_COLLEGE',         emo: '🎓', title: 'College Admission',  val: 85000,  approximate: true,  sub: 'Pragati + Laptop' },
-  { id: 'BUNDLE_FARM_UPGRADE',    emo: '🌾', title: 'Farm Upgrade',       val: 195000, approximate: true,  sub: 'Solar + Ganga Kalyana' },
-  { id: 'BUNDLE_WIDOW_EMERGENCY', emo: '🕊', title: 'Widow Emergency',    val: 72000,  approximate: false, sub: 'Pension + BOCW' },
-  { id: 'BUNDLE_WORKER_UPGRADE',  emo: '👷', title: 'Worker Upgrade',     val: 36000,  approximate: true,  sub: 'BOCW education' },
-  { id: 'BUNDLE_MATERNITY_BIRTH', emo: '🤰', title: 'Maternity & Birth',  val: 30000,  approximate: true,  sub: 'PMVY + JSY' }
+  { id: 'BUNDLE_COLLEGE',         emo: '🎓', titleKey: 'b_college_t',   val: 85000,  approximate: true,  subKey: 'b_college_s' },
+  { id: 'BUNDLE_FARM_UPGRADE',    emo: '🌾', titleKey: 'b_farm_t',      val: 195000, approximate: true,  subKey: 'b_farm_s' },
+  { id: 'BUNDLE_WIDOW_EMERGENCY', emo: '🕊', titleKey: 'b_widow_t',     val: 72000,  approximate: false, subKey: 'b_widow_s' },
+  { id: 'BUNDLE_WORKER_UPGRADE',  emo: '👷', titleKey: 'b_worker_t',    val: 36000,  approximate: true,  subKey: 'b_worker_s' },
+  { id: 'BUNDLE_MATERNITY_BIRTH', emo: '🤰', titleKey: 'b_maternity_t', val: 30000,  approximate: true,  subKey: 'b_maternity_s' }
 ];
 function inrShort(n) {
   if (n >= 100000) return '₹' + (n / 100000).toFixed(n % 100000 === 0 ? 0 : 2).replace(/\.?0+$/, '') + 'L';
@@ -351,9 +351,9 @@ function renderBundleCards() {
   grid.innerHTML = BUNDLE_CARDS.map(b => `
     <button class="bundle-card hover-spring" onclick="selectBundleAndSearch('${b.id}')">
       <span class="bundle-emo">${b.emo}</span>
-      <span class="font-display font-bold text-[16.5px] text-[#111111] leading-tight">${esc(b.title)}</span>
-      <span class="mono font-bold text-[14.5px] text-[#8A4B00]">~${inrShort(b.val)}/yr</span>
-      <span class="text-[12.5px] text-[#565A5B]">${esc(b.sub)}</span>
+      <span class="font-display font-bold text-[16.5px] text-[#111111] leading-tight">${esc(T(b.titleKey))}</span>
+      <span class="mono font-bold text-[14.5px] text-[#8A4B00]">~${inrShort(b.val)}/${esc(T('per_year_word'))}</span>
+      <span class="text-[12.5px] text-[#565A5B]">${esc(T(b.subKey))}</span>
       <span class="mono text-[11px] tracking-[0.1em] text-[#111111] font-bold mt-auto pt-1">${esc(T('prefill_1click'))} →</span>
     </button>`).join('');
 }

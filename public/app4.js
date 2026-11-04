@@ -178,11 +178,6 @@ function renderSchemeDetail() {
 
         <div class="mt-5 rounded-xl border-[1.5px] border-[#FF3B30] bg-[#FFE3E0] p-3.5 text-[12.5px] text-[#93000A] leading-relaxed">
           <b>⚠ ${esc(T('zero_bribe_title'))}</b>
-          <div class="grid md:grid-cols-3 gap-2.5 mt-1.5">
-            <p><b>EN:</b> All DBT transfers are 100% automated via NPCI straight to your bank account. No middleman can influence approval. Any bribe demand above ₹30 is reportable to the Toll-Free <b>1902</b> Sakala / Janaspandana Helpline.</p>
-            <p lang="kn"><b>KN:</b> ಎಲ್ಲಾ DBT ಹಣ ನೇರವಾಗಿ NPCI ಮೂಲಕ ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಖಾತೆಗೆ ಬರುತ್ತದೆ. ಮಧ್ಯವರ್ತಿಗಳಿಗೆ ಹಣ ಕೊಡಬೇಡಿ. ₹30 ಮೀರಿದ ಲಂಚ ಕೇಳಿದರೆ <b>1902</b> ಸಕಾಲ ಸಹಾಯವಾಣಿಗೆ ದೂರು ನೀಡಿ.</p>
-            <p lang="hi"><b>HI:</b> सारा DBT भुगतान 100% NPCI द्वारा सीधे आपके बैंक खाते में आता है। किसी मध्यस्थ को रिश्वत न दें। ₹30 से अधिक की माँग पर <b>1902</b> सकाल हेल्पलाइन पर रिपोर्ट करें।</p>
-          </div>
           <p class="mono text-[10.5px] font-bold mt-2 tracking-[0.08em]">${esc(T('report_free'))} <b>1902</b> · ${esc(T('report_sub'))}</p>
         </div>
 

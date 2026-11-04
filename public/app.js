@@ -39,11 +39,12 @@ function setLanguage(lang) {
     const on = (b.textContent.trim() === 'EN' && S.lang === 'English') || b.getAttribute('data-lang') === S.lang;
     b.classList.toggle('active', on);
   });
+  sessionStamp();
   applyI18nStatic();
   stopSpeech(true);
   if (S.view === 'schemes') renderSchemes();
   if (S.view === 'detail' && S.activeSchemeObj) openSchemeDetail(S.activeSchemeId, true);
-  if (S.view === 'intake' && S.resultMeta) renderIntake(true);
+  if (S.view === 'intake') renderIntake(true);
 }
 function applyI18nStatic() {
   document.querySelectorAll('[data-i18n]').forEach(el => { const v = T(el.getAttribute('data-i18n')); if (typeof v === 'string') el.innerHTML = v; });
@@ -90,7 +91,8 @@ function sessionStamp(tag) {
   const ses = 'SES-' + S.sessionId.toUpperCase().slice(0, 4);
   const el = $('vaultSessionTag'); if (el) el.textContent = ses;
   const f = $('footSession'); if (f) f.textContent = 'SESSION ' + ses;
-  const d = $('mastDate'); if (d) d.textContent = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+  const loc = S.lang === 'Kannada' ? 'kn-IN' : S.lang === 'Hindi' ? 'hi-IN' : S.lang === 'Tamil' ? 'ta-IN' : S.lang === 'Telugu' ? 'te-IN' : 'en-GB';
+  const d = $('mastDate'); if (d) d.textContent = new Date().toLocaleDateString(loc, { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
 }
 function eraseSessionNow(manual) {
   stopSpeech(true);

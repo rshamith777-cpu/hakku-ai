@@ -187,7 +187,28 @@ function readForensicChecks() {
 }
 
 /* ---------------- helpers ---------------- */
-function shortName(s) { return String(s && s.name || '').split('(')[0].trim(); }
+function schemeName(s) {
+  if (!s) return '';
+  if (s.id) {
+    const key = 'sch_' + String(s.id).replace(/-/g, '_');
+    const localized = T(key);
+    if (localized && localized !== key) return localized;
+  }
+  if (s.name) {
+    const cat = findCatalogByName(s.name);
+    if (cat && cat.id) {
+      const key = 'sch_' + String(cat.id).replace(/-/g, '_');
+      const localized = T(key);
+      if (localized && localized !== key) return localized;
+    }
+  }
+  return s.name || '';
+}
+function shortName(s) {
+  if (!s) return '';
+  const full = schemeName(s);
+  return String(full).split('(')[0].trim();
+}
 function occAbbr(o) { return ({ student: 'STUD', farmer: 'FARM', worker: 'WORK', artisan: 'ARTI', vendor: 'VEND', unemployed: 'UNEMP', homemaker: 'HOME', senior: 'SNR' })[o] || String(o || '').toUpperCase().slice(0, 4); }
 function buildFingerprint(p) {
   if (!p) return '—';
@@ -197,7 +218,12 @@ function buildFingerprint(p) {
     S.resultMeta && S.resultMeta.readinessChecks && S.resultMeta.readinessChecks.npciSeeded ? 'NPCIV' : 'NPCIX'].join('·');
 }
 function findCatalogByName(name) {
-  return (S.catalog || []).find(c => String(c.name || '').trim() === String(name || '').trim()) || null;
+  if (!name) return null;
+  const n = String(name).trim().toLowerCase();
+  return (S.catalog || []).find(c => {
+    const cn = String(c.name || '').trim().toLowerCase();
+    return cn === n || cn.startsWith(n) || n.startsWith(cn);
+  }) || null;
 }
 function oneTimeCapital() {
   const list = (S.matched || []).filter(s => /one[- ]time|laptop|solar|BOCW|capital|grant/i.test((s.benefitType || '') + ' ' + (s.payoutTag || '')));
@@ -216,8 +242,9 @@ function renderSchemes() {
   const conflicts = meta.statutoryConflictsResolved || [];
   const gemsList = S.matched.filter(s => s.isHiddenGem);
   const ot = oneTimeCapital();
-  const runDate = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-  const runTime = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+  const loc = S.lang === 'Kannada' ? 'kn-IN' : S.lang === 'Hindi' ? 'hi-IN' : S.lang === 'Tamil' ? 'ta-IN' : S.lang === 'Telugu' ? 'te-IN' : 'en-GB';
+  const runDate = new Date().toLocaleDateString(loc, { day: '2-digit', month: 'short', year: 'numeric' });
+  const runTime = new Date().toLocaleTimeString(loc, { hour: '2-digit', minute: '2-digit' });
   const seqDays = (meta.prerequisiteSequence || []).reduce((a, ph) => {
     const m = String(ph.timing || '').match(/(\d+)\s*$/); return Math.max(a, m ? Number(m[1]) : a);
   }, 0) || 11;
