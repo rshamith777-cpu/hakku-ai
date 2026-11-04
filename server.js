@@ -58,6 +58,7 @@ const rateBuckets = new Map();
 setInterval(() => { const now = Date.now(); for (const [k, v] of rateBuckets) if (now - v.start > RATE.windowMs * 2) rateBuckets.delete(k); }, 120000).unref();
 app.use('/api/', (req, res, next) => {
   if (req.method !== 'POST') return next();
+  if (process.env.HAKKU_TEST_MODE === '1') return next();
   const ip = (req.ip || 'unknown').replace(/[^0-9a-fA-F:.]/g, '');
   const now = Date.now();
   let b = rateBuckets.get(ip);
@@ -234,6 +235,10 @@ app.post('/api/harness/discover', (req, res) => {
       ? body.householdMembers.slice(0, 8).map(m => sanitizeProfile(m && m.profile ? m.profile : m))
       : [];
     const readinessChecks = body && body.readinessChecks && typeof body.readinessChecks === 'object' ? body.readinessChecks : {};
+    /* translate client forensic keys -> matcher-native keys (defensive: accept both) */
+    if (readinessChecks.nameMatchAadhaar !== undefined) readinessChecks.nameMatched = readinessChecks.nameMatchAadhaar;
+    if (readinessChecks.validRdCert !== undefined) readinessChecks.rdValid = readinessChecks.validRdCert;
+    if (readinessChecks.mergedHousehold !== undefined) readinessChecks.hasMergedBankPassbook = readinessChecks.mergedHousehold;
     const language = clampStr(body && body.language, 16) || 'English';
 
     const t0 = Date.now();

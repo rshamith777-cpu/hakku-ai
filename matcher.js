@@ -124,7 +124,8 @@ const LIFE_EVENT_BUNDLES = [
 
 function evaluateMember(profile, schemes) {
   const age = Number(profile.age || 25);
-  const income = Number(profile.income || 100000);
+  const incomeRaw = Number(profile.income);
+  const income = Number.isFinite(incomeRaw) ? incomeRaw : 100000;
   const gender = (profile.gender || 'any').toLowerCase();
   const occupation = (profile.occupation || 'other').toLowerCase();
   const category = (profile.category || 'OBC').toUpperCase();
