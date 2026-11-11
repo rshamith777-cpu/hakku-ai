@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Hakku Privacy Policy — DPDP Act 2023 alignment, 100% Volatile in-memory execution, zero database storage, zero tracking cookies." />
+<title>Privacy Policy — Hakku (ಹಕ್ಕು / हक़)</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111111'/%3E%3Crect x='6' y='6' width='52' height='52' fill='%23F4EFE6'/%3E%3Cpath d='M32 14 18 20v10c0 10 7 17 14 21 7-4 14-11 14-21V20L32 14z' fill='%23111111'/%3E%3Ccircle cx='32' cy='30' r='5' fill='%23FF3B30'/%3E%3C/svg%3E" />
+<link rel="canonical" href="https://hakku-ai.netlify.app/privacy.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Marko+One&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --ink:#111; --paper:#F4EFE6; --paper-3:#FFFDF7; --verm:#FF3B30; --mut:#444748; }
+  body { background-color:var(--paper); color:var(--ink); font-family:'Marko One',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',monospace; }
+  .sv-card { background:rgba(255,255,255,0.85); border:2px solid var(--ink); box-shadow:5px 5px 0 var(--ink); }
+</style>
+</head>
+<body class="p-6 md:p-12 max-w-4xl mx-auto">
+  <header class="border-b-2 border-[#111] pb-6 mb-8 flex justify-between items-center flex-wrap gap-4">
+    <div>
+      <a href="/" class="text-2xl font-black text-[#111] hover:text-[#FF3B30]">HAKKU<span class="text-[#FF3B30]">.</span></a>
+      <p class="mono text-xs text-[#444748] tracking-widest mt-1">SOVEREIGN STATUTORY RIGHTS OS</p>
+    </div>
+    <a href="/" class="mono text-xs border-2 border-[#111] px-3 py-1.5 font-bold hover:bg-[#111] hover:text-[#FFFDF7] transition">← BACK TO APP</a>
+  </header>
+
+  <main class="space-y-6">
+    <div class="sv-card p-6 md:p-8">
+      <h1 class="text-3xl font-black mb-2">Privacy Policy & DPDP Alignment</h1>
+      <p class="mono text-xs text-[#444748] mb-6">LAST UPDATED: NOVEMBER 2026 · VERSION 5.5</p>
+
+      <section class="space-y-4 text-sm leading-relaxed text-[#222]">
+        <h2 class="text-lg font-bold border-b border-[#111] pb-1 text-[#111]">1. Zero-Database Architecture (DPDP Act 2023 Section 6)</h2>
+        <p>Hakku is engineered from the ground up to respect citizen privacy. Unlike standard commercial portals, Hakku operates with <b>zero persistent database storage</b>. We maintain no SQL, NoSQL, Redis, or cloud storage buckets for citizen intake data. Citizen profiles (age, gender, income, category, landholding, ration status) exist strictly in transient, volatile serverless RAM during eligibility matching and are destroyed upon process termination.</p>
+
+        <h2 class="text-lg font-bold border-b border-[#111] pb-1 text-[#111]">4. Third-Party Services: BharatCode AI & QR Server Disclosures</h2>
+        <p>Hakku minimizes all external network requests. Two external services are utilized under strictly defined conditions:</p>
+        <ul class="list-disc pl-5 space-y-2 mt-2">
+          <li><b>BharatCode Model API (api.bharatcode.ai):</b> When you use the natural-language situation box (or voice dictation) and a valid API key is configured, Hakku sends <i>only</i> the text prompt you typed (e.g., <i>"I am a 45-year-old farmer with 2 acres"</i>) to extract structured entity dials. <b>Zero demographic form dials, zero financial figures, zero IP addresses, and zero session tokens are transmitted to BharatCode.</b> If no key is set or the prompt is empty, no network request occurs and processing falls back to 100% local regex rules. Never enter Aadhaar, PAN, or bank account numbers into free-text fields.</li>
+          <li><b>QR Server Service (api.qrserver.com):</b> To allow citizens and cyber-café operators to scan official government portal links on mobile phones or printed slips, QR code images are rendered via <code>api.qrserver.com</code>. The query parameter sent to QR Server contains <i>strictly the public official government URL</i> (e.g., <code>https://pmkisan.gov.in</code>). <b>No personal data or citizen attributes are ever sent.</b> Because your browser fetches this image directly, QR Server may receive standard HTTP client connection metadata (your public IP address and browser User-Agent) under standard HTTP operation.</li>
+        </ul>
+
+        <h2 class="text-lg font-bold border-b border-[#111] pb-1 text-[#111]">5. Ephemeral Session Keys, Expiration & Instance-Local Erasure</h2>
+        <p>Transmission is secured via ECDH P-256 with HKDF-SHA256 and AES-256-GCM envelope encryption. Session tickets expire automatically after <b>20 minutes</b> (<code>1,200,000 ms</code>). Clicking <b>"Erase Session Data Now"</b> immediately destroys your session keys and tickets in browser memory. On the serverless backend, the ticket identifier is recorded in an in-memory revocation map; because Netlify executes in multi-instance serverless containers, server-side revocation is instance-local, and primary privacy protection is guaranteed by client-side key zeroization and the short 20-minute expiry.</p>
+
+        <h2 class="text-lg font-bold border-b border-[#111] pb-1 text-[#111]">6. No Tracking Cookies or Third-Party Cross-Site Profiling</h2>
+        <p>Hakku uses <b>no advertising trackers, no cross-site tracking cookies, and no third-party profiling scripts</b>. Local browser state is held strictly in volatile window object memory and ceases to exist when you close or reload the browser tab.</p>
+
+        <h2 class="text-lg font-bold border-b border-[#111] pb-1 text-[#111]">7. Official Government Portals & External Links</h2>
+        <p>All application deep-links point exclusively to official, verified Indian government domains (<code>.gov.in</code>, <code>.nic.in</code>). When you navigate to an official portal (e.g., Seva Sindhu, National Scholarship Portal, PM-KISAN), your interaction is governed by that government department's privacy policy.</p>
+
+        <h2 class="text-lg font-bold border-b border-[#111] pb-1 text-[#111]">8. Contact & Open-Source Audits</h2>
+        <p>For privacy inquiries, technical audits, or vulnerability reporting, reach out via our <a href="/contact.html" class="underline font-bold">Contact Page</a> or submit an issue on our official open-source repository.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="mt-10 pt-6 border-t border-[#111] flex justify-between items-center text-xs mono text-[#444748] flex-wrap gap-2">
+    <span>© 2026 HAKKU AI · OPEN-SOURCE CITIZEN RIGHTS HARNESS</span>
+    <div class="flex gap-4">
+      <a href="/terms.html" class="hover:underline">Terms</a>
+      <a href="/about.html" class="hover:underline">About</a>
+      <a href="/contact.html" class="hover:underline">Contact</a>
+    </div>
+  </footer>
+</body>
+</html>
+

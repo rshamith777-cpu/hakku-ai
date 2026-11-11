@@ -5,6 +5,14 @@
 "use strict";
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function sanitizeUrl(rawUrl, fallback = 'https://www.myscheme.gov.in') {
+  if (!rawUrl || typeof rawUrl !== 'string') return fallback;
+  const trimmed = rawUrl.trim();
+  if (/^https:\/\/[a-z0-9.-]+\.[a-z]{2,}(\/.*)?$/i.test(trimmed)) {
+    return trimmed;
+  }
+  return fallback;
+}
 const inr = n => '₹' + Number(n || 0).toLocaleString('en-IN');
 
 /* ---------------- volatile session state (dies on refresh) ---------------- */

@@ -233,7 +233,11 @@ function renderIntake(preserveAlerts) {
       </div>
       <textarea id="situationBox" rows="3" maxlength="400" class="field-input mt-3 resize-y" style="line-height:1.6" placeholder="${esc(T('voice_hint'))}" oninput="updateDetectedFlags()"></textarea>
       <p class="mono text-[12px] text-[#8A4B00] mt-1.5 min-h-[18px]" id="detectedFlags"></p>
-      <div class="flex flex-wrap items-center justify-between gap-2 mt-1">
+      <div class="mt-2 text-[12.5px] text-[#444748] bg-[#FFFDF7] border border-[#111] p-3 flex items-start gap-2.5">
+        <span class="text-[#D97706] font-bold flex-none text-[15px]">🛡</span>
+        <span class="leading-relaxed"><b>${esc(T('pii_advisory_head'))}:</b> ${esc(T('pii_advisory_body'))}</span>
+      </div>
+      <div class="flex flex-wrap items-center justify-between gap-2 mt-2">
         <button id="micBtn" onclick="toggleDictation()" class="btn-ghost px-3.5 py-2 text-[13.5px] flex items-center gap-1.5 mono">🎙 ${esc(T('dictate_btn'))} <span class="text-[#8A8D8D]">webkitSpeechRecognition</span></button>
         <p class="mono text-[11.5px] text-[#8A8D8D]">${esc(T('pii_scan'))}</p>
       </div>

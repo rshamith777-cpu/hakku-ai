@@ -39,7 +39,7 @@ function renderSchemeDetail() {
   const ch = s.channel || {};
   const isCentral = String(s.level || '').toLowerCase().includes('central');
   const expired = s.deadlineStatus === 'EXPIRED_TODAY';
-  const portal = s.applyWhere || s.source || 'https://india.gov.in';
+  const portal = sanitizeUrl(s.source || s.applyWhere, 'https://www.myscheme.gov.in');
   const portalHost = String(portal).replace(/^https?:\/\//, '').split('/')[0];
   const portalPath = String(portal).replace(/^https?:\/\//, '').split('/').slice(1).join(' / ');
   const qr = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=10&data=' + encodeURIComponent(portal);

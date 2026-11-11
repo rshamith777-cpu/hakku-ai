@@ -1,6 +1,0 @@
-Project Name: Hakku (ಹಕ್ಕು / हक़) — Zero-Hallucination Welfare Discovery & RTI Harness
-Author: SHAMITH R (@rshamith777-cpu)
-Track: Everyday Assistance
-Hackathon: BharatCode Build League 2026
-Powered by: BharatCode Model API (qwen-3.8-27b) + Deterministic Statutory Engine
-Repository: https://github.com/rshamith777-cpu/hakku-ai.git

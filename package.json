@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "test": "node tests/run_sweep.mjs",
     "build": "node -e \"console.log('Build verified for Netlify');\"",
     "check": "node -e \"new Function(require('fs').readFileSync('server.js','utf8')); console.log('server.js syntax OK')\""
   },

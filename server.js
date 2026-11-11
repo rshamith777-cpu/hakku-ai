@@ -83,22 +83,47 @@ app.set('trust proxy', 1);
 /* =====================================================================
    SECURITY LAYER — DPDP Act 2023 volatile-RAM mandate
    - Strict security headers (CSP, HSTS, frame-deny, no-sniff)
-   - Allow-list CORS
-   - In-memory sliding-window rate limiter (no Redis, nothing persisted)
+   - Allow-list CORS with production defaults
+   - In-memory sliding-window rate limiter with client IP validation
    - ECDH P-256 handshake -> HKDF -> AES-256-GCM envelope transport
-   - Sessions live ONLY in a TTL-purged Map; process exit = total wipe
+   - Stateless sealed tickets with cryptographic revocation & epoch tracking
    - Zero PII logging: logs carry counts and status codes only
    ===================================================================== */
+const DEFAULT_ORIGINS = [
+  'https://hakku-ai.netlify.app',
+  'http://localhost:3000',
+  'http://127.0.0.1:3000'
+];
 const ALLOWED_ORIGINS = (process.env.HAKKU_ALLOWED_ORIGINS || '')
   .split(',').map(s => s.trim()).filter(Boolean);
+
+function isOriginAllowed(origin) {
+  if (!origin) return true; // same-origin / non-browser / serverless internal
+  if (ALLOWED_ORIGINS.includes(origin)) return true;
+  if (DEFAULT_ORIGINS.includes(origin)) return true;
+  // Netlify deploy previews: https://deploy-preview-123--hakku-ai.netlify.app or branch previews
+  if (/^https:\/\/[a-z0-9-]+--hakku-ai\.netlify\.app$/.test(origin)) return true;
+  return false;
+}
+
+function getClientIp(req) {
+  const nf = req.headers['x-nf-client-connection-ip'] || req.headers['client-ip'];
+  if (nf && typeof nf === 'string') return nf.trim().replace(/[^0-9a-fA-F:.]/g, '');
+  const xff = req.headers['x-forwarded-for'];
+  if (xff && typeof xff === 'string') {
+    const first = xff.split(',')[0].trim();
+    if (first) return first.replace(/[^0-9a-fA-F:.]/g, '');
+  }
+  return (req.ip || (req.socket && req.socket.remoteAddress) || 'unknown').replace(/[^0-9a-fA-F:.]/g, '');
+}
 
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  res.setHeader('Permissions-Policy', 'camera=(), geolocation=(), payment=()');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(self), geolocation=(), payment=()');
   res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-  res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains');
+  res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
   res.setHeader('Content-Security-Policy', [
     "default-src 'self'",
     "script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com",
@@ -111,15 +136,18 @@ app.use((req, res, next) => {
     "form-action 'self'"
   ].join('; '));
   const origin = req.headers.origin;
-  if (origin && (ALLOWED_ORIGINS.length === 0 || ALLOWED_ORIGINS.includes(origin))) {
+  if (origin && isOriginAllowed(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Vary', 'Origin');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Hakku-Session');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   }
   next();
 });
-app.use(cors({ origin: (origin, cb) => cb(null, !origin || ALLOWED_ORIGINS.length === 0 || ALLOWED_ORIGINS.includes(origin)) }));
+app.use(cors({
+  origin: (origin, cb) => cb(null, isOriginAllowed(origin)),
+  credentials: true
+}));
 app.use(express.json({ limit: '24kb' }));
 app.use(express.static(path.join(__dirname, 'public'), { index: 'index.html', maxAge: '1h', setHeaders: (res, filePath) => { if (filePath.endsWith('.html')) res.setHeader('Cache-Control', 'no-cache'); } }));
 
@@ -130,14 +158,17 @@ setInterval(() => { const now = Date.now(); for (const [k, v] of rateBuckets) if
 app.use('/api/', (req, res, next) => {
   if (req.method !== 'POST') return next();
   if (process.env.HAKKU_TEST_MODE === '1') return next();
-  const ip = (req.ip || 'unknown').replace(/[^0-9a-fA-F:.]/g, '');
+  const ip = getClientIp(req);
   const now = Date.now();
   let b = rateBuckets.get(ip);
   if (!b || now - b.start > RATE.windowMs) { b = { start: now, n: 0 }; rateBuckets.set(ip, b); }
   b.n++;
   res.setHeader('X-RateLimit-Limit', RATE.max);
   res.setHeader('X-RateLimit-Remaining', Math.max(0, RATE.max - b.n));
-  if (b.n > RATE.max) return res.status(429).json({ error: 'RATE_LIMITED', retryAfterMs: RATE.windowMs - (now - b.start) });
+  if (b.n > RATE.max) {
+    res.setHeader('Retry-After', Math.ceil((RATE.windowMs - (now - b.start)) / 1000));
+    return res.status(429).json({ error: 'RATE_LIMITED', retryAfterMs: RATE.windowMs - (now - b.start) });
+  }
   next();
 });
 
@@ -172,7 +203,29 @@ setInterval(() => {
 }, 60000).unref();
 
 /* Stateless Ticket Master Secret for Serverless / Multi-Instance Deployments */
-const MASTER_SECRET = crypto.createHash('sha256').update(process.env.SESSION_SECRET || 'hakku-sovereign-master-secret-2026').digest();
+function getMasterSecret() {
+  const secret = process.env.SESSION_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === 'production' && !process.env.HAKKU_TEST_MODE) {
+      console.error('FATAL [SECURITY]: SESSION_SECRET environment variable is missing in production. Refusing to start with insecure key.');
+      process.exit(1);
+    }
+    if (!global.__DEV_SESSION_SECRET) {
+      global.__DEV_SESSION_SECRET = crypto.randomBytes(32).toString('hex');
+      console.warn('WARN [SECURITY]: SESSION_SECRET unset in non-production; generated ephemeral random 256-bit key.');
+    }
+    return crypto.createHash('sha256').update(global.__DEV_SESSION_SECRET).digest();
+  }
+  return crypto.createHash('sha256').update(secret).digest();
+}
+const MASTER_SECRET = getMasterSecret();
+
+/* In-memory revocation registry with automatic expiry pruning */
+const revokedTickets = new Map(); // tid (hex) -> expiresAt
+setInterval(() => {
+  const now = Date.now();
+  for (const [tid, exp] of revokedTickets) if (now > exp) revokedTickets.delete(tid);
+}, 60000).unref();
 
 function b64urlToBuf(s) { return Buffer.from(String(s).replace(/-/g, '+').replace(/_/g, '/'), 'base64'); }
 function bufToB64url(b) { return Buffer.from(b).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
@@ -182,7 +235,9 @@ function deriveKey(sharedSecret) {
 
 function sealTicket(keyBuf, expiresAt) {
   const iv = crypto.randomBytes(12);
-  const payload = Buffer.concat([keyBuf, Buffer.from(expiresAt.toString(16).padStart(16, '0'), 'hex')]);
+  const tid = crypto.randomBytes(16);
+  const expBuf = Buffer.from(expiresAt.toString(16).padStart(16, '0'), 'hex');
+  const payload = Buffer.concat([tid, keyBuf, expBuf]);
   const cipher = crypto.createCipheriv('aes-256-gcm', MASTER_SECRET, iv);
   const ct = Buffer.concat([cipher.update(payload), cipher.final()]);
   const tag = cipher.getAuthTag();
@@ -200,10 +255,23 @@ function unsealTicket(ticketStr) {
     const decipher = crypto.createDecipheriv('aes-256-gcm', MASTER_SECRET, iv);
     decipher.setAuthTag(tag);
     const plain = Buffer.concat([decipher.update(ct), decipher.final()]);
-    const keyBuf = plain.subarray(0, 32);
-    const exp = parseInt(plain.subarray(32, 40).toString('hex'), 16);
+
+    let tid = null;
+    let keyBuf, exp;
+    if (plain.length === 16 + 32 + 8) {
+      tid = plain.subarray(0, 16).toString('hex');
+      keyBuf = plain.subarray(16, 48);
+      exp = parseInt(plain.subarray(48, 56).toString('hex'), 16);
+    } else if (plain.length === 32 + 8) {
+      keyBuf = plain.subarray(0, 32);
+      exp = parseInt(plain.subarray(32, 40).toString('hex'), 16);
+    } else {
+      return null;
+    }
+
     if (Date.now() > exp) return null;
-    return { keyBuf, expiresAt: exp };
+    if (tid && revokedTickets.has(tid)) return null;
+    return { keyBuf, expiresAt: exp, tid };
   } catch (e) {
     return null;
   }
@@ -240,8 +308,14 @@ app.post('/api/security/handshake', (req, res) => {
 });
 
 app.post('/api/session/wipe', (req, res) => {
-  const sid = clampStr(req.body && req.body.sessionId, 256);
-  if (sid) sessions.delete(sid);
+  const sid = clampStr(req.body && req.body.sessionId, 512);
+  if (sid) {
+    sessions.delete(sid);
+    const unsealed = unsealTicket(sid);
+    if (unsealed && unsealed.tid) {
+      revokedTickets.set(unsealed.tid, unsealed.expiresAt);
+    }
+  }
   res.json({ wiped: true });
 });
 
@@ -573,6 +647,15 @@ function startServer(port) {
   process.on('SIGINT', shutdown);
   process.on('SIGTERM', shutdown);
 }
+
+app._internals = {
+  sealTicket,
+  unsealTicket,
+  SESSION_TTL_MS,
+  revokedTickets,
+  isOriginAllowed,
+  getClientIp
+};
 
 module.exports = app;
 

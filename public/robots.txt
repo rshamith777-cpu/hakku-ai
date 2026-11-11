@@ -1,0 +1,9 @@
+# Hakku AI Robots Configuration
+# https://hakku-ai.netlify.app/
+User-agent: *
+Allow: /
+Allow: /sitemap.xml
+Disallow: /api/
+
+Sitemap: https://hakku-ai.netlify.app/sitemap.xml
+

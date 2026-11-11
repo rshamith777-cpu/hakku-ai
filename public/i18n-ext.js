@@ -266,6 +266,8 @@ window.HAKKU_I18N.Telugu = {
 (function() {
   const EXP = {
   "English": {
+    "pii_advisory_head": "Citizen Privacy Notice",
+    "pii_advisory_body": "Do not enter your Aadhaar, PAN, bank account, or OTP numbers. Free-text is processed in volatile RAM and never stored.",
     "recordsPersisted": "0 RECORDS PERSISTED",
     "env_cipher": "Cipher",
     "env_ttl": "TTL",
@@ -377,6 +379,8 @@ window.HAKKU_I18N.Telugu = {
     "sch_pmjay_ayushman": "Ayushman Bharat PM-JAY + Vay Vandana"
   },
   "Kannada": {
+    "pii_advisory_head": "ನಾಗರಿಕ ಖಾಸಗಿತನ ಸೂಚನೆ",
+    "pii_advisory_body": "ನಿಮ್ಮ ಆಧಾರ್, ಪ್ಯಾನ್, ಬ್ಯಾಂಕ್ ಖಾತೆ ಅಥವಾ OTP ಸಂಖ್ಯೆಗಳನ್ನು ನಮೂದಿಸಬೇಡಿ. ಪಠ್ಯವನ್ನು ತಾತ್ಕಾಲಿಕ RAM ನಲ್ಲಿ ಮಾತ್ರ ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತದೆ, ಎಂದಿಗೂ ಶೇಖರಿಸುವುದಿಲ್ಲ.",
     "recordsPersisted": "0 ದಾಖಲೆಗಳು ಉಳಿದಿವೆ (ಶೂನ್ಯ ಶೇಖರಣೆ)",
     "env_cipher": "ಸೈಫರ್",
     "env_ttl": "ಟಿಟಿಎಲ್ (ಆಯುಷ್ಯ)",
@@ -488,6 +492,8 @@ window.HAKKU_I18N.Telugu = {
     "sch_pmjay_ayushman": "ಆಯುಷ್ಮಾನ್ ಭಾರತ್ PM-JAY + ವಯ ವಂದನಾ ಆರೋಗ್ಯ ಕವಚ"
   },
   "Hindi": {
+    "pii_advisory_head": "नागरिक गोपनीयता सूचना",
+    "pii_advisory_body": "अपना आधार, पैन, बैंक खाता या ओटीपी नंबर दर्ज न करें। विवरण केवल अस्थायी RAM में संसाधित होता है, कभी संग्रहीत नहीं किया जाता।",
     "recordsPersisted": "0 रिकॉर्ड सहेजे गए (शून्य संग्रहण)",
     "env_cipher": "साइफ़र",
     "env_ttl": "टीटीएल (अवधि)",
@@ -599,6 +605,8 @@ window.HAKKU_I18N.Telugu = {
     "sch_pmjay_ayushman": "आयुष्मान भारत PM-JAY + वय वंदना स्वास्थ्य कवच"
   },
   "Tamil": {
+    "pii_advisory_head": "குடிமக்கள் தனியுரிமை அறிவிப்பு",
+    "pii_advisory_body": "உங்கள் ஆதார், பான், வங்கிக் கணக்கு அல்லது OTP எண்களை உள்ளிட வேண்டாம். விவரங்கள் தற்காலிக RAM-ல் மட்டுமே செயலாக்கப்படும், சேமிக்கப்படாது.",
     "recordsPersisted": "0 பதிவுகள் சேமிக்கப்பட்டன (பூஜ்ய சேமிப்பு)",
     "env_cipher": "மறைகுறியீடு",
     "env_ttl": "அமர்வு நேரம் (TTL)",
@@ -710,6 +718,8 @@ window.HAKKU_I18N.Telugu = {
     "sch_pmjay_ayushman": "ஆயுஷ்மான் பாரத் PM-JAY + வய வந்தனா இலவச மருத்துவக் காப்பீடு"
   },
   "Telugu": {
+    "pii_advisory_head": "పౌర గోప్యతా నోటీసు",
+    "pii_advisory_body": "మీ ఆధార్, పాన్, బ్యాంకు ఖాతా లేదా OTP సంఖ్యలను నమోదు చేయవద్దు. సమాచారం కేవలం తాత్కాలిక RAM లో మాత్రమే ప్రాసెస్ చేయబడుతుంది, నిల్వ చేయబడదు.",
     "recordsPersisted": "0 రికార్డులు భద్రపరచబడ్డాయి (శూన్య నిల్వ)",
     "env_cipher": "సైಫర్",
     "env_ttl": "టిటిఎల్ (కాలపరిమితి)",
